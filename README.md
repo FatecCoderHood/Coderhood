@@ -10,3 +10,6 @@
 | Carlos Costa           | Desenvolvedor     | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin&labelColor=blue)](https://shorturl.at/alST4) |
 | Juan Cursino           | Desenvolvedor     | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin&labelColor=blue)](https://shorturl.at/gpDES) |
 | Rennerson Vasconcelos  | Desenvolvedor     | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin&labelColor=blue)](https://shorturl.at/mpF39) |
+
+
+[Regras de Convivência e Desempenho](https://docs.google.com/document/d/1uSH9qZtgXktmWYiS1Dxn747fM9GJJoDgHgPn85a1yIs/edit?usp=sharing)
