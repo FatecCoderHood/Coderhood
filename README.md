@@ -2,7 +2,7 @@
 
 # Membros:
 
-| Nome                   | Função            | LinkedIn                                                  |
+| **Nome**                   | **Função**            | **LinkedIn**                                                  |
 |:----------------------:|:-----------------:|:----------------------------------------------------------:|
 | César Truyts           | Scrum Master      | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin&labelColor=blue)](https://shorturl.at/BC169) |
 | Julio Araujo           | Product Owner     | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin&labelColor=blue)](https://shorturl.at/eCIXZ) |
@@ -12,4 +12,4 @@
 | Rennerson Vasconcelos  | Desenvolvedor     | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin&labelColor=blue)](https://shorturl.at/mpF39) |
 
 
-[Regras de Convivência e Desempenho](https://docs.google.com/document/d/1uSH9qZtgXktmWYiS1Dxn747fM9GJJoDgHgPn85a1yIs/edit?usp=sharing)
+| [Regras de Convivência e Desempenho](https://docs.google.com/document/d/1uSH9qZtgXktmWYiS1Dxn747fM9GJJoDgHgPn85a1yIs/edit?usp=sharing) |
