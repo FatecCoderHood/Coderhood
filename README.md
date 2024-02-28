@@ -13,3 +13,8 @@
 
 
 | [Regras de Convivência e Desempenho](https://docs.google.com/document/d/1uSH9qZtgXktmWYiS1Dxn747fM9GJJoDgHgPn85a1yIs/edit?usp=sharing) |
+
+|** Trello **|
+|:----------:|
+|[Trello]([https://trello.com/](https://trello.com/b/3ZY8lQA1/api)https://trello.com/b/3ZY8lQA1/api)
+|
