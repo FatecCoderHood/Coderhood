@@ -4,7 +4,6 @@
 
 
 
-
 # Integrantes:
 
 | **Nome**                   | **Função**            | **LinkedIn**                                                  |
