@@ -3,6 +3,7 @@
 # <p align = "center"> ![Coderhood2](https://github.com/CoderhoodFatec-2024-1/Coderhood/assets/87550162/771a8ed8-4c0b-46b4-838d-0358347ca0e5)
 
 
+
 <p align="center">
   <a href ="#mortar_board-integrantes-da-equipe"> Integrantes </a>  •
   <a href ="#anger-descrição-do-desafio"> Desafio </a>  •
