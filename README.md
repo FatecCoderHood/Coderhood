@@ -55,12 +55,12 @@
 
 | Sprint  | Nome | Data inicio  | Data Fim | Status |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-| --  | KickOff   | 00/00   | 00/00 | | 
-|  1  | Sprint 1   | 00/00   | 00/00 | | 
-|  2  | Sprint 2   | 00/00   | 00/00 | |
-|  3  | Sprint 3   | 00/00   | 00/00 | | 
-|  4  | Sprint 4   | 00/00   | 00/00 | | 
-|  5  | Feira de Soluções  | 00/00  | 00/00 | |
+| --  | KickOff   | 04/03   | 08/03 | | 
+|  1  | Sprint 1   | 25/03   | 14/04 | | 
+|  2  | Sprint 2   | 15/04   | 05/05 | |
+|  3  | Sprint 3   | 06/05   | 26/05 | | 
+|  4  | Sprint 4   | 27/05   | 16/06 | | 
+|  5  | Feira de Soluções  | 27/06 | |
 
 
 ## :date: Product BackLog
