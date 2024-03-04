@@ -55,3 +55,10 @@
 | 1º | Alta |  **Requisito 01** Descrição do Requisito  | [#0]  | 
 | 2º | Media |  **Requisito 01** Descrição do Requisito  | [#0]  |
 | 3º | Baixa |  **Requisito 01** Descrição do Requisito  | [#0]  |
+
+
+# Tecnologias utilizadas
+|**Tecnologia**|**Logo**|
+| :----------: | :------: |
+|Java|![java-logo-vert-blk](https://github.com/wizards-of-api/api-2BD/assets/126925449/f59c11d9-1ada-421f-b7b8-124078553703)|
+
