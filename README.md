@@ -61,4 +61,4 @@
 |**Tecnologia**|**Logo**|
 | :----------: | :------: |
 |Java|![java-logo-vert-blk](https://github.com/wizards-of-api/api-2BD/assets/126925449/f59c11d9-1ada-421f-b7b8-124078553703)|
-
+| [Trello](https://trello.com/b/3ZY8lQA1/api)|![image](https://github.com/CoderhoodFatec-2024-1/Coderhood/assets/143050764/f71799a4-d89d-4e3c-ae1a-2662147a292f)|
