@@ -3,7 +3,6 @@
 # <p align = "center"> ![Coderhood2](https://github.com/CoderhoodFatec-2024-1/Coderhood/assets/87550162/771a8ed8-4c0b-46b4-838d-0358347ca0e5)
 
 
-
 <p align="center">
   <a href ="#mortar_board-integrantes-da-equipe"> Integrantes </a>  •
   <a href ="#anger-descrição-do-desafio"> Desafio </a>  •
@@ -43,13 +42,17 @@
 | [Trello](https://trello.com/b/3ZY8lQA1/api) |
 
 ## :page_facing_up: Requisitos Funcionais
-* O sistema deve
-* O sistema deve
-* O sistema deve
+* O sistema deve carregar e validar de arquivos CSV.
+* O sistema deve conter gerenciamento de estações, cidades e unidades de medida.
+* O sistema deve gerar relatórios de valor médio das variáveis climáticas por cidade.
+* O sistema deve gerar relatórios com gráficos boxplot.
+* O sistema deve possibilitar o tratamento de registros suspeitos
 
 ## :page_with_curl: Requisitos Não Funcionais
 
 * Linguagem de programação Java e tecnologias relacionadas
+* Banco de Dados Relacionais
+* Documentação: manual de usuário, diagrama entidade-relacionamento e instruções de instalação.
 
 ## :calendar: Cronograma
 
@@ -64,14 +67,15 @@
 
 
 ## :date: Product BackLog
+| ID   | User Stories                                                 | Épico                       | Sprint                                                    | Prioridade |
+| ---- | ------------------------------------------------------------ | --------------------------- | --------------------------------------------------------- | ---------- |
+| 1 | Como usuário, eu quero poder importar informações o clima via arquivo csv contendo os dados, para manter registros precisos.| Importar Dados climaticos Via Arquivo CSV | - | 1 |
+| 2 | Como usuário, eu quero poder gerar relatórios, para melhor visualização dos dados | Gerar Relatório | - | 3 |
+| 3 | Como usuário, eu quero poder revisar e editar informações dados suspeitos, para evitar dados imprecisos. | Tratamento de Dados Suspeitos| - | 2 |
+| 4 | Como usuário, eu quero poder adicionar novas estações meteorológicas ao sistema para especificar ampliar minha base de dados.. | Adição de Novas Bases de Coleta | - | 4 |
+| 5 | Como usuário, eu quero documentações detalhadas, incluindo um manual de usuário e instruções de instalação, para facilitar o uso e a manutenção do sistema.| Criar Documentação | - | 5 |
 
 
-| Ranking de Prioridades | Prioridade | User Stories | Sprint |
-| ------------- | ------------- | ------------- | ------------- |
-| 1º | Alta |  **Requisito 01** Descrição do Requisito  | [#0]  | 
-| 2º | Alta |  **Requisito 01** Descrição do Requisito  | [#0]  | 
-| 3º | Media |  **Requisito 01** Descrição do Requisito  | [#0]  |
-| 4º | Baixa |  **Requisito 01** Descrição do Requisito  | [#0]  |
 
 
 ## :bookmark: Tecnologias Utilizadas
@@ -79,3 +83,4 @@
 > * [JDBC](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/)
 > * [Git/Github (Controle de versão)](https://github.com/)
 > * [Itellij](https://www.jetbrains.com/pt-br/idea/)
+
