@@ -86,7 +86,7 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
 > * [Git](https://git-scm.com/)
 > * [GitHub](https://github.com/)
 > * [Itellij](https://www.jetbrains.com/pt-br/idea/)
-> * [PostgreSQL](https://www.postgresql.org/)
+> * [PostgreSQL]V.16.2(https://www.postgresql.org/)
 > * [Lucidchart](https://www.lucidchart.com/)
 > * [Discord](https://discord.com/)
 > * [Slack](https://slack.com/)
