@@ -6,7 +6,8 @@ import java.util.List;
 
 import com.example.dadosmeteorologicos.App;
 import com.example.dadosmeteorologicos.Services.ValorMedioService;
-import com.example.dadosmeteorologicos.model.RegistroDto;
+import com.example.dadosmeteorologicos.model.Registro;
+import com.example.dadosmeteorologicos.model.RegistroValorMedio;
 
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -120,10 +121,13 @@ public class ValorMedioController {
         java.sql.Date dataFinalSqlDate = java.sql.Date.valueOf(dataSelecionadaFinal);
         
         // Id da cidade MOCKADO
-        String IdCidade = "SC"; 
+        String siglaCidade = "SP"; 
 
 
-        List<RegistroDto> resultado = service.consultaCidadePorIdEDatas(IdCidade, dataInicialSqlDate, dataFinalSqlDate);
+        List<RegistroValorMedio> resultado = service.consultaCidadePorIdEDatas(siglaCidade, dataInicialSqlDate, dataFinalSqlDate);
+        for (RegistroValorMedio registro : resultado) {
+            System.out.println(registro);
+        }
         System.out.println(resultado.size());
 
         // Carrega a tela de resultados
@@ -132,7 +136,7 @@ public class ValorMedioController {
             Parent root = loader.load();
             TabelaRegistrosController controller = loader.getController();
             controller.setRegistros(resultado);
-            controller.initialize();
+            //controller.initialize();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
@@ -140,5 +144,4 @@ public class ValorMedioController {
             System.err.format("Erro ao abrir a tela de registros: %s", e.getMessage());
         }
     }
-
 }

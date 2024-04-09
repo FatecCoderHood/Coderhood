@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.example.dadosmeteorologicos.model.RegistroDto;
+import com.example.dadosmeteorologicos.model.Registro;
 
 public class LeitorCsvSQL extends IniciaBanco{
     private Connection conn;
@@ -15,7 +15,7 @@ public class LeitorCsvSQL extends IniciaBanco{
         this.conn = super.conectarBanco();
     }
 
-    public int[] salvarRegistro(List<RegistroDto> listaRegistroDto) {
+    public int[] salvarRegistro(List<Registro> listaRegistroDto) {
         int[] salvoDuplicado = new int[]{0, 0};
         try {
             if (conn != null) {
@@ -23,31 +23,22 @@ public class LeitorCsvSQL extends IniciaBanco{
                 int registrosSalvos = 0;
                 int registrosDuplicados = 0;
 
-                String sql = "INSERT INTO Registro" + 
-                "(cidade, estacao, data, hora, temperaturaMedia, umidadeMedia," +
-                "velVento, dirVento, chuva, temperaturaSuspeita, umidadeSuspeita,"+
-                 "velocidadeVentoSuspeita, direcaoVentoSuspeita, chuvaSuspeita)"+
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"+
-                "ON CONFLICT(estacao, data, hora) DO NOTHING";
+                String sql = "INSERT INTO Registro " + 
+                "(data, hora, estacao, siglaCidade, tipo, valor, suspeito)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)"+
+                "ON CONFLICT(data, hora, estacao, siglaCidade, tipo) DO NOTHING";
                 // talvez seja possivel ja verificar aqui se o registro está suspeito.
                  // PreparedStatement é uma interface usada para executar consultas SQL parametrizadas. 
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                    for (RegistroDto registro : listaRegistroDto) {
-                        pstmt.setString(1, registro.getCidade());
-                        pstmt.setString(2, registro.getEstacao());
-                        pstmt.setDate(3, java.sql.Date.valueOf(registro.getData()));
-                        pstmt.setTime(4, java.sql.Time.valueOf(registro.getHora()));
-                        setDoubleOrNull(pstmt, 5, registro.getTemperaturaMedia());
-                        setDoubleOrNull(pstmt, 6, registro.getUmidadeMedia());
-                        setDoubleOrNull(pstmt, 7, registro.getVelVento());
-                        setDoubleOrNull(pstmt, 8, registro.getDirVento());
-                        setDoubleOrNull(pstmt, 9, registro.getChuva());
-                        pstmt.setBoolean(10, registro.isTemperaturaSuspeita());
-                        pstmt.setBoolean(11, registro.isUmidadeSuspeita());
-                        pstmt.setBoolean(12, registro.isVelocidadeVentoSuspeita());
-                        pstmt.setBoolean(13, registro.isDirecaoVentoSuspeita());
-                        pstmt.setBoolean(14, registro.isChuvaSuspeita());
-                        
+                    for (Registro registro : listaRegistroDto) {
+                        pstmt.setDate(1, java.sql.Date.valueOf(registro.getData()));
+                        pstmt.setTime(2, java.sql.Time.valueOf(registro.getHora()));
+                        pstmt.setString(3, registro.getEstacao());
+                        pstmt.setString(4, registro.getSiglaCidade());
+                        pstmt.setString(5, registro.getTipo());
+                        setDoubleOrNull(pstmt, 6, registro.getValor());
+                        pstmt.setBoolean(7, registro.isSuspeito());
+
                         // O método executeUpdate() retorna um inteiro que representa o número de linhas 
                         // afetadas pela operação SQL. Isso inclui as linhas inseridas, 
                         // atualizadas ou excluídas.

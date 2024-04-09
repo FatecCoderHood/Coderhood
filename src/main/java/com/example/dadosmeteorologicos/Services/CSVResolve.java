@@ -3,15 +3,18 @@ package com.example.dadosmeteorologicos.Services;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.example.dadosmeteorologicos.exceptions.CSVInvalidoException;
 import com.example.dadosmeteorologicos.exceptions.NomeCSVInvalidoException;
+import com.example.dadosmeteorologicos.model.Registro;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -37,6 +40,8 @@ public class CSVResolve {
     private String[] cabecalhoCSV = null;
     private Map<String, Integer> camposAutomatico = new HashMap<>();
     private Map<String, Integer> camposManual = new HashMap<>();
+    DateTimeFormatter formatadorDia = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    DateTimeFormatter formatadorHora = DateTimeFormatter.ofPattern("HHmm");
 
 
     public CSVResolve(String caminhoCSV) {
@@ -85,76 +90,86 @@ public class CSVResolve {
         }
     }
 
- public List<String[]> filtrarCSV(){
-        List<String[]> filtrarCSVPadronizado = new ArrayList<>();
+    public List<Registro> criarRegistro(){
+        RegistroService service = new RegistroService();
+        List<Registro> registroFiltrado = new ArrayList<>();
         int ignorarCabecalho = 0;
         for (String[] linha : csvPadronizado) {
             if (ignorarCabecalho == 0 && linha.length > 0) {
                 ignorarCabecalho++;
                 continue;
             }
-            String novaLinha = "";
             if (automatico) {
-                // Variaveis para calculo da media
+                LocalDate data = LocalDate.parse(linha[0], formatadorDia);
+                LocalTime hora = LocalTime.parse(linha[1],formatadorHora);
+
                 String tempMax = linha[3];
                 String tempMin = linha[4];
                 String umiMax = linha[6];
                 String umiMin = linha[7];
-
-                // Variaveis para o registro
-                String data = linha[0];
-                String hora = linha[1];
-                // A variável umidadeMedia é calculada da seguinte maneira:
-                // Se umiMax e umiMin não são nulos e não estão vazios, então a média de umiMax e umiMin é calculada e convertida para uma String.
-                // Caso contrário, umidadeMedia é definida como null.    
-                String umidadeMedia = (umiMax != null && !umiMax.isEmpty() && umiMin != null && !umiMin.isEmpty()) 
-                    ? String.valueOf((Double.parseDouble(umiMax) + Double.parseDouble(umiMin)) / 2) 
-                    : null;
                 String velVento = linha[14];
                 String dirVento = linha[15];
                 String chuva = linha[18];
-                String temperaturaMedia = (tempMax != null && !tempMax.isEmpty() && tempMin != null && !tempMin.isEmpty()) 
-                    ? String.valueOf((Double.parseDouble(tempMax) + Double.parseDouble(tempMin)) / 2) 
-                    : null;
-                // Formata a nova linha
-                novaLinha = String.format(Locale.US, "%s;%s;%s;%s;%s;%s;%s;%s;%s",
-                    codigoCidade, codigoEstacao,
-                    data, hora,
-                    temperaturaMedia != null ? String.format(Locale.US, "%.1f", tentarParseDouble(temperaturaMedia)) : null,
-                    umidadeMedia != null ? String.format(Locale.US, "%.1f", tentarParseDouble(umidadeMedia)) : null,
-                    velVento != null ? String.format(Locale.US, "%.1f", tentarParseDouble(velVento)) : null,
-                    dirVento != null ? String.format(Locale.US, "%.1f", tentarParseDouble(dirVento)) : null,
-                    chuva != null ? String.format(Locale.US, "%.1f", tentarParseDouble(chuva)) : null);
+
+                Double temperaturaMediaDouble = (tempMax != null && !tempMax.isEmpty() && tempMin != null && !tempMin.isEmpty()) 
+                ? ((Double.parseDouble(tempMax) + Double.parseDouble(tempMin)) / 2) 
+                : null;
+                Double umidadeMediaDouble = (umiMax != null && !umiMax.isEmpty() && umiMin != null && !umiMin.isEmpty()) 
+                ? ((Double.parseDouble(umiMax) + Double.parseDouble(umiMin)) / 2) 
+                : null;
+                Double velVentoDouble = (velVento != null && !velVento.isEmpty()) ? Double.parseDouble(velVento) : null;
+                Double dirVentoDouble = (dirVento != null && !dirVento.isEmpty()) ? Double.parseDouble(dirVento) : null;
+                Double chuvaDouble = (chuva != null && !chuva.isEmpty()) ? Double.parseDouble(chuva) : null;
+                             
+                Registro novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "temperaturaMedia", temperaturaMediaDouble, 
+                    service.validarTemperatura(temperaturaMediaDouble));
+                registroFiltrado.add(novoRegistro);
+
+                novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "umidadeMedia", umidadeMediaDouble, service.validarUmidade(umidadeMediaDouble));
+                registroFiltrado.add(novoRegistro);
+                novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "velVento", velVentoDouble, service.validarVelocidadeVento(velVentoDouble));
+                registroFiltrado.add(novoRegistro);
+                novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "dirVento", dirVentoDouble, service.validarDirecaoVento(dirVentoDouble));
+                registroFiltrado.add(novoRegistro);
+                novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "chuva", chuvaDouble, service.validarChuva(chuvaDouble));
+                registroFiltrado.add(novoRegistro);
 
                 } else {
-                    // Variaveis para o registro
-                    String data = linha[0];
-                    String hora = linha[1];
+                    LocalDate data = LocalDate.parse(linha[0],formatadorDia);
+                    LocalTime hora = LocalTime.parse(linha[1],formatadorHora);
                     String tempHora = linha[2];
-                    String umidadeMedia = linha[3];
-                    String velVento = linha[5];
-                    String dirVento = linha[7];
-                    String chuva = linha[11];
+                    Double umidadeMedia = (linha[3] != null && !linha[3].isEmpty()) ? Double.parseDouble(linha[3]) : null;
+                    Double velVento = (linha[5] != null && !linha[5].isEmpty()) ? Double.parseDouble(linha[5]) : null;
+                    Double dirVento = (linha[7] != null && !linha[7].isEmpty()) ? Double.parseDouble(linha[7]) : null;
+                    Double chuva = (linha[11] != null && !linha[11].isEmpty()) ? Double.parseDouble(linha[11]) : null;
+
+
                     // A variável temperaturaMedia é calculada da seguinte maneira:
                     // Se tempHora não é nulo e não está vazio, então o valor de tempHora é convertido para Double, 273 é subtraído desse valor, e o resultado é convertido para uma String.
                     // Caso contrário, temperaturaMedia é definida como null.
-                    String temperaturaMedia = (tempHora != null && !tempHora.isEmpty()) 
-                    ? String.valueOf(tentarParseDouble(tempHora) - 273)
+                    Double temperaturaMedia = (tempHora != null && !tempHora.isEmpty()) 
+                    ? (Double.parseDouble(tempHora) - 273)
                     : null; 
-                    // Formata a nova linha
-                    novaLinha = String.format(Locale.US, "%s;%s;%s;%s;%s;%s;%s;%s;%s",
-                        codigoCidade, codigoEstacao,
-                        data, hora,
-                        temperaturaMedia != null ? String.format(Locale.US, "%.1f", tentarParseDouble(temperaturaMedia)) : null,
-                        umidadeMedia != null ? String.format(Locale.US, "%.1f", tentarParseDouble(umidadeMedia)) : null,
-                        velVento != null ? String.format(Locale.US, "%.1f", tentarParseDouble(velVento)) : null,
-                        dirVento != null ? String.format(Locale.US, "%.1f", tentarParseDouble(dirVento)) : null,
-                        chuva != null ? String.format(Locale.US, "%.1f", tentarParseDouble(chuva)) : null);
-            }
-            filtrarCSVPadronizado.add(novaLinha.split(";"));
+
+                    Registro novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "temperaturaMedia", temperaturaMedia, 
+                        service.validarTemperatura(temperaturaMedia));
+                    registroFiltrado.add(novoRegistro);
+                    novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "umidadeMedia", umidadeMedia, service.validarUmidade(umidadeMedia));
+                    registroFiltrado.add(novoRegistro);
+                    novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "velVento", velVento, service.validarVelocidadeVento(velVento));
+                    registroFiltrado.add(novoRegistro); 
+                    novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "dirVento", dirVento, service.validarDirecaoVento(dirVento));
+                    registroFiltrado.add(novoRegistro);
+                    novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "chuva", chuva, service.validarChuva(chuva));
+                    registroFiltrado.add(novoRegistro);
+                }
         }
-        return filtrarCSVPadronizado;
-    }
+        for (Registro registro : registroFiltrado) {
+            System.out.println(registro.toString());
+        }
+        System.out.println("size: " + registroFiltrado.size());
+        return registroFiltrado;
+    }      
 
     private boolean validarCabecalho(String[] cabecalho){
         boolean cabecalhoValidoAutomatico = validarCabecalhoComCampos(cabecalho, camposAutomatico);
@@ -192,14 +207,6 @@ public class CSVResolve {
         camposManual.put("Vel. Vento (m/s)", 5);
         camposManual.put("Dir. Vento (m/s)", 6);
         camposManual.put("Chuva [Diaria] (mm)", 11);
-    }
-
-    private static Double tentarParseDouble(String s) {
-        try {
-            return s == null ? null : Double.parseDouble(s);
-        } catch (NumberFormatException e) {
-            return null;
-        }
     }
 
      private String obterNomeAquivo() {

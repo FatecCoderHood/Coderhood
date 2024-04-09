@@ -8,9 +8,8 @@ import org.apache.commons.text.WordUtils;
 
 import com.example.dadosmeteorologicos.Services.CSVResolve;
 import com.example.dadosmeteorologicos.Services.LeitorCsvService;
-import com.example.dadosmeteorologicos.Services.RegistroDtoService;
 import com.example.dadosmeteorologicos.exceptions.CSVInvalidoException;
-import com.example.dadosmeteorologicos.model.RegistroDto;
+import com.example.dadosmeteorologicos.model.Registro;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -50,7 +49,7 @@ public class LeitorCsvController {
     private String siglaCidade;
     private String numeroEstacao;
     private boolean cidadeEstacaoValida;
-    private List<RegistroDto> listaRegistroDto;
+    private List<Registro> listaRegistro;
     private int registrosSuspeitos;
     private int[] salvoDuplicado;
     private int salvos;
@@ -101,9 +100,8 @@ public class LeitorCsvController {
     }
 
     private void adquirirInfosCSV(){ 
-        List<String[]> csvFiltrado = leitor.filtrarCSV();       
-        listaRegistroDto = RegistroDtoService.criaRegistroDto(csvFiltrado);
-        registrosSuspeitos = service.registrosSuspeitos(listaRegistroDto);
+        listaRegistro = leitor.criarRegistro();       
+        registrosSuspeitos = service.registrosSuspeitos(listaRegistro);
         siglaCidade = siglaCidade.toUpperCase();
         nomeCidade = service.ObterNomeCidade(siglaCidade);
         nomeCidade = WordUtils.capitalizeFully(nomeCidade);
@@ -113,13 +111,13 @@ public class LeitorCsvController {
         infoLabel.setVisible(true);
         infoLabel.setText("Cidade processada: "  + nomeCidade + " - "+ siglaCidade + ".\n" +
                           "Estação processada: " + numeroEstacao + ".\n" +
-                          "Total de registros: " + listaRegistroDto.size() + ".\n" +
+                          "Total de registros: " + listaRegistro.size() + ".\n" +
                           "Registros suspeitos encontrados: " + registrosSuspeitos + ".");
     }
 
     // Botão que faz o processo de validar CSV, ler e salvar no banco
     public void salvarBanco(ActionEvent actionEvent) {
-        salvoDuplicado = service.salvarRegistro(listaRegistroDto);
+        salvoDuplicado = service.salvarRegistro(listaRegistro);
         salvos = salvoDuplicado[0];
         duplicados = salvoDuplicado[1];
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -127,7 +125,7 @@ public class LeitorCsvController {
         alert.setHeaderText(null);
         alert.setContentText( "Cidade processada: " + nomeCidade + " - "+ siglaCidade + ".\n" +
         "Estação processada: " + numeroEstacao + ".\n" +
-        "Total de registros processados: " + listaRegistroDto.size() + ".\n" +
+        "Total de registros processados: " + listaRegistro.size() + ".\n" +
         "Registros salvos com sucesso: " + salvos + ".\n" +
         "Registros duplicados encontrados: " + duplicados + ".\n" +
         "Registros suspeitos encontrados: " + registrosSuspeitos + ".");
