@@ -70,11 +70,15 @@
 ## :date: Product BackLog
 | ID   | User Stories                                                 | Épico                       | Sprint                                                    | Prioridade |
 | ---- | ------------------------------------------------------------ | --------------------------- | --------------------------------------------------------- | ---------- |
-| 1 | Como usuário, eu quero poder importar informações o clima via arquivo csv contendo os dados, para manter registros precisos.| Importar Dados climaticos Via Arquivo CSV | - | 1 |
-| 2 | Como usuário, eu quero poder gerar relatórios, para melhor visualização dos dados | Gerar Relatório | - | 3 |
-| 3 | Como usuário, eu quero poder revisar e editar informações dados suspeitos, para evitar dados imprecisos. | Tratamento de Dados Suspeitos| - | 2 |
-| 4 | Como usuário, eu quero poder adicionar novas estações meteorológicas ao sistema para especificar ampliar minha base de dados.. | Adição de Novas Bases de Coleta | - | 4 |
-| 5 | Como usuário, eu quero documentações detalhadas, incluindo um manual de usuário e instruções de instalação, para facilitar o uso e a manutenção do sistema.| Criar Documentação | - | 5 |
+| 1 | Como usuário, eu quero poder modelar o banco de dados. | Modelagem do Banco de Dados | 1 | 1 |
+| 2 | Como usuário, eu quero poder inserir um CSV e adicionar os registros a uma cidade e uma estação. | Importar Dados Climáticos Via Arquivo CSV | 1 | 1 |
+| 3 | Como usuário, eu quero poder extrair um relatório de valor médio de uma cidade, com periodicidade de uma hora, a partir de uma data inicial e data final. | Gerar Relatório | 1 | 1 |
+| 4 | Como usuário, eu quero poder alterar o nome e a sigla da cidade. | Alterar Informações da Cidade | 2 | 2 |
+| 5 | Como usuário, eu quero poder alterar o número e a sigla da cidade da estação. | Alterar Informações da Estação | 2 | 2 |
+| 6 | Como usuário, eu quero poder tratar valores marcados como suspeitos. | Tratamento de Dados Suspeitos | 2 | 2 |
+| 7 | Como usuário, eu quero poder visualizar o relatório de situação. | Visualizar Relatórios | 3 | 2 |
+| 8 | Como usuário, eu quero poder visualizar dados para gerar relatório boxPlot. | Visualizar Relatórios | 3 | 2 |
+| 9 | Como usuário, eu quero documentações detalhadas, incluindo um manual de usuário e instruções de instalação, para facilitar o uso e a manutenção do sistema. | Criar Documentação | 4 | 3 |
 
 
 
