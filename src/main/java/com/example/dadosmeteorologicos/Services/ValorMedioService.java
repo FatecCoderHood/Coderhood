@@ -26,10 +26,13 @@ public class ValorMedioService {
     // Cria uma nova instância da classe ValorMedioSQL
     ValorMedioSQL banco = new ValorMedioSQL(); 
     // Chama o método getRelatorioValorMedio para obter a lista de registros da cidade
-    List<RegistroValorMedio> cidades = banco.getRelatorioValorMedio(siglaCidade, dataInicial, dataFinal);
-    // Fecha a conexão com o banco de dados
+    List<RegistroValorMedio> listaRegistrosBD = banco.getRelatorioValorMedio(siglaCidade, dataInicial, dataFinal);
+    for (RegistroValorMedio registro : listaRegistrosBD) {
+      System.out.println(registro.getData() + " " + registro.getEstacao() + " " + registro.getSiglaCidade() + " " + registro.getValorMedioInfos());
+    }
     banco.fecharConexao();
     // Retorna a lista de registros da cidade
-    return cidades;
+    return listaRegistrosBD;
   }
+
 }

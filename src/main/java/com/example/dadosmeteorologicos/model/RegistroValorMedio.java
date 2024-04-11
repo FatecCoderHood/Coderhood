@@ -3,9 +3,9 @@ package com.example.dadosmeteorologicos.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,69 +13,40 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class RegistroValorMedio {
-    private int id;
     private LocalDate data;
     private LocalTime hora;
     private String estacao;
     private String siglaCidade;
-    private Double temperaturaMedia;
-    private Double umidadeMedia;
-    private Double velVento;
-    private Double dirVento;
-    private Double chuva;
+    private List<ValorMedioInfo> valorMedioInfos;
 
-    public List<RegistroValorMedio> agruparRegistros(List<Registro> registroBanco){
-        Map<LocalDate, Map<LocalTime, List<Registro>>> registrosPorDataHora = new HashMap<>();
-    
-        for (Registro registro : registroBanco){
-            LocalDate data = registro.getData();
-            LocalTime hora = registro.getHora();
-    
-            if (!registrosPorDataHora.containsKey(data)) {
-                registrosPorDataHora.put(data, new HashMap<>());
-            }
-    
-            Map<LocalTime, List<Registro>> registrosPorHora = registrosPorDataHora.get(data);
-    
-            if (!registrosPorHora.containsKey(hora)) {
-                registrosPorHora.put(hora, new ArrayList<>());
-            }
-    
-            registrosPorHora.get(hora).add(registro);
+    public static List<RegistroValorMedio> agruparRegistrosPorData(List<Registro> listaRegistrosBD) {
+        Map<LocalDate, List<Registro>> registrosPorData = listaRegistrosBD.stream()
+            .collect(Collectors.groupingBy(Registro::getData));
+
+        List<RegistroValorMedio> registrosValorMedio = new ArrayList<>();
+
+        for (Map.Entry<LocalDate, List<Registro>> entry : registrosPorData.entrySet()) {
+            RegistroValorMedio registroValorMedio = new RegistroValorMedio();
+            registroValorMedio.setData(entry.getKey());
+            registroValorMedio.setHora(entry.getValue().get(0).getHora());
+            registroValorMedio.setValorMedioInfos(transformarEmValorMedioInfo(entry.getValue()));
+            registrosValorMedio.add(registroValorMedio);
         }
-    
-        List<RegistroValorMedio> registrosAgrupados = new ArrayList<>();
-        for (Map<LocalTime, List<Registro>> registrosPorHora : registrosPorDataHora.values()) {
-            for (List<Registro> registros : registrosPorHora.values()) {
-                RegistroValorMedio registroMedio = new RegistroValorMedio();
-                for (Registro registro : registros) {
-                    registroMedio.setId(registro.getId());
-                    registroMedio.setData(registro.getData());
-                    registroMedio.setHora(registro.getHora());
-                    registroMedio.setEstacao(registro.getEstacao());
-                    registroMedio.setSiglaCidade(registro.getSiglaCidade());
-                    switch (registro.getTipo()) {
-                        case "temperaturaMedia":
-                            registroMedio.setTemperaturaMedia(registro.getValor());
-                            break;
-                        case "umidadeMedia":
-                            registroMedio.setUmidadeMedia(registro.getValor());
-                            break;
-                        case "velVento":
-                            registroMedio.setVelVento(registro.getValor());
-                            break;
-                        case "dirVento":
-                            registroMedio.setDirVento(registro.getValor());
-                            break;
-                        case "chuva":
-                            registroMedio.setChuva(registro.getValor());
-                            break;
-                    }
-                }
-                registrosAgrupados.add(registroMedio);
-            }
+
+        return registrosValorMedio;
+    }
+
+    private static List<ValorMedioInfo> transformarEmValorMedioInfo(List<Registro> registros) {
+        List<ValorMedioInfo> valorMedioInfos = new ArrayList<>();
+
+        for (Registro registro : registros) {
+            ValorMedioInfo valorMedioInfo = new ValorMedioInfo();
+            valorMedioInfo.setId(registro.getId());
+            valorMedioInfo.setTipo(registro.getTipo());
+            valorMedioInfo.setValor(registro.getValor());
+            valorMedioInfos.add(valorMedioInfo);
         }
-    
-        return registrosAgrupados;
+
+        return valorMedioInfos;
     }
 }

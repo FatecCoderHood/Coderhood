@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.example.dadosmeteorologicos.App;
 import com.example.dadosmeteorologicos.Services.ValorMedioService;
-import com.example.dadosmeteorologicos.model.Registro;
 import com.example.dadosmeteorologicos.model.RegistroValorMedio;
 
 import javafx.beans.value.ObservableValue;

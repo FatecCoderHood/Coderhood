@@ -6,13 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import com.example.dadosmeteorologicos.model.Registro;
 import com.example.dadosmeteorologicos.model.RegistroValorMedio;
+import com.example.dadosmeteorologicos.model.ValorMedioInfo;
 
 public class ValorMedioSQL extends IniciaBanco {
 
@@ -58,80 +57,67 @@ public class ValorMedioSQL extends IniciaBanco {
     }
 
     public List<RegistroValorMedio> getRelatorioValorMedio(String siglaCidade, Date dataInicial, Date dataFinal){
-        List<RegistroValorMedio> relatorioValorMedio = new ArrayList<>();
+        
+        List<RegistroValorMedio> ListaRegistroBD = new ArrayList<>();
     
         try {
             if (conn != null) {
-                String sql = "SELECT " + 
-                "data," + 
-                "hora," + 
-                "estacao," +
-                "siglaCidade," +
-                "STRING_AGG(tipo, ', ' ORDER BY tipo) AS tipos," +
-                "STRING_AGG(valor::text, ', ' ORDER BY tipo) AS valores," +
-                "STRING_AGG(suspeito::text, ', ' ORDER BY tipo) AS suspeitos " +
-                "FROM " +
-                "Registro " +
-                "WHERE " +
-                "siglaCidade = ? " +
-                "AND data >= ? " +
-                "AND data <= ? " +
-                "GROUP BY " +
-                "data, hora, estacao, siglaCidade;";
+                String sql = "SELECT " +
+                                "data, " +
+                                "hora, " +
+                                "estacao, " +
+                                "siglaCidade, " +
+                                "STRING_AGG(id::text, ', ' ORDER BY tipo) AS ids, " +
+                                "STRING_AGG(tipo, ', ' ORDER BY tipo) AS tipos, " +
+                                "STRING_AGG(valor::text, ', ' ORDER BY tipo) AS valores " +
+                            "FROM " +
+                                "Registro " +
+                            "WHERE " +
+                                "siglaCidade = ? " +
+                                "AND data >= ? " +
+                                "AND data <= ? " +
+                            "GROUP BY " +
+                                "data, hora, estacao, siglaCidade " +
+                            "HAVING BOOL_OR(suspeito) = false";
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, siglaCidade);
                 stmt.setDate(2, new java.sql.Date(dataInicial.getTime()));
                 stmt.setDate(3, new java.sql.Date(dataFinal.getTime()));
                 ResultSet rs = stmt.executeQuery();
-
-                
-
+    
                 while (rs.next()) {
-                    String suspeitosConcatenados = rs.getString("suspeitos");
-                    if (suspeitosConcatenados.contains("true")) {
-                        // Se há algum tipo suspeito, não adicionamos este registro ao relatório
-                        continue;
+                    RegistroValorMedio registro = new RegistroValorMedio();
+                    registro.setData(rs.getDate("data").toLocalDate());
+                    registro.setHora(rs.getTime("hora").toLocalTime());
+                    registro.setEstacao(rs.getString("estacao"));
+                    registro.setSiglaCidade(rs.getString("siglaCidade"));
+                
+                    String idsConcatenados = rs.getString("ids");
+                    String tiposConcatenados = rs.getString("tipos");
+                    String valoresConcatenados = rs.getString("valores");
+                
+                    List<String> ids = Arrays.asList(idsConcatenados.split(", "));
+                    List<String> tipos = Arrays.asList(tiposConcatenados.split(", "));
+                    List<String> valores = Arrays.asList(valoresConcatenados.split(", "));
+                
+                    List<ValorMedioInfo> valorMedioInfos = new ArrayList<>();
+                    for (int i = 0; i < tipos.size(); i++) {
+                        ValorMedioInfo valorMedioInfo = new ValorMedioInfo();
+                        valorMedioInfo.setId(Integer.parseInt(ids.get(i)));
+                        valorMedioInfo.setTipo(tipos.get(i));
+                        valorMedioInfo.setValor(Double.parseDouble(valores.get(i)));
+    
+                        valorMedioInfos.add(valorMedioInfo);
                     }
-                    RegistroValorMedio registroValorMedio = new RegistroValorMedio();
-                    registroValorMedio.setId(rs.getInt("id")) ;
-                    registroValorMedio.setData(rs.getDate("data").toLocalDate());
-                    registroValorMedio.setHora(rs.getTime("hora").toLocalTime());
-                    registroValorMedio.setEstacao(rs.getString("estacao"));
-                    registroValorMedio.setSiglaCidade(rs.getString("siglaCidade"));
-                    
-                    String[] tipos = rs.getString("tipos").split(", ");
-                    String[] valores = rs.getString("valores").split(", ");
-
-                    for (int i = 0; i < tipos.length; i++) {
-                        switch (tipos[i]) {
-                            case "temperaturaMedia":
-                            registroValorMedio.setTemperaturaMedia(Double.parseDouble(valores[i]));
-                                break;
-                            case "umidadeMedia":
-                                registroValorMedio.setUmidadeMedia(Double.parseDouble(valores[i]));
-                                break;
-                            case "velVento":
-                                registroValorMedio.setVelVento(Double.parseDouble(valores[i]));
-                                break;
-                            case "dirVento":
-                                registroValorMedio.setDirVento(Double.parseDouble(valores[i]));
-                                break;
-                            case "chuva":
-                                registroValorMedio.setChuva(Double.parseDouble(valores[i]));
-                                break;
-                        }
-                    }
-                    relatorioValorMedio.add(registroValorMedio);
+                    registro.setValorMedioInfos(valorMedioInfos);
+                    ListaRegistroBD.add(registro);
                 }
-                System.out.println("Relatorio Valor Medio: " + relatorioValorMedio.size());
+                System.out.println("Relatorio Valor Medio: " + ListaRegistroBD.size());
             }
         } catch (SQLException e) {
             System.err.format(" RELATORIO VALOR MEDIO SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
-        
-        return relatorioValorMedio;
-    }
-
     
-
+        return ListaRegistroBD;
+    }
 }

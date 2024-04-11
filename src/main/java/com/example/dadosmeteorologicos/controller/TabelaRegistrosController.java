@@ -7,11 +7,9 @@ import java.util.List;
 import com.example.dadosmeteorologicos.model.Registro;
 import com.example.dadosmeteorologicos.model.RegistroValorMedio;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TabelaRegistrosController {
 
