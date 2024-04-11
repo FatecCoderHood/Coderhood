@@ -26,21 +26,22 @@
 | Caique Almeida         | Desenvolvedor     | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin&labelColor=blue)](https://shorturl.at/acghx) |
 | Carlos Costa           | Desenvolvedor     | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin&labelColor=blue)](https://shorturl.at/alST4) |
 | Juan Cursino           | Desenvolvedor     | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin&labelColor=blue)](https://shorturl.at/gpDES) |
-| Michel Momose          | Desenvolvedor     | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin&labelColor=blue)](https://shorturl.at/ciLS3) |  
-| Rennerson Vasconcelos  | Desenvolvedor     | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin&labelColor=blue)](https://shorturl.at/mpF39) |
 | Mateus Marques         | Desenvolvedor     | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin&labelColor=blue)]([https://shorturl.at/mpF39](https://www.linkedin.com/in/mateus-soares-4983681a0/)) |
+| Michel Momose          | Desenvolvedor     | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin&labelColor=blue)](https://shorturl.at/ciLS3) |
+| Rennerson Vasconcelos  | Desenvolvedor     | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin&labelColor=blue)](https://shorturl.at/mpF39) |
+
 
 ## :anger: Descrição do Desafio
 
+A tarefa principal é criar um Sistema de Banco de Dados que seja capaz de receber, processar e consolidar os dados climáticos provenientes de diversas fontes. Isso inclui lidar com a diversidade de formatos dos arquivos CSV de acordo com o tipo da estação de monitoramento. O sistema deve garantir a integridade dos dados, realizar validações e gerar relatórios que ofereçam insights valiosos sobre o clima das cidades do estado de São Paulo.
+
 ## :dart: Objetivo
 
+Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climáticos de cidades do estado de São Paulo, permitindo a análise e geração de relatórios a partir de múltiplos arquivos CSV provenientes de diversas estações de monitoramento.
 
-
+## :: Regras de Convivência de Desempenho
 | [Regras de Convivência e Desempenho](https://docs.google.com/document/d/1uSH9qZtgXktmWYiS1Dxn747fM9GJJoDgHgPn85a1yIs/edit?usp=sharing) |
 
-| **Trello** |
-|:----------:|
-| [Trello](https://trello.com/b/3ZY8lQA1/api) |
 
 ## :page_facing_up: Requisitos Funcionais
 * O sistema deve carregar e validar de arquivos CSV.
@@ -59,29 +60,39 @@
 
 | Sprint  | Nome | Data inicio  | Data Fim | Status |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-| --  | KickOff   | 04/03   | 08/03 | | 
-|  1  | Sprint 1   | 25/03   | 14/04 | | 
-|  2  | Sprint 2   | 15/04   | 05/05 | |
-|  3  | Sprint 3   | 06/05   | 26/05 | | 
-|  4  | Sprint 4   | 27/05   | 16/06 | | 
-|  5  | Feira de Soluções  | 27/06 | |
+| --  | KickOff   | 04/03   | 08/03 | Ok |
+|  1  | Sprint 1   | 25/03   | 14/04 |    |
+|  2  | Sprint 2   | 15/04   | 05/05 |    |
+|  3  | Sprint 3   | 06/05   | 26/05 |    |
+|  4  | Sprint 4   | 27/05   | 16/06 |    |
+|  5  | Feira de Soluções  | 27/06 |    |
 
 
 ## :date: Product BackLog
 | ID   | User Stories                                                 | Épico                       | Sprint                                                    | Prioridade |
 | ---- | ------------------------------------------------------------ | --------------------------- | --------------------------------------------------------- | ---------- |
-| 1 | Como usuário, eu quero poder importar informações o clima via arquivo csv contendo os dados, para manter registros precisos.| Importar Dados climaticos Via Arquivo CSV | - | 1 |
-| 2 | Como usuário, eu quero poder gerar relatórios, para melhor visualização dos dados | Gerar Relatório | - | 3 |
-| 3 | Como usuário, eu quero poder revisar e editar informações dados suspeitos, para evitar dados imprecisos. | Tratamento de Dados Suspeitos| - | 2 |
-| 4 | Como usuário, eu quero poder adicionar novas estações meteorológicas ao sistema para especificar ampliar minha base de dados.. | Adição de Novas Bases de Coleta | - | 4 |
-| 5 | Como usuário, eu quero documentações detalhadas, incluindo um manual de usuário e instruções de instalação, para facilitar o uso e a manutenção do sistema.| Criar Documentação | - | 5 |
+| 1 | Como usuário, eu quero poder modelar o banco de dados. | Modelagem do Banco de Dados | 1 | 1 |
+| 2 | Como usuário, eu quero poder inserir um CSV e adicionar os registros a uma cidade e uma estação. | Importar Dados Climáticos Via Arquivo CSV | 1 | 1 |
+| 3 | Como usuário, eu quero poder extrair um relatório de valor médio de uma cidade, com periodicidade de uma hora, a partir de uma data inicial e data final. | Gerar Relatório | 1 | 1 |
+| 4 | Como usuário, eu quero poder alterar o nome e a sigla da cidade. | Alterar Informações da Cidade | 2 | 2 |
+| 5 | Como usuário, eu quero poder alterar o número e a sigla da cidade da estação. | Alterar Informações da Estação | 2 | 2 |
+| 6 | Como usuário, eu quero poder tratar valores marcados como suspeitos. | Tratamento de Dados Suspeitos | 2 | 2 |
+| 7 | Como usuário, eu quero poder visualizar o relatório de situação. | Visualizar Relatórios | 3 | 2 |
+| 8 | Como usuário, eu quero poder visualizar dados para gerar relatório boxPlot. | Visualizar Relatórios | 3 | 2 |
+| 9 | Como usuário, eu quero documentações detalhadas, incluindo um manual de usuário e instruções de instalação, para facilitar o uso e a manutenção do sistema. | Criar Documentação | 4 | 3 |
 
 
 
 
 ## :bookmark: Tecnologias Utilizadas
-> * [Java](https://www.java.com/pt-BR/)
-> * [JDBC](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/)
-> * [Git/Github (Controle de versão)](https://github.com/)
+> * [Java](https://www.java.com/pt-BR/) - Versão 17
+> * [JavaFX](https://openjfx.io/) - versão 17.0.6
+> * [PostgreSQL](https://www.postgresql.org/) - Versão 16.2
+> * [JDBC PostgreSQL](https://jdbc.postgresql.org/) -  Versão 42.2.5
+> * [Git](https://git-scm.com/)
+> * [GitHub](https://github.com/)
 > * [Itellij](https://www.jetbrains.com/pt-br/idea/)
-
+> * [Lucidchart](https://www.lucidchart.com/)
+> * [Discord](https://discord.com/)
+> * [Slack](https://slack.com/)
+> * [Google Docs](https://docs.google.com/)
