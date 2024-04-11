@@ -39,7 +39,7 @@ A tarefa principal é criar um Sistema de Banco de Dados que seja capaz de receb
 
 Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climáticos de cidades do estado de São Paulo, permitindo a análise e geração de relatórios a partir de múltiplos arquivos CSV provenientes de diversas estações de monitoramento.
 
-## :: Regras de Convivência de Desempenho
+## :page_with_curl: Regras de Convivência de Desempenho
 | [Regras de Convivência e Desempenho](https://docs.google.com/document/d/1uSH9qZtgXktmWYiS1Dxn747fM9GJJoDgHgPn85a1yIs/edit?usp=sharing) |
 
 
