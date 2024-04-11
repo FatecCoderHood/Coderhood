@@ -140,7 +140,7 @@ public class LeitorCsvController {
                 leitor.setCodigoCidade(siglaCidadeInserida.trim());
                 leitor.setCodigoEstacao(numeroEstacaoInserido.trim());
                 nomeCidade = nomeCidadeInserido.trim();
-                siglaCidade= leitor.getCodigoCidade();
+                siglaCidade= leitor.getCodigoCidade().toUpperCase();
                 numeroEstacao = leitor.getCodigoEstacao();
                 validarCidadeEstacao(siglaCidade, numeroEstacao);
                 if (!cidadeEstacaoValida) {
@@ -267,8 +267,8 @@ public class LeitorCsvController {
         result.ifPresent(res -> {
             // Faça algo com os valores inseridos pelo usuário
             // Por exemplo, armazene-os em variáveis ou use-os para atualizar o arquivo CSV
-            nomeCidadeInserido = res[0];
-            siglaCidadeInserida = WordUtils.capitalizeFully(res[1]);
+            nomeCidadeInserido = WordUtils.capitalizeFully(res[0]);
+            siglaCidadeInserida = res[1].toUpperCase();
             numeroEstacaoInserido = res[2];
         });
         return result;

@@ -5,8 +5,6 @@ module com.example.dadosmeteorologicos {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
-    requires com.almasb.fxgl.all;
-    requires com.opencsv;
     requires java.sql;
     requires org.apache.commons.text;
 
