@@ -109,8 +109,6 @@ Ferramenta para consolidação de dados climáticos de cidades do estado SP.
 > * [JavaFX](https://openjfx.io/) - versão 17.0.6
 > * [PostgreSQL](https://www.postgresql.org/) - Versão 16.2
 > * [JDBC PostgreSQL](https://jdbc.postgresql.org/) -  Versão 42.2.5
-> * [Git](https://git-scm.com/)
-> * [GitHub](https://github.com/)
 > * [Java](https://www.java.com/pt-BR/) - Versão 17
 > * [JavaFX](https://openjfx.io/) - versão 17.0.6
 > * [PostgreSQL](https://www.postgresql.org/) - Versão 16.2
@@ -119,7 +117,7 @@ Ferramenta para consolidação de dados climáticos de cidades do estado SP.
 > * [GitHub](https://github.com/)
 > * [Itellij](https://www.jetbrains.com/pt-br/idea/)
 > * [VisualStudioCode](https://visualstudio.microsoft.com/pt-br/)
-> * [Lucidchart](https://www.lucidchart.com/)
+> * [Miro](https://miro.com)
 > * [Discord](https://discord.com/)
 > * [Slack](https://slack.com/)
 > * [Google Docs](https://docs.google.com/)
