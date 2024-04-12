@@ -75,62 +75,55 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
     <tbody>
     <tr>
         <td>1</td>
-        <td>Como usuário, eu quero poder modelar o banco de dados.</td>
-        <td>Modelagem do Banco de Dados</td>
-        <td>1</td>
-        <td>1</td>
-    </tr>
-    <tr>
-        <td>2</td>
         <td>Como usuário, eu quero poder inserir um CSV e adicionar os registros a uma cidade e uma estação.</td>
         <td>Importar Dados Climáticos Via Arquivo CSV</td>
         <td>1</td>
         <td>1</td>
     </tr>
     <tr>
-        <td>3</td>
+        <td>2</td>
         <td>Como usuário, eu quero poder extrair um relatório de valor médio de uma cidade, com periodicidade de uma hora, a partir de uma data inicial e data final.</td>
         <td>Gerar Relatório</td>
         <td>1</td>
         <td>1</td>
     </tr>
     <tr>
-        <td>4</td>
+        <td>3</td>
         <td>Como usuário, eu quero poder alterar o nome e a sigla da cidade.</td>
         <td>Alterar Informações da Cidade</td>
         <td>2</td>
         <td>2</td>
     </tr>
     <tr>
-        <td>5</td>
+        <td>4</td>
         <td>Como usuário, eu quero poder alterar o número e a sigla da cidade da estação.</td>
         <td>Alterar Informações da Estação</td>
         <td>2</td>
         <td>2</td>
     </tr>
     <tr>
-        <td>6</td>
+        <td>5</td>
         <td>Como usuário, eu quero poder tratar valores marcados como suspeitos.</td>
         <td>Tratamento de Dados Suspeitos</td>
         <td>2</td>
         <td>2</td>
     </tr>
     <tr>
-        <td>7</td>
+        <td>6</td>
         <td>Como usuário, eu quero poder visualizar o relatório de situação.</td>
         <td>Visualizar Relatórios</td>
         <td>3</td>
         <td>2</td>
     </tr>
     <tr>
-        <td>8</td>
+        <td>7</td>
         <td>Como usuário, eu quero poder visualizar dados para gerar relatório boxPlot.</td>
         <td>Visualizar Relatórios</td>
         <td>3</td>
         <td>2</td>
     </tr>
     <tr>
-        <td>9</td>
+        <td>8</td>
         <td>Como usuário, eu quero documentações detalhadas, incluindo um manual de usuário e instruções de instalação, para facilitar o uso e a manutenção do sistema.</td>
         <td>Criar Documentação</td>
         <td>4</td>
