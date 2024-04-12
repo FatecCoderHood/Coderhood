@@ -40,6 +40,7 @@ A tarefa principal é criar um Sistema de Banco de Dados que seja capaz de receb
 ## :dart: Objetivo
 
 Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climáticos de cidades do estado de São Paulo, permitindo a análise e geração de relatórios a partir de múltiplos arquivos CSV provenientes de diversas estações de monitoramento.
+Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climáticos de cidades do estado de São Paulo, permitindo a análise e geração de relatórios a partir de múltiplos arquivos CSV provenientes de diversas estações de monitoramento.
 
 ## :page_with_curl: Regras de Convivência de Desempenho
 | [Regras de Convivência e Desempenho](https://docs.google.com/document/d/1uSH9qZtgXktmWYiS1Dxn747fM9GJJoDgHgPn85a1yIs/edit?usp=sharing) |
@@ -70,6 +71,12 @@ Ferramenta para consolidação de dados climáticos de cidades do estado SP.
 |  3  | Sprint 3   | 06/05   | 26/05 |    |
 |  4  | Sprint 4   | 27/05   | 16/06 |    |
 |  5  | Feira de Soluções  | 27/06 |    |
+| --  | KickOff   | 04/03   | 08/03 | Ok |
+|  1  | Sprint 1   | 25/03   | 14/04 |    |
+|  2  | Sprint 2   | 15/04   | 05/05 |    |
+|  3  | Sprint 3   | 06/05   | 26/05 |    |
+|  4  | Sprint 4   | 27/05   | 16/06 |    |
+|  5  | Feira de Soluções  | 27/06 |    |
 
 
 ## :date: Product BackLog
@@ -84,11 +91,26 @@ Ferramenta para consolidação de dados climáticos de cidades do estado SP.
 | 7 | Como usuário, eu quero poder visualizar o relatório de situação. | Visualizar Relatórios | 3 | 2 |
 | 8 | Como usuário, eu quero poder visualizar dados para gerar relatório boxPlot. | Visualizar Relatórios | 3 | 2 |
 | 9 | Como usuário, eu quero documentações detalhadas, incluindo um manual de usuário e instruções de instalação, para facilitar o uso e a manutenção do sistema. | Criar Documentação | 4 | 3 |
+| 1 | Como usuário, eu quero poder modelar o banco de dados. | Modelagem do Banco de Dados | 1 | 1 |
+| 2 | Como usuário, eu quero poder inserir um CSV e adicionar os registros a uma cidade e uma estação. | Importar Dados Climáticos Via Arquivo CSV | 1 | 1 |
+| 3 | Como usuário, eu quero poder extrair um relatório de valor médio de uma cidade, com periodicidade de uma hora, a partir de uma data inicial e data final. | Gerar Relatório | 1 | 1 |
+| 4 | Como usuário, eu quero poder alterar o nome e a sigla da cidade. | Alterar Informações da Cidade | 2 | 2 |
+| 5 | Como usuário, eu quero poder alterar o número e a sigla da cidade da estação. | Alterar Informações da Estação | 2 | 2 |
+| 6 | Como usuário, eu quero poder tratar valores marcados como suspeitos. | Tratamento de Dados Suspeitos | 2 | 2 |
+| 7 | Como usuário, eu quero poder visualizar o relatório de situação. | Visualizar Relatórios | 3 | 2 |
+| 8 | Como usuário, eu quero poder visualizar dados para gerar relatório boxPlot. | Visualizar Relatórios | 3 | 2 |
+| 9 | Como usuário, eu quero documentações detalhadas, incluindo um manual de usuário e instruções de instalação, para facilitar o uso e a manutenção do sistema. | Criar Documentação | 4 | 3 |
 
 
 
 
 ## :bookmark: Tecnologias Utilizadas
+> * [Java](https://www.java.com/pt-BR/) - Versão 17
+> * [JavaFX](https://openjfx.io/) - versão 17.0.6
+> * [PostgreSQL](https://www.postgresql.org/) - Versão 16.2
+> * [JDBC PostgreSQL](https://jdbc.postgresql.org/) -  Versão 42.2.5
+> * [Git](https://git-scm.com/)
+> * [GitHub](https://github.com/)
 > * [Java](https://www.java.com/pt-BR/) - Versão 17
 > * [JavaFX](https://openjfx.io/) - versão 17.0.6
 > * [PostgreSQL](https://www.postgresql.org/) - Versão 16.2

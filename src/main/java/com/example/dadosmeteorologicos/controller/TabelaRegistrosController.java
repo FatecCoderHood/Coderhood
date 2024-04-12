@@ -4,9 +4,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import com.example.dadosmeteorologicos.model.RegistroDto;
+import com.example.dadosmeteorologicos.model.RegistroValorMedio;
+import com.example.dadosmeteorologicos.model.ValorMedioInfo;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -15,55 +18,73 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class TabelaRegistrosController {
 
     @FXML
-    private TableView<RegistroDto> tabelaRegistros;
+    private TableView<RegistroValorMedio> tabelaRegistros;
 
     @FXML
-    private TableColumn<RegistroDto, String> colunaCidade;
+    private TableColumn<RegistroValorMedio, String> colunaCidade;
 
     @FXML
-    private TableColumn<RegistroDto, Integer> colunaEstacao;
+    private TableColumn<RegistroValorMedio, Integer> colunaEstacao;
 
     @FXML
-    private TableColumn<RegistroDto, LocalDate> colunaData;
+    private TableColumn<RegistroValorMedio, LocalDate> colunaData;
 
     @FXML
-    private TableColumn<RegistroDto, LocalTime> colunaHora;
+    private TableColumn<RegistroValorMedio, LocalTime> colunaHora;
 
     @FXML
-    private TableColumn<RegistroDto, Double> colunaTemperaturaMedia;
+    private TableColumn<RegistroValorMedio, String> colunaTemperaturaMedia;
 
     @FXML
-    private TableColumn<RegistroDto, Double> colunaUmidadeMedia;
+    private TableColumn<RegistroValorMedio, String> colunaUmidadeMedia;
 
     @FXML
-    private TableColumn<RegistroDto, Double> colunaVelVento;
+    private TableColumn<RegistroValorMedio, String> colunaVelVento;
 
     @FXML
-    private TableColumn<RegistroDto, Double> colunaDirVento;
+    private TableColumn<RegistroValorMedio, String> colunaDirVento;
 
     @FXML
-    private TableColumn<RegistroDto, Double> colunaChuva;
+    private TableColumn<RegistroValorMedio, String> colunaChuva;
 
-    private List<RegistroDto> registros;
+    private ObservableList<RegistroValorMedio> registros;
 
-    public void setRegistros(List<RegistroDto> registros) {
-        this.registros = registros;
+    public void setRegistros(List<RegistroValorMedio> registros) {
+        this.registros = FXCollections.observableArrayList(registros);
+        tabelaRegistros.setItems(this.registros);
     }
 
     @FXML
     public void initialize() {
-        colunaCidade.setCellValueFactory(new PropertyValueFactory<>("cidade"));
+        colunaCidade.setCellValueFactory(new PropertyValueFactory<>("siglaCidade"));
         colunaEstacao.setCellValueFactory(new PropertyValueFactory<>("estacao"));
         colunaData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colunaHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
-        colunaTemperaturaMedia.setCellValueFactory(new PropertyValueFactory<>("temperaturaMedia"));
-        colunaUmidadeMedia.setCellValueFactory(new PropertyValueFactory<>("umidadeMedia"));
-        colunaVelVento.setCellValueFactory(new PropertyValueFactory<>("velVento"));
-        colunaDirVento.setCellValueFactory(new PropertyValueFactory<>("dirVento"));
-        colunaChuva.setCellValueFactory(new PropertyValueFactory<>("chuva"));
+    
+        colunaTemperaturaMedia.setCellValueFactory(cellData -> new SimpleStringProperty(getValorPorTipo(cellData.getValue(), "temperaturaMedia")));
+        colunaUmidadeMedia.setCellValueFactory(cellData -> new SimpleStringProperty(getValorPorTipo(cellData.getValue(), "umidadeMedia")));
+        colunaVelVento.setCellValueFactory(cellData -> new SimpleStringProperty(getValorPorTipo(cellData.getValue(), "velVento")));
+        colunaDirVento.setCellValueFactory(cellData -> new SimpleStringProperty(getValorPorTipo(cellData.getValue(), "dirVento")));
+        colunaChuva.setCellValueFactory(cellData -> new SimpleStringProperty(getValorPorTipo(cellData.getValue(), "chuva")));
+        
+        colunaCidade.setStyle("-fx-alignment: CENTER;");
+        colunaEstacao.setStyle("-fx-alignment: CENTER;");
+        colunaData.setStyle("-fx-alignment: CENTER;");
+        colunaHora.setStyle("-fx-alignment: CENTER;");
+        colunaTemperaturaMedia.setStyle("-fx-alignment: CENTER;");
+        colunaUmidadeMedia.setStyle("-fx-alignment: CENTER;");
+        colunaVelVento.setStyle("-fx-alignment: CENTER;");
+        colunaDirVento.setStyle("-fx-alignment: CENTER;");
+        colunaChuva.setStyle("-fx-alignment: CENTER;");
 
-        if (registros != null) {
-            tabelaRegistros.setItems(FXCollections.observableArrayList(registros));
+    }
+    
+    private String getValorPorTipo(RegistroValorMedio registro, String tipo) {
+        for (ValorMedioInfo info : registro.getValorMedioInfos()) {
+            if (info.getTipo().equals(tipo)) {
+                return info.getValor() != null ? info.getValor().toString() : "-";
+            }
         }
+        return "-";
     }
 }

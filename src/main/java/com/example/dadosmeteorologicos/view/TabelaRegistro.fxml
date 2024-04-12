@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.TabelaRegistrosController">
+<AnchorPane prefHeight="614.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.TabelaRegistrosController">
     <children>
-        <TableView fx:id="tabelaRegistros" layoutY="71.0" prefHeight="543.0" prefWidth="800.0">
+        <TableView fx:id="tabelaRegistros" prefHeight="614.0" prefWidth="880.0">
             <columns>
                 <TableColumn fx:id="colunaCidade" text="Cidade" />
                 <TableColumn fx:id="colunaEstacao" text="Estação" />
-                <TableColumn fx:id="colunaData" text="Data" />
-                <TableColumn fx:id="colunaHora" text="Hora" />
-                <TableColumn fx:id="colunaTemperaturaMedia" text="Temperatura Média" />
-                <TableColumn fx:id="colunaUmidadeMedia" text="Umidade Média" />
-                <TableColumn fx:id="colunaVelVento" text="Velocidade do Vento" />
-                <TableColumn fx:id="colunaDirVento" text="Direção do Vento" />
-                <TableColumn fx:id="colunaChuva" text="Chuva" />
+                <TableColumn fx:id="colunaData" prefWidth="82.0" text="Data" />
+                <TableColumn fx:id="colunaHora" prefWidth="49.0" text="Hora" />
+                <TableColumn fx:id="colunaTemperaturaMedia" prefWidth="144.0" text="Temperatura Média(C)" />
+                <TableColumn fx:id="colunaUmidadeMedia" prefWidth="107.0" text="Umidade Média" />
+                <TableColumn fx:id="colunaVelVento" prefWidth="132.0" text="Velocidade do Vento" />
+                <TableColumn fx:id="colunaDirVento" prefWidth="129.0" text="Direção do Vento" />
+                <TableColumn fx:id="colunaChuva" prefWidth="75.0" text="Chuva" />
             </columns>
         </TableView>
     </children>

@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.example.dadosmeteorologicos.db.ValorMedioSQL;
-import com.example.dadosmeteorologicos.model.RegistroDto;
+import com.example.dadosmeteorologicos.model.RegistroValorMedio;
 
 
 public class ValorMedioService {
@@ -22,14 +22,17 @@ public class ValorMedioService {
   }
   
   // Método para consultar uma cidade por ID e datas
-  public List<RegistroDto> consultaCidadePorIdEDatas(String id, Date dataInicial, Date dataFinal){
+  public List<RegistroValorMedio> consultaCidadePorIdEDatas(String siglaCidade, Date dataInicial, Date dataFinal){
     // Cria uma nova instância da classe ValorMedioSQL
     ValorMedioSQL banco = new ValorMedioSQL(); 
     // Chama o método getRelatorioValorMedio para obter a lista de registros da cidade
-    List<RegistroDto> cidades = banco.getRelatorioValorMedio(id, dataInicial, dataFinal);
-    // Fecha a conexão com o banco de dados
+    List<RegistroValorMedio> listaRegistrosBD = banco.getRelatorioValorMedio(siglaCidade, dataInicial, dataFinal);
+    for (RegistroValorMedio registro : listaRegistrosBD) {
+      System.out.println(registro.getData() + " " + registro.getEstacao() + " " + registro.getSiglaCidade() + " " + registro.getValorMedioInfos());
+    }
     banco.fecharConexao();
     // Retorna a lista de registros da cidade
-    return cidades;
+    return listaRegistrosBD;
   }
+
 }

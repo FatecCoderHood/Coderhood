@@ -6,9 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.example.dadosmeteorologicos.db.IniciaBanco;
 
@@ -17,7 +14,6 @@ import com.example.dadosmeteorologicos.db.IniciaBanco;
 
 public class App extends Application {
 
-    private static final Logger LOGGER = Logger.getLogger(App.class.getName());
     private static Scene scene;
 
     @Override
@@ -25,12 +21,10 @@ public class App extends Application {
         IniciaBanco banco = new IniciaBanco();
         banco.iniciarBanco();
         banco.fecharConexao();
-        LOGGER.info("Banco de dados inicializado");
 
         scene = new Scene(loadFXML("Main"), 900, 600);
         stage.setScene(scene);
         stage.show();
-        LOGGER.info("Aplicativo iniciado");
     }
 
     public static void setRoot(String fxml) throws IOException {
@@ -43,18 +37,8 @@ public class App extends Application {
     }
 
      public static void main(String[] args) {
-        try {
-            // Cria um manipulador de arquivo que grava o log em um arquivo chamado "app.log"
-            FileHandler fileHandler = new FileHandler("app.log", true);
-            fileHandler.setLevel(Level.ALL);
-
-            // Adiciona o manipulador de arquivo ao logger
-            LOGGER.addHandler(fileHandler);
-
-            launch();
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao criar o manipulador de arquivo de log", e);
-        }
+        launch();
+        
     }
 
 }
