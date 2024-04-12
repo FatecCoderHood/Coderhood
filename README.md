@@ -35,11 +35,6 @@
 
 Ferramenta para consolidação de dados climáticos de cidades do estado SP.
 
-
-## :page_with_curl: Regras de Convivência de Desempenho
-| [Regras de Convivência e Desempenho](https://docs.google.com/document/d/1uSH9qZtgXktmWYiS1Dxn747fM9GJJoDgHgPn85a1yIs/edit?usp=sharing) |
-
-
 ## :page_facing_up: Requisitos Funcionais
 * O sistema deve carregar e validar de arquivos CSV.
 * Relatório de valor médio das variáveis climáticas por cidade. Deve ser possível escolher uma cidade e um período de tempo.
@@ -90,6 +85,7 @@ Ferramenta para consolidação de dados climáticos de cidades do estado SP.
 > * [Git](https://git-scm.com/)
 > * [GitHub](https://github.com/)
 > * [Itellij](https://www.jetbrains.com/pt-br/idea/)
+> * [VisualStudioCode](https://visualstudio.microsoft.com/pt-br/)
 > * [Lucidchart](https://www.lucidchart.com/)
 > * [Discord](https://discord.com/)
 > * [Slack](https://slack.com/)
