@@ -31,13 +31,10 @@
 | Rennerson Vasconcelos  | Desenvolvedor     | [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin&labelColor=blue)](https://shorturl.at/mpF39) |
 
 
-## :anger: Descrição do Desafio
+## :anger: Desafio
 
-A tarefa principal é criar um Sistema de Banco de Dados que seja capaz de receber, processar e consolidar os dados climáticos provenientes de diversas fontes. Isso inclui lidar com a diversidade de formatos dos arquivos CSV de acordo com o tipo da estação de monitoramento. O sistema deve garantir a integridade dos dados, realizar validações e gerar relatórios que ofereçam insights valiosos sobre o clima das cidades do estado de São Paulo.
+Ferramenta para consolidação de dados climáticos de cidades do estado SP.
 
-## :dart: Objetivo
-
-Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climáticos de cidades do estado de São Paulo, permitindo a análise e geração de relatórios a partir de múltiplos arquivos CSV provenientes de diversas estações de monitoramento.
 
 ## :page_with_curl: Regras de Convivência de Desempenho
 | [Regras de Convivência e Desempenho](https://docs.google.com/document/d/1uSH9qZtgXktmWYiS1Dxn747fM9GJJoDgHgPn85a1yIs/edit?usp=sharing) |
@@ -45,9 +42,10 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
 
 ## :page_facing_up: Requisitos Funcionais
 * O sistema deve carregar e validar de arquivos CSV.
+* Relatório de valor médio das variáveis climáticas por cidade. Deve ser possível escolher uma cidade e um período de tempo.
+* Relatório de situação, apresentando os valores médios das últimas medidas para cada cidade.
 * O sistema deve conter gerenciamento de estações, cidades e unidades de medida.
-* O sistema deve gerar relatórios de valor médio das variáveis climáticas por cidade.
-* O sistema deve gerar relatórios com gráficos boxplot.
+* Gerar dados que possibilitem a criação de um gráfico boxplot com dados de uma estação em uma determinada data.
 * O sistema deve possibilitar o tratamento de registros suspeitos
 
 ## :page_with_curl: Requisitos Não Funcionais
