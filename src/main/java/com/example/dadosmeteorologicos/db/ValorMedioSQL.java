@@ -57,7 +57,6 @@ public class ValorMedioSQL extends IniciaBanco {
     }
 
     public List<RegistroValorMedio> getRelatorioValorMedio(String siglaCidade, Date dataInicial, Date dataFinal){
-        
         List<RegistroValorMedio> ListaRegistroBD = new ArrayList<>();
     
         try {
@@ -69,7 +68,7 @@ public class ValorMedioSQL extends IniciaBanco {
                                 "siglaCidade, " +
                                 "STRING_AGG(id::text, ', ' ORDER BY tipo) AS ids, " +
                                 "STRING_AGG(tipo, ', ' ORDER BY tipo) AS tipos, " +
-                                "STRING_AGG(valor::text, ', ' ORDER BY tipo) AS valores " +
+                                "STRING_AGG(COALESCE(valor::text, 'null'), ', ' ORDER BY tipo) AS valores " +
                             "FROM " +
                                 "Registro " +
                             "WHERE " +
@@ -105,7 +104,11 @@ public class ValorMedioSQL extends IniciaBanco {
                         ValorMedioInfo valorMedioInfo = new ValorMedioInfo();
                         valorMedioInfo.setId(Integer.parseInt(ids.get(i)));
                         valorMedioInfo.setTipo(tipos.get(i));
-                        valorMedioInfo.setValor(Double.parseDouble(valores.get(i)));
+                        if (!valores.get(i).equals("null")) {
+                            valorMedioInfo.setValor(Double.parseDouble(valores.get(i)));
+                        } else {
+                            valorMedioInfo.setValor(null);
+                        }
     
                         valorMedioInfos.add(valorMedioInfo);
                     }

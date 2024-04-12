@@ -119,15 +119,13 @@ public class ValorMedioController {
         java.sql.Date dataInicialSqlDate = java.sql.Date.valueOf(dataSelecionadaInicial);
         java.sql.Date dataFinalSqlDate = java.sql.Date.valueOf(dataSelecionadaFinal);
         
-        // Id da cidade MOCKADO
-        String siglaCidade = "SP"; 
+        // Obtém a sigla da cidade do texto do botão do menu
+        String[] partes = menuButton.getText().split(" - ");
+        String siglaCidade = partes[1].split(" ")[0]; 
 
 
         List<RegistroValorMedio> resultado = service.consultaCidadePorIdEDatas(siglaCidade, dataInicialSqlDate, dataFinalSqlDate);
-        for (RegistroValorMedio registro : resultado) {
-            System.out.println(registro);
-        }
-        System.out.println(resultado.size());
+      
 
         // Carrega a tela de resultados
         try {
@@ -140,7 +138,7 @@ public class ValorMedioController {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
-            System.err.format("Erro ao abrir a tela de registros: %s", e.getMessage());
+            e.printStackTrace();
         }
     }
 }
