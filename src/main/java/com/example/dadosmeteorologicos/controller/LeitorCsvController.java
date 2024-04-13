@@ -9,6 +9,7 @@ import org.apache.commons.text.WordUtils;
 import com.example.dadosmeteorologicos.Services.CSVResolve;
 import com.example.dadosmeteorologicos.Services.LeitorCsvService;
 import com.example.dadosmeteorologicos.exceptions.CSVInvalidoException;
+import com.example.dadosmeteorologicos.exceptions.NomeCidadeJaExisteNoBanco;
 import com.example.dadosmeteorologicos.model.Registro;
 
 import javafx.application.Platform;
@@ -76,18 +77,24 @@ public class LeitorCsvController {
         caminhoArquivo = CsvEntrada.getAbsolutePath();
         if (caminhoArquivo != null) {
             System.out.println("Arquivo selecionado: " + caminhoArquivo);
+            System.out.println("Arquivo selecionado: " + caminhoArquivo);
+        try {
             validarCSV();
-            if (cidadeEstacaoValida) {
-                adquirirInfosCSV();
-                atualizarInformacoes();
-                salvarCsvButton.setVisible(true);
-            }
-        }else{
+        } catch (NomeCidadeJaExisteNoBanco e) {
+            mostrarDialogoCidadeJaExisteNoBanco();
             return;
         }
+        if (cidadeEstacaoValida) {
+            adquirirInfosCSV();
+            atualizarInformacoes();
+            salvarCsvButton.setVisible(true);
+        }
+    }else{
+        return;
+    }
     }
 
-    private void validarCSV(){
+    private void validarCSV() throws NomeCidadeJaExisteNoBanco {
         leitor = new CSVResolve(caminhoArquivo);
         try {
             leitor.validarCSV();
@@ -166,8 +173,13 @@ public class LeitorCsvController {
         
                     Optional<String> result = dialog.showAndWait();
                     if (result.isPresent()){
-                        nomeCidade = result.get().trim();
+                        nomeCidade = WordUtils.capitalizeFully(result.get().trim());
                     }
+                    if(service.validarNomeCidadeNaoExisteNoBanco(nomeCidade)){
+                        mostrarDialogoCidadeJaExisteNoBanco();
+                        throw new NomeCidadeJaExisteNoBanco("A cidade já existe no banco de dados.");
+                    }                    
+                    //Validar se o nome da cidade já existe no banco
                     service.criarCidade(nomeCidade, siglaCidade);
                 }   
                 System.out.println("Sigla cidade: " + siglaCidade + " estacao: " + numeroEstacao);  
@@ -202,11 +214,11 @@ public class LeitorCsvController {
         
     //Dialogos de validação
     private Optional<String[]> mostrarDialogoNomeInvalido() {
-        // Crie a caixa de diálogo personalizada
+        // Cria a caixa de diálogo personalizada
         Dialog<String[]> dialog = new Dialog<>();
         dialog.setTitle("Não foi possível identificar a cidade e a estação do arquivo CSV");
     
-        // Crie os campos de entrada
+        // Cria os campos de entrada
         TextField CampoNomeCidade = new TextField();
         CampoNomeCidade.setPrefWidth(200);
         TextField CampoSiglaCidade = new TextField();
@@ -280,6 +292,16 @@ public class LeitorCsvController {
             alert.setTitle("Erro");
             alert.setHeaderText(null);
             alert.setContentText("Cabeçalho do CSV fora do padrão esperado");
+            alert.showAndWait();
+        });
+    }
+
+    public void mostrarDialogoCidadeJaExisteNoBanco(){
+        Platform.runLater(() -> {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText(null);
+            alert.setContentText("Cidade " + nomeCidade+  " já existe no banco de dados");
             alert.showAndWait();
         });
     }

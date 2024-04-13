@@ -65,4 +65,11 @@ public class LeitorCsvService {
         }
         return registrosSuspeitos;
     }
+
+    public boolean validarNomeCidadeNaoExisteNoBanco(String nomeCidade){
+        LeitorCsvSQL banco = new LeitorCsvSQL();
+        boolean cidadeExiste = banco.verificarCidadeExistePorNome(nomeCidade);
+        banco.fecharConexao();
+        return cidadeExiste;
+    }
 }

@@ -74,7 +74,7 @@ public class LeitorCsvSQL extends IniciaBanco{
         }
     }
 
-    public  boolean verificarCidadeExiste(String siglaCidade){
+    public boolean verificarCidadeExiste(String siglaCidade){
         // Este método verifica se a cidade com a sigla fornecida já existe no banco de dados.
         boolean cidadeExiste = false;
         try {
@@ -201,6 +201,31 @@ public class LeitorCsvSQL extends IniciaBanco{
             System.err.format("validarCidadeEstacao SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
         return cidadeEstacaoValido;
+    }
+
+    public boolean verificarCidadeExistePorNome(String nomeCidade){
+        System.out.println("nomeCidade " + nomeCidade);
+        // Este método verifica se a cidade com o nome fornecido já existe no banco de dados.
+        boolean cidadeExiste = false;
+        try {
+            // Verifica se a conexão com o banco de dados está estabelecida
+            if (conn != null) {
+                // Prepara a consulta SQL para verificar se a cidade já existe no banco de dados
+                String sql = "SELECT * FROM Cidade WHERE nome = ?";
+                // PreparedStatement é uma interface usada para executar consultas SQL parametrizadas. 
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setString(1, nomeCidade);
+                ResultSet rs = stmt.executeQuery();
+
+                // Se a cidade existir no banco de dados, cidadeEstacaoExiste é true
+                if (rs.next()) {
+                    cidadeExiste = true;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.format("verificarCidadeExistePorNome SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        }
+        return cidadeExiste;
     }
 
 }
