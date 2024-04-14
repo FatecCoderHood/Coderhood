@@ -23,7 +23,7 @@ Como analista, eu quero poder inserir um CSV e adicionar os registros a uma cida
      - Será solicitada a sigla da cidade.
      - Será solicitado o número da estação.
    - A sigla da cidade já exista:
-     - O nome registrado será utilizado..
+     - O nome registrado será utilizado.
 
 2. **Tratamento de erros na inserção:**
    - Caso a estação já exista e esteja associada à outra cidade, Retornará um erro indicando que a estação está relacionada a uma cidade diferente.
