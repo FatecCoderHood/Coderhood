@@ -74,101 +74,61 @@ public class LeitorCsvSQL extends IniciaBanco{
         }
     }
 
-    public boolean verificarCidadeExiste(String siglaCidade){
-        // Este método verifica se a cidade com a sigla fornecida já existe no banco de dados.
-        boolean cidadeExiste = false;
+    public String validarNomeCidadePelaSigla(String siglaCidade){
+        // Este método retorna o nome da cidade no banco se a sigla ja existir.
+        String nomeCidadeBanco = null;
         try {
-            // Verifica se a conexão com o banco de dados está estabelecida
             if (conn != null) {
-                // Prepara a consulta SQL para verificar se a cidade já existe no banco de dados
                 String sql = "SELECT * FROM Cidade WHERE sigla = ?";
-                // PreparedStatement é uma interface usada para executar consultas SQL parametrizadas. 
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, siglaCidade.toUpperCase());
                 ResultSet rs = stmt.executeQuery();
 
-                // Se a cidade existir no banco de dados, cidadeEstacaoExiste é true
                 if (rs.next()) {
-                    cidadeExiste = true;
+                    nomeCidadeBanco = rs.getString("nome");
                 }
             }
         } catch (SQLException e) {
             System.err.format("verificarCidadeExiste SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
-        return cidadeExiste;
+        return nomeCidadeBanco;
     }
 
     public void criarCidade(String nomeCidade, String siglaCidade){
         try {
             if (conn != null) {
-                String sql = "INSERT INTO Cidade (nome, sigla) VALUES (?, ?)";
-                // PreparedStatement é uma interface usada para executar consultas SQL parametrizadas.
+                String sql = "SELECT * FROM Cidade WHERE sigla = ?";
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, nomeCidade);
-                stmt.setString(2, siglaCidade.toUpperCase());
-                stmt.executeUpdate();
-              
+                ResultSet rs = stmt.executeQuery();
+                if (!rs.next()) {
+                    sql = "INSERT INTO Cidade (nome, sigla) VALUES (?, ?)";
+                    stmt = conn.prepareStatement(sql);
+                    stmt.setString(1, nomeCidade);
+                    stmt.setString(2, siglaCidade.toUpperCase());
+                    stmt.executeUpdate();
+                }
             }
         } catch (SQLException e) {
             System.err.format("criarCidade SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
     }
 
-    public String ObterNomeCidade(String siglaCidade){
-        // Este método retorna o nome da cidade com base na sigla da cidade.
-        String nomeCidade = null;
-        try {
-            // Verifica se a conexão com o banco de dados está estabelecida
-            if (conn != null) {
-                // Prepara a consulta SQL para obter o nome da cidade
-                String sql = "SELECT nome FROM Cidade WHERE sigla = ?";
-                // PreparedStatement é uma interface usada para executar consultas SQL parametrizadas. 
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                stmt.setString(1, siglaCidade.toUpperCase());
-                ResultSet rs = stmt.executeQuery();
-
-                // Se a consulta SQL retornar pelo menos uma linha, obtém o nome da cidade
-                if (rs.next()) {
-                    nomeCidade = rs.getString("nome");
-                }
-            }
-        } catch (SQLException e) {
-            System.err.format("ObterNomeCidade SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        }
-        return nomeCidade;
-    }
-
-    public boolean verificarEstacaoExiste(String numeroEstacao){
-        // Este método verifica se a estação com o número fornecido já existe no banco de dados.
-        boolean estacaoExiste = false;
-        try {
-            if (conn != null) {
-                // Prepara a consulta SQL para verificar se a estação já existe no banco de dados
-                String sql = "SELECT * FROM Estacao WHERE nome = ?";
-                // PreparedStatement é uma interface usada para executar consultas SQL parametrizadas. 
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                stmt.setString(1, numeroEstacao);
-                ResultSet rs = stmt.executeQuery();
-                if (rs.next()) {
-                    estacaoExiste = true;
-                }
-            }
-        } catch (SQLException e) {
-            System.err.format("verificarEstacaoExiste SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        }
-        return estacaoExiste;
-    }
-
     public void criarEstacao(String numeroEstacao, String siglaCidade){
         try {
             if (conn != null) {
-    
-                String sql = "INSERT INTO Estacao (nome, siglaCidade) VALUES (?, ?)";
-                // PreparedStatement é uma interface usada para executar consultas SQL parametrizadas.
+                String sql = "SELECT * FROM Estacao WHERE nome = ? AND siglaCidade = ?";
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, numeroEstacao);
                 stmt.setString(2, siglaCidade.toUpperCase());
-                stmt.executeUpdate();
+                ResultSet rs = stmt.executeQuery();
+                if (!rs.next()) {
+                    sql = "INSERT INTO Estacao (nome, siglaCidade) VALUES (?, ?)";
+                    stmt = conn.prepareStatement(sql);
+                    stmt.setString(1, numeroEstacao);
+                    stmt.setString(2, siglaCidade.toUpperCase());
+                    stmt.executeUpdate();
+                }
             }
         } catch (SQLException e) {
             System.err.format("criarEstacao SQL State: %s\n%s", e.getSQLState(), e.getMessage());
@@ -177,7 +137,7 @@ public class LeitorCsvSQL extends IniciaBanco{
 
     public boolean validarCidadeEstacao(String siglaCidade, String numeroEstacao){
         // Este método verifica se a cidade e a estação fornecidas correspondem.
-        boolean cidadeEstacaoValido = false;
+        boolean cidadeEstacaoValido = true;
         try {
             // Verifica se a conexão com o banco de dados está estabelecida
             if (conn != null) {
@@ -187,45 +147,19 @@ public class LeitorCsvSQL extends IniciaBanco{
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, numeroEstacao);
                 ResultSet rs = stmt.executeQuery();
-                if (rs.next()) {
+    
+                if(rs.next()) {
                     String siglaCidadeEstacao = rs.getString("siglaCidade");
                     System.out.println("siglaCidadeEstacao " + siglaCidadeEstacao + " siglaCidade " + siglaCidade);
-                    if(siglaCidadeEstacao.trim().equals(siglaCidade.trim())){
-                        cidadeEstacaoValido = true;
+                    if(!siglaCidadeEstacao.trim().equals(siglaCidade.trim())){
+                        cidadeEstacaoValido = false; 
                     }              
-                }else{
-                    cidadeEstacaoValido = true;
                 }
             }
         } catch (SQLException e) {
             System.err.format("validarCidadeEstacao SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
         return cidadeEstacaoValido;
-    }
-
-    public boolean verificarCidadeExistePorNome(String nomeCidade){
-        System.out.println("nomeCidade " + nomeCidade);
-        // Este método verifica se a cidade com o nome fornecido já existe no banco de dados.
-        boolean cidadeExiste = false;
-        try {
-            // Verifica se a conexão com o banco de dados está estabelecida
-            if (conn != null) {
-                // Prepara a consulta SQL para verificar se a cidade já existe no banco de dados
-                String sql = "SELECT * FROM Cidade WHERE nome = ?";
-                // PreparedStatement é uma interface usada para executar consultas SQL parametrizadas. 
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                stmt.setString(1, nomeCidade);
-                ResultSet rs = stmt.executeQuery();
-
-                // Se a cidade existir no banco de dados, cidadeEstacaoExiste é true
-                if (rs.next()) {
-                    cidadeExiste = true;
-                }
-            }
-        } catch (SQLException e) {
-            System.err.format("verificarCidadeExistePorNome SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        }
-        return cidadeExiste;
     }
 
 }

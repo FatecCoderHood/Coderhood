@@ -16,11 +16,11 @@ public class LeitorCsvService {
         banco.fecharConexao();
         return salvoDuplicado;
     }
-    public boolean verificarCidadeExiste(String siglaCidade){
+    public String validarNomeCidadePelaSigla(String siglaCidade){
         LeitorCsvSQL banco = new LeitorCsvSQL();
-        boolean cidadeExiste = banco.verificarCidadeExiste(siglaCidade);
+        String nomeCidadebanco = banco.validarNomeCidadePelaSigla(siglaCidade);
         banco.fecharConexao();
-        return cidadeExiste;
+        return nomeCidadebanco;
     }
 
     public void criarCidade(String nomeCidade, String siglaCidade){
@@ -29,26 +29,12 @@ public class LeitorCsvService {
         banco.fecharConexao();
     }
 
-    public String ObterNomeCidade(String siglaCidade){
-        LeitorCsvSQL banco = new LeitorCsvSQL();
-        String nomeCidade = banco.ObterNomeCidade(siglaCidade);
-        banco.fecharConexao();
-        return nomeCidade;
-        
-    }
-
-    public boolean verificarEstacaoExiste(String numeroEstacao){
-        LeitorCsvSQL banco = new LeitorCsvSQL();
-        boolean estacaoExiste = banco.verificarEstacaoExiste(numeroEstacao);
-        banco.fecharConexao();
-        return estacaoExiste;
-    }
-
     public void criarEstacao(String numeroEstacao, String siglaCidade){
         LeitorCsvSQL banco = new LeitorCsvSQL();
         banco.criarEstacao(numeroEstacao, siglaCidade);
         banco.fecharConexao();
     }
+
     public boolean validarCidadeEstacao(String siglaCidade, String numeroEstacao){
         LeitorCsvSQL banco = new LeitorCsvSQL();
         boolean cidadeEstacaoValido = banco.validarCidadeEstacao(siglaCidade, numeroEstacao);
@@ -66,10 +52,4 @@ public class LeitorCsvService {
         return registrosSuspeitos;
     }
 
-    public boolean validarNomeCidadeNaoExisteNoBanco(String nomeCidade){
-        LeitorCsvSQL banco = new LeitorCsvSQL();
-        boolean cidadeExiste = banco.verificarCidadeExistePorNome(nomeCidade);
-        banco.fecharConexao();
-        return cidadeExiste;
-    }
 }

@@ -36,7 +36,7 @@ public class CSVResolve {
     private String codigoEstacao = "";
     @Getter
     @Setter
-    private String codigoCidade = "";
+    private String siglaCidade = "";
     private String[] cabecalhoCSV = null;
     private Map<String, Integer> camposAutomatico = new HashMap<>();
     private Map<String, Integer> camposManual = new HashMap<>();
@@ -121,17 +121,17 @@ public class CSVResolve {
                 Double dirVentoDouble = (dirVento != null && !dirVento.isEmpty()) ? Double.parseDouble(dirVento) : null;
                 Double chuvaDouble = (chuva != null && !chuva.isEmpty()) ? Double.parseDouble(chuva) : null;
                              
-                Registro novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "temperaturaMedia", temperaturaMediaDouble, 
+                Registro novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "temperaturaMedia", temperaturaMediaDouble, 
                     service.validarTemperatura(temperaturaMediaDouble));
                 registroFiltrado.add(novoRegistro);
 
-                novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "umidadeMedia", umidadeMediaDouble, service.validarUmidade(umidadeMediaDouble));
+                novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "umidadeMedia", umidadeMediaDouble, service.validarUmidade(umidadeMediaDouble));
                 registroFiltrado.add(novoRegistro);
-                novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "velVento", velVentoDouble, service.validarVelocidadeVento(velVentoDouble));
+                novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "velVento", velVentoDouble, service.validarVelocidadeVento(velVentoDouble));
                 registroFiltrado.add(novoRegistro);
-                novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "dirVento", dirVentoDouble, service.validarDirecaoVento(dirVentoDouble));
+                novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "dirVento", dirVentoDouble, service.validarDirecaoVento(dirVentoDouble));
                 registroFiltrado.add(novoRegistro);
-                novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "chuva", chuvaDouble, service.validarChuva(chuvaDouble));
+                novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "chuva", chuvaDouble, service.validarChuva(chuvaDouble));
                 registroFiltrado.add(novoRegistro);
 
                 } else {
@@ -151,16 +151,16 @@ public class CSVResolve {
                     ? (Double.parseDouble(tempHora) - 273)
                     : null; 
 
-                    Registro novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "temperaturaMedia", temperaturaMedia, 
+                    Registro novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "temperaturaMedia", temperaturaMedia, 
                         service.validarTemperatura(temperaturaMedia));
                     registroFiltrado.add(novoRegistro);
-                    novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "umidadeMedia", umidadeMedia, service.validarUmidade(umidadeMedia));
+                    novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "umidadeMedia", umidadeMedia, service.validarUmidade(umidadeMedia));
                     registroFiltrado.add(novoRegistro);
-                    novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "velVento", velVento, service.validarVelocidadeVento(velVento));
+                    novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "velVento", velVento, service.validarVelocidadeVento(velVento));
                     registroFiltrado.add(novoRegistro); 
-                    novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "dirVento", dirVento, service.validarDirecaoVento(dirVento));
+                    novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "dirVento", dirVento, service.validarDirecaoVento(dirVento));
                     registroFiltrado.add(novoRegistro);
-                    novoRegistro = new Registro(data, hora, codigoEstacao, codigoCidade, "chuva", chuva, service.validarChuva(chuva));
+                    novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "chuva", chuva, service.validarChuva(chuva));
                     registroFiltrado.add(novoRegistro);
                 }
         }
@@ -228,7 +228,7 @@ public class CSVResolve {
         if (matcher.matches()) {
             String modoColeta = matcher.group(1); // Modo de coleta (A ou vazio)
             codigoEstacao = matcher.group(2); // Código da estação
-            codigoCidade = matcher.group(3); // Código da cidade
+            siglaCidade = matcher.group(3); // Código da cidade
 
             if ("A".equals(modoColeta)) {
                 modoColeta = "Automatico";
@@ -239,7 +239,7 @@ public class CSVResolve {
 
             System.out.println("Modo de Coleta: " + modoColeta);
             System.out.println("Código da Estação: " + codigoEstacao);
-            System.out.println("Código da Cidade: " + codigoCidade);
+            System.out.println("Código da Cidade: " + siglaCidade);
             return true;
         } else{
             throw new NomeCSVInvalidoException("O nome do arquivo CSV não está no formato esperado.");
