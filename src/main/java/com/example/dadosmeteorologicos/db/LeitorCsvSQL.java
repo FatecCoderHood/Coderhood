@@ -99,7 +99,7 @@ public class LeitorCsvSQL extends IniciaBanco{
             if (conn != null) {
                 String sql = "SELECT * FROM Cidade WHERE sigla = ?";
                 PreparedStatement stmt = conn.prepareStatement(sql);
-                stmt.setString(1, nomeCidade);
+                stmt.setString(1, siglaCidade);
                 ResultSet rs = stmt.executeQuery();
                 if (!rs.next()) {
                     sql = "INSERT INTO Cidade (nome, sigla) VALUES (?, ?)";

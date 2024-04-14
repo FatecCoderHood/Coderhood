@@ -181,7 +181,6 @@ public class LeitorCsvController {
 
     private boolean validarSigla(String siglaCidade) {
         String nomeCidadeBanco = service.validarNomeCidadePelaSigla(siglaCidade);
-        System.out.println("Nome cidade banco: " + nomeCidadeBanco + "nome cidade inserido: " + nomeCidadeInserido);
         if (nomeCidadeBanco == null) { 
             return false;
         }else{
