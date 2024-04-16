@@ -1,8 +1,19 @@
 # Documentação do Produto
 
 ## Backlog do Produto
+- [Sprint 1:](#sprint-1)
+  - [Carregar e validar CSV](#carregar-e-validar-csv)
+  - [Relatório de valor médio](#relatório-de-valor-médio) 
+
+- [Sprint 2:](#sprint-2)
+  - [Gerenciamento de cidades](#gerenciamento-de-cidades)
+  - [Gerenciamento de estações](#gerenciamento-de-estações)
+  - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)  
+
 
 ## Sprint 1
+
+### Carregar e validar CSV:
 
 **História do usuário:**
 
@@ -10,7 +21,7 @@ Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de u
 
 **Regras de negócio:**
 
-1. **Inserção de CSV Padrão:**
+1. **Inserção de CSV:**
    - Caso o nome do CSV selecionado esteja no padrão esperado e não exista o cadastro da cidade:
      - Será solicitado o nome da cidade para a sigla correspondente do nome do arquivo.
      - Será criado a estação se não existir.
@@ -57,6 +68,8 @@ Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de u
 ![Erro de CSV](image-4.png)
 
 
+### Relatório de valor médio:
+
 **História do usuário:**
 
 Como meteorologista, eu quero gerar um relatório de valores médios de uma cidade, a partir de uma data inicial e data final, com registros de hora em hora. Afim de prever as melhores condições para desenvolver as atividades do meu negócio.
@@ -80,28 +93,35 @@ Como meteorologista, eu quero gerar um relatório de valores médios de uma cida
 
 ## Sprint 2
 
+### Gerenciamento de Cidades:
+
 **História do usuário:**
 Como meteorologista, eu quero gerenciar cidades, podendo assim escalar e manejar registros e cidades.
 
 **Regras de negócio:**
 - Não será possível repetir uma sigla que já exista.
-- Se for alterado a sigla de uma cidade, será alterado em todas as estação e seus respectivos registros.
-- Se for deletado, todos os registros e estacoes que contiverem essa sigla serão deletados.
+- Se for alterada a sigla de uma cidade, será alterada em todas as estações e seus respectivos registros.
+- Se for deletada, todos os registros e estações que contiverem essa sigla serão deletados.
 
+### Gerenciamento de Estações:
 
 **História do usuário:**
-Como meteorologista, eu quero gerenciar estações, podendo assim escalar e manejar registros e estacoes.
+Como meteorologista, eu quero gerenciar estações, podendo assim escalar e manejar registros e estações.
 
 **Regras de negócio:**
 - Não será possível repetir um número de estação que já exista.
 - Não será possível inserir uma sigla de uma cidade que não exista.
 - Se for alterado o número da estação ou a sigla da cidade, será alterado em todos os registros.
-- Se for deletado será deletado todos os registros pertencentes a essa estação.
+- Se for deletada será deletado todos os registros pertencentes a essa estação.
 
+### Tratamento de Registros Suspeitos:
 
 **História do usuário:**
+Como meteorologista, eu quero gerenciar registros que contêm valores suspeitos, afim de poder revisar os registros identificados como suspeitos e visualizar detalhes específicos sobre esses registros, como data, hora e localização ou deletá-los.
 
-Como meteorologista, eu quero gerenciar registros que contém valores suspeitos, afim de poder revisar os registros identificados como suspeitos e visualizar detalhes específicos sobre esses registros, como data, hora e localização ou deletá-los.
+**Regras de negócio:**
+ - Ao corrigir o valor suspeito para um valor dentro do estipulado nas configurações, o registro aparecerá nos demais relatórios.
+ - Ao deletar o registro com valor suspeito, todos os demais registros que foram gerados juntos serão deletados.
 
 
 
