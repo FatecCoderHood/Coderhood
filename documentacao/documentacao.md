@@ -96,6 +96,7 @@ Como meteorologista, eu quero gerar um relatório de valores médios de uma cida
 ### Gerenciamento de Cidades:
 
 **História do usuário:**
+
 Como meteorologista, eu quero gerenciar cidades, podendo assim escalar e manejar registros e cidades.
 
 **Regras de negócio:**
