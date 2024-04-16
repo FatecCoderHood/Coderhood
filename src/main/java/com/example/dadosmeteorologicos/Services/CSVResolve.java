@@ -164,10 +164,10 @@ public class CSVResolve {
                     registroFiltrado.add(novoRegistro);
                 }
         }
-        for (Registro registro : registroFiltrado) {
-            System.out.println(registro.toString());
-        }
-        System.out.println("size: " + registroFiltrado.size());
+        // for (Registro registro : registroFiltrado) {
+        //     System.out.println(registro.toString());
+        // }
+        // System.out.println("size: " + registroFiltrado.size());
         return registroFiltrado;
     }      
 

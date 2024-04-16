@@ -6,7 +6,7 @@
 
 **História do usuário:**
 
-Como analista, eu quero poder inserir um CSV e adicionar os registros a uma cidade e uma estação, a fim de ter essas informações na minha base de dados.
+Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de uma estação, afim de garantir que suas informações estejam corretas.
 
 **Regras de negócio:**
 
@@ -59,7 +59,7 @@ Como analista, eu quero poder inserir um CSV e adicionar os registros a uma cida
 
 **História do usuário:**
 
-Como analista, eu quero poder extrair um relatório de valor médio de uma cidade, com periodicidade de uma hora, a partir de uma data inicial e data final. Afim de entender qual a melhor época do ano para os meus negócios
+Como meteorologista, eu quero gerar um relatório de valores médios de uma cidade, a partir de uma data inicial e data final, com registros de hora em hora. Afim de prever as melhores condições para desenvolver as atividades do meu negócio.
 
 **Regras de negócio:**
 
@@ -81,5 +81,26 @@ Como analista, eu quero poder extrair um relatório de valor médio de uma cidad
 ## Sprint 2
 
 **História do usuário:**
+Como meteorologista, eu quero gerenciar cidades, podendo assim escalar e manejar registros e cidades.
+
+**Regras de negócio:**
+- Não será possível repetir uma sigla que já exista.
+- Se for alterado a sigla de uma cidade, será alterado em todas as estação e seus respectivos registros.
+- Se for deletado, todos os registros e estacoes que contiverem essa sigla serão deletados.
+
+
+**História do usuário:**
+Como meteorologista, eu quero gerenciar estações, podendo assim escalar e manejar registros e estacoes.
+
+**Regras de negócio:**
+- Não será possível repetir um número de estação que já exista.
+- Não será possível inserir uma sigla de uma cidade que não exista.
+- Se for alterado o número da estação ou a sigla da cidade, será alterado em todos os registros.
+- Se for deletado será deletado todos os registros pertencentes a essa estação.
+
+
+**História do usuário:**
+Como meteorologista, eu quero gerenciar registros que contém valores suspeitos, afim de poder revisar os registros identificados como suspeitos e visualizar detalhes específicos sobre esses registros, como data, hora e localização ou deletá-los.
+
 
 

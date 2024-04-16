@@ -112,6 +112,7 @@ public class LeitorCsvController {
         salvos = salvoDuplicado[0];
         duplicados = salvoDuplicado[1];
         dialogoRegistroSalvo();
+        salvarCsvButton.setVisible(false);
         
     }
 
