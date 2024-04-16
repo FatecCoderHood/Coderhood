@@ -100,6 +100,7 @@ Como meteorologista, eu quero gerenciar estações, podendo assim escalar e mane
 
 
 **História do usuário:**
+
 Como meteorologista, eu quero gerenciar registros que contém valores suspeitos, afim de poder revisar os registros identificados como suspeitos e visualizar detalhes específicos sobre esses registros, como data, hora e localização ou deletá-los.
 
 
