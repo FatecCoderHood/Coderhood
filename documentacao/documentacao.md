@@ -107,7 +107,7 @@ Como meteorologista, eu quero gerenciar cidades, podendo assim escalar e manejar
 ### Gerenciamento de Estações:
 
 **História do usuário:**
-Como meteorologista, eu quero gerenciar estações, podendo assim escalar e manejar registros e estações.
+Como meteorologista, eu quero gerenciar estações, podendo assim escalar e manejar estações cadastradas.
 
 **Regras de negócio:**
 - Não será possível repetir um número de estação que já exista.
