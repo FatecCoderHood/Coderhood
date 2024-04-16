@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -18,9 +20,27 @@ public class MainController {
 
     @FXML
     private Tab tabValorMedio;
+    @FXML
+    private ImageView imageViewFundo;
+
+    @FXML
+    private ImageView imageViewZeus;
+
+    @FXML
+    private ImageView imageViewLogo;
 
     @FXML
     public void initialize() {
+        
+        Image imageFundo = new Image(getClass().getResourceAsStream("/com/example/dadosmeteorologicos/imagens/fundo.jpg"));
+        imageViewFundo.setImage(imageFundo);
+        
+        Image imageLogoCoderHood = new Image(getClass().getResourceAsStream("/com/example/dadosmeteorologicos/imagens/logo.png"));
+        imageViewLogo.setImage(imageLogoCoderHood);
+        
+        Image imageLogoZeus = new Image(getClass().getResourceAsStream("/com/example/dadosmeteorologicos/imagens/Zeus.png"));
+        imageViewZeus.setImage(imageLogoZeus);
+
         abas.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
             
             if (newTab == tabLeitorCsv) {

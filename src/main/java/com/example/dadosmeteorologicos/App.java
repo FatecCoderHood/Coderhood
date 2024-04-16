@@ -22,7 +22,7 @@ public class App extends Application {
         banco.iniciarBanco();
         banco.fecharConexao();
 
-        scene = new Scene(loadFXML("Main"), 900, 600);
+        scene = new Scene(loadFXML("Main"), 900, 650);
         stage.setScene(scene);
         stage.show();
     }

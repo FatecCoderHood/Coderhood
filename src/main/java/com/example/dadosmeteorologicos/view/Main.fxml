@@ -5,19 +5,19 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.MainController">
+<AnchorPane prefHeight="650" prefWidth="900" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.MainController">
     <cursor>
         <Cursor fx:constant="DEFAULT" />
     </cursor>
    <children>
-      <TabPane layoutX="-2.0" prefHeight="600.0" prefWidth="906.0" tabClosingPolicy="UNAVAILABLE" fx:id="abas">
+      <TabPane fx:id="abas" layoutX="-2.0" prefHeight="600.0" prefWidth="906.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Inserir dados" fx:id="tabLeitorCsv">
+          <Tab fx:id="tabLeitorCsv" text="Inserir dados">
             <content>
               <fx:include source="LeitorCsv.fxml" />
             </content>
           </Tab>
-          <Tab text="Valor Medio" fx:id="tabValorMedio">
+          <Tab fx:id="tabValorMedio" text="Valor Medio">
             <content>
             </content>
           </Tab>
