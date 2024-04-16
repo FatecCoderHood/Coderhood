@@ -3,6 +3,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="650" prefWidth="900" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.MainController">
@@ -10,7 +12,7 @@
         <Cursor fx:constant="DEFAULT" />
     </cursor>
    <children>
-      <TabPane fx:id="abas" layoutX="-2.0" prefHeight="600.0" prefWidth="906.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="abas" layoutX="-2.0" layoutY="108.0" prefHeight="600.0" prefWidth="906.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="tabLeitorCsv" text="Inserir dados">
             <content>
@@ -43,5 +45,8 @@
           </Tab>
         </tabs>
       </TabPane>
+      <ImageView fx:id="imageViewFundo" fitHeight="110.0" fitWidth="904.0"/>
+      <ImageView fx:id="imageViewLogo" fitHeight="94.0" fitWidth="383.0" layoutX="460.0" layoutY="8.0"/>
+      <ImageView fx:id="imageViewZeus" fitHeight="162.0" fitWidth="200.0" layoutX="14.0" layoutY="-26.0"/>
    </children>
 </AnchorPane>
