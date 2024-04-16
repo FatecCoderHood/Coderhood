@@ -16,7 +16,6 @@
 ### Carregar e validar CSV:
 
 **História do usuário:**
-
 Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de uma estação, afim de garantir que suas informações estejam corretas.
 
 **Regras de negócio:**
@@ -71,7 +70,6 @@ Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de u
 ### Relatório de valor médio:
 
 **História do usuário:**
-
 Como meteorologista, eu quero gerar um relatório de valores médios de uma cidade, a partir de uma data inicial e data final, com registros de hora em hora. Afim de prever as melhores condições para desenvolver as atividades do meu negócio.
 
 **Regras de negócio:**
