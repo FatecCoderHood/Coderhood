@@ -134,6 +134,8 @@ Como meteorologista, eu quero gerenciar estações, podendo assim escalar e mane
 
 **Interface do usuário:**
 
+![alt text](image-18.png)
+
  ![estacao-1](image-9.png)
 
  ![estacao-2](image-10.png)
