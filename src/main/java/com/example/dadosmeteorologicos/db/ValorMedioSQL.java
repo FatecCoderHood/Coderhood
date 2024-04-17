@@ -115,7 +115,6 @@ public class ValorMedioSQL extends IniciaBanco {
                     registro.setValorMedioInfos(valorMedioInfos);
                     ListaRegistroBD.add(registro);
                 }
-                System.out.println("Relatorio Valor Medio: " + ListaRegistroBD.size());
             }
         } catch (SQLException e) {
             System.err.format(" RELATORIO VALOR MEDIO SQL State: %s\n%s", e.getSQLState(), e.getMessage());

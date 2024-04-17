@@ -122,10 +122,8 @@ public class ValorMedioController {
         // Obtém a sigla da cidade do texto do botão do menu
         String[] partes = menuButton.getText().split(" - ");
         String siglaCidade = partes[1].split(" ")[0]; 
-
-
+        
         List<RegistroValorMedio> resultado = service.consultaCidadePorIdEDatas(siglaCidade, dataInicialSqlDate, dataFinalSqlDate);
-      
 
         // Carrega a tela de resultados
         try {
