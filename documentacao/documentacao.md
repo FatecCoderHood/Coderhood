@@ -11,7 +11,7 @@
   - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)  
 
 
-## Entidade-relacionamento
+## Entidade Relacionamento
 ![entidade-relacionamento](conceito_entidade-relacionamento.jpg)
 
 
