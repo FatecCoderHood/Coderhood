@@ -3,7 +3,6 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -45,8 +44,8 @@
           </Tab>
         </tabs>
       </TabPane>
-      <ImageView fx:id="imageViewFundo" fitHeight="110.0" fitWidth="904.0"/>
-      <ImageView fx:id="imageViewLogo" fitHeight="94.0" fitWidth="383.0" layoutX="460.0" layoutY="8.0"/>
-      <ImageView fx:id="imageViewZeus" fitHeight="162.0" fitWidth="200.0" layoutX="14.0" layoutY="-26.0"/>
+      <ImageView fx:id="imageViewFundo" fitHeight="110.0" fitWidth="904.0" />
+      <ImageView fx:id="imageViewLogo" fitHeight="79.0" fitWidth="354.0" layoutX="500.0" layoutY="16.0" />
+      <ImageView fx:id="imageViewZeus" fitHeight="162.0" fitWidth="200.0" layoutX="14.0" layoutY="-26.0" />
    </children>
 </AnchorPane>
