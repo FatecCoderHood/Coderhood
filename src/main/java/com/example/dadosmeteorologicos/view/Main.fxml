@@ -22,6 +22,11 @@
             <content>
             </content>
           </Tab>
+          <Tab fx:id="tabEstacao" text="Estação">
+            <content>
+              
+            </content>
+          </Tab>
           <Tab text="Situação">
             <content>
               

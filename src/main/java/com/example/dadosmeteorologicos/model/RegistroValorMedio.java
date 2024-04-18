@@ -46,7 +46,6 @@ public class RegistroValorMedio {
             valorMedioInfo.setValor(registro.getValor());
             valorMedioInfos.add(valorMedioInfo);
         }
-
         return valorMedioInfos;
     }
 }

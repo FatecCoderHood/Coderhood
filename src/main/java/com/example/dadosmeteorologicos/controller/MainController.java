@@ -30,6 +30,9 @@ public class MainController {
     private ImageView imageViewLogo;
 
     @FXML
+    private Tab tabEstacao;
+
+    @FXML
     public void initialize() {
         
         Image imageFundo = new Image(getClass().getResourceAsStream("/com/example/dadosmeteorologicos/imagens/fundo.jpg"));
@@ -54,6 +57,13 @@ public class MainController {
                 try {
                     Pane valorMedioPane = FXMLLoader.load(getClass().getResource("/com/example/dadosmeteorologicos/view/ValorMedio.fxml"));
                     tabValorMedio.setContent(valorMedioPane);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (newTab == tabEstacao){
+                try {
+                    Pane estacaoPane = FXMLLoader.load(getClass().getResource("/com/example/dadosmeteorologicos/view/Estacao.fxml"));
+                    tabEstacao.setContent(estacaoPane);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
