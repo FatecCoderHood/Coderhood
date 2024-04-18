@@ -10,7 +10,9 @@ public class EstacaoService {
    public List<Estacao> buscaEstacao(){
         EstacaoSQL estacaoSQL = new EstacaoSQL();
         List<Estacao> listaEstacao = estacaoSQL.buscaEstacaoBanco();
+        estacaoSQL.fecharConexao();
         return listaEstacao;
+
    }
 
 }

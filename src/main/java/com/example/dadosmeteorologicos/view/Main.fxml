@@ -22,24 +22,24 @@
             <content>
             </content>
           </Tab>
+            <Tab fx:id="tabEstacao" text="Cidade">
+            <content>
+              <fx:include source="Cidade.fxml" />
+            </content>
+          </Tab>
           <Tab fx:id="tabEstacao" text="Estação">
             <content>
               
             </content>
           </Tab>
-          <Tab text="Situação">
+          <Tab fx:id="tabEstacao" text="Registros Suspeitos">
             <content>
-              
+             <fx:include source="Suspeito.fxml" />
             </content>
           </Tab>
-          <Tab text="BoxPlot">
+          <Tab fx:id="tabEstacao"text="BoxPlot">
             <content>
               
-            </content>
-          </Tab>
-          <Tab text="Registros Suspeitos">
-            <content>
-             
             </content>
           </Tab>
             <Tab text="Configurações">

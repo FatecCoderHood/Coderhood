@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="500.0" prefWidth="900" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.CidadeController">
+    <cursor>
+        <Cursor fx:constant="DEFAULT" />
+    </cursor>
+   <children>
+      <Text layoutX="377.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cidade" wrappingWidth="110.13671875">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
