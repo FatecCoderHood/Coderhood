@@ -2,6 +2,7 @@ package com.example.dadosmeteorologicos.controller;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Comparator;
 import java.util.List;
 
 import com.example.dadosmeteorologicos.model.RegistroValorMedio;
@@ -22,9 +23,6 @@ public class TabelaRegistrosController {
 
     @FXML
     private TableColumn<RegistroValorMedio, String> colunaCidade;
-
-    @FXML
-    private TableColumn<RegistroValorMedio, Integer> colunaEstacao;
 
     @FXML
     private TableColumn<RegistroValorMedio, LocalDate> colunaData;
@@ -50,14 +48,15 @@ public class TabelaRegistrosController {
     private ObservableList<RegistroValorMedio> registros;
 
     public void setRegistros(List<RegistroValorMedio> registros) {
-        this.registros = FXCollections.observableArrayList(registros);
-        tabelaRegistros.setItems(this.registros);
+        registros.sort(Comparator.comparing(RegistroValorMedio::getData)
+                              .thenComparing(RegistroValorMedio::getHora));
+    this.registros = FXCollections.observableArrayList(registros);
+    tabelaRegistros.setItems(this.registros);
     }
 
     @FXML
     public void initialize() {
         colunaCidade.setCellValueFactory(new PropertyValueFactory<>("siglaCidade"));
-        colunaEstacao.setCellValueFactory(new PropertyValueFactory<>("estacao"));
         colunaData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colunaHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
     
@@ -68,7 +67,6 @@ public class TabelaRegistrosController {
         colunaChuva.setCellValueFactory(cellData -> new SimpleStringProperty(getValorPorTipo(cellData.getValue(), "chuva")));
         
         colunaCidade.setStyle("-fx-alignment: CENTER;");
-        colunaEstacao.setStyle("-fx-alignment: CENTER;");
         colunaData.setStyle("-fx-alignment: CENTER;");
         colunaHora.setStyle("-fx-alignment: CENTER;");
         colunaTemperaturaMedia.setStyle("-fx-alignment: CENTER;");

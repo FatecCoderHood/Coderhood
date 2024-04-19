@@ -64,9 +64,7 @@ public class ValorMedioSQL extends IniciaBanco {
                 String sql = "SELECT " +
                                 "data, " +
                                 "hora, " +
-                                "estacao, " +
                                 "siglaCidade, " +
-                                "STRING_AGG(id::text, ', ' ORDER BY tipo) AS ids, " +
                                 "STRING_AGG(tipo, ', ' ORDER BY tipo) AS tipos, " +
                                 "STRING_AGG(COALESCE(valor::text, 'null'), ', ' ORDER BY tipo) AS valores " +
                             "FROM " +
@@ -88,21 +86,17 @@ public class ValorMedioSQL extends IniciaBanco {
                     RegistroValorMedio registro = new RegistroValorMedio();
                     registro.setData(rs.getDate("data").toLocalDate());
                     registro.setHora(rs.getTime("hora").toLocalTime());
-                    registro.setEstacao(rs.getString("estacao"));
                     registro.setSiglaCidade(rs.getString("siglaCidade"));
                 
-                    String idsConcatenados = rs.getString("ids");
                     String tiposConcatenados = rs.getString("tipos");
                     String valoresConcatenados = rs.getString("valores");
                 
-                    List<String> ids = Arrays.asList(idsConcatenados.split(", "));
                     List<String> tipos = Arrays.asList(tiposConcatenados.split(", "));
                     List<String> valores = Arrays.asList(valoresConcatenados.split(", "));
                 
                     List<ValorMedioInfo> valorMedioInfos = new ArrayList<>();
                     for (int i = 0; i < tipos.size(); i++) {
                         ValorMedioInfo valorMedioInfo = new ValorMedioInfo();
-                        valorMedioInfo.setId(Integer.parseInt(ids.get(i)));
                         valorMedioInfo.setTipo(tipos.get(i));
                         if (!valores.get(i).equals("null")) {
                             valorMedioInfo.setValor(Double.parseDouble(valores.get(i)));
@@ -119,7 +113,7 @@ public class ValorMedioSQL extends IniciaBanco {
         } catch (SQLException e) {
             System.err.format(" RELATORIO VALOR MEDIO SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
-    
+
         return ListaRegistroBD;
     }
 }

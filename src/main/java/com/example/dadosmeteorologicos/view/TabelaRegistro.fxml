@@ -10,14 +10,13 @@
         <TableView fx:id="tabelaRegistros" prefHeight="614.0" prefWidth="1000.0">
             <columns>
                 <TableColumn fx:id="colunaCidade" text="Cidade" />
-                <TableColumn fx:id="colunaEstacao" text="Estação" />
-                <TableColumn fx:id="colunaData" prefWidth="64.0" text="Data" />
-                <TableColumn fx:id="colunaHora" prefWidth="67.0" text="Hora" />
-                <TableColumn fx:id="colunaTemperaturaMedia" prefWidth="144.0" text="Temperatura Média(C)" />
-                <TableColumn fx:id="colunaUmidadeMedia" prefWidth="140.0" text="Umidade Média (%)" />
-                <TableColumn fx:id="colunaVelVento" prefWidth="163.0" text="Velocidade do Vento (m/s)" />
-                <TableColumn fx:id="colunaDirVento" prefWidth="157.0" text="Direção do Vento (m/s)" />
-                <TableColumn fx:id="colunaChuva" prefWidth="103.0" text="Chuva (mm)" />
+                <TableColumn fx:id="colunaData" prefWidth="102.0" text="Data" />
+                <TableColumn fx:id="colunaHora" prefWidth="71.0" text="Hora" />
+                <TableColumn fx:id="colunaTemperaturaMedia" prefWidth="149.0" text="Temperatura Média(C)" />
+                <TableColumn fx:id="colunaUmidadeMedia" prefWidth="135.0" text="Umidade Média (%)" />
+                <TableColumn fx:id="colunaVelVento" prefWidth="167.0" text="Velocidade do Vento (m/s)" />
+                <TableColumn fx:id="colunaDirVento" prefWidth="169.0" text="Direção do Vento (m/s)" />
+                <TableColumn fx:id="colunaChuva" prefWidth="123.0" text="Chuva (mm)" />
             </columns>
         </TableView>
     </children>
