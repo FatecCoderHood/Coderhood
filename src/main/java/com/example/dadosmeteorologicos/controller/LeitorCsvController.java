@@ -8,6 +8,7 @@ import org.apache.commons.text.WordUtils;
 
 import com.example.dadosmeteorologicos.Services.CSVResolve;
 import com.example.dadosmeteorologicos.Services.LeitorCsvService;
+import com.example.dadosmeteorologicos.Services.VariavelClimaticaService;
 import com.example.dadosmeteorologicos.exceptions.CSVInvalidoException;
 import com.example.dadosmeteorologicos.model.Registro;
 
@@ -61,6 +62,19 @@ public class LeitorCsvController {
         System.out.println("Iniciado Leitor CSV");
         infoLabel.setVisible(false);
         salvarCsvButton.setVisible(false);
+        VariavelClimaticaService variavelClimaticaService = new VariavelClimaticaService();
+        if(variavelClimaticaService.celulasDaTabelaEstaoNulas()){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor definir a faixa dos valores suspeitos.");
+        
+            // Impedir o fechamento da janela
+            alert.setOnCloseRequest(event -> event.consume());
+        
+            alert.showAndWait();
+            System.exit(0);
+        }
         service = new LeitorCsvService();
     }
 

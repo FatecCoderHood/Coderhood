@@ -31,6 +31,8 @@ public class MainController {
 
     @FXML
     private Tab tabEstacao;
+    @FXML
+    private Tab tabConf;
 
     @FXML
     public void initialize() {
@@ -64,6 +66,13 @@ public class MainController {
                 try {
                     Pane estacaoPane = FXMLLoader.load(getClass().getResource("/com/example/dadosmeteorologicos/view/Estacao.fxml"));
                     tabEstacao.setContent(estacaoPane);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if(newTab == tabConf){
+                try {
+                    Pane confPane = FXMLLoader.load(getClass().getResource("/com/example/dadosmeteorologicos/view/Configuracoes.fxml"));
+                    tabConf.setContent(confPane);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

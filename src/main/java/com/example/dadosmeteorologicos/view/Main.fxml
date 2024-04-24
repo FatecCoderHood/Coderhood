@@ -44,7 +44,7 @@
           </Tab>
             <Tab text="Configurações">
             <content>
-             
+             <fx:include source="Configuracoes.fxml" />
             </content>
           </Tab>
         </tabs>

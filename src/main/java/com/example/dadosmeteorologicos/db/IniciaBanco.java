@@ -48,6 +48,7 @@ public class IniciaBanco {
        criarTabelaRegistro();
        criarTabelaCidade();
        criarTabelaEstacao();
+       criarTabelaVariavelClimatica();
     }
 
     private void criarTabelaRegistro(){
@@ -55,7 +56,7 @@ public class IniciaBanco {
             if (conn != null) {
                 System.out.println("Banco Iniciado");
     
-                String sql = "CREATE TABLE IF NOT EXISTS Registro (" +
+                String sql = "CREATE TABLE IF NOT EXISTS registro (" +
                     "id SERIAL PRIMARY KEY," +
                     "data DATE," +
                     "hora TIME," +
@@ -83,7 +84,7 @@ public class IniciaBanco {
     private void criarTabelaCidade() {
         try {
             if (conn != null) {
-                String sql = "CREATE TABLE IF NOT EXISTS Cidade (" +
+                String sql = "CREATE TABLE IF NOT EXISTS cidade (" +
                     "id SERIAL PRIMARY KEY," +
                     "nome VARCHAR(255)," +
                     "sigla CHARACTER(6)" +
@@ -100,10 +101,34 @@ public class IniciaBanco {
     private void criarTabelaEstacao() {
         try {
             if (conn != null) {
-                String sql = "CREATE TABLE IF NOT EXISTS Estacao (" +
+                String sql = "CREATE TABLE IF NOT EXISTS estacao (" +
                     "id SERIAL PRIMARY KEY," +
                     "nome VARCHAR(255)," +
                     "siglaCidade CHARACTER(6)" +
+                    ")";
+    
+                Statement stmt = conn.createStatement();
+                stmt.execute(sql);
+            }
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        }
+    }
+    private void criarTabelaVariavelClimatica(){
+        try {
+            if (conn != null) {
+                String sql = "CREATE TABLE IF NOT EXISTS variavel_climatica (" +
+                    "id SERIAL PRIMARY KEY," +
+                    "temperaturaMin DECIMAL(5,2)," +
+                    "temperaturaMax DECIMAL(5,2)," +
+                    "umidadeMin DECIMAL(5,2)," +
+                    "umidadeMax DECIMAL(5,2)," +
+                    "velocidadeVentoMin DECIMAL(5,2)," +
+                    "velocidadeVentoMax DECIMAL(5,2)," +
+                    "direcaoVentoMin DECIMAL(5,2)," +
+                    "direcaoVentoMax DECIMAL(5,2)," +
+                    "chuvaMin DECIMAL(6,2)," +
+                    "chuvaMax DECIMAL(6,2)" +
                     ")";
     
                 Statement stmt = conn.createStatement();
