@@ -62,19 +62,17 @@ public class LeitorCsvController {
         System.out.println("Iniciado Leitor CSV");
         infoLabel.setVisible(false);
         salvarCsvButton.setVisible(false);
-        VariavelClimaticaService variavelClimaticaService = new VariavelClimaticaService();
-        if(variavelClimaticaService.celulasDaTabelaEstaoNulas()){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Erro");
-            alert.setHeaderText(null);
-            alert.setContentText("Por favor definir a faixa dos valores suspeitos.");
-        
-            // Impedir o fechamento da janela
-            alert.setOnCloseRequest(event -> event.consume());
-        
-            alert.showAndWait();
-            System.exit(0);
-        }
+        Platform.runLater(() -> {
+            VariavelClimaticaService variavelClimaticaService = new VariavelClimaticaService();
+            if(variavelClimaticaService.celulasDaTabelaEstaoNulas()){
+                selecionarArquivo.setDisable(true);
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText(null);
+                alert.setContentText("Insira as faixas de valores na aba de configuração.");
+                alert.showAndWait();
+            }
+        });
         service = new LeitorCsvService();
     }
 

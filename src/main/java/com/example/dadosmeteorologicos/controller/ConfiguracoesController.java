@@ -48,7 +48,9 @@ public class ConfiguracoesController {
     
     @FXML
     public void initialize() {
-        List<VariavelClimatica> variaveis = new VariavelClimatica().getVariaveis();
+        System.out.println("Iniciando ConfiguracoesController");
+        VariavelClimatica variavelClimatica = new VariavelClimatica();
+        List<VariavelClimatica> variaveis = variavelClimatica.getVariaveisClimaticas();
         iniciarCampos(variaveis);
     }
 
@@ -100,7 +102,11 @@ public class ConfiguracoesController {
             variaveis.add(new VariavelClimatica("dirVento", Double.parseDouble(direcaoVentoMin.getText()), Double.parseDouble(direcaoVentoMax.getText()))); 
             variaveis.add(new VariavelClimatica("chuva", Double.parseDouble(chuvaMin.getText()), Double.parseDouble(chuvaMax.getText())));   
           
-            new VariavelClimatica().setVariaveis(variaveis);
+            new VariavelClimatica().setVariaveisClimaticas(variaveis);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Valores Salvos");
+            alert.setContentText("Faixa de valores suspeitos salva com sucesso");
+            alert.showAndWait();
             
         } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

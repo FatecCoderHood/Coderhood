@@ -25,16 +25,16 @@
         <Text layoutX="59.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Temperatura" />
         <Text layoutX="74.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dir. vento" />
         <Text layoutX="84.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chuva" />
-        <TextField id="temperaturaMin" layoutX="138.0" layoutY="181.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField id="temperaturaMax" layoutX="240.0" layoutY="182.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField id="umidadeMin" layoutX="138.0" layoutY="218.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField id="umidadeMax" layoutX="240.0" layoutY="219.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField id="velocidadeVentoMin" layoutX="138.0" layoutY="256.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField id="velocidadeVentoMax" layoutX="240.0" layoutY="257.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField id="direcaoVentoMin" layoutX="138.0" layoutY="292.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField id="direcaoVentoMax" layoutX="240.0" layoutY="293.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField id="chuvaMin" layoutX="138.0" layoutY="329.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField id="chuvaMax" layoutX="240.0" layoutY="330.0" prefHeight="25.0" prefWidth="50.0" />
-        <Button layoutX="183.0" layoutY="376.0" mnemonicParsing="false" onAction="SalvarFaixaSuspeito" text="Salvar" />
+        <TextField fx:id="temperaturaMin" layoutX="138.0" layoutY="181.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="temperaturaMax" layoutX="240.0" layoutY="182.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="umidadeMin" layoutX="138.0" layoutY="218.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="umidadeMax" layoutX="240.0" layoutY="219.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="velocidadeVentoMin" layoutX="138.0" layoutY="256.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="velocidadeVentoMax" layoutX="240.0" layoutY="257.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="direcaoVentoMin" layoutX="138.0" layoutY="292.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="direcaoVentoMax" layoutX="240.0" layoutY="293.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="chuvaMin" layoutX="138.0" layoutY="329.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="chuvaMax" layoutX="240.0" layoutY="330.0" prefHeight="25.0" prefWidth="50.0" />
+        <Button layoutX="183.0" layoutY="376.0" mnemonicParsing="false" onAction="#SalvarFaixaSuspeito" text="Salvar" />
     </children>
 </AnchorPane>

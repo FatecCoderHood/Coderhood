@@ -18,17 +18,6 @@ public class VariavelClimaticaSQL extends IniciaBanco{
         this.conn = super.conectarBanco();
     }
 
-    
-    public void fecharConexao() {
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-            }
-        }
-    }
-
     public boolean celulasDaTabelaEstaoNulas(){
         try {
             if (conn != null) {
@@ -37,14 +26,19 @@ public class VariavelClimaticaSQL extends IniciaBanco{
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
 
-                while (rs.next()) {
-                    if(rs.getString("tipo") == null || rs.getString("minima") == null || rs.getString("maxima") == null){
-                        return true;
-                    }
+                if (!rs.next()) {
+                    return true;
+                } else {
+                    while (rs.next()) {
+                        if(rs.getString("tipo") == null || rs.getString("ValorMinimo") == null 
+                            || rs.getString("ValorMaximo") == null){
+                            return true;
+                        }
+                    } 
                 }
             }
         } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            System.err.format(" verifica celulas tabela SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
         return false;
     }
@@ -61,12 +55,13 @@ public class VariavelClimaticaSQL extends IniciaBanco{
                 while (rs.next()) {
                     VariavelClimatica variavel = new VariavelClimatica();
                     variavel.setTipo(rs.getString("tipo"));
-                    variavel.setValorMinimo(rs.getDouble("minima"));
-                    variavel.setValorMaximo(rs.getDouble("maxima"));
+                    variavel.setValorMinimo(rs.getDouble("ValorMinimo"));
+                    variavel.setValorMaximo(rs.getDouble("ValorMaximo"));
+                    variaveis.add(variavel);
                 }
             }
         } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            System.err.format(" get variaveis climaticas SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
         return variaveis;
     }
@@ -75,26 +70,37 @@ public class VariavelClimaticaSQL extends IniciaBanco{
     public void setVariaveisClimaticasBanco(List<VariavelClimatica> variaveis){
         try {
             if (conn != null) {
-                for (VariavelClimatica variavel : variaveis){
-                    String sql = "UPDATE variavel_climatica SET " +
-                                "tipo = ?," +
-                                "minima = ?," +
-                                "maxima = ?";
-
-                    PreparedStatement stmt = conn.prepareStatement(sql);
-                    stmt.setString(1, variavel.getTipo());
-                    stmt.setDouble(2, variavel.getValorMinimo());
-                    stmt.setDouble(3, variavel.getValorMaximo());
-
-                    stmt.executeUpdate();
+                String checkSql = "SELECT count(*) FROM variavel_climatica";
+                Statement checkStmt = conn.createStatement();
+                ResultSet checkRs = checkStmt.executeQuery(checkSql);
+                checkRs.next();
+                int count = checkRs.getInt(1);
+    
+                if (count == 0) {
+                    // A tabela está vazia
+                    for (VariavelClimatica variavel : variaveis){
+                        String insertSql = "INSERT INTO variavel_climatica (tipo, ValorMinimo, ValorMaximo) VALUES (?, ?, ?)";
+                        PreparedStatement insertStmt = conn.prepareStatement(insertSql);
+                        insertStmt.setString(1, variavel.getTipo());
+                        insertStmt.setDouble(2, variavel.getValorMinimo());
+                        insertStmt.setDouble(3, variavel.getValorMaximo());
+                        insertStmt.executeUpdate();
+                    }
+                } else {
+                    // A tabela não está vazia, então atualize os registros
+                    for (VariavelClimatica variavel : variaveis){
+                        String updateSql = "UPDATE variavel_climatica SET ValorMinimo = ?, ValorMaximo = ? WHERE tipo = ?";
+                        PreparedStatement updateStmt = conn.prepareStatement(updateSql);
+                        updateStmt.setDouble(1, variavel.getValorMinimo());
+                        updateStmt.setDouble(2, variavel.getValorMaximo());
+                        updateStmt.setString(3, variavel.getTipo());
+                        updateStmt.executeUpdate();
+                    }
                 }
             }
         } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            System.err.format("setVariaveisClimaticas SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
     }
-
-    
-
 
 }

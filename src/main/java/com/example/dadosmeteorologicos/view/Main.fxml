@@ -42,9 +42,8 @@
               
             </content>
           </Tab>
-            <Tab text="Configurações">
+            <Tab fx:id="tabConf" text="Configurações">
             <content>
-             <fx:include source="Configuracoes.fxml" />
             </content>
           </Tab>
         </tabs>

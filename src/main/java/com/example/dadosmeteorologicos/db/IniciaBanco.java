@@ -27,7 +27,7 @@ public class IniciaBanco {
                 System.out.println("Failed to make connection!");
             }
         } catch (SQLException e) {
-            System.err.format("SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
+            System.err.format("inicia banco SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -39,22 +39,23 @@ public class IniciaBanco {
             try {
                 conn.close();
             } catch (SQLException e) {
-                System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+                System.err.format("fecha conexao SQL State: %s\n%s", e.getSQLState(), e.getMessage());
             }
         }
     }
 
     public void iniciarBanco(){
-       criarTabelaRegistro();
-       criarTabelaCidade();
-       criarTabelaEstacao();
-       criarTabelaVariavelClimatica();
+        criarTabelaVariavelClimatica();
+        criarTabelaRegistro();
+        criarTabelaCidade();
+        criarTabelaEstacao();
+       
     }
 
     private void criarTabelaRegistro(){
         try {
             if (conn != null) {
-                System.out.println("Banco Iniciado");
+                System.out.println("Tabela registro");
     
                 String sql = "CREATE TABLE IF NOT EXISTS registro (" +
                     "id SERIAL PRIMARY KEY," +
@@ -77,13 +78,14 @@ public class IniciaBanco {
                 System.out.println("Falha ao conectar no banco!");
             }
         } catch (SQLException e) {
-            System.err.format("SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
+            System.err.format("Criar Tabela registro SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
         } 
     }
 
     private void criarTabelaCidade() {
         try {
             if (conn != null) {
+                System.out.println("Tabela cidade");
                 String sql = "CREATE TABLE IF NOT EXISTS cidade (" +
                     "id SERIAL PRIMARY KEY," +
                     "nome VARCHAR(255)," +
@@ -94,13 +96,14 @@ public class IniciaBanco {
                 stmt.execute(sql);
             }
         } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            System.err.format("Criar Tabela cidade SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
     }
 
     private void criarTabelaEstacao() {
         try {
             if (conn != null) {
+                System.out.println("Tabela estacao");
                 String sql = "CREATE TABLE IF NOT EXISTS estacao (" +
                     "id SERIAL PRIMARY KEY," +
                     "nome VARCHAR(255)," +
@@ -111,31 +114,25 @@ public class IniciaBanco {
                 stmt.execute(sql);
             }
         } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            System.err.format("Criar tabela estacao SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
     }
+
     private void criarTabelaVariavelClimatica(){
         try {
             if (conn != null) {
+                System.out.println("Tabela variavel climatica");
                 String sql = "CREATE TABLE IF NOT EXISTS variavel_climatica (" +
                     "id SERIAL PRIMARY KEY," +
-                    "temperaturaMin DECIMAL(5,2)," +
-                    "temperaturaMax DECIMAL(5,2)," +
-                    "umidadeMin DECIMAL(5,2)," +
-                    "umidadeMax DECIMAL(5,2)," +
-                    "velocidadeVentoMin DECIMAL(5,2)," +
-                    "velocidadeVentoMax DECIMAL(5,2)," +
-                    "direcaoVentoMin DECIMAL(5,2)," +
-                    "direcaoVentoMax DECIMAL(5,2)," +
-                    "chuvaMin DECIMAL(6,2)," +
-                    "chuvaMax DECIMAL(6,2)" +
-                    ")";
+                    "tipo VARCHAR(255)," +
+                    "ValorMinimo DECIMAL(5,2)," +
+                    "valorMaximo DECIMAL(5,2))";
     
                 Statement stmt = conn.createStatement();
                 stmt.execute(sql);
             }
         } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            System.err.format("Criar tabela variavel climatica SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
     }
 }
