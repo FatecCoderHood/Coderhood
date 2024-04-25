@@ -25,8 +25,8 @@ public class CidadeController {
         for (Cidade cidade : cidades) {
             HBox hboxCidade = new HBox();
 
-            Label nome = new Label(cidade.getNome());
-            TextField sigla = new TextField(cidade.getSigla());
+            Label nome = new Label(cidade.getNome()+ " - ");
+            Label sigla = new Label(cidade.getSigla());
 
             Button btnDeletar = new Button("Deletar");
             btnDeletar.setOnAction(event -> {
