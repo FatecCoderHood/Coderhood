@@ -32,7 +32,6 @@ public class CidadeController {
             btnDeletar.setOnAction(event -> {
                 System.out.println("Deletando cidade: " + cidade.getId());
                 // cidadeService.deletarCidade(cidade.getId());
-                vboxCidades.getChildren().remove(hboxCidade);
             });
 
             hboxCidade.getChildren().addAll(nome, sigla, btnDeletar);
