@@ -15,4 +15,11 @@ public class CidadeService {
         return listaCidades;
     }
 
+    public boolean siglaValida(String siglaCidade) {
+        CidadeSQL banco = new CidadeSQL();
+        boolean siglaValida = banco.siglaValida(siglaCidade);
+        banco.fecharConexao();
+        return siglaValida;
+    }
+
 }
