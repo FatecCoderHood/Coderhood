@@ -54,7 +54,7 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
 | Sprint  | Nome | Data inicio  | Data Fim | Status |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | --  | KickOff   | 04/03   | 08/03 | Ok |
-|  1  | Sprint 1   | 25/03   | 14/04 |    |
+|  1  | Sprint 1   | 25/03   | 14/04 | Ok |
 |  2  | Sprint 2   | 15/04   | 05/05 |    |
 |  3  | Sprint 3   | 06/05   | 26/05 |    |
 |  4  | Sprint 4   | 27/05   | 16/06 |    |
