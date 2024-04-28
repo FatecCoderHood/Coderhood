@@ -28,6 +28,6 @@
          <TableColumn fx:id="ColumnButton" prefWidth="113.0" text="Botão" />
         </columns>
       </TableView>
-      <Button fx:id="buscaEstacao" layoutX="400.0" layoutY="420.0" mnemonicParsing="false" onAction="#buscaEstacao" text="Buscar Estações" />
+      <!-- <Button fx:id="buscaEstacao" layoutX="400.0" layoutY="420.0" mnemonicParsing="false" onAction="#buscaEstacao" text="Buscar Estações" /> -->
    </children>
 </AnchorPane>

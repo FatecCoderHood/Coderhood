@@ -1,13 +1,18 @@
 package com.example.dadosmeteorologicos.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.dadosmeteorologicos.Services.EstacaoService;
 import com.example.dadosmeteorologicos.model.Estacao;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -38,6 +43,14 @@ public class EstacaoController {
         // ...
         System.out.println("Iniciado estacao");
 
+        System.out.println("Buscando estacao");
+        EstacaoService estacaoService = new EstacaoService();
+        List<Estacao> listaEstacao = estacaoService.buscaEstacao();
+        System.out.println(estacoes);
+    
+        for (Estacao estacao : listaEstacao) {
+            estacoes.getItems().add(estacao);
+        }
 
         ColumnEstacao.setCellValueFactory(new PropertyValueFactory<>("numero"));
         ColumnSigla.setCellValueFactory(new PropertyValueFactory<>("siglaCidade"));
@@ -55,28 +68,33 @@ public class EstacaoController {
                     setGraphic(null);
                 } else {
                     deleteButton.setOnAction(event -> {
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("Confirmação");
+                        alert.setHeaderText("Você tem certeza que deseja deletar esta estação?");
+
+                        ButtonType buttonTypeSim = new ButtonType("Sim", ButtonData.YES);
+                        ButtonType buttonTypeNao = new ButtonType("Não", ButtonData.NO);
+
+                        alert.getButtonTypes().setAll(buttonTypeSim, buttonTypeNao);
+
+                        Optional<ButtonType> result = alert.showAndWait();
+                        if (result.isPresent() && result.get() == buttonTypeSim){
                         Estacao estacao = getTableView().getItems().get(getIndex());
                         // Delete a estação
                         //estacaoService.deletaEstacao(estacaoModel);
                         // Remova a estação da tabela
                         estacoes.getItems().remove(estacao);
-                    });
+                }
+            });
 
                     setGraphic(deleteButton);
                 }
+
             }
         });
     }
     @FXML
     public void buscaEstacao(ActionEvent event) {
-        System.out.println("Buscando estacao");
-        EstacaoService estacaoService = new EstacaoService();
-        List<Estacao> listaEstacao = estacaoService.buscaEstacao();
-        System.out.println(estacoes);
-
-        for (Estacao estacao : listaEstacao) {
-            estacoes.getItems().add(estacao);
-        }
     }
 
 
