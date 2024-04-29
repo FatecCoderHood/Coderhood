@@ -2,12 +2,13 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="900" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.CidadeController">
+<fx:root disable="true" prefHeight="500.0" prefWidth="900" type="AnchorPane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.CidadeController">
     <cursor>
         <Cursor fx:constant="DEFAULT" />
     </cursor>
@@ -17,7 +18,23 @@
             <Font size="33.0" />
          </font>
       </Text>
-      <VBox fx:id="vboxCidades" layoutX="206.0" layoutY="135.0" prefHeight="260.0" prefWidth="415.0" />
-      <Button layoutX="393.0" layoutY="420.0" mnemonicParsing="false" text="Criar" />
+      <Button layoutX="360.0" layoutY="399.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="126.0" text="Criar" />
+      <Label layoutX="270.0" layoutY="67.0" prefHeight="46.0" prefWidth="90.0" text="Cidade">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="98.0" layoutY="70.0" prefHeight="46.0" prefWidth="90.0" text="Sigla">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtSigla" layoutX="68.0" layoutY="123.0" />
+      <TextField fx:id="TxtCidade" layoutX="241.0" layoutY="123.0" />
+      <Button layoutX="486.0" layoutY="123.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="126.0" text="Deletar">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
-</AnchorPane>
+</fx:root>
