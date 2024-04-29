@@ -1,12 +1,12 @@
 module com.example.dadosmeteorologicos {
     requires javafx.controls;
+    requires transitive javafx.graphics;
     requires javafx.fxml;
-    requires lombok;
-    requires org.controlsfx.controls;
-    requires com.dlsc.formsfx;
-    requires net.synedra.validatorfx;
+
     requires java.sql;
     requires org.apache.commons.text;
+    requires static lombok;
+
 
     opens com.example.dadosmeteorologicos to javafx.fxml;
     opens com.example.dadosmeteorologicos.model to javafx.base;

@@ -9,7 +9,7 @@ public class Cidade {
     private String nome;
     private String sigla;
     private int id;
-    
+        
     public Cidade(String nome, String sigla) {
         this.nome = nome;
         this.sigla = sigla;
