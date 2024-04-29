@@ -12,7 +12,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -59,6 +58,7 @@ public class EstacaoController {
 
         ColumnButton.setCellFactory(param -> new TableCell<>() {
             private final Button deleteButton = new Button("Deletar Estação");
+            
 
             @Override
             protected void updateItem(Void item, boolean empty) {
@@ -80,7 +80,11 @@ public class EstacaoController {
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.isPresent() && result.get() == buttonTypeSim){
                         Estacao estacao = getTableView().getItems().get(getIndex());
-                        // Delete a estação
+                        System.out.println(estacao.getId() + " " + estacao.getNumero() + " " + estacao.getSiglaCidade());
+                        
+                        estacaoService.deletarEstacao(estacao.getId(), estacao.getNumero());
+                        
+
                         //estacaoService.deletaEstacao(estacaoModel);
                         // Remova a estação da tabela
                         estacoes.getItems().remove(estacao);

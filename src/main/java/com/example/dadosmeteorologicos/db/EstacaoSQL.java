@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import com.example.dadosmeteorologicos.model.Estacao;
 
 
@@ -41,5 +40,25 @@ public class EstacaoSQL extends IniciaBanco{
         return listaEstacao;
     }
 
+    public Boolean deletarEstacaoBanco(int id, String numero) {
+        try {
+            if(conn != null){
+                String sqlEstacao = "DELETE FROM Estacao WHERE id = ?";
+                PreparedStatement stmtEstacao = conn.prepareStatement(sqlEstacao);
+                stmtEstacao.setInt(1, id);
+                stmtEstacao.executeUpdate();
 
+                String sqlRegistro =  "DELETE FROM Registro WHERE estacao = ?";
+                PreparedStatement stmtRegistro = conn.prepareStatement(sqlRegistro);
+                stmtRegistro.setString(1, numero);
+                stmtRegistro.executeUpdate();
+                
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+        
+    }
 }

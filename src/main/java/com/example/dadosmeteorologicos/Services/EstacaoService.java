@@ -8,11 +8,18 @@ import com.example.dadosmeteorologicos.model.Estacao;
 public class EstacaoService {
 
    public List<Estacao> buscaEstacao(){
-        EstacaoSQL estacaoSQL = new EstacaoSQL();
-        List<Estacao> listaEstacao = estacaoSQL.buscaEstacaoBanco();
-        estacaoSQL.fecharConexao();
-        return listaEstacao;
+      EstacaoSQL estacaoSQL = new EstacaoSQL();
+      List<Estacao> listaEstacao = estacaoSQL.buscaEstacaoBanco();
+      estacaoSQL.fecharConexao();
+      return listaEstacao;
 
+   }
+
+   public Boolean deletarEstacao(int id, String numero){
+      EstacaoSQL estacaoSQL = new EstacaoSQL();
+      estacaoSQL.deletarEstacaoBanco(id, numero);
+      estacaoSQL.fecharConexao();
+      return true;
    }
 
 }
