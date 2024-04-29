@@ -17,7 +17,7 @@ public class App extends Application {
     private static Scene scene;
 
     @Override
-    public void start(@SuppressWarnings("exports") Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException {
         IniciaBanco banco = new IniciaBanco();
         banco.iniciarBanco();
         banco.fecharConexao();
@@ -32,13 +32,11 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/example/dadosmeteorologicos/view/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
-     public static void main(String[] args) {
+    public static void main(String[] args) {
         launch();
-        
     }
-
 }
