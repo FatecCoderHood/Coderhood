@@ -55,8 +55,8 @@ public class SuspeitoController {
         for (Registro registro : registroSuspeito) {
             System.out.println(registro.toString());
         }
-        // Depois de obter os dados do banco de dados, você pode atribuí-los à tabela
-
+        // Atribur dados puxados do banco que estão na lista registro à tabela
+        ObservableList<Registro> suspeitos = FXCollections.observableArrayList(registroSuspeito);
         tabelaSuspeitos.setItems(suspeitos);
     }
 
