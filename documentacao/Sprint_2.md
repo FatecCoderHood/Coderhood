@@ -109,4 +109,5 @@ Como meteorologista, posso gerar dados necessários para a criação de um gráf
 
 
  **Interface do usuário:**
+ 
 ![Aba Dados BoxPlot](image-19.png)
