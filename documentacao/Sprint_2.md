@@ -1,4 +1,4 @@
-# Backlog Sprint 2
+# Proposta para o Cliente Sprint 2 e 3.
 
 - [Sprint 2:](#sprint-2)
   - [Gerenciamento de cidades](#gerenciamento-de-cidades)
