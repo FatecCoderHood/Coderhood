@@ -76,7 +76,7 @@ Como meteorologista, eu quero gerenciar registros que contêm valores suspeitos,
 
 ## Sprint 3
 
-### Relátorio de Situação:
+### Relatório de Situação:
 
 **História do usuário:**
 Como meteorologista, posso visualizar relatório de situação, afim de verificar os as últimas medidasde cada cidade.
