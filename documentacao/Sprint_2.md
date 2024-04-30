@@ -6,7 +6,7 @@
   - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)  
 
 - [Sprint 3:](#sprint-3)
-  - [Relatório de situação](#relatório-de-situação)
+  - [Relatório de Situação](#Relatório-de-Situação)
   - [Dados BoxPlot](#dados-boxplot)
 
 
@@ -76,7 +76,7 @@ Como meteorologista, eu quero gerenciar registros que contêm valores suspeitos,
 
 ## Sprint 3
 
-### Relátorio de situação:
+### Relátorio de Situação:
 
 **História do usuário:**
 Como meteorologista, posso visualizar relatório de situação, afim de verificar os as últimas medidasde cada cidade.
