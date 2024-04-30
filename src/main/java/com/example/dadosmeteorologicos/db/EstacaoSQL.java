@@ -59,6 +59,31 @@ public class EstacaoSQL extends IniciaBanco{
             return false;
         }
         return true;
-        
+    }
+
+    public String adicionarEstacaoBanco(int id, String cidade, String numero){
+        String result = "";
+        try {
+            if(conn != null){
+                String sqlEstacao = "INSERT INTO Estacao (id, cidade, numero) VALUES (?, ?, ?)";
+                PreparedStatement stmtEstacao = conn.prepareStatement(sqlEstacao);
+                stmtEstacao.setInt(1, id);
+                stmtEstacao.setString(2, cidade);
+                stmtEstacao.setString(3, numero);
+                int rowsAffected = stmtEstacao.executeUpdate();
+                if(rowsAffected > 0){
+                    result = "Estação adicionada com sucesso!";
+                } else {
+                    result = "Falha ao adicionar estação.";
+                }
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            result = "Erro ao adicionar estação: " + e.getMessage();
+        }
+        return result;
     }
 }
+    
+
+    

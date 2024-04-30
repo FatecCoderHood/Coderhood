@@ -22,4 +22,11 @@ public class EstacaoService {
       return true;
    }
 
+   public String adicionarEstacao(int id, String nome, String sigla){
+      EstacaoSQL estacaoSQL = new EstacaoSQL();
+      estacaoSQL.adicionarEstacaoBanco(id, nome, sigla);
+      estacaoSQL.fecharConexao();
+      return nome;
+   }
+
 }
