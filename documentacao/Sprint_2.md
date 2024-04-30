@@ -86,6 +86,7 @@ Como meteorologista, posso visualizar relatório de situação, afim de verifica
 
 
  **Interface do usuário:**
+ 
  ![Aba Relatório Situação](image-18.png)
 
 ##
