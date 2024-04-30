@@ -106,7 +106,7 @@ Como meteorologista, posso gerar dados necessários para a criação de um gráf
   - Terceiro quartil
   - Máximo
 
-- Será possível exportar em formato excel(.xlsx)
+- Será possível exportar em formato excel(.xlsx).
 
 
  **Interface do usuário:**
