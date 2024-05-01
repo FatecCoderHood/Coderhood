@@ -22,4 +22,10 @@ public class CidadeService {
         return siglaValida;
     }
 
+    public void criarCidade(String nomeCidade, String siglaCidade) {
+        CidadeSQL banco = new CidadeSQL();
+        banco.criarCidade(nomeCidade, siglaCidade);
+        banco.fecharConexao();
+    }
+
 }

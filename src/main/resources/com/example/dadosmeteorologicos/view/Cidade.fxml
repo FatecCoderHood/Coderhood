@@ -14,6 +14,6 @@
           <TableColumn fx:id="colunaBotao" prefWidth="123.0" />
         </columns>
       </TableView>
-      <Button fx:id="btnCriar" layoutX="410.0" layoutY="461.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="btnCriar" layoutX="410.0" layoutY="461.0" onAction="#criarCidade" mnemonicParsing="false" text="Button" />
    </children>
 </AnchorPane>
