@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -62,6 +63,7 @@ public class SuspeitoController extends IniciaBanco{
         colunaHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
         colunaTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         colunaValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+        TableColumn<Registro, Registro> colunaExcluir = new TableColumn<>("Excluir");
         // Defina uma fábrica de células para gerar um botão para cada célula
         Callback<TableColumn<Registro, Registro>, TableCell<Registro, Registro>> cellFactory = new Callback<>() {
             @Override
@@ -96,6 +98,36 @@ public class SuspeitoController extends IniciaBanco{
 
         // Carregue os dados suspeitos do banco de dados
         loadSuspeitos();
+
+        Callback<TableColumn<Registro, Registro>, TableCell<Registro, Registro>> cellFactoryDelete = new Callback<>() {
+            @Override
+            public TableCell<Registro, Registro> call(final TableColumn<Registro, Registro> param) {
+                final TableCell<Registro, Registro> cell = new TableCell<>() {
+                    private final Button btn = new Button("Excluir");
+
+                    {
+                        btn.setOnAction((ActionEvent event) -> {
+                            Registro registro = getTableView().getItems().get(getIndex());
+                            handleDelete(registro);
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Registro item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        colunaExcluir.setCellFactory(cellFactoryDelete);
+        tabelaSuspeitos.getColumns().add(colunaExcluir);
+
     }
 
     private void loadSuspeitos() {
@@ -152,8 +184,32 @@ public class SuspeitoController extends IniciaBanco{
         }
     }
 
-        @FXML
-        public void handleDelete() {
-            // Implemente a lógica de exclusão aqui
+    @FXML
+    public void handleDelete(Registro registro) {
+        Registro registroSelecionado = registro;
+        if (registroSelecionado != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Excluir Registro");
+            alert.setHeaderText("Você está prestes a excluir um registro.");
+            alert.setContentText("Tipo: " + registroSelecionado.getTipo() + "\nValor: " + registroSelecionado.getValor() + "\n\nTem certeza que deseja continuar?");
+    
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                try {
+                    String sql = "DELETE FROM registro WHERE id = ?";
+                    PreparedStatement stmt = conn.prepareStatement(sql);
+                    stmt.setInt(1, registroSelecionado.getId());
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+    
+                loadSuspeitos();
+            } else {
+                alert.close();
+            }
+        } else {
+            System.out.println("Nenhum registro selecionado");
         }
     }
+}
