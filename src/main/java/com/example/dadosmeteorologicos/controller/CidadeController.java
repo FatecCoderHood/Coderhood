@@ -5,18 +5,14 @@ import com.example.dadosmeteorologicos.Services.CidadeService;
 import com.example.dadosmeteorologicos.model.Cidade;
 import java.util.List;
 import java.util.Optional;
-
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -46,13 +42,13 @@ public class CidadeController {
     private String cidadeInserida;
     private String siglaInserida;
 
-  
     private static CidadeService cidadeService = new CidadeService();
 
     @FXML
     void initialize() {
         List<Cidade> cidadesDoBanco = cidadeService.getCidades();
-
+        criarTabela(cidadesDoBanco);
+    }
 
     @FXML
     public void criarCidade(ActionEvent event) {
@@ -71,6 +67,7 @@ public class CidadeController {
     
         if (cidadeService.siglaValida(siglaInserida)) {
             cidadeService.criarCidade(cidadeInserida, siglaInserida);
+            tabelaCidades.getItems().clear();
             List<Cidade> cidadesDoBanco = cidadeService.getCidades();
             criarTabela(cidadesDoBanco);
         } else {
@@ -121,6 +118,8 @@ public class CidadeController {
         return dialog.showAndWait().orElse(false);
     }
 
+    @FXML
+    void criarTabela(List<Cidade> cidadesDoBanco) {
         colunaSigla.setCellValueFactory(new PropertyValueFactory<>("sigla"));
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 
@@ -162,13 +161,5 @@ public class CidadeController {
         colunaBotao.setStyle( "-fx-alignment: CENTER;");
 
         tabelaCidades.getItems().addAll(cidadesDoBanco);
-        // List<Cidade> cidadesDoBanco = cidadeService.getCidades();
-        // criarTabela(cidadesDoBanco);
     }
-       // private static CidadeService cidadeService = new CidadeService();
-
-
 }
-
-   
-
