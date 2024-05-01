@@ -1,6 +1,5 @@
 package com.example.dadosmeteorologicos.controller;
 
-
 import com.example.dadosmeteorologicos.Services.SuspeitoService;
 import com.example.dadosmeteorologicos.model.Registro;
 import com.example.dadosmeteorologicos.db.SuspeitoSQL;
