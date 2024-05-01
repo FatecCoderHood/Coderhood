@@ -12,7 +12,6 @@ public class EstacaoService {
       List<Estacao> listaEstacao = estacaoSQL.buscaEstacaoBanco();
       estacaoSQL.fecharConexao();
       return listaEstacao;
-
    }
 
    public Boolean deletarEstacao(int id, String numero){
@@ -22,11 +21,11 @@ public class EstacaoService {
       return true;
    }
 
-   public String adicionarEstacao(int id, String nome, String sigla){
+   public Boolean adicionarNovaEstacao(String siglaCidadeNovaEstacao, String numeroNovaEstacao){
       EstacaoSQL estacaoSQL = new EstacaoSQL();
-      estacaoSQL.adicionarEstacaoBanco(id, nome, sigla);
+      estacaoSQL.adicionarEstacaoBanco(siglaCidadeNovaEstacao, numeroNovaEstacao);
       estacaoSQL.fecharConexao();
-      return nome;
+      return true;
    }
 
 }

@@ -61,21 +61,15 @@ public class EstacaoSQL extends IniciaBanco{
         return true;
     }
 
-    public String adicionarEstacaoBanco(int id, String cidade, String numero){
+    public String adicionarEstacaoBanco(String siglaCidadeNovaEstacao, String numeroNovaEstacao) {
         String result = "";
         try {
             if(conn != null){
-                String sqlEstacao = "INSERT INTO Estacao (id, cidade, numero) VALUES (?, ?, ?)";
+                String sqlEstacao = "INSERT INTO Estacao (siglacidade, nome)) VALUES (?, ?)";
                 PreparedStatement stmtEstacao = conn.prepareStatement(sqlEstacao);
-                stmtEstacao.setInt(1, id);
-                stmtEstacao.setString(2, cidade);
-                stmtEstacao.setString(3, numero);
-                int rowsAffected = stmtEstacao.executeUpdate();
-                if(rowsAffected > 0){
-                    result = "Estação adicionada com sucesso!";
-                } else {
-                    result = "Falha ao adicionar estação.";
-                }
+                stmtEstacao.setString(1, siglaCidadeNovaEstacao);
+                stmtEstacao.setString(2, numeroNovaEstacao);
+                stmtEstacao.executeUpdate();
             }
         }catch (Exception e) {
             e.printStackTrace();
