@@ -62,7 +62,15 @@ public class SuspeitoController {
 
     @FXML
     public void handleEdit() {
-        // Implemente a lógica de edição aqui
+        // Obtenha o registro selecionado na tabela
+        Registro registroSelecionado = tabelaSuspeitos.getSelectionModel().getSelectedItem();
+        if (registroSelecionado != null) {
+            // Implemente a lógica de edição aqui
+
+            // Exemplo: abrir uma janela de edição com os dados do registro selecionado
+        } else {
+            // Caso nenhum registro esteja selecionado, exiba uma mensagem de erro ou aviso
+        }
     }
 
     @FXML
