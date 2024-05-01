@@ -94,7 +94,7 @@ public class SuspeitoController extends SuspeitoSQL{
 
         // Carregue os dados suspeitos do banco de dados
         loadSuspeitos();
-
+        // Defina uma fábrica de células para gerar um botão para cada célula    
         Callback<TableColumn<Registro, Registro>, TableCell<Registro, Registro>> cellFactoryDelete = new Callback<>() {
             @Override
             public TableCell<Registro, Registro> call(final TableColumn<Registro, Registro> param) {
@@ -125,7 +125,7 @@ public class SuspeitoController extends SuspeitoSQL{
         tabelaSuspeitos.getColumns().add(colunaExcluir);
 
     }
-
+    // Carrega os registros suspeitos do banco de dados
     private void loadSuspeitos() {
         List<Registro> registroSuspeito = suspeitoService.buscaRegistrosSuspeitos();
         for (Registro registro : registroSuspeito) {
@@ -135,7 +135,7 @@ public class SuspeitoController extends SuspeitoSQL{
         ObservableList<Registro> suspeitos = FXCollections.observableArrayList(registroSuspeito);
         tabelaSuspeitos.setItems(suspeitos);
     }
-
+    // Edita um registro no banco de dados
     @FXML
     public void handleEdit(Registro registro) {
         Registro registroSelecionado = registro;
@@ -179,7 +179,7 @@ public class SuspeitoController extends SuspeitoSQL{
             System.out.println("Nenhum registro selecionado");
         }
     }
-
+    // Exclui um registro do banco de dados
     @FXML
     public void handleDelete(Registro registro) {
         Registro registroSelecionado = registro;
