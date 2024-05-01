@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SuspeitoSQL extends IniciaBanco {
-    private Connection conn;
+    protected Connection conn;
 
     public SuspeitoSQL() {
         conn = super.conectarBanco();

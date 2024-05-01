@@ -3,7 +3,7 @@ package com.example.dadosmeteorologicos.controller;
 
 import com.example.dadosmeteorologicos.Services.SuspeitoService;
 import com.example.dadosmeteorologicos.model.Registro;
-import com.example.dadosmeteorologicos.db.IniciaBanco; 
+import com.example.dadosmeteorologicos.db.SuspeitoSQL;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,16 +24,13 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.sql.Statement;
 
-public class SuspeitoController extends IniciaBanco{
+public class SuspeitoController extends SuspeitoSQL{
     @FXML
     private TableView<Registro> tabelaSuspeitos;
     @FXML
