@@ -8,15 +8,20 @@ import com.example.dadosmeteorologicos.model.Estacao;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class EstacaoController {
@@ -38,7 +43,15 @@ public class EstacaoController {
     private TableColumn<Estacao, String> ColumnEstacao; // Coluna para o número da estação
 
     @FXML
-    private Button adicionarEstacaoButton; // Botão para adicionar uma estação
+    private Button adicionarEstacaoButton; // Botão para adicionar uma nova estação
+
+    @FXML
+    private TextField siglaCidade; // Campo para a sigla da cidade
+
+    @FXML
+    private TextField numeroEstacao; // Campo para o número da estação
+
+    
 
     // Método chamado quando a classe é inicializada
     @FXML
@@ -117,8 +130,13 @@ public class EstacaoController {
             Stage popupStage = new Stage();
             popupStage.setTitle("Adicionar Estação");
 
-            TextField siglaCidade = new TextField();
-            TextField numeroEstacao = new TextField();
+            Label siglaCidadeLabel = new Label("Sigla da Cidade:");
+            TextField siglaCidadeField = new TextField();
+            siglaCidadeField.setPrefWidth(100); // Define a largura do campo de entrada
+
+            Label numeroEstacaoLabel = new Label("Número da Estação:");
+            TextField numeroEstacaoField = new TextField();
+            numeroEstacaoField.setPrefWidth(100); // Define a largura do campo de entrada
 
             // Botões para adicionar e cancelar a estação
             Button adicionarEstacao = new Button("Adicionar Estação");
@@ -130,13 +148,29 @@ public class EstacaoController {
 
             adicionarEstacao.setOnAction(e -> {
                 // Cria uma nova estação
-                String siglaCidadeNovaEstacao = siglaCidade.getText();
-                String numeroNovaEstacao = numeroEstacao.getText();
+                String siglaCidadeNovaEstacao = siglaCidadeField.getText();
+                String numeroNovaEstacao = numeroEstacaoField.getText();
 
             estacaoService.adicionarNovaEstacao(siglaCidadeNovaEstacao, numeroNovaEstacao);
 
             popupStage.close();
         });
+
+                // Cria um layout e adiciona os componentes
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(siglaCidadeLabel, siglaCidadeField, numeroEstacaoLabel, numeroEstacaoField, adicionarEstacao, cancelarEstacao);
+        layout.setAlignment(Pos.CENTER); // Alinha todos os componentes no centro
+
+        // Cria uma nova cena e a adiciona ao palco
+        Scene scene = new Scene(layout, 300, 200);
+        popupStage.setScene(scene);
+
+        // Mostra o palco
+        popupStage.show();
+
+        popupStage.setX((Screen.getPrimary().getBounds().getWidth() - popupStage.getWidth()) / 2);
+        popupStage.setY((Screen.getPrimary().getBounds().getHeight() - popupStage.getHeight()) / 2);
+
     }catch (Exception e) {
         // Log the exception
         System.err.println("An error occurred:");
