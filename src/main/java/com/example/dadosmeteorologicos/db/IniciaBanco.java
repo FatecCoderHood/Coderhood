@@ -13,7 +13,7 @@ public class IniciaBanco {
     private String url = "jdbc:postgresql://localhost/ApiFatec";
     private String user = "postgres";
     private String password = "root";
-    private Connection conn;
+    protected Connection conn;
 
     public IniciaBanco() {
         this.conn = conectarBanco();

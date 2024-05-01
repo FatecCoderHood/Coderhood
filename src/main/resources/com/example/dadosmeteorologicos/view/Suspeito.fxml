@@ -10,14 +10,14 @@
         <Cursor fx:constant="DEFAULT" />
     </cursor>
    <children>
-<TableView fx:id="tabelaSuspeitos" layoutX="33.0" layoutY="20.0" prefHeight="452.0" prefWidth="845.0">
+<TableView fx:id="tabelaSuspeitos" layoutX="33.0" layoutY="20.0" prefHeight="452.0" prefWidth="815.0">
     <columns>
         <TableColumn fx:id="colunaCidade" prefWidth="71.0" text="Cidade" />
         <TableColumn fx:id="colunaEstacao" minWidth="0.0" prefWidth="116.0" text="Estação" />
         <TableColumn fx:id="colunaData" prefWidth="94.0" text="Data" />
-        <TableColumn fx:id="colunaHora" prefWidth="106.0" text="Hora" />
-        <TableColumn fx:id="colunaTipo" prefWidth="146.0" text="Tipo" />
-        <TableColumn fx:id="colunaValor" prefWidth="169.0" text="Valor" />
+        <TableColumn fx:id="colunaHora" prefWidth="86.0" text="Hora" />
+        <TableColumn fx:id="colunaTipo" prefWidth="166.0" text="Tipo" />
+        <TableColumn fx:id="colunaValor" prefWidth="86.0" text="Valor" />
     </columns>
 </TableView>
    </children>
