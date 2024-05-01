@@ -52,4 +52,31 @@ public class CidadeSQL extends IniciaBanco{
         }  
         return true;
     } 
+
+    public Boolean deletarCidadeBanco(int id, String siglacidade) {
+        try {
+            if (conn != null) {
+                System.out.println(id + siglacidade);
+                String sqlCidade = "DELETE FROM cidade WHERE id = ?";
+                PreparedStatement stmtCidade = conn.prepareStatement(sqlCidade);
+                stmtCidade.setInt(1, id);
+                stmtCidade.executeUpdate();
+                
+                String sqlEstacao = "DELETE FROM estacao WHERE siglacidade = ?";
+                PreparedStatement stmtEstacao = conn.prepareStatement(sqlEstacao);
+                stmtEstacao.setString(1, siglacidade);
+                stmtEstacao.executeUpdate();
+
+                String sqlRegistro = "DELETE FROM registro WHERE siglacidade = ?";
+                PreparedStatement stmtRegistro = conn.prepareStatement(sqlRegistro);
+                stmtRegistro.setString(1, siglacidade);
+                stmtRegistro.executeUpdate();
+
+        }
+    }catch (Exception e) {
+        e.printStackTrace();
+        return false;
+    }
+    return true;
+    }
 }
