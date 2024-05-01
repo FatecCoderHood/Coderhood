@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -14,13 +15,13 @@
         <Cursor fx:constant="DEFAULT" />
     </cursor>
    <children>
-      <TableView fx:id="tabelaCidades" layoutX="297.0" layoutY="157.0" prefHeight="287.0" prefWidth="317.0">
+      <TableView fx:id="tabelaCidades" layoutX="292.0" layoutY="81.0" prefHeight="287.0" prefWidth="317.0">
         <columns>
           <TableColumn fx:id="colunaNome" prefWidth="117.0" text="Nome" />
           <TableColumn fx:id="colunaSigla" prefWidth="75.0" text="Sigla" />
           <TableColumn fx:id="colunaBotao" prefWidth="122.0" />
         </columns>
       </TableView>
-      <Button fx:id="btnCriar" layoutX="410.0" layoutY="461.0" onAction="#criarCidade" mnemonicParsing="false" text="Button" />
+      <Button fx:id="btnCriar" layoutX="397.0" layoutY="397.0" mnemonicParsing="false" onAction="#criarCidade" text="Adicionar Cidade" />
    </children>
 </AnchorPane>

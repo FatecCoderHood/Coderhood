@@ -146,7 +146,7 @@ public class CidadeController {
                         if (result.isPresent() && result.get() == ButtonTypeSim) {
                             Cidade cidade = getTableView().getItems().get(getIndex());
                             cidadeService.deletarCidade(cidade.getId(), cidade.getSigla());
-        
+                            System.out.println("Cidade deletada, ID: "+cidade.getId()+" Sigla cidade: "+cidade.getSigla()+ " Deletado com sucesso!");
 
                             tabelaCidades.getItems().remove(cidade);
                         }
