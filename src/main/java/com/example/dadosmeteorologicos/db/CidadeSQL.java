@@ -71,12 +71,24 @@ public class CidadeSQL extends IniciaBanco{
                 PreparedStatement stmtRegistro = conn.prepareStatement(sqlRegistro);
                 stmtRegistro.setString(1, siglacidade);
                 stmtRegistro.executeUpdate();
-
         }
     }catch (Exception e) {
         e.printStackTrace();
         return false;
     }
-    return true;
+        return true;
+    }
+
+
+    public void criarCidade(String nomeCidade, String siglaCidade) {
+        try {
+            String sql = "INSERT INTO cidade (nome, sigla) VALUES (?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, nomeCidade);
+            stmt.setString(2, siglaCidade);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

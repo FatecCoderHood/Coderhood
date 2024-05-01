@@ -28,5 +28,11 @@ public class CidadeService {
         cidadeSQL.fecharConexao();
         return true;
     }
+    
+    public void criarCidade(String nomeCidade, String siglaCidade) {
+        CidadeSQL banco = new CidadeSQL();
+        banco.criarCidade(nomeCidade, siglaCidade);
+        banco.fecharConexao();
+    }
 
 }
