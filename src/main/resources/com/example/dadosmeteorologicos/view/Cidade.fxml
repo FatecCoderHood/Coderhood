@@ -11,7 +11,7 @@
         <columns>
           <TableColumn fx:id="colunaNome" prefWidth="118.33331298828125" text="Nome" />
           <TableColumn fx:id="colunaSigla" prefWidth="117.66668701171875" text="Sigla" />
-          <TableColumn fx:id="colunaBotao" prefWidth="123.0" text="Deletar" />
+          <TableColumn fx:id="colunaBotao" prefWidth="123.0" />
         </columns>
       </TableView>
       <Button fx:id="btnCriar" layoutX="410.0" layoutY="461.0" mnemonicParsing="false" text="Button" />
