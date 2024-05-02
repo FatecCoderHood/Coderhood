@@ -127,6 +127,12 @@ public class SuspeitoController extends SuspeitoSQL{
                         return cell;
                     }
                 };
+                colunaCidade.setStyle( "-fx-alignment: CENTER;");
+                colunaEstacao.setStyle( "-fx-alignment: CENTER;");
+                colunaData.setStyle( "-fx-alignment: CENTER;");
+                colunaHora.setStyle( "-fx-alignment: CENTER;");
+                colunaTipo.setStyle( "-fx-alignment: CENTER;");
+                colunaValor.setStyle( "-fx-alignment: CENTER;");
                 colunaExcluir.setCellFactory(cellFactoryDelete);
                 tabelaSuspeitos.getColumns().add(colunaExcluir);
         
