@@ -13,13 +13,11 @@
   <children>
       <TableView fx:id="estacoes" layoutX="280.0" layoutY="130.0" prefHeight="240.0" prefWidth="340.0">
         <columns>
-          <TableColumn fx:id="ColumnEstacao" prefWidth="75.0" text="Estação" />
-          <TableColumn fx:id="ColumnSigla" prefWidth="75.0" text="Sigla" />
-            <!-- <TableColumn fx:id="ColumnCidade" prefWidth="75.0" text="Cidade" /> -->
-        <TableColumn fx:id="ColumnButton" prefWidth="113.0" text="Botão" />
+          <TableColumn fx:id="ColumnEstacao" prefWidth="95.0" text="Estação" />
+          <TableColumn fx:id="ColumnSigla" prefWidth="92.0" text="Sigla" />
+          <TableColumn fx:id="ColumnButton" prefWidth="151.0" />
         </columns>
       </TableView>
       <Button fx:id="adicionarNovaEstacao" layoutX="379.0" layoutY="427.0" mnemonicParsing="false" onAction="#adicionarNovaEstacao" text="Adicionar Nova Estação" />
-      <!-- <Button fx:id="buscaEstacao" layoutX="400.0" layoutY="420.0" mnemonicParsing="false" onAction="#buscaEstacao" text="Buscar Estações" /> -->
   </children>
 </AnchorPane>

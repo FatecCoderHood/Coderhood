@@ -21,25 +21,19 @@ public class EstacaoService {
       return true;
    }
 
-   // public Boolean adicionarNovaEstacao(String siglaCidadeNovaEstacao, String numeroNovaEstacao){
-   //    EstacaoSQL estacaoSQL = new EstacaoSQL();
-   //    estacaoSQL.adicionarEstacaoBanco(siglaCidadeNovaEstacao, numeroNovaEstacao);
-   //    estacaoSQL.fecharConexao();
-   //    return true;
-   // }
-
-   public static Boolean siglaValida(String sigla){
+   public void adicionarNovaEstacao(String numeroNovaEstacao, String siglaCidadeNovaEstacao){
+      siglaCidadeNovaEstacao = siglaCidadeNovaEstacao.toUpperCase();
       EstacaoSQL estacaoSQL = new EstacaoSQL();
-      Boolean siglaValida = estacaoSQL.siglaValidaBanco(sigla);
+      estacaoSQL.adicionarEstacaoBanco(numeroNovaEstacao, siglaCidadeNovaEstacao);
       estacaoSQL.fecharConexao();
-      return siglaValida;
    }
 
-   public Void criarEstacao(String estacao, String sigla){
+   public Boolean numeroEstacaoValido(String numero){
+      System.out.println("numero: " + numero);
       EstacaoSQL estacaoSQL = new EstacaoSQL();
-      estacaoSQL.adicionarEstacaoBanco(estacao, sigla);
+      Boolean siglaValida = estacaoSQL.numeroEstacaoValido(numero);
       estacaoSQL.fecharConexao();
-      return null;
+      return siglaValida;
    }
 
 }

@@ -61,29 +61,12 @@ public class EstacaoSQL extends IniciaBanco{
         return true;
     }
 
-    // public String adicionarEstacaoBanco(String siglaCidadeNovaEstacao, String numeroNovaEstacao) {
-    //     String result = "";
-    //     try {
-    //         if(conn != null){
-    //             String sqlEstacao = "INSERT INTO Estacao (siglacidade, nome)) VALUES (?, ?)";
-    //             PreparedStatement stmtEstacao = conn.prepareStatement(sqlEstacao);
-    //             stmtEstacao.setString(1, siglaCidadeNovaEstacao);
-    //             stmtEstacao.setString(2, numeroNovaEstacao);
-    //             stmtEstacao.executeUpdate();
-    //         }
-    //     }catch (Exception e) {
-    //         e.printStackTrace();
-    //         result = "Erro ao adicionar estação: " + e.getMessage();
-    //     }
-    //     return result;
-    // }
-
-    public Boolean siglaValidaBanco(String sigla) {
+    public Boolean numeroEstacaoValido(String numeroEstacao) {
         try {
             if(conn != null){
-                String sql = "SELECT * FROM estacao WHERE siglacidade = ?";
+                String sql = "SELECT * FROM estacao WHERE nome = ?";
                 PreparedStatement stmt = conn.prepareStatement(sql);
-                stmt.setString(1, sigla);
+                stmt.setString(1, numeroEstacao);
                 ResultSet rs = stmt.executeQuery();
                 if(rs.next()){
                     return false;
@@ -97,13 +80,13 @@ public class EstacaoSQL extends IniciaBanco{
     
 
 
-    public void adicionarEstacaoBanco(String estacao, String sigla) {
+    public void adicionarEstacaoBanco(String numeroNovaEstacao, String siglaCidadeNovaEstacao) {
         try {
             if(conn != null){
                 String sql = "INSERT INTO estacao (nome, siglacidade) VALUES (?, ?)";
                 PreparedStatement stmt = conn.prepareStatement(sql);
-                stmt.setString(1, estacao);
-                stmt.setString(2, sigla);
+                stmt.setString(1, numeroNovaEstacao);
+                stmt.setString(2, siglaCidadeNovaEstacao);
                 stmt.executeUpdate();
             }
         } catch (Exception e) {
