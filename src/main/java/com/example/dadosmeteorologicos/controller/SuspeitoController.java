@@ -193,7 +193,7 @@ public class SuspeitoController extends SuspeitoSQL {
             });
             dialog.showAndWait();
         }
-        ;
+        // Atualize a tabela
         tabelaSuspeitos.refresh();
         loadSuspeitos();
     }
@@ -220,8 +220,8 @@ public class SuspeitoController extends SuspeitoSQL {
         } else {
             System.out.println("Nenhum registro selecionado");
         }
+        // Atualize a tabela
         tabelaSuspeitos.refresh();
-        ;
         loadSuspeitos();
     }
 }
