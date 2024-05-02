@@ -28,7 +28,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
-public class SuspeitoController extends SuspeitoSQL{
+public class SuspeitoController extends SuspeitoSQL {
     @FXML
     private TableView<Registro> tabelaSuspeitos;
     @FXML
@@ -55,88 +55,91 @@ public class SuspeitoController extends SuspeitoSQL{
         // Carregue os dados suspeitos do banco de dados
         loadSuspeitos();
     }
+
     public void CriarTabela() {
-                // Inicialize as colunas da tabela
-                colunaCidade.setCellValueFactory(new PropertyValueFactory<>("siglaCidade"));
-                colunaEstacao.setCellValueFactory(new PropertyValueFactory<>("estacao"));
-                colunaData.setCellValueFactory(new PropertyValueFactory<>("data"));
-                colunaHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
-                colunaTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-                colunaValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
-                TableColumn<Registro, Registro> colunaExcluir = new TableColumn<>("Excluir");
-                // Defina uma fábrica de células para gerar um botão para cada célula
-                Callback<TableColumn<Registro, Registro>, TableCell<Registro, Registro>> cellFactory = new Callback<>() {
+        // Inicialize as colunas da tabela
+        colunaCidade.setCellValueFactory(new PropertyValueFactory<>("siglaCidade"));
+        colunaEstacao.setCellValueFactory(new PropertyValueFactory<>("estacao"));
+        colunaData.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colunaHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
+        colunaTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        colunaValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+        TableColumn<Registro, Registro> colunaExcluir = new TableColumn<>("Excluir");
+        // Defina uma fábrica de células para gerar um botão para cada célula
+        Callback<TableColumn<Registro, Registro>, TableCell<Registro, Registro>> cellFactory = new Callback<>() {
+            @Override
+            public TableCell<Registro, Registro> call(final TableColumn<Registro, Registro> param) {
+                final TableCell<Registro, Registro> cell = new TableCell<>() {
+                    private final Button btn = new Button("Editar");
+
+                    {
+                        // Ação de clique do botão
+                        btn.setOnAction((ActionEvent event) -> {
+                            // Obtenha o registro da linha clicada
+                            Registro registro = getTableView().getItems().get(getIndex());
+                            // Chame o método handleEdit para editar o registro
+                            handleEdit(registro);
+                        });
+                    }
+
+                    // Atualize o item da célula
                     @Override
-                    public TableCell<Registro, Registro> call(final TableColumn<Registro, Registro> param) {
-                        final TableCell<Registro, Registro> cell = new TableCell<>() {
-                            private final Button btn = new Button("Editar");
-                
-                            {
-                                // Ação de clique do botão
-                                btn.setOnAction((ActionEvent event) -> {
-                                    // Obtenha o registro da linha clicada
-                                    Registro registro = getTableView().getItems().get(getIndex());
-                                    // Chame o método handleEdit para editar o registro
-                                    handleEdit(registro);
-                                });
-                            }
-                            // Atualize o item da célula
-                            @Override
-                            public void updateItem(Registro item, boolean empty) {
-                                super.updateItem(item, empty);
-                                if (empty) {
-                                    setGraphic(null);
-                                } else {
-                                    setGraphic(btn);
-                                }
-                            }
-                        };
-                        return cell;
+                    public void updateItem(Registro item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
                     }
                 };
-                // Defina a fábrica de células para a coluna de edição
-                colunaEditar.setCellFactory(cellFactory);
-        
-                // Adicione a nova coluna à tabela
-                tabelaSuspeitos.getColumns().add(colunaEditar);
-    
-                // Defina uma fábrica de células para gerar um botão para cada célula    
-                Callback<TableColumn<Registro, Registro>, TableCell<Registro, Registro>> cellFactoryDelete = new Callback<>() {
+                return cell;
+            }
+        };
+        // Defina a fábrica de células para a coluna de edição
+        colunaEditar.setCellFactory(cellFactory);
+
+        // Adicione a nova coluna à tabela
+        tabelaSuspeitos.getColumns().add(colunaEditar);
+
+        // Defina uma fábrica de células para gerar um botão para cada célula
+        Callback<TableColumn<Registro, Registro>, TableCell<Registro, Registro>> cellFactoryDelete = new Callback<>() {
+            @Override
+            public TableCell<Registro, Registro> call(final TableColumn<Registro, Registro> param) {
+                final TableCell<Registro, Registro> cell = new TableCell<>() {
+                    private final Button btn = new Button("Excluir");
+
+                    {
+                        btn.setOnAction((ActionEvent event) -> {
+                            Registro registro = getTableView().getItems().get(getIndex());
+                            handleDelete(registro);
+                        });
+                    }
+
                     @Override
-                    public TableCell<Registro, Registro> call(final TableColumn<Registro, Registro> param) {
-                        final TableCell<Registro, Registro> cell = new TableCell<>() {
-                            private final Button btn = new Button("Excluir");
-        
-                            {
-                                btn.setOnAction((ActionEvent event) -> {
-                                    Registro registro = getTableView().getItems().get(getIndex());
-                                    handleDelete(registro);
-                                });
-                            }
-        
-                            @Override
-                            public void updateItem(Registro item, boolean empty) {
-                                super.updateItem(item, empty);
-                                if (empty) {
-                                    setGraphic(null);
-                                } else {
-                                    setGraphic(btn);
-                                }
-                            }
-                        };
-                        return cell;
+                    public void updateItem(Registro item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
                     }
                 };
-                colunaCidade.setStyle( "-fx-alignment: CENTER;");
-                colunaEstacao.setStyle( "-fx-alignment: CENTER;");
-                colunaData.setStyle( "-fx-alignment: CENTER;");
-                colunaHora.setStyle( "-fx-alignment: CENTER;");
-                colunaTipo.setStyle( "-fx-alignment: CENTER;");
-                colunaValor.setStyle( "-fx-alignment: CENTER;");
-                colunaExcluir.setCellFactory(cellFactoryDelete);
-                tabelaSuspeitos.getColumns().add(colunaExcluir);
-        
+                return cell;
+            }
+        };
+        colunaCidade.setStyle("-fx-alignment: CENTER;");
+        colunaEstacao.setStyle("-fx-alignment: CENTER;");
+        colunaData.setStyle("-fx-alignment: CENTER;");
+        colunaHora.setStyle("-fx-alignment: CENTER;");
+        colunaTipo.setStyle("-fx-alignment: CENTER;");
+        colunaValor.setStyle("-fx-alignment: CENTER;");
+        colunaExcluir.setCellFactory(cellFactoryDelete);
+        tabelaSuspeitos.getColumns().add(colunaExcluir);
+
     }
+
     // Carrega os registros suspeitos do banco de dados
     private void loadSuspeitos() {
         List<Registro> registroSuspeito = suspeitoService.buscaRegistrosSuspeitos();
@@ -145,14 +148,13 @@ public class SuspeitoController extends SuspeitoSQL{
         tabelaSuspeitos.setItems(suspeitos);
     }
 
-    
     @FXML
     public void handleEdit(Registro registro) {
         Registro registroSelecionado = registro;
         if (registroSelecionado != null) {
             Dialog<Registro> dialog = new Dialog<>();
             dialog.setTitle("Editar Registro");
-    
+
             Label labelTipo = new Label("Tipo: " + registroSelecionado.getTipo());
             Label labelValor = new Label("Valor atual: " + registroSelecionado.getValor());
             TextField textField = new TextField();
@@ -167,14 +169,15 @@ public class SuspeitoController extends SuspeitoSQL{
                 }
             });
             dialog.getDialogPane().setContent(new VBox(8, labelTipo, labelValor, textField));
-    
+
             ButtonType confirmButtonType = new ButtonType("Confirmar", ButtonBar.ButtonData.OK_DONE);
             dialog.getDialogPane().getButtonTypes().add(confirmButtonType);
-    
+
             dialog.setResultConverter(dialogButton -> {
                 if (dialogButton == confirmButtonType) {
                     VariavelClimatica variavelClimatica = new VariavelClimatica();
-                    if (variavelClimatica.tipoSuspeito(registroSelecionado.getTipo(), Double.parseDouble(textField.getText()))){
+                    if (variavelClimatica.tipoSuspeito(registroSelecionado.getTipo(),
+                            Double.parseDouble(textField.getText()))) {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("Erro de entrada");
                         alert.setHeaderText(null);
@@ -182,17 +185,18 @@ public class SuspeitoController extends SuspeitoSQL{
                         alert.showAndWait();
                         return null;
                     }
-                    suspeitoService.editarRegistroSuspeito(registroSelecionado.getId(), Double.parseDouble(textField.getText()));
-                
+                    suspeitoService.editarRegistroSuspeito(registroSelecionado.getId(),
+                            Double.parseDouble(textField.getText()));
+
                 }
                 return null;
             });
             dialog.showAndWait();
-        };
+        }
+        ;
         tabelaSuspeitos.refresh();
         loadSuspeitos();
     }
-
 
     // Exclui um registro do banco de dados
     @FXML
@@ -202,11 +206,13 @@ public class SuspeitoController extends SuspeitoSQL{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Excluir Registro");
             alert.setHeaderText("Você está prestes a excluir um registro.");
-            alert.setContentText("Tipo: " + registroSelecionado.getTipo() + "\nValor: " + registroSelecionado.getValor() + "\n\nTem certeza que deseja continuar?");
-    
+            alert.setContentText("Tipo: " + registroSelecionado.getTipo() + "\nValor: " + registroSelecionado.getValor()
+                    + "\n\nTem certeza que deseja continuar?");
+
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
-                suspeitoService.deletarRegistroSuspeito(registroSelecionado.getData(), registroSelecionado.getHora(), registroSelecionado.getEstacao(), registroSelecionado.getSiglaCidade());
+            if (result.get() == ButtonType.OK) {
+                suspeitoService.deletarRegistroSuspeito(registroSelecionado.getData(), registroSelecionado.getHora(),
+                        registroSelecionado.getEstacao(), registroSelecionado.getSiglaCidade());
                 loadSuspeitos();
             } else {
                 alert.close();
@@ -214,7 +220,8 @@ public class SuspeitoController extends SuspeitoSQL{
         } else {
             System.out.println("Nenhum registro selecionado");
         }
-        tabelaSuspeitos.refresh();;
+        tabelaSuspeitos.refresh();
+        ;
         loadSuspeitos();
     }
 }
