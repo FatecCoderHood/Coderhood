@@ -44,6 +44,39 @@ public class SuspeitoSQL extends IniciaBanco {
         }
         // Retorna a lista de registros suspeitos
         return listaRegistros;
-    
-}
+    }
+
+
+    // Método para deletar um registro suspeito
+    public void deletarRegistroSuspeito(LocalDate data, LocalTime hora, String estacao, String siglaCidade){
+        try {
+            if(conn != null){
+                String sql = "DELETE FROM registro WHERE data = ? AND hora = ? AND estacao = ? AND siglaCidade = ?";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setDate(1, Date.valueOf(data));
+                stmt.setTime(2, Time.valueOf(hora));
+                stmt.setString(3, estacao);
+                stmt.setString(4, siglaCidade);
+                stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    // Método para editar um registro suspeito
+    public void editarRegistroSuspeito(int id, double valor){
+        try {
+            if(conn != null){
+                String sql = "UPDATE registro SET suspeito = false, valor = ? WHERE id = ?";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setDouble(1, valor);
+                stmt.setInt(2, id);
+                stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
