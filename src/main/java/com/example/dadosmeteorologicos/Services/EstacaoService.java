@@ -21,11 +21,28 @@ public class EstacaoService {
       return true;
    }
 
-   public Boolean adicionarNovaEstacao(String siglaCidadeNovaEstacao, String numeroNovaEstacao){
+   // public Boolean adicionarNovaEstacao(String siglaCidadeNovaEstacao, String numeroNovaEstacao){
+   //    EstacaoSQL estacaoSQL = new EstacaoSQL();
+   //    estacaoSQL.adicionarEstacaoBanco(siglaCidadeNovaEstacao, numeroNovaEstacao);
+   //    estacaoSQL.fecharConexao();
+   //    return true;
+   // }
+
+   public static Boolean siglaValida(String sigla){
       EstacaoSQL estacaoSQL = new EstacaoSQL();
-      estacaoSQL.adicionarEstacaoBanco(siglaCidadeNovaEstacao, numeroNovaEstacao);
+      Boolean siglaValida = estacaoSQL.siglaValidaBanco(sigla);
       estacaoSQL.fecharConexao();
-      return true;
+      return siglaValida;
+   }
+
+   public Void criarEstacao(String estacao, String sigla){
+      EstacaoSQL estacaoSQL = new EstacaoSQL();
+      estacaoSQL.adicionarEstacaoBanco(estacao, sigla);
+      estacaoSQL.fecharConexao();
+      return null;
    }
 
 }
+
+
+

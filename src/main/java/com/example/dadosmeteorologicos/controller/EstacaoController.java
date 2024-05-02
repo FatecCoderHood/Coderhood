@@ -8,21 +8,19 @@ import com.example.dadosmeteorologicos.model.Estacao;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
+import javafx.scene.layout.GridPane;
 
 public class EstacaoController {
 
@@ -42,21 +40,90 @@ public class EstacaoController {
     @FXML
     private TableColumn<Estacao, String> ColumnEstacao; // Coluna para o número da estação
 
-    @FXML
-    private Button adicionarEstacaoButton; // Botão para adicionar uma nova estação
+    private String estacaoInserida;
+    private String siglaInserida;
 
     @FXML
-    private TextField siglaCidade; // Campo para a sigla da cidade
+    void adicionarNovaEstacao(ActionEvent event) {
+        if (!criarDialogo()){
+            return;
+        }
 
-    @FXML
-    private TextField numeroEstacao; // Campo para o número da estação
+        
+
+        if(estacaoInserida.trim().isEmpty() || siglaInserida.trim().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.showAndWait();
+            return;
+        }
+
+        if (estacaoService.siglaValida(siglaInserida)){
+            estacaoService.criarEstacao(estacaoInserida, siglaInserida);
+            estacoes.getItems().clear();
+            List<Estacao> listaEstacao = estacaoService.buscaEstacao();
+            criarTabela(listaEstacao);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Estação já inserida");
+            alert.showAndWait();
+            return;
+        }
+
+    }
+
+
+    public Boolean criarDialogo(){
+        Dialog<Boolean> dialog = new Dialog<>();
+        ButtonType confirmButtonType = new ButtonType("Confirmar", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, ButtonType.CANCEL);
+
+        TextField campoEstacao = new TextField();
+        campoEstacao.setPrefWidth(200);
+        TextField campoSigla = new TextField();
+        campoSigla.setPrefWidth(200);
+
+        GridPane grid = new GridPane();
+        grid.setPrefHeight(400);
+        grid.add(new Label("Numero da Estação: "), 0, 0);
+        grid.add(campoEstacao, 1, 0);
+        grid.add(new Label("Sigla da cidade: "), 0, 1);
+        grid.add(campoSigla, 1, 1);
+        dialog.getDialogPane().setContent(grid);
+
+        // Controlando o tamanho do diálogo
+        dialog.getDialogPane().setMinHeight(350);
+        dialog.getDialogPane().setMinWidth(150);
+        dialog.getDialogPane().setMaxHeight(350);
+        dialog.getDialogPane().setMaxWidth(150);
+
+
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == confirmButtonType) {
+                estacaoInserida = campoEstacao.getText();
+                siglaInserida = campoSigla.getText();
+                
+
+                if (estacaoInserida.trim().isEmpty() || siglaInserida.trim().isEmpty()){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Preencha todos os campos");
+                    alert.showAndWait();
+                    return false;
+                }
+                return true;
+    }
+    return false;
+
+    });
+    
+    return dialog.showAndWait().isPresent();
+}
 
     
 
     // Método chamado quando a classe é inicializada
     @FXML
     public void initialize() {
-        // ...
+
         System.out.println("Iniciado estacao");
 
         // Busca as estações
@@ -121,65 +188,5 @@ public class EstacaoController {
 
     }
 
-    // Método para adicionar uma estação
-    @FXML
-    private void adicionarNovaEstacao(ActionEvent event) {
-    // Código para abrir a janela popup e coletar os dados da nova estação
-        try {
-        // Criando uma nova janela pop-up.
-            Stage popupStage = new Stage();
-            popupStage.setTitle("Adicionar Estação");
-
-            Label siglaCidadeLabel = new Label("Sigla da Cidade:");
-            TextField siglaCidadeField = new TextField();
-            siglaCidadeField.setPrefWidth(100); // Define a largura do campo de entrada
-
-            Label numeroEstacaoLabel = new Label("Número da Estação:");
-            TextField numeroEstacaoField = new TextField();
-            numeroEstacaoField.setPrefWidth(100); // Define a largura do campo de entrada
-
-            // Botões para adicionar e cancelar a estação
-            Button adicionarEstacao = new Button("Adicionar Estação");
-            Button cancelarEstacao = new Button("Cancelar");
-            cancelarEstacao.setOnAction(e -> popupStage.close());
-
-            // Instância do Estação Service
-            EstacaoService estacaoService = new EstacaoService();
-
-            adicionarEstacao.setOnAction(e -> {
-                // Cria uma nova estação
-                String siglaCidadeNovaEstacao = siglaCidadeField.getText();
-                String numeroNovaEstacao = numeroEstacaoField.getText();
-
-            estacaoService.adicionarNovaEstacao(siglaCidadeNovaEstacao, numeroNovaEstacao);
-
-            popupStage.close();
-        });
-
-                // Cria um layout e adiciona os componentes
-        VBox layout = new VBox(10);
-        layout.getChildren().addAll(siglaCidadeLabel, siglaCidadeField, numeroEstacaoLabel, numeroEstacaoField, adicionarEstacao, cancelarEstacao);
-        layout.setAlignment(Pos.CENTER); // Alinha todos os componentes no centro
-
-        // Cria uma nova cena e a adiciona ao palco
-        Scene scene = new Scene(layout, 300, 200);
-        popupStage.setScene(scene);
-
-        // Mostra o palco
-        popupStage.show();
-
-        popupStage.setX((Screen.getPrimary().getBounds().getWidth() - popupStage.getWidth()) / 2);
-        popupStage.setY((Screen.getPrimary().getBounds().getHeight() - popupStage.getHeight()) / 2);
-
-    }catch (Exception e) {
-        // Log the exception
-        System.err.println("An error occurred:");
-        e.printStackTrace();
-        }
-    }
-
-    // Método para buscar estações
-    @FXML
-    public void buscaEstacao(ActionEvent event) {
-    }
 }
+
