@@ -154,6 +154,13 @@ public class EstacaoController {
                     alert.showAndWait();
                     return false;
                 }
+
+                if (!estacaoInserida.matches("\\d+")) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("O número da estação deve conter apenas números");
+                    alert.showAndWait();
+                    return false;
+                }
             }
             return true;
         });
