@@ -1,4 +1,4 @@
-# Backlog Sprint 2
+# Proposta para o Cliente Sprint 2 e 3:
 
 - [Sprint 2:](#sprint-2)
   - [Relatório de valor médio](#gerenciamento-de-cidades)
@@ -7,7 +7,7 @@
   - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)  
 
 - [Sprint 3:](#sprint-3)
-  - [Relatório de situação](#relatório-de-situação)
+  - [Relatório de Situação](#Relatório-de-Situação)
   - [Dados BoxPlot](#dados-boxplot)
 
 
@@ -95,7 +95,7 @@ Como pesquisador, eu quero gerenciar registros que contêm valores suspeitos, af
 
 ## Sprint 3
 
-### Relátorio de situação:
+### Relatório de Situação:
 
 **História do usuário:**
 Como pesquisador, posso visualizar relatório de situação, afim de verificar os as últimas medidasde cada cidade.
@@ -105,6 +105,7 @@ Como pesquisador, posso visualizar relatório de situação, afim de verificar o
 
 
  **Interface do usuário:**
+ 
  ![Aba Relatório Situação](image-18.png)
 
 ##
@@ -124,8 +125,9 @@ Como pesquisador, posso gerar dados necessários para a criação de um gráfico
   - Terceiro quartil
   - Máximo
 
-- Será possível exportar em formato excel(.xlsx)
+- Será possível exportar em formato excel(.xlsx).
 
 
  **Interface do usuário:**
+ 
 ![Aba Dados BoxPlot](image-19.png)
