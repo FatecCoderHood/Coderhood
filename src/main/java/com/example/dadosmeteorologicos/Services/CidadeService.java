@@ -2,6 +2,8 @@ package com.example.dadosmeteorologicos.Services;
 
 import java.util.List;
 
+import org.apache.commons.text.WordUtils;
+
 import com.example.dadosmeteorologicos.db.CidadeSQL;
 import com.example.dadosmeteorologicos.model.Cidade;
 
@@ -30,6 +32,8 @@ public class CidadeService {
     }
     
     public void criarCidade(String nomeCidade, String siglaCidade) {
+        nomeCidade = WordUtils.capitalizeFully(nomeCidade);
+        siglaCidade = siglaCidade.trim().toUpperCase();
         CidadeSQL banco = new CidadeSQL();
         banco.criarCidade(nomeCidade, siglaCidade);
         banco.fecharConexao();
