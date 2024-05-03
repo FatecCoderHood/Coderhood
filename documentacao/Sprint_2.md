@@ -1,6 +1,7 @@
 # Backlog Sprint 2
 
 - [Sprint 2:](#sprint-2)
+  - [Relatório de valor médio](#gerenciamento-de-cidades)
   - [Gerenciamento de cidades](#gerenciamento-de-cidades)
   - [Gerenciamento de estações](#gerenciamento-de-estações)
   - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)  
@@ -13,11 +14,29 @@
 
 ## Sprint 2
 
+### Relatório de valor médio:
+
+**História do usuário:**
+
+Como pesquisador, eu quero relatórios de valor médio de cada váriavel climatica
+
+**Regras de negócio:**
+- Criar uma nova cidade.
+- Deletar uma cidade.
+- Não será possível repetir a sigla de uma cidade que já exista ao criar.
+- Ao deletar será deletado todos as estações e registros ligado a essas cidades.
+
+**Interface do usuário:**
+
+![cidade-1](image-12.png)
+![cidade-2](image-13.png)
+![cidade-3](image-14.png)
+
 ### Gerenciamento de Cidades:
 
 **História do usuário:**
 
-Como meteorologista, eu quero gerenciar cidades, podendo assim escalar e manejar as cidades cadastradas.
+Como pesquisador, eu quero gerenciar cidades, podendo assim escalar e manejar as cidades cadastradas.
 
 **Regras de negócio:**
 - Criar uma nova cidade.
@@ -37,7 +56,7 @@ Como meteorologista, eu quero gerenciar cidades, podendo assim escalar e manejar
 ### Gerenciamento de Estações:
 
 **História do usuário:**
-Como meteorologista, eu quero gerenciar estações, podendo assim escalar e manejar estações cadastradas.
+Como pesquisador, eu quero gerenciar estações, podendo assim escalar e manejar estações cadastradas.
 
 **Regras de negócio:**
 - Criar uma nova estação.
@@ -58,7 +77,7 @@ Como meteorologista, eu quero gerenciar estações, podendo assim escalar e mane
 ### Tratamento de Registros Suspeitos:
 
 **História do usuário:**
-Como meteorologista, eu quero gerenciar registros que contêm valores suspeitos, afim de poder revisar os registros identificados como suspeitos ou deletá-los.
+Como pesquisador, eu quero gerenciar registros que contêm valores suspeitos, afim de poder revisar os registros identificados como suspeitos ou deletá-los.
 
 **Regras de negócio:**
  - Ao alterar o valor suspeito para um valor dentro do estipulado nas configurações, ele será salvo.
@@ -79,7 +98,7 @@ Como meteorologista, eu quero gerenciar registros que contêm valores suspeitos,
 ### Relátorio de situação:
 
 **História do usuário:**
-Como meteorologista, posso visualizar relatório de situação, afim de verificar os as últimas medidasde cada cidade.
+Como pesquisador, posso visualizar relatório de situação, afim de verificar os as últimas medidasde cada cidade.
 
 **Regras de negócio:**
 - Ao selecionar a aba de *Situação* será visualizado as últimas medidas de cada cada.
@@ -93,7 +112,7 @@ Como meteorologista, posso visualizar relatório de situação, afim de verifica
  ### Dados BoxPlot:
 
 **História do usuário:**
-Como meteorologista, posso gerar dados necessários para a criação de um gráfico boxplot, para entender melhor as variações e tendências climáticas.
+Como pesquisador, posso gerar dados necessários para a criação de um gráfico boxplot, para entender melhor as variações e tendências climáticas.
 
 
 **Regras de negócio:**
