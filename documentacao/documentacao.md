@@ -10,6 +10,9 @@
   - [Gerenciamento de estações](#gerenciamento-de-estações)
   - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)  
 
+- [Sprint 3:](#sprint-3)
+  - [Relatório de situação](#relatório-de-situação)
+  - [Dados BoxPlot](#dados-boxplot)
 
 ## Entidade Relacionamento
 ![entidade-relacionamento](conceito_entidade-relacionamento.jpg)
@@ -134,8 +137,6 @@ Como meteorologista, eu quero gerenciar estações, podendo assim escalar e mane
 
 **Interface do usuário:**
 
-![alt text](image-18.png)
-
  ![estacao-1](image-9.png)
 
  ![estacao-2](image-10.png)
@@ -147,10 +148,10 @@ Como meteorologista, eu quero gerenciar estações, podendo assim escalar e mane
 ### Tratamento de Registros Suspeitos:
 
 **História do usuário:**
-Como meteorologista, eu quero gerenciar registros que contêm valores suspeitos, afim de poder revisar os registros identificados como suspeitos e visualizar detalhes específicos sobre esses registros, como data, hora e localização ou deletá-los.
+Como meteorologista, eu quero gerenciar registros que contêm valores suspeitos, afim de poder revisar os registros identificados como suspeitos ou deletá-los.
 
 **Regras de negócio:**
- - Ao alterar o valor suspeito para um valor dentro do estipulado nas configurações, o registro aparecerá nos demais relatórios.
+ - Ao alterar o valor suspeito para um valor dentro do estipulado nas configurações, ele será salvo.
  - Ao alterar o valor suspeito para um valor fora do estipulado nas configurações, será retornado um erro.
  - Ao deletar o registro com valor suspeito, os demais registros relacionados serão deletados.
 
@@ -159,3 +160,43 @@ Como meteorologista, eu quero gerenciar registros que contêm valores suspeitos,
 ![suspeito-1](image-15.png)
 ![suspeito-2](image-16.png)
 ![suspeito-3](image-17.png)
+
+
+##
+
+## Sprint 3
+
+### Relátorio de situação:
+
+**História do usuário:**
+Como meteorologista, posso visualizar relatório de situação, afim de verificar os as últimas medidasde cada cidade.
+
+**Regras de negócio:**
+- Ao selecionar a aba de *Situação* será visualizado as últimas medidas de cada cada.
+
+
+ **Interface do usuário:**
+ ![Aba Relatório Situação](image-18.png)
+
+##
+
+ ### Dados BoxPlot:
+
+**História do usuário:**
+Como meteorologista, posso gerar dados necessários para a criação de um gráfico boxplot, para entender melhor as variações e tendências climáticas.
+
+
+**Regras de negócio:**
+- Deve ser selecionado uma estação, uma data inicial eu uma data final.
+- Será gerado para cada váriavel climatica("Temperatura Média", "Umidade Média", "Velocidade do Vento", "Direção do Vento", "Chuva"): 
+  - Mínimo
+  - Primeiro quartil
+  - Mediana
+  - Terceiro quartil
+  - Máximo
+
+- Será possível exportar em formato excel(.xlsx)
+
+
+ **Interface do usuário:**
+![Aba Dados BoxPlot](image-19.png)
