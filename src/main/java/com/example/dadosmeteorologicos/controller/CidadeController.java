@@ -58,11 +58,15 @@ public class CidadeController {
         }
     
         // Verifica se cidadeInserida e siglaInserida não estão vazias
-        if (cidadeInserida.trim().isEmpty() || siglaInserida.trim().isEmpty()) {
+        if (cidadeInserida.trim().isEmpty() || siglaInserida.trim().isEmpty() || siglaInserida.trim().length() < 2) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Os campos não podem estar vazios");
+            if (siglaInserida.trim().length() < 2) {
+                alert.setContentText("A sigla deve ter pelo menos 2 caracteres");
+            } else {
+                alert.setContentText("Os campos não podem estar vazios");
+            }
             alert.showAndWait();
-            return; // Retorna do método se qualquer campo estiver vazio
+            return; // Retorna do método se qualquer campo estiver vazio ou a sigla tiver menos de 2 caracteres
         }
     
         if (cidadeService.siglaValida(siglaInserida)) {
