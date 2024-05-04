@@ -1,7 +1,10 @@
 # Proposta para o Cliente Sprint 2 e 3:
 
 - [Sprint 2:](#sprint-2)
-  - [Relatório de valor médio](#gerenciamento-de-cidades)
+  - [Entidade Relacionamento](#entidade-relacionamento)
+  - [Gerar executável](#gerar-executável)
+  - [Relatório de valor médio](#relatório-de-valor-médio)
+  - [Configuração da faixa de valores suspeitos]()
   - [Gerenciamento de cidades](#gerenciamento-de-cidades)
   - [Gerenciamento de estações](#gerenciamento-de-estações)
   - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)  
@@ -14,23 +17,39 @@
 
 ## Sprint 2
 
+## Entidade Relacionamento
+![entidade-relacionamento](conceito_entidade-relacionamento.jpg)
+
+### Gerar Executável:
+
+**História do usuário:**
+
+Como pesquisador, eu quero conseguir abrir a aplicação no meu computador, Afim de poder manejar o software como eu desejar.
+
+##
+
 ### Relatório de valor médio:
 
 **História do usuário:**
 
-Como pesquisador, eu quero relatórios de valor médio de cada váriavel climatica
+Como pesquisador, eu quero relatórios de valor médio de cada váriavel climatica separados por data e hora a partir de uma cidade, Afim de prever as melhores condições para desenvolver as atividades do meu negócio em uma época do ano especifica.
 
 **Regras de negócio:**
-- Criar uma nova cidade.
-- Deletar uma cidade.
-- Não será possível repetir a sigla de uma cidade que já exista ao criar.
-- Ao deletar será deletado todos as estações e registros ligado a essas cidades.
+- Deve ser feito a média de todos os valores com a mesma data e hora.
 
-**Interface do usuário:**
+##
 
-![cidade-1](image-12.png)
-![cidade-2](image-13.png)
-![cidade-3](image-14.png)
+### Configurar faixa de valores suspeitos:
+
+**História do usuário:**
+
+Como pesquisador, eu quero relatórios configurar quais valores são o minimo e maximo para se tornarem suspeitos, podendo assim ser alterado a qualquer momento.
+
+**Regras de negócio:**
+- É necessário que seja inserido as faixas de valores antes de ser carregado um CSV.
+- Caso algum valor da faixa seja alterado, somente os novos registros importados serão verificados para a nova faixa de valores.
+
+##
 
 ### Gerenciamento de Cidades:
 
