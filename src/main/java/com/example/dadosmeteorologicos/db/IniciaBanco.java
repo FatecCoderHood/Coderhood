@@ -62,7 +62,7 @@ public class IniciaBanco {
                     "data DATE," +
                     "hora TIME," +
                     "estacao VARCHAR(255)," +
-                    "siglaCidade VARCHAR(10)," +
+                    "siglaCidade VARCHAR(6)," +
                     "tipo VARCHAR(255)," +
                     "valor DECIMAL(5,2)," +
                     "suspeito BOOLEAN," +
@@ -89,7 +89,7 @@ public class IniciaBanco {
                 String sql = "CREATE TABLE IF NOT EXISTS cidade (" +
                     "id SERIAL PRIMARY KEY," +
                     "nome VARCHAR(255)," +
-                    "sigla CHARACTER(6)" +
+                    "sigla VARCHAR(6)" +
                     ")";
     
                 Statement stmt = conn.createStatement();
@@ -107,7 +107,7 @@ public class IniciaBanco {
                 String sql = "CREATE TABLE IF NOT EXISTS estacao (" +
                     "id SERIAL PRIMARY KEY," +
                     "nome VARCHAR(255)," +
-                    "siglaCidade CHARACTER(6)" +
+                    "siglaCidade VARCHAR(6)" +
                     ")";
     
                 Statement stmt = conn.createStatement();
