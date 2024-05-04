@@ -18,7 +18,7 @@
 ## Sprint 2
 
 ## Entidade Relacionamento
-![entidade-relacionamento](conceito_entidade-relacionamento.jpg)
+![entidade-relacionamento](entidade-relacionamento-Sprint2.jpg)
 
 ### Gerar Executável:
 
