@@ -37,6 +37,9 @@ Como pesquisador, eu quero relatórios de valor médio de cada váriavel climati
 **Regras de negócio:**
 - Deve ser feito a média de todos os valores com a mesma data e hora.
 
+**Interface do usuário:**
+
+
 ##
 
 ### Configurar faixa de valores suspeitos:
