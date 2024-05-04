@@ -52,4 +52,57 @@ public class CidadeSQL extends IniciaBanco{
         }  
         return true;
     } 
+
+    public Boolean deletarCidadeBanco(int id, String siglaCidade) {
+        try {
+            if (conn != null) {
+                String sqlCidade = "DELETE FROM cidade WHERE id = ?";
+                PreparedStatement stmtCidade = conn.prepareStatement(sqlCidade);
+                stmtCidade.setInt(1, id);
+                stmtCidade.executeUpdate();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    
+        try {
+            if (conn != null) {
+                String sqlEstacao = "DELETE FROM estacao WHERE siglacidade = ?";
+                PreparedStatement stmtEstacao = conn.prepareStatement(sqlEstacao);
+                stmtEstacao.setString(1, siglaCidade);
+                stmtEstacao.executeUpdate();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        try {
+            if (conn != null) {
+                siglaCidade = siglaCidade.trim();
+                String sqlRegistro = "DELETE FROM registro WHERE siglacidade = ?";
+                PreparedStatement stmtRegistro = conn.prepareStatement(sqlRegistro);
+                stmtRegistro.setString(1, siglaCidade);
+                stmtRegistro.executeUpdate();
+            }
+        }catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+                return true;
+            }
+
+
+    public void criarCidade(String nomeCidade, String siglaCidade) {
+        try {
+            String sql = "INSERT INTO cidade (nome, sigla) VALUES (?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, nomeCidade);
+            stmt.setString(2, siglaCidade);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
