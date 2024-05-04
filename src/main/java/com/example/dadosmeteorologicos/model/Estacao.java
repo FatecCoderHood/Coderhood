@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Estacao {
+public class Estacao { 
     private int id;
     private String numero;
     private String siglaCidade;
