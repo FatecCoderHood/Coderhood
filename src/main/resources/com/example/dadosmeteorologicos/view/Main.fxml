@@ -19,32 +19,18 @@
             </content>
           </Tab>
           <Tab fx:id="tabValorMedio" text="Valor Medio">
-            <content>
-            </content>
+
           </Tab>
             <Tab fx:id="tabCidade" text="Cidade">
-            <content>
-              <fx:include source="Cidade.fxml" />
-            </content>
           </Tab>
           <Tab fx:id="tabEstacao" text="Estação">
-            <content>
-              
-            </content>
           </Tab>
           <Tab text="Registros Suspeitos">
-            <content>
-             <fx:include source="Suspeito.fxml" />
-            </content>
+
           </Tab>
           <Tab text="BoxPlot">
-            <content>
-              
-            </content>
           </Tab>
             <Tab fx:id="tabConf" text="Configurações">
-            <content>
-            </content>
           </Tab>
         </tabs>
       </TabPane>
