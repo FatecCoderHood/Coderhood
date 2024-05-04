@@ -29,10 +29,8 @@
               
             </content>
           </Tab>
-          <Tab text="Registros Suspeitos">
-            <content>
-             <fx:include source="Suspeito.fxml" />
-            </content>
+          <Tab fx:id="tabSuspeito" text="Registros Suspeitos">
+
           </Tab>
           <Tab text="BoxPlot">
             <content>

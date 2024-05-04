@@ -1,23 +1,61 @@
-# Backlog Sprint 2
+# Proposta para o Cliente Sprint 2 e 3:
 
 - [Sprint 2:](#sprint-2)
+  - [Entidade Relacionamento](#entidade-relacionamento)
+  - [Gerar executável](#gerar-executável)
+  - [Relatório de valor médio](#relatório-de-valor-médio)
+  - [Configuração da faixa de valores suspeitos]()
   - [Gerenciamento de cidades](#gerenciamento-de-cidades)
   - [Gerenciamento de estações](#gerenciamento-de-estações)
   - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)  
 
 - [Sprint 3:](#sprint-3)
-  - [Relatório de situação](#relatório-de-situação)
+  - [Relatório de Situação](#Relatório-de-Situação)
   - [Dados BoxPlot](#dados-boxplot)
 
 
 
 ## Sprint 2
 
+## Entidade Relacionamento
+![entidade-relacionamento](conceito_entidade-relacionamento.jpg)
+
+### Gerar Executável:
+
+**História do usuário:**
+
+Como pesquisador, eu quero conseguir abrir a aplicação no meu computador, Afim de poder manejar o software como eu desejar.
+
+##
+
+### Relatório de valor médio:
+
+**História do usuário:**
+
+Como pesquisador, eu quero relatórios de valor médio de cada váriavel climatica separados por data e hora a partir de uma cidade, Afim de prever as melhores condições para desenvolver as atividades do meu negócio em uma época do ano especifica.
+
+**Regras de negócio:**
+- Deve ser feito a média de todos os valores com a mesma data e hora.
+
+##
+
+### Configurar faixa de valores suspeitos:
+
+**História do usuário:**
+
+Como pesquisador, eu quero relatórios configurar quais valores são o minimo e maximo para se tornarem suspeitos, podendo assim ser alterado a qualquer momento.
+
+**Regras de negócio:**
+- É necessário que seja inserido as faixas de valores antes de ser carregado um CSV.
+- Caso algum valor da faixa seja alterado, somente os novos registros importados serão verificados para a nova faixa de valores.
+
+##
+
 ### Gerenciamento de Cidades:
 
 **História do usuário:**
 
-Como meteorologista, eu quero gerenciar cidades, podendo assim escalar e manejar as cidades cadastradas.
+Como pesquisador, eu quero gerenciar cidades, podendo assim escalar e manejar as cidades cadastradas.
 
 **Regras de negócio:**
 - Criar uma nova cidade.
@@ -37,7 +75,7 @@ Como meteorologista, eu quero gerenciar cidades, podendo assim escalar e manejar
 ### Gerenciamento de Estações:
 
 **História do usuário:**
-Como meteorologista, eu quero gerenciar estações, podendo assim escalar e manejar estações cadastradas.
+Como pesquisador, eu quero gerenciar estações, podendo assim escalar e manejar estações cadastradas.
 
 **Regras de negócio:**
 - Criar uma nova estação.
@@ -58,7 +96,7 @@ Como meteorologista, eu quero gerenciar estações, podendo assim escalar e mane
 ### Tratamento de Registros Suspeitos:
 
 **História do usuário:**
-Como meteorologista, eu quero gerenciar registros que contêm valores suspeitos, afim de poder revisar os registros identificados como suspeitos ou deletá-los.
+Como pesquisador, eu quero gerenciar registros que contêm valores suspeitos, afim de poder revisar os registros identificados como suspeitos ou deletá-los.
 
 **Regras de negócio:**
  - Ao alterar o valor suspeito para um valor dentro do estipulado nas configurações, ele será salvo.
@@ -76,16 +114,17 @@ Como meteorologista, eu quero gerenciar registros que contêm valores suspeitos,
 
 ## Sprint 3
 
-### Relátorio de situação:
+### Relatório de Situação:
 
 **História do usuário:**
-Como meteorologista, posso visualizar relatório de situação, afim de verificar os as últimas medidasde cada cidade.
+Como pesquisador, posso visualizar relatório de situação, afim de verificar os as últimas medidasde cada cidade.
 
 **Regras de negócio:**
 - Ao selecionar a aba de *Situação* será visualizado as últimas medidas de cada cada.
 
 
  **Interface do usuário:**
+ 
  ![Aba Relatório Situação](image-18.png)
 
 ##
@@ -93,7 +132,7 @@ Como meteorologista, posso visualizar relatório de situação, afim de verifica
  ### Dados BoxPlot:
 
 **História do usuário:**
-Como meteorologista, posso gerar dados necessários para a criação de um gráfico boxplot, para entender melhor as variações e tendências climáticas.
+Como pesquisador, posso gerar dados necessários para a criação de um gráfico boxplot, para entender melhor as variações e tendências climáticas.
 
 
 **Regras de negócio:**
@@ -105,8 +144,9 @@ Como meteorologista, posso gerar dados necessários para a criação de um gráf
   - Terceiro quartil
   - Máximo
 
-- Será possível exportar em formato excel(.xlsx)
+- Será possível exportar em formato excel(.xlsx).
 
 
  **Interface do usuário:**
+ 
 ![Aba Dados BoxPlot](image-19.png)
