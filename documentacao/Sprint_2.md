@@ -18,7 +18,7 @@
 ## Sprint 2
 
 ## Entidade Relacionamento
-![entidade-relacionamento](conceito_entidade-relacionamento.jpg)
+![entidade-relacionamento](entidade-relacionamento-Sprint2.jpg)
 
 ### Gerar Executável:
 
@@ -36,6 +36,9 @@ Como pesquisador, eu quero relatórios de valor médio de cada váriavel climati
 
 **Regras de negócio:**
 - Deve ser feito a média de todos os valores com a mesma data e hora.
+
+**Interface do usuário:**
+
 
 ##
 

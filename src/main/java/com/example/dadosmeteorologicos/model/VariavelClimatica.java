@@ -26,7 +26,9 @@ public class VariavelClimatica {
     }
 
    public boolean tipoSuspeito(String tipo, Double valor){
-        variaveisClimaticas = getVariaveisClimaticas();
+        if (variaveisClimaticas == null) {
+            variaveisClimaticas = getVariaveisClimaticas();
+        }
         for (VariavelClimatica variavel : variaveisClimaticas) {
             if(variavel.getTipo().equals(tipo)){
                 if (valor == null) return false;
