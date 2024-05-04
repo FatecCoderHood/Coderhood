@@ -148,9 +148,13 @@ public class EstacaoController {
                 siglaInserida = CampoSiglaCidade.getText();
         
                 // Verifica se os campos não estão vazios
-                if (estacaoInserida.trim().isEmpty() || siglaInserida.trim().isEmpty()) {
+                if (estacaoInserida.trim().isEmpty() || siglaInserida.trim().isEmpty() || siglaInserida.trim().length() < 2) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("Os campos não podem estar vazios");
+                    if (estacaoInserida.trim().isEmpty() || siglaInserida.trim().isEmpty()) {
+                        alert.setContentText("Os campos não podem estar vazios");
+                    } else {
+                        alert.setContentText("A sigla da cidade deve conter no mínimo 2 caracteres");
+                    }
                     alert.showAndWait();
                     return false;
                 }
