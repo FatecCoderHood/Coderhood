@@ -2,6 +2,8 @@ package com.example.dadosmeteorologicos.Services;
 
 import java.util.List;
 
+import org.apache.commons.text.WordUtils;
+
 import com.example.dadosmeteorologicos.db.CidadeSQL;
 import com.example.dadosmeteorologicos.model.Cidade;
 
@@ -20,6 +22,19 @@ public class CidadeService {
         boolean siglaValida = banco.siglaValida(siglaCidade);
         banco.fecharConexao();
         return siglaValida;
+    }
+
+    public Boolean deletarCidade (int id, String sigla) {
+        CidadeSQL cidadeSQL = new CidadeSQL();
+        cidadeSQL.deletarCidadeBanco(id, sigla);
+        cidadeSQL.fecharConexao();
+        return true;
+    }
+    
+    public void criarCidade(String nomeCidade, String siglaCidade) {
+        CidadeSQL banco = new CidadeSQL();
+        banco.criarCidade(WordUtils.capitalizeFully(nomeCidade), siglaCidade.toUpperCase());
+        banco.fecharConexao();
     }
 
 }
