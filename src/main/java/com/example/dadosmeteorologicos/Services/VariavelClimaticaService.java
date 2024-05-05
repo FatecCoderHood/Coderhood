@@ -8,7 +8,7 @@ import com.example.dadosmeteorologicos.model.VariavelClimatica;
 public class VariavelClimaticaService {
  
     public List<VariavelClimatica> getVariaveisClimaticas(){
-        System.out.println("VariavelClimaticaService getVariaveisClimaticas");
+
         // Cria uma nova instância da classe VariavelClimaticaSQL
         VariavelClimaticaSQL banco = new VariavelClimaticaSQL();
         // Chama o método getVariaveisClimaticas para obter a lista de variaveis climaticas

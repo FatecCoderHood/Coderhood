@@ -25,7 +25,6 @@ public class VariavelClimatica {
     }
 
     public VariavelClimatica() {
-        System.out.println("VariavelClimatica construtor");
         this.variaveisClimaticas = service.getVariaveisClimaticas();
     }
 
