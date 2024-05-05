@@ -5,7 +5,6 @@ import java.util.List;
 import com.example.dadosmeteorologicos.Services.VariavelClimaticaService;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
