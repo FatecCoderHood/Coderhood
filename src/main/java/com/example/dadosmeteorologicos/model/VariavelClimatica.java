@@ -30,8 +30,9 @@ public class VariavelClimatica {
     }
 
    public boolean tipoSuspeito(String tipo, Double valor){
-    variaveisClimaticas = service.getVariaveisClimaticas();
-    System.out.println("VariavelClimatica tipoSuspeito");
+    if (variaveisClimaticas == null) {
+        variaveisClimaticas = getVariaveisClimaticas();
+    }
         for (VariavelClimatica variavel : variaveisClimaticas) {
             if(variavel.getTipo().equals(tipo)){
                 if (valor == null) return false;
