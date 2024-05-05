@@ -25,7 +25,7 @@ public class LeitorCsvService {
 
     public void criarCidade(String nomeCidade, String siglaCidade){
         LeitorCsvSQL banco = new LeitorCsvSQL();
-        banco.criarCidade(WordUtils.capitalizeFully(nomeCidade), siglaCidade);
+        banco.criarCidade(WordUtils.capitalizeFully(nomeCidade), siglaCidade.toUpperCase());
         banco.fecharConexao();
     }
 

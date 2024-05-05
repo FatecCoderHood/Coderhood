@@ -122,17 +122,19 @@ public class ValorMedioController {
         // Obtém a sigla da cidade do texto do botão do menu
         String[] partes = menuButton.getText().split(" - ");
         String siglaCidade = partes[1].split(" ")[0]; 
-
-
+        
         List<RegistroValorMedio> resultado = service.consultaCidadePorIdEDatas(siglaCidade, dataInicialSqlDate, dataFinalSqlDate);
-      
+        List<RegistroValorMedio> resultadoMedia = RegistroValorMedio.calcularMediaPorDataHora(resultado);
+        for(RegistroValorMedio registro : resultadoMedia){
+            System.out.println(registro.getData() + " " + registro.getHora() + " " + registro.getSiglaCidade() + " " + registro.getValorMedioInfos());
+        }
 
         // Carrega a tela de resultados
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("view/TabelaRegistro.fxml"));
             Parent root = loader.load();
             TabelaRegistrosController controller = loader.getController();
-            controller.setRegistros(resultado);
+            controller.setRegistros(resultadoMedia);
             //controller.initialize();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

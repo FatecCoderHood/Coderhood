@@ -1,9 +1,11 @@
 package com.example.dadosmeteorologicos.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class Estacao { 
+@NoArgsConstructor
+public class Estacao {
     private int id;
     private String numero;
     private String siglaCidade;

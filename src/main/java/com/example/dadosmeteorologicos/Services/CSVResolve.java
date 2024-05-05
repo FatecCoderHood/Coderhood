@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 import com.example.dadosmeteorologicos.exceptions.CSVInvalidoException;
 import com.example.dadosmeteorologicos.exceptions.NomeCSVInvalidoException;
 import com.example.dadosmeteorologicos.model.Registro;
+import com.example.dadosmeteorologicos.model.VariavelClimatica;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -91,7 +92,7 @@ public class CSVResolve {
     }
 
     public List<Registro> criarRegistro(){
-        RegistroService service = new RegistroService();
+        VariavelClimatica service = new VariavelClimatica();
         List<Registro> registroFiltrado = new ArrayList<>();
         int ignorarCabecalho = 0;
         for (String[] linha : csvPadronizado) {
@@ -119,21 +120,18 @@ public class CSVResolve {
                 : null;
                 Double velVentoDouble = (velVento != null && !velVento.isEmpty()) ? Double.parseDouble(velVento) : null;
                 Double dirVentoDouble = (dirVento != null && !dirVento.isEmpty()) ? Double.parseDouble(dirVento) : null;
-                Double chuvaDouble = (chuva != null && !chuva.isEmpty()) ? Double.parseDouble(chuva) : null;
-                             
+                Double chuvaDouble = (chuva != null && !chuva.isEmpty()) ? Double.parseDouble(chuva) : null;          
                 Registro novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "temperaturaMedia", temperaturaMediaDouble, 
-                    service.validarTemperatura(temperaturaMediaDouble));
+                    service.tipoSuspeito("temperaturaMedia", temperaturaMediaDouble));
                 registroFiltrado.add(novoRegistro);
-
-                novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "umidadeMedia", umidadeMediaDouble, service.validarUmidade(umidadeMediaDouble));
+                novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "umidadeMedia", umidadeMediaDouble, service.tipoSuspeito("umidadeMedia", umidadeMediaDouble));
                 registroFiltrado.add(novoRegistro);
-                novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "velVento", velVentoDouble, service.validarVelocidadeVento(velVentoDouble));
+                novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "velVento", velVentoDouble, service.tipoSuspeito("velVento", velVentoDouble));
                 registroFiltrado.add(novoRegistro);
-                novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "dirVento", dirVentoDouble, service.validarDirecaoVento(dirVentoDouble));
+                novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "dirVento", dirVentoDouble, service.tipoSuspeito("dirVento", dirVentoDouble));
                 registroFiltrado.add(novoRegistro);
-                novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "chuva", chuvaDouble, service.validarChuva(chuvaDouble));
+                novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "chuva", chuvaDouble, service.tipoSuspeito("chuva", chuvaDouble));
                 registroFiltrado.add(novoRegistro);
-
                 } else {
                     LocalDate data = LocalDate.parse(linha[0],formatadorDia);
                     LocalTime hora = LocalTime.parse(linha[1],formatadorHora);
@@ -152,22 +150,22 @@ public class CSVResolve {
                     : null; 
 
                     Registro novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "temperaturaMedia", temperaturaMedia, 
-                        service.validarTemperatura(temperaturaMedia));
+                        service.tipoSuspeito("temperaturaMedia", temperaturaMedia));
                     registroFiltrado.add(novoRegistro);
-                    novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "umidadeMedia", umidadeMedia, service.validarUmidade(umidadeMedia));
+                    novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "umidadeMedia", umidadeMedia, service.tipoSuspeito("umidadeMedia", umidadeMedia));
                     registroFiltrado.add(novoRegistro);
-                    novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "velVento", velVento, service.validarVelocidadeVento(velVento));
+                    novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "velVento", velVento, service.tipoSuspeito("velVento", velVento));
                     registroFiltrado.add(novoRegistro); 
-                    novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "dirVento", dirVento, service.validarDirecaoVento(dirVento));
+                    novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "dirVento", dirVento, service.tipoSuspeito("dirVento", dirVento));
                     registroFiltrado.add(novoRegistro);
-                    novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "chuva", chuva, service.validarChuva(chuva));
+                    novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "chuva", chuva, service.tipoSuspeito("chuva", chuva));
                     registroFiltrado.add(novoRegistro);
                 }
         }
-        for (Registro registro : registroFiltrado) {
-            System.out.println(registro.toString());
-        }
-        System.out.println("size: " + registroFiltrado.size());
+        // for (Registro registro : registroFiltrado) {
+        //     System.out.println(registro.toString());
+        // }
+        // System.out.println("size: " + registroFiltrado.size());
         return registroFiltrado;
     }      
 

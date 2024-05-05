@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="900" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.EstacaoController">
+    <cursor>
+        <Cursor fx:constant="DEFAULT" />
+    </cursor>
+  <children>
+      <TableView fx:id="estacoes" layoutX="280.0" layoutY="130.0" prefHeight="240.0" prefWidth="340.0">
+        <columns>
+          <TableColumn fx:id="ColumnEstacao" prefWidth="95.0" text="Estação" />
+          <TableColumn fx:id="ColumnSigla" prefWidth="92.0" text="Sigla" />
+          <TableColumn fx:id="ColumnButton" prefWidth="151.0" />
+        </columns>
+      </TableView>
+      <Button fx:id="adicionarNovaEstacao" layoutX="379.0" layoutY="427.0" mnemonicParsing="false" onAction="#adicionarNovaEstacao" text="Adicionar Nova Estação" />
+  </children>
+</AnchorPane>
