@@ -22,4 +22,17 @@ public class CidadeService {
         return siglaValida;
     }
 
+    public Boolean deletarCidade (int id, String sigla) {
+        CidadeSQL cidadeSQL = new CidadeSQL();
+        cidadeSQL.deletarCidadeBanco(id, sigla);
+        cidadeSQL.fecharConexao();
+        return true;
+    }
+    
+    public void criarCidade(String nomeCidade, String siglaCidade) {
+        CidadeSQL banco = new CidadeSQL();
+        banco.criarCidade(nomeCidade, siglaCidade);
+        banco.fecharConexao();
+    }
+
 }
