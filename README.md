@@ -54,7 +54,7 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
 | Sprint  | Nome | Data inicio  | Data Fim | Status |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | --  | KickOff   | 04/03   | 08/03 | Ok |
-|  1  | Sprint 1   | 25/03   | 14/04 |    |
+|  1  | Sprint 1   | 25/03   | 14/04 | Ok |
 |  2  | Sprint 2   | 15/04   | 05/05 |    |
 |  3  | Sprint 3   | 06/05   | 26/05 |    |
 |  4  | Sprint 4   | 27/05   | 16/06 |    |
@@ -75,28 +75,28 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
     <tbody>
     <tr>
         <td>1</td>
-        <td>Como usuário, eu quero poder inserir um CSV e adicionar os registros a uma cidade e uma estação. Afim de ter essas informações na minha base de dados.</td>
+        <td>Como pesquisador, eu quero poder inserir um CSV e adicionar os registros a uma cidade e uma estação. Afim de ter essas informações na minha base de dados.</td>
         <td>Importar Dados Climáticos Via Arquivo CSV</td>
         <td>1</td>
         <td>1</td>
     </tr>
     <tr>
         <td>2</td>
-        <td>Como usuário, eu quero poder extrair um relatório de valor médio de uma cidade, com periodicidade de uma hora, a partir de uma data inicial e data final. Afim de entender qual a melhor época do ano para os meus negócios</td>
+        <td>Como pesquisador, eu quero poder extrair um relatório de valor médio de uma cidade, com periodicidade de uma hora, a partir de uma data inicial e data final. Afim de entender qual a melhor época do ano para os meus negócios</td>
         <td>Gerar Relatório</td>
         <td>1</td>
         <td>1</td>
     </tr>
     <tr>
         <td>3</td>
-        <td>Como usuário, eu quero poder alterar o nome e a sigla da cidade. Afim de poder corrigir ou alterar cadastros da minha base de dados.</td>
+        <td>Como pesquisador, eu quero poder alterar o nome e a sigla da cidade. Afim de poder corrigir ou alterar cadastros da minha base de dados.</td>
         <td>Alterar Informações da Cidade</td>
         <td>2</td>
         <td>2</td>
     </tr>
     <tr>
         <td>4</td>
-        <td>Como usuário, eu quero poder alterar o número e a sigla da cidade da estação. Afim de poder corrigir ou alterar cadastros da minha base de dados.
+        <td>Como pesquisador, eu quero poder alterar o número e a sigla da cidade da estação. Afim de poder corrigir ou alterar cadastros da minha base de dados.
         </td>
         <td>Alterar Informações da Estação</td>
         <td>2</td>
@@ -104,28 +104,28 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
     </tr>
     <tr>
         <td>5</td>
-        <td>Como usuário, eu quero poder tratar valores marcados como suspeitos. Afim de corrigir ou deletar dados que contém valores errados, mantendo a base de dados integra.</td>
+        <td>Como pesquisador, eu quero poder tratar valores marcados como suspeitos. Afim de corrigir ou deletar dados que contém valores errados, mantendo a base de dados integra.</td>
         <td>Tratamento de Dados Suspeitos</td>
         <td>2</td>
         <td>2</td>
     </tr>
     <tr>
         <td>6</td>
-        <td>Como usuário, eu quero poder visualizar o relatório de situação. Afim de acompanhar os registros mais recentes.</td>
+        <td>Como pesquisador, eu quero poder visualizar o relatório de situação. Afim de acompanhar os registros mais recentes.</td>
         <td>Visualizar Relatórios</td>
         <td>3</td>
         <td>2</td>
     </tr>
     <tr>
         <td>7</td>
-        <td>Como usuário, eu quero poder visualizar dados para gerar relatório boxPlot. Afim de poder visualizar a variação das váriaveis climáticas.</td>
+        <td>Como pesquisador, eu quero poder visualizar dados para gerar relatório boxPlot. Afim de poder visualizar a variação das váriaveis climáticas.</td>
         <td>Visualizar Relatórios</td>
         <td>3</td>
         <td>2</td>
     </tr>
     <tr>
         <td>8</td>
-        <td>Como usuário, eu quero documentações detalhadas, incluindo um manual de usuário e instruções de instalação, para facilitar o uso e a manutenção do sistema.</td>
+        <td>Como pesquisador, eu quero documentações detalhadas, incluindo um manual de usuário e instruções de instalação, para facilitar o uso e a manutenção do sistema.</td>
         <td>Criar Documentação</td>
         <td>4</td>
         <td>3</td>
@@ -133,7 +133,12 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
     </tbody>
 </table>
 
+## :chart_with_upwards_trend: Gráfico Burndown
+<div align="center">
+    <img src="documentacao\Gráfio Burndown.jpg" alt="Gráfico Burndown" alt="Gráfico Burndown" width="75%">
+</div>
 
+Para mais detalhes, [clique aqui](https://docs.google.com/spreadsheets/d/18BzTviEVx57DJYTtO7ZxyRwD-H_qZu2e2en_GfMsqkg/edit#gid=1164764710).
 
 ## :bookmark: Tecnologias Utilizadas
 > * [Java](https://www.java.com/pt-BR/) - Versão 17
