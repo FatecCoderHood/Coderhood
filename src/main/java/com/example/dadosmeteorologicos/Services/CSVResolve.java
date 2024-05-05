@@ -92,7 +92,9 @@ public class CSVResolve {
     }
 
     public List<Registro> criarRegistro(){
+        System.out.println("criarRegistro");
         VariavelClimatica service = new VariavelClimatica();
+        System.out.println("criarRegistro service");
         List<Registro> registroFiltrado = new ArrayList<>();
         int ignorarCabecalho = 0;
         for (String[] linha : csvPadronizado) {
@@ -121,11 +123,11 @@ public class CSVResolve {
                 Double velVentoDouble = (velVento != null && !velVento.isEmpty()) ? Double.parseDouble(velVento) : null;
                 Double dirVentoDouble = (dirVento != null && !dirVento.isEmpty()) ? Double.parseDouble(dirVento) : null;
                 Double chuvaDouble = (chuva != null && !chuva.isEmpty()) ? Double.parseDouble(chuva) : null;
-                             
+                System.out.println("criar registro");             
                 Registro novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "temperaturaMedia", temperaturaMediaDouble, 
                     service.tipoSuspeito("temperaturaMedia", temperaturaMediaDouble));
                 registroFiltrado.add(novoRegistro);
-
+                System.out.println("iniciou de criar registro");
                 novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "umidadeMedia", umidadeMediaDouble, service.tipoSuspeito("umidadeMedia", umidadeMediaDouble));
                 registroFiltrado.add(novoRegistro);
                 novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "velVento", velVentoDouble, service.tipoSuspeito("velVento", velVentoDouble));
@@ -134,7 +136,7 @@ public class CSVResolve {
                 registroFiltrado.add(novoRegistro);
                 novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "chuva", chuvaDouble, service.tipoSuspeito("chuva", chuvaDouble));
                 registroFiltrado.add(novoRegistro);
-
+                System.out.println("terminou de criar registro");
                 } else {
                     LocalDate data = LocalDate.parse(linha[0],formatadorDia);
                     LocalTime hora = LocalTime.parse(linha[1],formatadorHora);
@@ -152,6 +154,7 @@ public class CSVResolve {
                     ? (Double.parseDouble(tempHora) - 273)
                     : null; 
 
+                    System.out.println("criar registro");
                     Registro novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "temperaturaMedia", temperaturaMedia, 
                         service.tipoSuspeito("temperaturaMedia", temperaturaMedia));
                     registroFiltrado.add(novoRegistro);
@@ -163,6 +166,7 @@ public class CSVResolve {
                     registroFiltrado.add(novoRegistro);
                     novoRegistro = new Registro(data, hora, codigoEstacao, siglaCidade, "chuva", chuva, service.tipoSuspeito("chuva", chuva));
                     registroFiltrado.add(novoRegistro);
+                    System.out.println("terminou de criar registro");
                 }
         }
         // for (Registro registro : registroFiltrado) {

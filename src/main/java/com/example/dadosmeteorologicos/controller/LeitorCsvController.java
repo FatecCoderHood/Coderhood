@@ -129,6 +129,7 @@ public class LeitorCsvController {
     }
 
     private void adquirirInfosCSV(){ 
+        System.out.println("adquirirInfosCSV");
         listaRegistro = leitor.criarRegistro();       
         registrosSuspeitos = service.registrosSuspeitos(listaRegistro);
         siglaCidade = siglaCidade.toUpperCase();

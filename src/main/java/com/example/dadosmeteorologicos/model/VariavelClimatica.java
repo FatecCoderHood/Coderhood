@@ -10,13 +10,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class VariavelClimatica {
 
     private String tipo;
     private Double valorMinimo;
     private Double valorMaximo;
-    private VariavelClimaticaService service;
+    private static VariavelClimaticaService service = new VariavelClimaticaService();
     private List<VariavelClimatica> variaveisClimaticas;
 
     public VariavelClimatica(String tipo, Double valorMinimo, Double valorMaximo) {
@@ -25,8 +24,14 @@ public class VariavelClimatica {
         this.valorMaximo = valorMaximo;
     }
 
+    public VariavelClimatica() {
+        System.out.println("VariavelClimatica construtor");
+        this.variaveisClimaticas = service.getVariaveisClimaticas();
+    }
+
    public boolean tipoSuspeito(String tipo, Double valor){
-        variaveisClimaticas = getVariaveisClimaticas();
+    variaveisClimaticas = service.getVariaveisClimaticas();
+    System.out.println("VariavelClimatica tipoSuspeito");
         for (VariavelClimatica variavel : variaveisClimaticas) {
             if(variavel.getTipo().equals(tipo)){
                 if (valor == null) return false;
@@ -39,16 +44,11 @@ public class VariavelClimatica {
    }
 
    public List<VariavelClimatica> getVariaveisClimaticas(){
-        if (service == null) {
-            service = new VariavelClimaticaService();
-        }
+    System.out.println("VariavelClimatica getVariaveisClimaticas");
         return service.getVariaveisClimaticas();
     }
 
     public void setVariaveisClimaticas(List<VariavelClimatica> variaveis){
-        if (service == null) {
-            service = new VariavelClimaticaService();
-        }
         service.setVariaveisClimaticas(variaveis);
     }
 
