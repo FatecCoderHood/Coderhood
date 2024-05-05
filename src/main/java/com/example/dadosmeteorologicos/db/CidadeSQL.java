@@ -42,7 +42,7 @@ public class CidadeSQL extends IniciaBanco{
             String sql = "SELECT * FROM cidade WHERE sigla = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, siglaCidade);
-            ResultSet rs = stmt.executeQuery();            
+            ResultSet rs = stmt.executeQuery();
             
             if (rs.next()) {
                 return false;
