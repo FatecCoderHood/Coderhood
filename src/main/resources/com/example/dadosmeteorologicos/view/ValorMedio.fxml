@@ -22,7 +22,7 @@
         </Label>
       <MenuButton fx:id="menuButton" layoutX="198.0" layoutY="88.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="574.0" text="Selecione a cidade">
       </MenuButton>
-      <DatePicker fx:id="dataInicial" layoutX="258.0" layoutY="205.0" promptText="DATA FINAL" />
+      <DatePicker fx:id="dataInicial" layoutX="258.0" layoutY="205.0" promptText="DATA INICIAL" />
       <DatePicker fx:id="dataFinal" layoutX="456.0" layoutY="205.0" promptText="DATA FINAL" />
       <Button fx:id="executar" layoutX="363.0" layoutY="401.0" mnemonicParsing="false" onAction="#onExecutarClicked" prefHeight="45.0" prefWidth="126.0" text="Executar" />
     </children>

@@ -116,6 +116,7 @@ public class EstacaoController {
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Sigla já cadastrada");
+            alert.setTitle("ERRO");
             alert.showAndWait();
             return;
         }
@@ -125,6 +126,7 @@ public class EstacaoController {
 
     public Boolean criarDialogo(){
         Dialog<Boolean> dialog = new Dialog<>();
+        dialog.setTitle("Nova Estação");
         ButtonType confirmButtonType = new ButtonType("Confirmar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, ButtonType.CANCEL);
     
@@ -148,15 +150,20 @@ public class EstacaoController {
                 siglaInserida = CampoSiglaCidade.getText();
         
                 // Verifica se os campos não estão vazios
-                if (estacaoInserida.trim().isEmpty() || siglaInserida.trim().isEmpty()) {
+                if (estacaoInserida.trim().isEmpty() || siglaInserida.trim().isEmpty() || siglaInserida.trim().length() < 2){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("Os campos não podem estar vazios");
-                    alert.showAndWait();
-                    return false;
+                    alert.setTitle("ERRO");
+                    if (estacaoInserida.trim().isEmpty() || siglaInserida.trim().isEmpty()){
+                        alert.setContentText("Os campos não podem estar vazios");
+                    } else {alert.setContentText("Sigla precisa ter no mínimo 2 caracteres");
+                }
+                        alert.showAndWait();
+                        return false;
                 }
 
                 if (!estacaoInserida.matches("\\d+")) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Criar Estação");
                     alert.setContentText("O número da estação deve conter apenas números");
                     alert.showAndWait();
                     return false;
