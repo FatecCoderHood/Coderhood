@@ -36,6 +36,14 @@ public class EstacaoService {
       return siglaValida;
    }
 
+   public Boolean siglaCidadeExiste(String sigla){
+      sigla = sigla.toUpperCase();
+      EstacaoSQL estacaoSQL = new EstacaoSQL();
+      Boolean siglaValida = estacaoSQL.siglaCidadeExiste(sigla);
+      estacaoSQL.fecharConexao();
+      return siglaValida;
+   }
+
 }
 
 

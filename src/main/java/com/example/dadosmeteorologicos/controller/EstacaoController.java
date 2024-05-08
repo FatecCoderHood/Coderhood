@@ -5,6 +5,7 @@ package com.example.dadosmeteorologicos.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.dadosmeteorologicos.Services.CidadeService;
 import com.example.dadosmeteorologicos.Services.EstacaoService;
 import com.example.dadosmeteorologicos.model.Estacao;
 
@@ -50,6 +51,8 @@ public class EstacaoController {
 
     private String estacaoInserida;
     private String siglaInserida;
+    private String cidadeInserida;
+    
 
     // Método chamado quando a classe é inicializada
     @FXML
@@ -57,6 +60,36 @@ public class EstacaoController {
         System.out.println("Iniciado estacao");
         List<Estacao> listaEstacao = estacaoService.buscaEstacao();
         criarTabela(listaEstacao);
+    }
+
+    @FXML
+    void adicionarNovaEstacao(ActionEvent event) {
+        if (!criarDialogo()) {
+            return;
+        }
+    
+        if (estacaoService.numeroEstacaoValido(estacaoInserida)) {
+            if(!estacaoService.siglaCidadeExiste(siglaInserida)){
+                if (!dialogoCriarCidade()) {
+                    return;
+                }else{
+                    CidadeService cidadeService = new CidadeService();
+                    cidadeService.criarCidade(cidadeInserida, siglaInserida);
+                }
+                
+            }
+            estacaoService.adicionarNovaEstacao(estacaoInserida, siglaInserida);
+            estacoes.getItems().clear();
+            List<Estacao> listaEstacao = estacaoService.buscaEstacao();
+            criarTabela(listaEstacao);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Número de estação já cadastrado!");
+            alert.setTitle("ERRO");
+            alert.showAndWait();
+            return;
+        }
+    
     }
 
     @FXML
@@ -101,28 +134,6 @@ public class EstacaoController {
 
         estacoes.getItems().addAll(estacoesDoBanco);
     }
-
-    @FXML
-    void adicionarNovaEstacao(ActionEvent event) {
-        if (!criarDialogo()) {
-            return;
-        }
-    
-        if (estacaoService.numeroEstacaoValido(estacaoInserida)) {
-            estacaoService.adicionarNovaEstacao(estacaoInserida, siglaInserida);
-            estacoes.getItems().clear();
-            List<Estacao> listaEstacao = estacaoService.buscaEstacao();
-            criarTabela(listaEstacao);
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Sigla já cadastrada");
-            alert.setTitle("ERRO");
-            alert.showAndWait();
-            return;
-        }
-    
-    }
-
 
     public Boolean criarDialogo(){
         Dialog<Boolean> dialog = new Dialog<>();
@@ -171,6 +182,54 @@ public class EstacaoController {
             }
             return true;
         });
+        return dialog.showAndWait().orElse(false);
+    }
+
+    private Boolean dialogoCriarCidade(){
+        Dialog<Boolean> dialog = new Dialog<>();
+        dialog.setTitle("Cidade não encontrada, criar nova cidade?");
+        ButtonType confirmButtonType = new ButtonType("Confirmar", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, ButtonType.CANCEL);
+    
+        TextField CampoNomeCidade = new TextField();
+        CampoNomeCidade.setPrefWidth(200);
+        TextField CampoSiglaCidade = new TextField();
+        CampoSiglaCidade.setPrefWidth(200);
+        CampoSiglaCidade.setText(siglaInserida);
+        CampoSiglaCidade.setDisable(true);
+    
+        GridPane grid = new GridPane();
+        grid.setPrefWidth(400);
+        grid.add(new Label("Nome da cidade:"), 0, 0);
+        grid.add(CampoNomeCidade, 1, 0);
+        grid.add(new Label("Sigla da cidade:"), 0, 1);
+        grid.add(CampoSiglaCidade, 1, 1);
+        dialog.getDialogPane().setContent(grid);
+    
+        // Converte o resultado para um par quando o botão de confirmação é pressionado
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == confirmButtonType) {
+                cidadeInserida = CampoNomeCidade.getText();
+                siglaInserida = CampoSiglaCidade.getText();
+        
+                // Verifica se os campos não estão vazios
+                if (cidadeInserida.trim().isEmpty() || siglaInserida.trim().isEmpty() ||siglaInserida.trim().length() < 2) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    if (cidadeInserida.trim().isEmpty() || siglaInserida.trim().isEmpty()) {
+                        alert.setTitle("ERRO");
+                        alert.setContentText("Os campos não podem estar vazios");
+                    } else {
+                        alert.setTitle("ERRO");
+                        alert.setContentText("Sigla precisa ter no mínimo 2 caracteres");
+                    }
+                    alert.showAndWait();
+                    return false;
+                }
+            }
+            return true;
+        });
+    
+        // Retorna o valor dentro do Optional
         return dialog.showAndWait().orElse(false);
     }
 

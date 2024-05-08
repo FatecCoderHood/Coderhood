@@ -18,6 +18,7 @@ public class CidadeService {
     }
 
     public boolean siglaValida(String siglaCidade) {
+        siglaCidade = siglaCidade.toUpperCase();
         CidadeSQL banco = new CidadeSQL();
         boolean siglaValida = banco.siglaValida(siglaCidade);
         banco.fecharConexao();

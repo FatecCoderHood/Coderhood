@@ -93,5 +93,22 @@ public class EstacaoSQL extends IniciaBanco{
             e.printStackTrace();
         }
     }
+
+    public Boolean siglaCidadeExiste(String sigla) {
+        try {
+            if(conn != null){
+                String sql = "SELECT * FROM cidade WHERE sigla = ?";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setString(1, sigla);
+                ResultSet rs = stmt.executeQuery();
+                if(rs.next()){
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
 

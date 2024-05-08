@@ -56,8 +56,6 @@ public class CidadeController {
         if (!criarDialogo()) {
             return;
         }
-    
-    
         if (cidadeService.siglaValida(siglaInserida)) {
             cidadeService.criarCidade(cidadeInserida, siglaInserida);
             tabelaCidades.getItems().clear();
