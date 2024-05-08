@@ -71,6 +71,7 @@ public class EstacaoController {
         if (estacaoService.numeroEstacaoValido(estacaoInserida)) {
             if(!estacaoService.siglaCidadeExiste(siglaInserida)){
                 if (!dialogoCriarCidade()) {
+                    System.out.println();
                     return;
                 }else{
                     CidadeService cidadeService = new CidadeService();
@@ -179,8 +180,9 @@ public class EstacaoController {
                     alert.showAndWait();
                     return false;
                 }
+                return true;
             }
-            return true;
+            return false;
         });
         return dialog.showAndWait().orElse(false);
     }
@@ -225,8 +227,9 @@ public class EstacaoController {
                     alert.showAndWait();
                     return false;
                 }
+                return true;
             }
-            return true;
+            return false;
         });
     
         // Retorna o valor dentro do Optional

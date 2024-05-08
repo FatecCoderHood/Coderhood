@@ -29,7 +29,6 @@ public class EstacaoService {
    }
 
    public Boolean numeroEstacaoValido(String numero){
-      System.out.println("numero: " + numero);
       EstacaoSQL estacaoSQL = new EstacaoSQL();
       Boolean siglaValida = estacaoSQL.numeroEstacaoValido(numero);
       estacaoSQL.fecharConexao();

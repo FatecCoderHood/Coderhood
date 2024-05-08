@@ -108,10 +108,10 @@ public class CidadeController {
                     alert.showAndWait();
                     return false;
                 }
+                return true;
             }
-            return true;
+            return false;
         });
-    
         // Retorna o valor dentro do Optional
         return dialog.showAndWait().orElse(false);
     }
