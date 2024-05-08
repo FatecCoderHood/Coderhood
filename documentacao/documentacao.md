@@ -201,7 +201,7 @@ Como pesquisador, eu quero gerenciar registros que contêm valores suspeitos, af
 ### Relatório de Situação:
 
 **História do usuário:**
-Como pesquisador, posso visualizar relatório de situação, afim de verificar os as últimas medidasde cada cidade.
+Como pesquisador, posso visualizar relatório de situação, afim de verificar as últimas medidas de cada cidade.
 
 **Regras de negócio:**
 - Ao selecionar a aba de *Situação* será visualizado as últimas medidas de cada cada.
