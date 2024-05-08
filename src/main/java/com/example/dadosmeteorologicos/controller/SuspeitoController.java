@@ -175,6 +175,10 @@ public class SuspeitoController extends SuspeitoSQL {
 
             dialog.setResultConverter(dialogButton -> {
                 if (dialogButton == confirmButtonType) {
+                    if (textField.getText().trim().isEmpty()) {
+                        return null;
+                    }
+                    
                     VariavelClimatica variavelClimatica = new VariavelClimatica();
                     if (variavelClimatica.tipoSuspeito(registroSelecionado.getTipo(),
                             Double.parseDouble(textField.getText()))) {

@@ -29,9 +29,16 @@ public class EstacaoService {
    }
 
    public Boolean numeroEstacaoValido(String numero){
-      System.out.println("numero: " + numero);
       EstacaoSQL estacaoSQL = new EstacaoSQL();
       Boolean siglaValida = estacaoSQL.numeroEstacaoValido(numero);
+      estacaoSQL.fecharConexao();
+      return siglaValida;
+   }
+
+   public Boolean siglaCidadeExiste(String sigla){
+      sigla = sigla.toUpperCase();
+      EstacaoSQL estacaoSQL = new EstacaoSQL();
+      Boolean siglaValida = estacaoSQL.siglaCidadeExiste(sigla);
       estacaoSQL.fecharConexao();
       return siglaValida;
    }

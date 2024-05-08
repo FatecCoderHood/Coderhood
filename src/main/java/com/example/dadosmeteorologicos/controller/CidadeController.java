@@ -56,15 +56,6 @@ public class CidadeController {
         if (!criarDialogo()) {
             return;
         }
-    
-        // Verifica se cidadeInserida e siglaInserida não estão vazias
-        if (cidadeInserida.trim().isEmpty() || siglaInserida.trim().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Os campos não podem estar vazios");
-            alert.showAndWait();
-            return; // Retorna do método se qualquer campo estiver vazio
-        }
-    
         if (cidadeService.siglaValida(siglaInserida)) {
             cidadeService.criarCidade(cidadeInserida, siglaInserida);
             tabelaCidades.getItems().clear();
@@ -81,6 +72,7 @@ public class CidadeController {
 
     public Boolean criarDialogo(){
         Dialog<Boolean> dialog = new Dialog<>();
+        dialog.setTitle("Nova Cidade");
         ButtonType confirmButtonType = new ButtonType("Confirmar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, ButtonType.CANCEL);
     
@@ -104,16 +96,22 @@ public class CidadeController {
                 siglaInserida = CampoSiglaCidade.getText();
         
                 // Verifica se os campos não estão vazios
-                if (cidadeInserida.trim().isEmpty() || siglaInserida.trim().isEmpty()) {
+                if (cidadeInserida.trim().isEmpty() || siglaInserida.trim().isEmpty() ||siglaInserida.trim().length() < 2) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("Os campos não podem estar vazios");
+                    if (cidadeInserida.trim().isEmpty() || siglaInserida.trim().isEmpty()) {
+                        alert.setTitle("ERRO");
+                        alert.setContentText("Os campos não podem estar vazios");
+                    } else {
+                        alert.setTitle("ERRO");
+                        alert.setContentText("Sigla precisa ter no mínimo 2 caracteres");
+                    }
                     alert.showAndWait();
                     return false;
                 }
+                return true;
             }
-            return true;
+            return false;
         });
-    
         // Retorna o valor dentro do Optional
         return dialog.showAndWait().orElse(false);
     }
