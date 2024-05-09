@@ -138,7 +138,7 @@ public class CSVResolve {
                     String tempHora = linha[2];
                     Double umidadeMedia = (linha[3] != null && !linha[3].isEmpty()) ? Double.parseDouble(linha[3]) : null;
                     Double velVento = (linha[5] != null && !linha[5].isEmpty()) ? Double.parseDouble(linha[5]) : null;
-                    Double dirVento = (linha[7] != null && !linha[7].isEmpty()) ? Double.parseDouble(linha[7]) : null;
+                    Double dirVento = (linha[6] != null && !linha[6].isEmpty()) ? Double.parseDouble(linha[6]) : null;
                     Double chuva = (linha[11] != null && !linha[11].isEmpty()) ? Double.parseDouble(linha[11]) : null;
 
 
