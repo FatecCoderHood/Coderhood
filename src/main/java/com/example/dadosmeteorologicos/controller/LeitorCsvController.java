@@ -67,7 +67,7 @@ public class LeitorCsvController {
             if(variavelClimaticaService.celulasDaTabelaEstaoNulas()){
                 selecionarArquivo.setDisable(true);
                 Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Erro");
+                alert.setTitle("Configuração necessária");
                 alert.setHeaderText(null);
                 alert.setContentText("Insira as faixas de valores na aba de configuração.");
                 alert.showAndWait();
