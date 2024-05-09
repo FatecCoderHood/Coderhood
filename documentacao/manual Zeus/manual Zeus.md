@@ -4,6 +4,7 @@ Manual produzido pela equipe Coderhood - FATEC São José dos Campos - Prof. Jes
 
 Qualquer dúvida entrar em contato (12) 98242-7304.
 
+
 - [Instalação do Java 17.0.10.](#instalação-do-java-17010)
 - [Instalação e configuração do PostgreSQL 16.3.](#instalação-e-configuração-do-postgresql-163)
 - [Configuração do Zeus.](#configuração-do-zeus)
