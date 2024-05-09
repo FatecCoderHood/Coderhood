@@ -18,14 +18,10 @@ public class IniciaBanco {
     private Connection conn;
 
     public IniciaBanco() {
-        try{
-            this.conn = conectarBanco();
-        } catch (SQLException e) {
-            System.err.format("inicia banco construtor Stateee: %s\n%s", e.getSQLState(), e.getMessage());
-        }
+        this.conn = conectarBanco();
     }
 
-    public Connection conectarBanco() throws SQLException{
+    public Connection conectarBanco() {
         try {
             conn = DriverManager.getConnection(url, user, password);
             if (conn != null) {
@@ -36,7 +32,6 @@ public class IniciaBanco {
             System.err.format("inicia banco SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
-            throw new SQLException("Falha ao conectar no banco!");
         }
         return conn;
     }
