@@ -18,7 +18,7 @@
 
 
 ## Entidade Relacionamento
-![entidade-relacionamento](conceito_entidade-relacionamento.jpg)
+![entidade-relacionamento](imagens/conceito_entidade-relacionamento.jpg)
 
 
 ## Sprint 1
@@ -52,15 +52,15 @@ Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de u
 
 **Tela inicial:**
 
-![Tela Inicial](image.png)
+![Tela Inicial](imagens/image.png)
 
 **Arquivo selecionado com sucesso:**
 
-![Arquivo Selecionado](image-1.png)
+![Arquivo Selecionado](imagens/image-1.png)
 
 **Após selecionar para salvar na base de dados:**
 
-![Salvar na Base de Dados](image-2.png)
+![Salvar na Base de Dados](imagens/image-2.png)
 
 ##
 
@@ -69,15 +69,15 @@ Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de u
 
 **A estação inserida está relacionada com uma cidade diferente:**
 
-![Erro de Estação](image-5.png)
+![Erro de Estação](imagens/image-5.png)
 
 **A sigla ainda não está associada a uma cidade:**
 
-![Erro de Sigla](image-3.png)
+![Erro de Sigla](imagens/image-3.png)
 
 **O nome do CSV não está no padrão esperado:**
 
-![Erro de CSV](image-4.png)
+![Erro de CSV](imagens/image-4.png)
 
 
 ### Relatório de valor médio:
@@ -95,11 +95,11 @@ Como meteorologista, eu quero gerar um relatório de valores médios de uma cida
 
 **Selecionar cidade e datas:**
 
-![alt text](image-7.png)
+![alt text](imagens/image-7.png)
 
 **Tabela com registros:**
 
-![alt text](image-8.png)
+![alt text](imagens/image-8.png)
 
 
 
@@ -117,7 +117,7 @@ Como pesquisador, eu quero relatórios de valor médio de cada váriavel climati
 - Se houver registros para mesma data e hora mas com estações diferentes, deve ser feito uma média.
 
 **Interface do usuário:**
-![registro valor médio](image-20.png)
+![registro valor médio](imagens/image-20.png)
 
 ##
 
@@ -131,7 +131,7 @@ Como pesquisador, eu quero alterar os valores minimos e máximos de cada tipo cl
 - Alterar os valores minimos e máximos fará efeito somente nas novas leituras, registros já processados não serão válidados.
 
 **Interface do usuário:**
-![conf dados suspeitos em configurações](image-21.png)
+![conf dados suspeitos em configurações](imagens/image-21.png)
 
 ##
 
@@ -149,9 +149,9 @@ Como pesquisador, eu quero gerenciar cidades, podendo assim escalar e manejar as
 
 **Interface do usuário:**
 
-![cidade-1](image-12.png)
-![cidade-2](image-13.png)
-![cidade-3](image-14.png)
+![cidade-1](imagens/image-12.png)
+![cidade-2](imagens/image-13.png)
+![cidade-3](imagens/image-14.png)
 
 ##
 
@@ -169,11 +169,11 @@ Como pesquisador, eu quero gerenciar estações, podendo assim escalar e manejar
 
 **Interface do usuário:**
 
- ![estacao-1](image-9.png)
+ ![estacao-1](imagens/image-9.png)
 
- ![estacao-2](image-10.png)
+ ![estacao-2](imagens/image-10.png)
 
-![estaco-3](image-11.png)
+![estaco-3](imagens/image-11.png)
 
 ##
 
@@ -189,9 +189,9 @@ Como pesquisador, eu quero gerenciar registros que contêm valores suspeitos, af
 
  **Interface do usuário:**
 
-![suspeito-1](image-15.png)
-![suspeito-2](image-16.png)
-![suspeito-3](image-17.png)
+![suspeito-1](imagens/image-15.png)
+![suspeito-2](imagens/image-16.png)
+![suspeito-3](imagens/image-17.png)
 
 
 ##
@@ -209,7 +209,7 @@ Como pesquisador, posso visualizar relatório de situação, afim de verificar a
 
  **Interface do usuário:**
  
- ![Aba Relatório Situação](image-18.png)
+ ![Aba Relatório Situação](imagens/image-18.png)
 
 ##
 
@@ -233,4 +233,4 @@ Como pesquisador, posso gerar dados necessários para a criação de um gráfico
 
  **Interface do usuário:**
  
-![Aba Dados BoxPlot](image-19.png)
+![Aba Dados BoxPlot](imagens/image-19.png)
