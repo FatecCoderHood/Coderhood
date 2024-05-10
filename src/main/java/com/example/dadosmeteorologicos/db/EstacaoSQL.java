@@ -31,6 +31,10 @@ public class EstacaoSQL extends IniciaBanco{
                     estacao.setId(rs.getInt("id"));
                     estacao.setNumero(rs.getString("numero"));
                     estacao.setSiglaCidade(rs.getString("siglaCidade"));
+                    estacao.setNome(rs.getString("nome"));
+                    estacao.setDescricao(rs.getString("descricao"));
+                    estacao.setLatitude(rs.getString("latitude"));
+                    estacao.setLongitude(rs.getString("longitude"));
                     listaEstacao.add(estacao);
                 }
             }
@@ -109,6 +113,23 @@ public class EstacaoSQL extends IniciaBanco{
             e.printStackTrace();
         }
         return false;
+    }
+
+    public void atualizarEstacaoBanco(int id, Estacao estacao){
+        try {
+            if(conn != null){
+                String sql = "UPDATE estacao SET nome = ?, descricao = ?, latitude = ?, longitude = ? WHERE id = ?";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setString(1, estacao.getNome());
+                stmt.setString(2, estacao.getDescricao());
+                stmt.setString(3, estacao.getLatitude());
+                stmt.setString(4, estacao.getLongitude());
+                stmt.setInt(5, id);
+                stmt.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 

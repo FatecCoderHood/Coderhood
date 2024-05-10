@@ -118,6 +118,10 @@ public class EstacaoController {
     void criarTabela(List<Estacao> estacoesDoBanco) {
         ColumnSigla.setCellValueFactory(new PropertyValueFactory<>("siglaCidade"));
         ColumnEstacao.setCellValueFactory(new PropertyValueFactory<>("numero"));
+        ColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        ColumnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        ColumnLatitude.setCellValueFactory(new PropertyValueFactory<>("latitude"));
+        ColumnLongitude.setCellValueFactory(new PropertyValueFactory<>("longitude"));
 
         ColumnButton.setCellFactory(param -> new TableCell<Estacao, Void>() {
             private final Button btn = new Button("Deletar");
@@ -153,6 +157,10 @@ public class EstacaoController {
         ColumnButton.setStyle("-fx-alignment: CENTER;");
         ColumnEstacao.setStyle("-fx-alignment: CENTER;");
         ColumnSigla.setStyle("-fx-alignment: CENTER;");
+        ColumnNome.setStyle("-fx-alignment: CENTER;");
+        ColumnDescricao.setStyle("-fx-alignment: CENTER;");
+        ColumnLatitude.setStyle("-fx-alignment: CENTER;");
+        ColumnLongitude.setStyle("-fx-alignment: CENTER;");
 
         estacoes.getItems().addAll(estacoesDoBanco);
     }
@@ -261,30 +269,30 @@ public class EstacaoController {
         ColumnNome.setOnEditCommit(event -> {
             Estacao estacao = event.getRowValue();
             estacao.setNome(event.getNewValue());
-            System.out.println(estacao.getNome());
-            // estacaoService.atualizarEstacao(estacao.getId(), estacao);
+            estacaoService.atualizarEstacao(estacao.getId(), estacao);
         });
         
         ColumnDescricao.setOnEditCommit(event -> {
             Estacao estacao = event.getRowValue();
             estacao.setDescricao(event.getNewValue());
-            System.out.println(estacao.getDescricao());
-            // estacaoService.atualizarEstacao(estacao.getId(), estacao);
+            estacaoService.atualizarEstacao(estacao.getId(), estacao);
         });
         
         ColumnLatitude.setOnEditCommit(event -> {
             Estacao estacao = event.getRowValue();
             estacao.setLatitude(event.getNewValue());
-            System.out.println(estacao.getLatitude());
-            // estacaoService.atualizarEstacao(estacao.getId(), estacao);
+            estacaoService.atualizarEstacao(estacao.getId(), estacao);
         });
         
         ColumnLongitude.setOnEditCommit(event -> {
             Estacao estacao = event.getRowValue();
             estacao.setLongitude(event.getNewValue());
-            System.out.println(estacao.getLongitude());
-            // estacaoService.atualizarEstacao(estacao.getId(), estacao);
+            estacaoService.atualizarEstacao(estacao.getId(), estacao);
         });
+
+        estacoes.getItems().clear();
+        List<Estacao> listaEstacao = estacaoService.buscaEstacao();
+        criarTabela(listaEstacao);
     }
 
 }
