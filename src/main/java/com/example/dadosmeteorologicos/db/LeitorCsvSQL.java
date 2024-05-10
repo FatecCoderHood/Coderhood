@@ -117,13 +117,13 @@ public class LeitorCsvSQL extends IniciaBanco{
     public void criarEstacao(String numeroEstacao, String siglaCidade){
         try {
             if (conn != null) {
-                String sql = "SELECT * FROM Estacao WHERE nome = ? AND siglaCidade = ?";
+                String sql = "SELECT * FROM Estacao WHERE numero = ? AND siglaCidade = ?";
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, numeroEstacao);
                 stmt.setString(2, siglaCidade.toUpperCase());
                 ResultSet rs = stmt.executeQuery();
                 if (!rs.next()) {
-                    sql = "INSERT INTO Estacao (nome, siglaCidade) VALUES (?, ?)";
+                    sql = "INSERT INTO Estacao (numero, siglaCidade) VALUES (?, ?)";
                     stmt = conn.prepareStatement(sql);
                     stmt.setString(1, numeroEstacao);
                     stmt.setString(2, siglaCidade.toUpperCase());
@@ -142,7 +142,7 @@ public class LeitorCsvSQL extends IniciaBanco{
             // Verifica se a conexão com o banco de dados está estabelecida
             if (conn != null) {
                 // Prepara a consulta SQL para verificar se a cidade e a estação correspondem
-                String sql = "SELECT siglaCidade FROM Estacao WHERE nome = ?";
+                String sql = "SELECT siglaCidade FROM Estacao WHERE numero = ?";
                 // PreparedStatement é uma interface usada para executar consultas SQL parametrizadas.
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, numeroEstacao);

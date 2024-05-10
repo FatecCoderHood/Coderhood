@@ -23,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.TableCell;
 
@@ -42,10 +43,24 @@ public class EstacaoController {
     private TableColumn<Estacao, String> ColumnEstacao; // Coluna para o número da estação
 
     @FXML
+    private TableColumn<Estacao, String> ColumnNome; // Coluna para o nome da cidade
+
+    @FXML
+    private TableColumn<Estacao, String> ColumnDescricao; // Coluna para a descrição da estação
+
+    @FXML
+    private TableColumn<Estacao, String> ColumnLatitude; // Coluna para a latitude da estação
+
+    @FXML
+    private TableColumn<Estacao, String> ColumnLongitude; // Coluna para a longitude da estação
+
+    @FXML
     private TableColumn<Estacao, Void> ColumnButton; // Coluna para os botões de ação
 
     @FXML
     private Button adicionarNovaEstacao; // Botão para adicionar uma nova estação
+
+    
 
     private static EstacaoService estacaoService = new EstacaoService();
 
@@ -60,6 +75,12 @@ public class EstacaoController {
         System.out.println("Iniciado estacao");
         List<Estacao> listaEstacao = estacaoService.buscaEstacao();
         criarTabela(listaEstacao);
+        ColumnNome.setCellFactory(TextFieldTableCell.forTableColumn());
+        ColumnDescricao.setCellFactory(TextFieldTableCell.forTableColumn());
+        ColumnLatitude.setCellFactory(TextFieldTableCell.forTableColumn());
+        ColumnLongitude.setCellFactory(TextFieldTableCell.forTableColumn());
+        estacoes.setEditable(true);
+        gerenciarAlteracoes();
     }
 
     @FXML
@@ -99,7 +120,7 @@ public class EstacaoController {
         ColumnEstacao.setCellValueFactory(new PropertyValueFactory<>("numero"));
 
         ColumnButton.setCellFactory(param -> new TableCell<Estacao, Void>() {
-            private final Button btn = new Button("Deletar Estação");
+            private final Button btn = new Button("Deletar");
 
             @Override
             protected void updateItem(Void item, boolean empty) {
@@ -234,6 +255,36 @@ public class EstacaoController {
     
         // Retorna o valor dentro do Optional
         return dialog.showAndWait().orElse(false);
+    }
+
+    private void gerenciarAlteracoes(){
+        ColumnNome.setOnEditCommit(event -> {
+            Estacao estacao = event.getRowValue();
+            estacao.setNome(event.getNewValue());
+            System.out.println(estacao.getNome());
+            // estacaoService.atualizarEstacao(estacao.getId(), estacao);
+        });
+        
+        ColumnDescricao.setOnEditCommit(event -> {
+            Estacao estacao = event.getRowValue();
+            estacao.setDescricao(event.getNewValue());
+            System.out.println(estacao.getDescricao());
+            // estacaoService.atualizarEstacao(estacao.getId(), estacao);
+        });
+        
+        ColumnLatitude.setOnEditCommit(event -> {
+            Estacao estacao = event.getRowValue();
+            estacao.setLatitude(event.getNewValue());
+            System.out.println(estacao.getLatitude());
+            // estacaoService.atualizarEstacao(estacao.getId(), estacao);
+        });
+        
+        ColumnLongitude.setOnEditCommit(event -> {
+            Estacao estacao = event.getRowValue();
+            estacao.setLongitude(event.getNewValue());
+            System.out.println(estacao.getLongitude());
+            // estacaoService.atualizarEstacao(estacao.getId(), estacao);
+        });
     }
 
 }

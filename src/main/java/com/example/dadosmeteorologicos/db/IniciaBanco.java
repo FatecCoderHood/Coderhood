@@ -47,11 +47,18 @@ public class IniciaBanco {
     }
 
     public void iniciarBanco(){
-        criarTabelaVariavelClimatica();
-        criarTabelaRegistro();
-        criarTabelaCidade();
-        criarTabelaEstacao();
-       
+        try{
+            conn = DriverManager.getConnection(url, user, password);
+            if (conn != null) {
+                criarTabelaVariavelClimatica();
+                criarTabelaRegistro();
+                criarTabelaCidade();
+                criarTabelaEstacao();
+                conn.close();
+            } 
+        }catch(SQLException e){
+            System.err.format("iniciarBanco SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
+        }    
     }
 
     public void criarDataBase() throws SQLException{
@@ -130,8 +137,12 @@ public class IniciaBanco {
                 System.out.println("Tabela estacao");
                 String sql = "CREATE TABLE IF NOT EXISTS estacao (" +
                     "id SERIAL PRIMARY KEY," +
+                    "numero VARCHAR(255)," +
+                    "siglaCidade VARCHAR(05)," +
                     "nome VARCHAR(255)," +
-                    "siglaCidade VARCHAR(05)" +
+                    "descricao VARCHAR(255)," +
+                    "latitude VARCHAR(255)," +
+                    "longitude VARCHAR(255)" +
                     ")";
     
                 Statement stmt = conn.createStatement();
