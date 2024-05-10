@@ -169,8 +169,10 @@ public class CidadeController {
         colunaNome.setOnEditCommit(event -> {
             Cidade cidade = event.getRowValue();
             cidade.setNome(event.getNewValue());
-            System.out.println("Nome da cidade alterado para: "+event.getNewValue() + " id: " + cidade.getId());
-            // cidadeService.atualizarCidade(cidade);
+            cidadeService.atualizarCidade(cidade.getId(), cidade.getNome());
+            tabelaCidades.getItems().clear();
+            List<Cidade> cidadesDoBanco = cidadeService.getCidades();
+            criarTabela(cidadesDoBanco);
         });
 
     }

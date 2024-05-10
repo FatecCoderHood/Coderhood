@@ -38,4 +38,10 @@ public class CidadeService {
         banco.fecharConexao();
     }
 
+    public void atualizarCidade(int id, String nome) {
+        CidadeSQL banco = new CidadeSQL();
+        banco.atualizarCidadeBanco(id, WordUtils.capitalizeFully(nome));
+        banco.fecharConexao();
+    }
+
 }
