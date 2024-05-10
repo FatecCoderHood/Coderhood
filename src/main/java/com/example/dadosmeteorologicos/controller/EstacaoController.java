@@ -91,13 +91,9 @@ public class EstacaoController {
     
         if (estacaoService.numeroEstacaoValido(estacaoInserida)) {
             if(!estacaoService.siglaCidadeExiste(siglaInserida)){
-                if (!dialogoCriarCidade()) {
-                    System.out.println();
-                    return;
-                }else{
-                    CidadeService cidadeService = new CidadeService();
-                    cidadeService.criarCidade(cidadeInserida, siglaInserida);
-                }
+                dialogoCriarCidade();
+                CidadeService cidadeService = new CidadeService();
+                cidadeService.criarCidade(cidadeInserida, siglaInserida);
                 
             }
             estacaoService.adicionarNovaEstacao(estacaoInserida, siglaInserida);
@@ -216,8 +212,8 @@ public class EstacaoController {
         return dialog.showAndWait().orElse(false);
     }
 
-    private Boolean dialogoCriarCidade(){
-        Dialog<Boolean> dialog = new Dialog<>();
+    private void dialogoCriarCidade() {
+        Dialog<Void> dialog = new Dialog<>();
         dialog.setTitle("Cidade não encontrada, criar nova cidade?");
         ButtonType confirmButtonType = new ButtonType("Confirmar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, ButtonType.CANCEL);
@@ -242,27 +238,11 @@ public class EstacaoController {
             if (dialogButton == confirmButtonType) {
                 cidadeInserida = CampoNomeCidade.getText();
                 siglaInserida = CampoSiglaCidade.getText();
-        
-                // Verifica se os campos não estão vazios
-                if (cidadeInserida.trim().isEmpty() || siglaInserida.trim().isEmpty() ||siglaInserida.trim().length() < 2) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    if (cidadeInserida.trim().isEmpty() || siglaInserida.trim().isEmpty()) {
-                        alert.setTitle("ERRO");
-                        alert.setContentText("Os campos não podem estar vazios");
-                    } else {
-                        alert.setTitle("ERRO");
-                        alert.setContentText("Sigla precisa ter no mínimo 2 caracteres");
-                    }
-                    alert.showAndWait();
-                    return false;
-                }
-                return true;
             }
-            return false;
+            return null;
         });
-    
-        // Retorna o valor dentro do Optional
-        return dialog.showAndWait().orElse(false);
+        // Mostra o diálogo e aguarda
+        dialog.showAndWait();
     }
 
     private void gerenciarAlteracoes(){

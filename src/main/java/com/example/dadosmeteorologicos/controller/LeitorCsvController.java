@@ -282,8 +282,7 @@ public class LeitorCsvController {
 
         // Ouvinte de propriedade que será acionado sempre que o texto em qualquer campo for alterado
         ChangeListener<String> textChangeListener = (observable, oldValue, newValue) -> {
-            boolean allFieldsFilled = !CampoNomeCidade.getText().trim().isEmpty() &&
-                                    !CampoSiglaCidade.getText().trim().isEmpty() &&
+            boolean allFieldsFilled = !CampoSiglaCidade.getText().trim().isEmpty() &&
                                     !CampoNumeroEstacao.getText().trim().isEmpty();
             salvarButton.setDisable(!allFieldsFilled);
         };

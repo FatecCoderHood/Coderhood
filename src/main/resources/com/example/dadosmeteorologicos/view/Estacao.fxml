@@ -11,15 +11,15 @@
         <Cursor fx:constant="DEFAULT" />
     </cursor>
   <children>
-      <TableView fx:id="estacoes" layoutX="82.0" layoutY="130.0" prefHeight="240.0" prefWidth="736.0">
+      <TableView fx:id="estacoes" layoutX="82.0" layoutY="130.0" prefHeight="240.0" prefWidth="757.0">
         <columns>
           <TableColumn fx:id="ColumnEstacao" prefWidth="95.0" text="Estação" />
           <TableColumn fx:id="ColumnSigla" prefWidth="72.0" text="Sigla" />
             <TableColumn fx:id="ColumnNome" prefWidth="113.0" text="Nome" />
-            <TableColumn fx:id="ColumnDescricao" prefWidth="183.0" text="Descrição" />
-            <TableColumn fx:id="ColumnLatitude" prefWidth="103.0" text="Latitude" />
-            <TableColumn fx:id="ColumnLongitude" prefWidth="98.0" text="Longitude" />
-          <TableColumn fx:id="ColumnButton" prefWidth="71.0" />
+            <TableColumn fx:id="ColumnDescricao" prefWidth="200.0" text="Descrição" />
+            <TableColumn fx:id="ColumnLatitude" prefWidth="108.0" text="Latitude" />
+            <TableColumn fx:id="ColumnLongitude" prefWidth="88.0" text="Longitude" />
+          <TableColumn fx:id="ColumnButton" prefWidth="79.0" />
         </columns>
       </TableView>
       <Button fx:id="adicionarNovaEstacao" layoutX="379.0" layoutY="427.0" mnemonicParsing="false" onAction="#adicionarNovaEstacao" text="Adicionar Nova Estação" />
