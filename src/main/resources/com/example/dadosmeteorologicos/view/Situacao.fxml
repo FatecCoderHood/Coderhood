@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="Situacao" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tabelaSituacao" layoutX="48.0" layoutY="50.0" prefHeight="400.0" prefWidth="805.0">
+        <columns>
+          <TableColumn fx:id="colunaCidade" prefWidth="75.0" text="Cidade" />
+          <TableColumn fx:id="colunaEstacao" prefWidth="75.0" text="Estação" />
+            <TableColumn fx:id="colunaData" prefWidth="75.0" text="Data" />
+            <TableColumn fx:id="colunaHora" prefWidth="75.0" text="Hora" />
+            <TableColumn fx:id="colunaTemperatura" prefWidth="111.0" text="Temperatura" />
+            <TableColumn fx:id="colunaUmidade" prefWidth="92.0" text="Umidade" />
+            <TableColumn fx:id="colunaVelVento" prefWidth="87.0" text="Vel. Vento" />
+            <TableColumn fx:id="colunaDirVento" prefWidth="113.0" text="Dir. Vento" />
+            <TableColumn fx:id="colunaChuva" prefWidth="94.0" text="Chuva" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -18,6 +18,10 @@
               <fx:include source="LeitorCsv.fxml" />
             </content>
           </Tab>
+          <Tab fx:id="tabSituacao" text="Situação">
+            <content>
+              <fx:include source="Situacao.fxml" />
+            </content>
           <Tab fx:id="tabValorMedio" text="Valor Medio">
             <content>
             </content>
