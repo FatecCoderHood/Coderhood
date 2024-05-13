@@ -11,30 +11,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 
 
 
 public class SituacaoController {
 
     @FXML
-    private AnchorPane Situacao;
-
-    @FXML
-    private TableColumn<?, ?> colunaChuva;
+    private TableView<Registro> tabelaSituacao;
 
     @FXML
     private TableColumn<?, ?> colunaCidade;
 
     @FXML
     private TableColumn<?, ?> colunaData;
-
-    @FXML
-    private TableColumn<?, ?> colunaDirVento;
-
-    @FXML
-    private TableColumn<?, ?> colunaEstacao;
-
+    
     @FXML
     private TableColumn<?, ?> colunaHora;
 
@@ -46,9 +36,13 @@ public class SituacaoController {
 
     @FXML
     private TableColumn<?, ?> colunaVelVento;
+    
+    @FXML
+    private TableColumn<?, ?> colunaDirVento;
 
     @FXML
-    private TableView<Registro> tabelaSituacao;
+    private TableColumn<?, ?> colunaChuva;
+
 
     @FXML
     public void initialize() {
@@ -60,7 +54,6 @@ public class SituacaoController {
     public void criarTabela() {
         // Inicialize as colunas da tabela
         colunaCidade.setCellValueFactory(new PropertyValueFactory<>("siglaCidade"));
-        colunaEstacao.setCellValueFactory(new PropertyValueFactory<>("estacao"));
         colunaData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colunaHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
         colunaTemperatura.setCellValueFactory(new PropertyValueFactory<>("temperatura"));
@@ -70,7 +63,6 @@ public class SituacaoController {
         colunaVelVento.setCellValueFactory(new PropertyValueFactory<>("velVento"));
 
         colunaCidade.setStyle("-fx-alignment: CENTER;");
-        colunaEstacao.setStyle("-fx-alignment: CENTER;");
         colunaData.setStyle("-fx-alignment: CENTER;");
         colunaHora.setStyle("-fx-alignment: CENTER;");
         colunaTemperatura.setStyle("-fx-alignment: CENTER;");
