@@ -67,7 +67,7 @@ public class LeitorCsvController {
             if(variavelClimaticaService.celulasDaTabelaEstaoNulas()){
                 selecionarArquivo.setDisable(true);
                 Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Erro");
+                alert.setTitle("Configuração necessária");
                 alert.setHeaderText(null);
                 alert.setContentText("Insira as faixas de valores na aba de configuração.");
                 alert.showAndWait();
@@ -282,8 +282,7 @@ public class LeitorCsvController {
 
         // Ouvinte de propriedade que será acionado sempre que o texto em qualquer campo for alterado
         ChangeListener<String> textChangeListener = (observable, oldValue, newValue) -> {
-            boolean allFieldsFilled = !CampoNomeCidade.getText().trim().isEmpty() &&
-                                    !CampoSiglaCidade.getText().trim().isEmpty() &&
+            boolean allFieldsFilled = !CampoSiglaCidade.getText().trim().isEmpty() &&
                                     !CampoNumeroEstacao.getText().trim().isEmpty();
             salvarButton.setDisable(!allFieldsFilled);
         };

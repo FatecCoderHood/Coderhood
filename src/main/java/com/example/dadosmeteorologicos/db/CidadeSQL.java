@@ -105,4 +105,16 @@ public class CidadeSQL extends IniciaBanco{
             e.printStackTrace();
         }
     }
+
+    public void atualizarCidadeBanco(int id, String nome) {
+        try {
+            String sql = "UPDATE cidade SET nome = ? WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, nome);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

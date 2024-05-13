@@ -18,6 +18,7 @@ public class CidadeService {
     }
 
     public boolean siglaValida(String siglaCidade) {
+        siglaCidade = siglaCidade.toUpperCase();
         CidadeSQL banco = new CidadeSQL();
         boolean siglaValida = banco.siglaValida(siglaCidade);
         banco.fecharConexao();
@@ -34,6 +35,12 @@ public class CidadeService {
     public void criarCidade(String nomeCidade, String siglaCidade) {
         CidadeSQL banco = new CidadeSQL();
         banco.criarCidade(WordUtils.capitalizeFully(nomeCidade), siglaCidade.toUpperCase());
+        banco.fecharConexao();
+    }
+
+    public void atualizarCidade(int id, String nome) {
+        CidadeSQL banco = new CidadeSQL();
+        banco.atualizarCidadeBanco(id, WordUtils.capitalizeFully(nome));
         banco.fecharConexao();
     }
 

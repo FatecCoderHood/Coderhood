@@ -3,8 +3,6 @@ package com.example.dadosmeteorologicos.Services;
 import com.example.dadosmeteorologicos.db.SuspeitoSQL;
 import com.example.dadosmeteorologicos.model.Registro;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 // Classe de serviço para buscar registros suspeitos
@@ -19,9 +17,9 @@ public class SuspeitoService {
     }
 
     // Método para deletar um registro suspeito
-    public void deletarRegistroSuspeito(LocalDate data, LocalTime hora, String estacao, String siglaCidade) {
+    public void deletarRegistroSuspeito(int id) {
         SuspeitoSQL suspeitoSQL = new SuspeitoSQL();
-        suspeitoSQL.deletarRegistroSuspeito(data, hora, estacao, siglaCidade);
+        suspeitoSQL.deletarRegistroSuspeito(id);
         suspeitoSQL.fecharConexao();    
     }
 

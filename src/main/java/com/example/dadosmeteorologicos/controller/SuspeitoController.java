@@ -175,6 +175,10 @@ public class SuspeitoController extends SuspeitoSQL {
 
             dialog.setResultConverter(dialogButton -> {
                 if (dialogButton == confirmButtonType) {
+                    if (textField.getText().trim().isEmpty()) {
+                        return null;
+                    }
+                    
                     VariavelClimatica variavelClimatica = new VariavelClimatica();
                     if (variavelClimatica.tipoSuspeito(registroSelecionado.getTipo(),
                             Double.parseDouble(textField.getText()))) {
@@ -211,8 +215,8 @@ public class SuspeitoController extends SuspeitoSQL {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
-                suspeitoService.deletarRegistroSuspeito(registroSelecionado.getData(), registroSelecionado.getHora(),
-                        registroSelecionado.getEstacao(), registroSelecionado.getSiglaCidade());
+                System.out.println(registroSelecionado.getId());
+                suspeitoService.deletarRegistroSuspeito(registroSelecionado.getId());
                 loadSuspeitos();
             } else {
                 alert.close();

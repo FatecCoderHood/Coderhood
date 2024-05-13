@@ -6,16 +6,19 @@
   - [Relatório de valor médio](#relatório-de-valor-médio) 
 
 - [Sprint 2:](#sprint-2)
+  - [Relatório de valor médio](#relatório-de-valor-médio)
+  - [Faixa de valores suspeitos configurável](#faixa-de-valores-suspeitos-configurável)
   - [Gerenciamento de cidades](#gerenciamento-de-cidades)
   - [Gerenciamento de estações](#gerenciamento-de-estações)
   - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)  
 
 - [Sprint 3:](#sprint-3)
-  - [Relatório de situação](#relatório-de-situação)
+  - [Relatório de Situação](#Relatório-de-Situação)
   - [Dados BoxPlot](#dados-boxplot)
 
+
 ## Entidade Relacionamento
-![entidade-relacionamento](conceito_entidade-relacionamento.jpg)
+![entidade-relacionamento](imagens/conceito_entidade-relacionamento.jpg)
 
 
 ## Sprint 1
@@ -49,15 +52,15 @@ Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de u
 
 **Tela inicial:**
 
-![Tela Inicial](image.png)
+![Tela Inicial](imagens/image.png)
 
 **Arquivo selecionado com sucesso:**
 
-![Arquivo Selecionado](image-1.png)
+![Arquivo Selecionado](imagens/image-1.png)
 
 **Após selecionar para salvar na base de dados:**
 
-![Salvar na Base de Dados](image-2.png)
+![Salvar na Base de Dados](imagens/image-2.png)
 
 ##
 
@@ -66,15 +69,15 @@ Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de u
 
 **A estação inserida está relacionada com uma cidade diferente:**
 
-![Erro de Estação](image-5.png)
+![Erro de Estação](imagens/image-5.png)
 
 **A sigla ainda não está associada a uma cidade:**
 
-![Erro de Sigla](image-3.png)
+![Erro de Sigla](imagens/image-3.png)
 
 **O nome do CSV não está no padrão esperado:**
 
-![Erro de CSV](image-4.png)
+![Erro de CSV](imagens/image-4.png)
 
 
 ### Relatório de valor médio:
@@ -92,22 +95,51 @@ Como meteorologista, eu quero gerar um relatório de valores médios de uma cida
 
 **Selecionar cidade e datas:**
 
-![alt text](image-7.png)
+![alt text](imagens/image-7.png)
 
 **Tabela com registros:**
 
-![alt text](image-8.png)
+![alt text](imagens/image-8.png)
 
 
 
 
 ## Sprint 2
 
+### Relatório de valor médio:
+
+**História do usuário:**
+
+Como pesquisador, eu quero relatórios de valor médio de cada váriavel climatica
+
+**Regras de negócio:**
+- Será selecionado uma cidade, data inicial e final, será retornado uma tabela com o valor médio para cada variavel com peridicidade de uma hora.
+- Se houver registros para mesma data e hora mas com estações diferentes, deve ser feito uma média.
+
+**Interface do usuário:**
+![registro valor médio](imagens/image-20.png)
+
+##
+
+### Faixa de valores suspeitos configurável:
+
+**História do usuário:**
+
+Como pesquisador, eu quero alterar os valores minimos e máximos de cada tipo climático, afim de poder personalizar os filtros da leitura do CSV.
+
+**Regras de negócio:**
+- Alterar os valores minimos e máximos fará efeito somente nas novas leituras, registros já processados não serão válidados.
+
+**Interface do usuário:**
+![conf dados suspeitos em configurações](imagens/image-21.png)
+
+##
+
 ### Gerenciamento de Cidades:
 
 **História do usuário:**
 
-Como meteorologista, eu quero gerenciar cidades, podendo assim escalar e manejar as cidades cadastradas.
+Como pesquisador, eu quero gerenciar cidades, podendo assim escalar e manejar as cidades cadastradas.
 
 **Regras de negócio:**
 - Criar uma nova cidade.
@@ -117,9 +149,9 @@ Como meteorologista, eu quero gerenciar cidades, podendo assim escalar e manejar
 
 **Interface do usuário:**
 
-![cidade-1](image-12.png)
-![cidade-2](image-13.png)
-![cidade-3](image-14.png)
+![cidade-1](imagens/image-12.png)
+![cidade-2](imagens/image-13.png)
+![cidade-3](imagens/image-14.png)
 
 ##
 
@@ -127,7 +159,7 @@ Como meteorologista, eu quero gerenciar cidades, podendo assim escalar e manejar
 ### Gerenciamento de Estações:
 
 **História do usuário:**
-Como meteorologista, eu quero gerenciar estações, podendo assim escalar e manejar estações cadastradas.
+Como pesquisador, eu quero gerenciar estações, podendo assim escalar e manejar estações cadastradas.
 
 **Regras de negócio:**
 - Criar uma nova estação.
@@ -137,18 +169,18 @@ Como meteorologista, eu quero gerenciar estações, podendo assim escalar e mane
 
 **Interface do usuário:**
 
- ![estacao-1](image-9.png)
+ ![estacao-1](imagens/image-9.png)
 
- ![estacao-2](image-10.png)
+ ![estacao-2](imagens/image-10.png)
 
-![estaco-3](image-11.png)
+![estaco-3](imagens/image-11.png)
 
 ##
 
 ### Tratamento de Registros Suspeitos:
 
 **História do usuário:**
-Como meteorologista, eu quero gerenciar registros que contêm valores suspeitos, afim de poder revisar os registros identificados como suspeitos ou deletá-los.
+Como pesquisador, eu quero gerenciar registros que contêm valores suspeitos, afim de poder revisar os registros identificados como suspeitos ou deletá-los.
 
 **Regras de negócio:**
  - Ao alterar o valor suspeito para um valor dentro do estipulado nas configurações, ele será salvo.
@@ -157,33 +189,34 @@ Como meteorologista, eu quero gerenciar registros que contêm valores suspeitos,
 
  **Interface do usuário:**
 
-![suspeito-1](image-15.png)
-![suspeito-2](image-16.png)
-![suspeito-3](image-17.png)
+![suspeito-1](imagens/image-15.png)
+![suspeito-2](imagens/image-16.png)
+![suspeito-3](imagens/image-17.png)
 
 
 ##
 
 ## Sprint 3
 
-### Relátorio de situação:
+### Relatório de Situação:
 
 **História do usuário:**
-Como meteorologista, posso visualizar relatório de situação, afim de verificar os as últimas medidasde cada cidade.
+Como pesquisador, posso visualizar relatório de situação, afim de verificar as últimas medidas de cada cidade.
 
 **Regras de negócio:**
 - Ao selecionar a aba de *Situação* será visualizado as últimas medidas de cada cada.
 
 
  **Interface do usuário:**
- ![Aba Relatório Situação](image-18.png)
+ 
+ ![Aba Relatório Situação](imagens/image-18.png)
 
 ##
 
  ### Dados BoxPlot:
 
 **História do usuário:**
-Como meteorologista, posso gerar dados necessários para a criação de um gráfico boxplot, para entender melhor as variações e tendências climáticas.
+Como pesquisador, posso gerar dados necessários para a criação de um gráfico boxplot, para entender melhor as variações e tendências climáticas.
 
 
 **Regras de negócio:**
@@ -195,8 +228,9 @@ Como meteorologista, posso gerar dados necessários para a criação de um gráf
   - Terceiro quartil
   - Máximo
 
-- Será possível exportar em formato excel(.xlsx)
+- Será possível exportar em formato excel(.xlsx).
 
 
  **Interface do usuário:**
-![Aba Dados BoxPlot](image-19.png)
+ 
+![Aba Dados BoxPlot](imagens/image-19.png)

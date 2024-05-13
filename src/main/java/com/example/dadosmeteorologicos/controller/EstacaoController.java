@@ -5,6 +5,7 @@ package com.example.dadosmeteorologicos.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.dadosmeteorologicos.Services.CidadeService;
 import com.example.dadosmeteorologicos.Services.EstacaoService;
 import com.example.dadosmeteorologicos.model.Estacao;
 
@@ -22,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.TableCell;
 
@@ -41,15 +43,31 @@ public class EstacaoController {
     private TableColumn<Estacao, String> ColumnEstacao; // Coluna para o número da estação
 
     @FXML
+    private TableColumn<Estacao, String> ColumnNome; // Coluna para o nome da cidade
+
+    @FXML
+    private TableColumn<Estacao, String> ColumnDescricao; // Coluna para a descrição da estação
+
+    @FXML
+    private TableColumn<Estacao, String> ColumnLatitude; // Coluna para a latitude da estação
+
+    @FXML
+    private TableColumn<Estacao, String> ColumnLongitude; // Coluna para a longitude da estação
+
+    @FXML
     private TableColumn<Estacao, Void> ColumnButton; // Coluna para os botões de ação
 
     @FXML
     private Button adicionarNovaEstacao; // Botão para adicionar uma nova estação
 
+    
+
     private static EstacaoService estacaoService = new EstacaoService();
 
     private String estacaoInserida;
     private String siglaInserida;
+    private String cidadeInserida;
+    
 
     // Método chamado quando a classe é inicializada
     @FXML
@@ -57,15 +75,52 @@ public class EstacaoController {
         System.out.println("Iniciado estacao");
         List<Estacao> listaEstacao = estacaoService.buscaEstacao();
         criarTabela(listaEstacao);
+        ColumnNome.setCellFactory(TextFieldTableCell.forTableColumn());
+        ColumnDescricao.setCellFactory(TextFieldTableCell.forTableColumn());
+        ColumnLatitude.setCellFactory(TextFieldTableCell.forTableColumn());
+        ColumnLongitude.setCellFactory(TextFieldTableCell.forTableColumn());
+        estacoes.setEditable(true);
+        gerenciarAlteracoes();
+    }
+
+    @FXML
+    void adicionarNovaEstacao(ActionEvent event) {
+        if (!criarDialogo()) {
+            return;
+        }
+    
+        if (estacaoService.numeroEstacaoValido(estacaoInserida)) {
+            if(!estacaoService.siglaCidadeExiste(siglaInserida)){
+                dialogoCriarCidade();
+                CidadeService cidadeService = new CidadeService();
+                cidadeService.criarCidade(cidadeInserida, siglaInserida);
+                
+            }
+            estacaoService.adicionarNovaEstacao(estacaoInserida, siglaInserida);
+            estacoes.getItems().clear();
+            List<Estacao> listaEstacao = estacaoService.buscaEstacao();
+            criarTabela(listaEstacao);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Número de estação já cadastrado!");
+            alert.setTitle("ERRO");
+            alert.showAndWait();
+            return;
+        }
+    
     }
 
     @FXML
     void criarTabela(List<Estacao> estacoesDoBanco) {
         ColumnSigla.setCellValueFactory(new PropertyValueFactory<>("siglaCidade"));
         ColumnEstacao.setCellValueFactory(new PropertyValueFactory<>("numero"));
+        ColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        ColumnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        ColumnLatitude.setCellValueFactory(new PropertyValueFactory<>("latitude"));
+        ColumnLongitude.setCellValueFactory(new PropertyValueFactory<>("longitude"));
 
         ColumnButton.setCellFactory(param -> new TableCell<Estacao, Void>() {
-            private final Button btn = new Button("Deletar Estação");
+            private final Button btn = new Button("Deletar");
 
             @Override
             protected void updateItem(Void item, boolean empty) {
@@ -98,31 +153,13 @@ public class EstacaoController {
         ColumnButton.setStyle("-fx-alignment: CENTER;");
         ColumnEstacao.setStyle("-fx-alignment: CENTER;");
         ColumnSigla.setStyle("-fx-alignment: CENTER;");
+        ColumnNome.setStyle("-fx-alignment: CENTER;");
+        ColumnDescricao.setStyle("-fx-alignment: CENTER;");
+        ColumnLatitude.setStyle("-fx-alignment: CENTER;");
+        ColumnLongitude.setStyle("-fx-alignment: CENTER;");
 
         estacoes.getItems().addAll(estacoesDoBanco);
     }
-
-    @FXML
-    void adicionarNovaEstacao(ActionEvent event) {
-        if (!criarDialogo()) {
-            return;
-        }
-    
-        if (estacaoService.numeroEstacaoValido(estacaoInserida)) {
-            estacaoService.adicionarNovaEstacao(estacaoInserida, siglaInserida);
-            estacoes.getItems().clear();
-            List<Estacao> listaEstacao = estacaoService.buscaEstacao();
-            criarTabela(listaEstacao);
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Sigla já cadastrada");
-            alert.setTitle("ERRO");
-            alert.showAndWait();
-            return;
-        }
-    
-    }
-
 
     public Boolean criarDialogo(){
         Dialog<Boolean> dialog = new Dialog<>();
@@ -168,10 +205,74 @@ public class EstacaoController {
                     alert.showAndWait();
                     return false;
                 }
+                return true;
             }
-            return true;
+            return false;
         });
         return dialog.showAndWait().orElse(false);
+    }
+
+    private void dialogoCriarCidade() {
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setTitle("Cidade não encontrada, criar nova cidade?");
+        ButtonType confirmButtonType = new ButtonType("Confirmar", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, ButtonType.CANCEL);
+    
+        TextField CampoNomeCidade = new TextField();
+        CampoNomeCidade.setPrefWidth(200);
+        TextField CampoSiglaCidade = new TextField();
+        CampoSiglaCidade.setPrefWidth(200);
+        CampoSiglaCidade.setText(siglaInserida);
+        CampoSiglaCidade.setDisable(true);
+    
+        GridPane grid = new GridPane();
+        grid.setPrefWidth(400);
+        grid.add(new Label("Nome da cidade:"), 0, 0);
+        grid.add(CampoNomeCidade, 1, 0);
+        grid.add(new Label("Sigla da cidade:"), 0, 1);
+        grid.add(CampoSiglaCidade, 1, 1);
+        dialog.getDialogPane().setContent(grid);
+    
+        // Converte o resultado para um par quando o botão de confirmação é pressionado
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == confirmButtonType) {
+                cidadeInserida = CampoNomeCidade.getText();
+                siglaInserida = CampoSiglaCidade.getText();
+            }
+            return null;
+        });
+        // Mostra o diálogo e aguarda
+        dialog.showAndWait();
+    }
+
+    private void gerenciarAlteracoes(){
+        ColumnNome.setOnEditCommit(event -> {
+            Estacao estacao = event.getRowValue();
+            estacao.setNome(event.getNewValue());
+            estacaoService.atualizarEstacao(estacao.getId(), estacao);
+        });
+        
+        ColumnDescricao.setOnEditCommit(event -> {
+            Estacao estacao = event.getRowValue();
+            estacao.setDescricao(event.getNewValue());
+            estacaoService.atualizarEstacao(estacao.getId(), estacao);
+        });
+        
+        ColumnLatitude.setOnEditCommit(event -> {
+            Estacao estacao = event.getRowValue();
+            estacao.setLatitude(event.getNewValue());
+            estacaoService.atualizarEstacao(estacao.getId(), estacao);
+        });
+        
+        ColumnLongitude.setOnEditCommit(event -> {
+            Estacao estacao = event.getRowValue();
+            estacao.setLongitude(event.getNewValue());
+            estacaoService.atualizarEstacao(estacao.getId(), estacao);
+        });
+
+        estacoes.getItems().clear();
+        List<Estacao> listaEstacao = estacaoService.buscaEstacao();
+        criarTabela(listaEstacao);
     }
 
 }

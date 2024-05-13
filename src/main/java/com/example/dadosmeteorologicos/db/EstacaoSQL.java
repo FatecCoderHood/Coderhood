@@ -29,8 +29,12 @@ public class EstacaoSQL extends IniciaBanco{
                 while(rs.next()){
                     Estacao estacao = new Estacao();
                     estacao.setId(rs.getInt("id"));
-                    estacao.setNumero(rs.getString("nome"));
+                    estacao.setNumero(rs.getString("numero"));
                     estacao.setSiglaCidade(rs.getString("siglaCidade"));
+                    estacao.setNome(rs.getString("nome"));
+                    estacao.setDescricao(rs.getString("descricao"));
+                    estacao.setLatitude(rs.getString("latitude"));
+                    estacao.setLongitude(rs.getString("longitude"));
                     listaEstacao.add(estacao);
                 }
             }
@@ -64,7 +68,7 @@ public class EstacaoSQL extends IniciaBanco{
     public Boolean numeroEstacaoValido(String numeroEstacao) {
         try {
             if(conn != null){
-                String sql = "SELECT * FROM estacao WHERE nome = ?";
+                String sql = "SELECT * FROM estacao WHERE numero = ?";
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, numeroEstacao);
                 ResultSet rs = stmt.executeQuery();
@@ -83,10 +87,44 @@ public class EstacaoSQL extends IniciaBanco{
     public void adicionarEstacaoBanco(String numeroNovaEstacao, String siglaCidadeNovaEstacao) {
         try {
             if(conn != null){
-                String sql = "INSERT INTO estacao (nome, siglacidade) VALUES (?, ?)";
+                String sql = "INSERT INTO estacao (numero, siglacidade) VALUES (?, ?)";
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, numeroNovaEstacao);
                 stmt.setString(2, siglaCidadeNovaEstacao);
+                stmt.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Boolean siglaCidadeExiste(String sigla) {
+        try {
+            if(conn != null){
+                String sql = "SELECT * FROM cidade WHERE sigla = ?";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setString(1, sigla);
+                ResultSet rs = stmt.executeQuery();
+                if(rs.next()){
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public void atualizarEstacaoBanco(int id, Estacao estacao){
+        try {
+            if(conn != null){
+                String sql = "UPDATE estacao SET nome = ?, descricao = ?, latitude = ?, longitude = ? WHERE id = ?";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setString(1, estacao.getNome());
+                stmt.setString(2, estacao.getDescricao());
+                stmt.setString(3, estacao.getLatitude());
+                stmt.setString(4, estacao.getLongitude());
+                stmt.setInt(5, id);
                 stmt.executeUpdate();
             }
         } catch (Exception e) {

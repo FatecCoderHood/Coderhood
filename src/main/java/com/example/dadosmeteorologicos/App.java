@@ -1,9 +1,11 @@
 package com.example.dadosmeteorologicos;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -18,9 +20,20 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        IniciaBanco banco = new IniciaBanco();
-        banco.iniciarBanco();
-        banco.fecharConexao();
+        try {
+            IniciaBanco banco = new IniciaBanco();
+            banco.criarDataBase();
+            banco.iniciarBanco();
+            banco.fecharConexao();
+        } catch (Exception e) {
+             Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Ocorreu um erro com a conexão do banco de dados.\nEntre em contato com os administradores");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            });
+        }
 
         scene = new Scene(loadFXML("Main"), 900, 650);
         stage.setScene(scene);
