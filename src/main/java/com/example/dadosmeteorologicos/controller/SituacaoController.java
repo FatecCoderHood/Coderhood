@@ -53,11 +53,11 @@ public class SituacaoController {
     @FXML
     public void initialize() {
         System.out.println("Iniciado situação");
-        CriarTabela();
+        criarTabela();
         loadSituacao();
     }
 
-    public void CriarTabela() {
+    public void criarTabela() {
         // Inicialize as colunas da tabela
         colunaCidade.setCellValueFactory(new PropertyValueFactory<>("siglaCidade"));
         colunaEstacao.setCellValueFactory(new PropertyValueFactory<>("estacao"));

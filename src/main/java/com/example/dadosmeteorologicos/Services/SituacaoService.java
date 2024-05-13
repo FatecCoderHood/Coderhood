@@ -10,8 +10,8 @@ public class SituacaoService {
     // Método para buscar registros de situação
     public List<Registro> buscaSituacaoService() {
         SituacaoSQL situacaoSQL = new SituacaoSQL();
-        List<Registro> registros = situacaoSQL.buscaSituacaoBanco();
+        List<Registro> listaRegistros = situacaoSQL.buscaSituacaoBanco();
         situacaoSQL.fecharConexao();
-        return registros;     
+        return listaRegistros;     
     }
 }

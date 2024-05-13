@@ -29,7 +29,7 @@ public class SituacaoSQL extends IniciaBanco {
                 "WHERE r1.tipo IN ('temperaturaMedia', 'umidadeMedia', 'VelVento', 'dirVento', 'chuva')";
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
-                // Adiciona os registros suspeitos na lista
+                // Adiciona os registros na lista
                 while (rs.next()) {
                     int id = rs.getInt("id");
                     LocalDate data = rs.getDate("data").toLocalDate();
