@@ -24,8 +24,8 @@ public class SituacaoSQL extends IniciaBanco {
             if(conn != null){
                 // Query para buscar os registros 
                 String sql = "SELECT r1.* FROM registro r1 " +
-                "JOIN (SELECT tipo, MAX(id) AS maxId FROM registro GROUP BY tipo) r2 " +
-                "ON r1.tipo = r2.tipo AND r1.id = r2.maxId " +
+                "JOIN (SELECT tipo, siglaCidade, MAX(id) AS maxId FROM registro GROUP BY tipo, siglaCidade) r2 " +
+                "ON r1.tipo = r2.tipo AND r1.siglaCidade = r2.siglaCidade AND r1.id = r2.maxId " +
                 "WHERE r1.tipo IN ('temperaturaMedia', 'umidadeMedia', 'VelVento', 'dirVento', 'chuva')";
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
