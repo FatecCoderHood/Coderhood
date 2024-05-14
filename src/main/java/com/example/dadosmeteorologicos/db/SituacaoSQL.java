@@ -1,6 +1,7 @@
 package com.example.dadosmeteorologicos.db;
 
-import com.example.dadosmeteorologicos.model.Registro;
+import com.example.dadosmeteorologicos.model.RegistroSituacao;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,38 +17,66 @@ public class SituacaoSQL extends IniciaBanco {
     }
 
     // Método para buscar registros de situação no banco
-    public List<Registro> buscaSituacaoBanco() {
-        // Lista de "situação"
-        List<Registro> listaRegistros = new ArrayList<>();
-        // Tenta buscar os registros  no banco
+    public List<RegistroSituacao> buscaSituacaoBanco() {
+        List<RegistroSituacao> listaRegistros = new ArrayList<>();
         try {
             if(conn != null){
-                // Query para buscar os registros 
                 String sql = "SELECT r1.* FROM registro r1 " +
-                "JOIN (SELECT tipo, siglaCidade, MAX(id) AS maxId FROM registro WHERE suspeito = false AND valor IS NOT NULL AND tipo IS NOT NULL AND siglaCidade IS NOT NULL GROUP BY tipo, siglaCidade) r2 " +
+                "JOIN (SELECT tipo, siglaCidade, MAX(id) AS maxId FROM registro WHERE suspeito = false GROUP BY tipo, siglaCidade) r2 " +
                 "ON r1.tipo = r2.tipo AND r1.siglaCidade = r2.siglaCidade AND r1.id = r2.maxId " +
-                "WHERE r1.tipo IN ('temperaturaMedia', 'umidadeMedia', 'VelVento', 'dirVento', 'chuva') AND r1.suspeito = false AND r1.valor IS NOT NULL AND r1.tipo IS NOT NULL AND r1.siglaCidade IS NOT NULL";
+                "WHERE r1.tipo IN ('temperaturaMedia', 'umidadeMedia', 'VelVento', 'dirVento', 'chuva') AND r1.suspeito = false " +
+                "ORDER BY r1.id DESC";
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
-                // Adiciona os registros na lista
                 while (rs.next()) {
+                    Double valor = rs.getDouble("valor");
+    
+                    // Check if valor is null
+                    if (valor == null) {
+                        continue;  // Skip this record
+                    }
+    
                     int id = rs.getInt("id");
                     LocalDate data = rs.getDate("data").toLocalDate();
                     LocalTime hora = rs.getTime("hora").toLocalTime();
                     String estacao = rs.getString("estacao");
                     String siglaCidade = rs.getString("siglaCidade");
                     String tipo = rs.getString("tipo");
-                    Double valor = rs.getDouble("valor");
                     boolean suspeito = rs.getBoolean("suspeito");
-                    Registro registro = new Registro(id, data, hora, estacao, siglaCidade, tipo, valor, suspeito);
-                    listaRegistros.add(registro);
+    
+                    RegistroSituacao registroSituacao = new RegistroSituacao();
+                    registroSituacao.setId(id);
+                    registroSituacao.setData(data);
+                    registroSituacao.setHora(hora);
+                    registroSituacao.setEstacao(estacao);
+                    registroSituacao.setSiglaCidade(siglaCidade);
+                    registroSituacao.setSuspeito(suspeito);
+
+                switch (tipo) {
+                    case "temperaturaMedia":
+                        registroSituacao.setTemperaturaMedia(valor);
+                        break;
+                    case "umidadeMedia":
+                        registroSituacao.setUmidadeMedia(valor);
+                        break;
+                    case "VelVento":
+                        registroSituacao.setVelVento(valor);
+                        break;
+                    case "dirVento":
+                        registroSituacao.setDirVento(valor);
+                        break;
+                    case "chuva":
+                        registroSituacao.setChuva(valor);
+                        break;
                 }
+
+                listaRegistros.add(registroSituacao);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-        // Retorna a lista de registros
-        return listaRegistros;
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+    return listaRegistros;
+}
 }
 

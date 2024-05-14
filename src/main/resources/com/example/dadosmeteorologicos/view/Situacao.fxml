@@ -9,6 +9,7 @@
       <TableView fx:id="tabelaSituacao" layoutX="48.0" layoutY="50.0" prefHeight="400.0" prefWidth="805.0">
         <columns>
           <TableColumn fx:id="colunaCidade" prefWidth="75.0" text="Cidade" />
+          <TableColumn fx:id="colunaEstacao" text="Estacao" />
             <TableColumn fx:id="colunaData" prefWidth="75.0" text="Data" />
             <TableColumn fx:id="colunaHora" prefWidth="75.0" text="Hora" />
             <TableColumn fx:id="colunaTemperatura" prefWidth="111.0" text="Temperatura" />
