@@ -1,10 +1,8 @@
 package com.example.dadosmeteorologicos.controller;
 
-import java.net.URL;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import com.example.dadosmeteorologicos.Services.BoxPlotService;
 
@@ -60,7 +58,7 @@ public class BoxPlotController {
     void initialize() {
         System.out.println("Iniciado boxplot");
 
-        btnExecutar.setVisible(false);
+        btnExecutar.setVisible(true);
 
         // Adiciona um ouvinte à propriedade de texto do menuButton de estação
         menuButtonEstacao.textProperty()
