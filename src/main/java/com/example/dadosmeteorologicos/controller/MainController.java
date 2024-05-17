@@ -98,7 +98,7 @@ public class MainController {
             } else if(newTab == tabBoxPlot){
                 try {
                     Pane boxplotPane = FXMLLoader.load(getClass().getResource("/com/example/dadosmeteorologicos/view/BoxPlot.fxml"));
-                    tabSuspeito.setContent(boxplotPane);
+                    tabBoxPlot.setContent(boxplotPane);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
