@@ -1,11 +1,15 @@
 package com.example.dadosmeteorologicos.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.example.dadosmeteorologicos.model.Cidade;
 import com.example.dadosmeteorologicos.model.RegistroSituacao;
 import com.example.dadosmeteorologicos.Services.SituacaoService;
+import com.example.dadosmeteorologicos.Services.CidadeService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,37 +24,35 @@ import javafx.scene.layout.AnchorPane;
 public class SituacaoController {
 
     @FXML
-    private AnchorPane Situacao;
-
-    @FXML
-    private TableColumn<?, ?> colunaChuva;
-
-    @FXML
-    private TableColumn<?, ?> colunaCidade;
-
-    @FXML
-    private TableColumn<?, ?> colunaData;
-
-    @FXML
-    private TableColumn<?, ?> colunaDirVento;
-
-    @FXML
-    private TableColumn<?, ?> colunaEstacao;
-
-    @FXML
-    private TableColumn<?, ?> colunaHora;
-
-    @FXML
-    private TableColumn<?, ?> colunaTemperatura;
-
-    @FXML
-    private TableColumn<?, ?> colunaUmidade;
-
-    @FXML
-    private TableColumn<?, ?> colunaVelVento;
-
-    @FXML
     private TableView<RegistroSituacao> tabelaSituacao;
+
+    @FXML
+    private TableColumn<RegistroSituacao, LocalDate> colunaData;
+
+    @FXML
+    private TableColumn<RegistroSituacao, LocalTime> colunaHora;
+
+    @FXML
+    private TableColumn<RegistroSituacao, String> colunaEstacao;
+
+    @FXML
+    private TableColumn<RegistroSituacao, String> colunaChuva;
+
+    @FXML
+    private TableColumn<RegistroSituacao, String> colunaCidade;
+
+    @FXML
+    private TableColumn<RegistroSituacao, String> colunaDirVento;
+
+    @FXML
+    private TableColumn<RegistroSituacao, String> colunaTemperatura;
+
+    @FXML
+    private TableColumn<RegistroSituacao, String> colunaUmidade;
+
+    @FXML
+    private TableColumn<RegistroSituacao, String> colunaVelVento;
+
 
     @FXML
     public void initialize() {
@@ -65,8 +67,8 @@ public class SituacaoController {
         colunaEstacao.setCellValueFactory(new PropertyValueFactory<>("estacao"));
         colunaData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colunaHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
-        colunaTemperatura.setCellValueFactory(new PropertyValueFactory<>("temperatura"));
-        colunaUmidade.setCellValueFactory(new PropertyValueFactory<>("umidade"));
+        colunaTemperatura.setCellValueFactory(new PropertyValueFactory<>("temperaturaMedia"));
+        colunaUmidade.setCellValueFactory(new PropertyValueFactory<>("umidadeMedia"));
         colunaChuva.setCellValueFactory(new PropertyValueFactory<>("chuva"));
         colunaDirVento.setCellValueFactory(new PropertyValueFactory<>("dirVento"));
         colunaVelVento.setCellValueFactory(new PropertyValueFactory<>("velVento"));
@@ -85,36 +87,15 @@ public class SituacaoController {
     // Carrega os ultimos registros de cada cidade
     private void loadSituacao() {
         SituacaoService situacaoService = new SituacaoService();
-        List<RegistroSituacao> registros = situacaoService.buscaSituacaoService();
-        ObservableList<RegistroSituacao> listaSituacao = FXCollections.observableArrayList();
+        CidadeService cidadeService = new CidadeService();
+        List<Cidade> cidades = cidadeService.getCidades();
 
-        // Use a map to store the latest Registro for each city
-        Map<String, RegistroSituacao> ultimoRegistroPorCidade = new HashMap<>();
+        Map<Cidade, RegistroSituacao> registroSituacao = situacaoService.getRegistroSituacao(cidades);
+        System.out.println(registroSituacao);
 
-    for (RegistroSituacao registroSituacao : registros) {
-        RegistroSituacao registro = new RegistroSituacao();
-        registro.setId(registroSituacao.getId());
-        registro.setEstacao(registroSituacao.getEstacao());
-        registro.setData(registroSituacao.getData());
-        registro.setHora(registroSituacao.getHora());
-        registro.setTemperaturaMedia(registroSituacao.getTemperaturaMedia());
-        registro.setUmidadeMedia(registroSituacao.getUmidadeMedia());
-        registro.setChuva(registroSituacao.getChuva());
-        registro.setDirVento(registroSituacao.getDirVento());
-        registro.setVelVento(registroSituacao.getVelVento());
-
-        // Get the city from the Registro
-        String cidadeString = registroSituacao.getSiglaCidade();
-
-        // If this is the first Registro for this city or if this Registro is newer than the current latest, update the map
-        if (!ultimoRegistroPorCidade.containsKey(cidadeString) || registro.getData().isAfter(ultimoRegistroPorCidade.get(cidadeString).getData())) {
-            ultimoRegistroPorCidade.put(cidadeString, registroSituacao);
+        for (Map.Entry<Cidade, RegistroSituacao> entry : registroSituacao.entrySet()) {
+            RegistroSituacao registro = entry.getValue();
+            tabelaSituacao.getItems().add(registro);
         }
     }
-
-    // Add the latest Registro for each city to the ObservableList
-    listaSituacao.addAll(ultimoRegistroPorCidade.values());
-
-    tabelaSituacao.setItems(listaSituacao);
-}
 }
