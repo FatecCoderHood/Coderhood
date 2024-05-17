@@ -52,7 +52,6 @@ public class BoxPlotController {
     @FXML
     private TableColumn<?, ?> columnLegenda;
 
-
     public BoxPlotController() {
         this.service = new BoxPlotService();
     }
@@ -60,47 +59,51 @@ public class BoxPlotController {
     @FXML
     void initialize() {
         System.out.println("Iniciado boxplot");
-        
-
 
         btnExecutar.setVisible(false);
 
         // Adiciona um ouvinte à propriedade de texto do menuButton de estação
-        menuButtonEstacao.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            checkFields();
-        });
+        menuButtonEstacao.textProperty()
+                .addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+                    checkFields();
+                });
 
-        dataInicial.valueProperty().addListener((ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) -> {
-            checkFields();
-        });
+        dataInicial.valueProperty().addListener(
+                (ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) -> {
+                    checkFields();
+                });
 
-
-        //Busca as estações disponíveis no banco de dados
+        // Busca as estações disponíveis no banco de dados
         List<String[]> estacoes = service.getEstacoesDoBancoDeDados();
+
+        if (estacoes == null) {
+            System.out.println("Estacoes é null");
+        } else {
+            System.out.println("Número de estações: " + estacoes.size());
+        }
 
         for (String[] estacao : estacoes) {
             System.out.println(Arrays.toString(estacao));
             MenuItem menuItem = new MenuItem(estacao[0] + " - " + estacao[2] + " - " + estacao[1]);
-            menuItem.setOnAction((event) -> {
+            menuItem.setOnAction(event -> {
                 menuButtonEstacao.setText(menuItem.getText());
 
-            menuButtonEstacao.getItems().add(menuItem);
+                menuButtonEstacao.getItems().add(menuItem);
 
-            LocalDate minDate = LocalDate.parse(estacao[3]);
-            LocalDate maxDate = LocalDate.parse(estacao[4]);
+                LocalDate minDate = LocalDate.parse(estacao[3]);
+                LocalDate maxDate = LocalDate.parse(estacao[4]);
 
-            dataInicial.setDayCellFactory(picker -> new DateCell() {
-                @Override
-                public void updateItem(LocalDate date, boolean empty) {
-                    super.updateItem(date, empty);
-                    setDisable(empty || date.compareTo(minDate) < 0 || date.compareTo(maxDate) > 0);
-                }
+                dataInicial.setDayCellFactory(picker -> new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate date, boolean empty) {
+                        super.updateItem(date, empty);
+                        setDisable(empty || date.compareTo(minDate) < 0 || date.compareTo(maxDate) > 0);
+                    }
                 });
             });
+            menuButtonEstacao.getItems().add(menuItem);
 
-            
         }
-        
 
     }
 
@@ -112,4 +115,3 @@ public class BoxPlotController {
     }
 
 }
-

@@ -1,6 +1,8 @@
 package com.example.dadosmeteorologicos.Services;
 
 import java.util.List;
+import java.sql.Date;
+
 
 import com.example.dadosmeteorologicos.db.BoxPlotSQL;
 
