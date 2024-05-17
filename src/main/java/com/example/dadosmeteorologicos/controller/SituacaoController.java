@@ -2,7 +2,6 @@ package com.example.dadosmeteorologicos.controller;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,13 +10,10 @@ import com.example.dadosmeteorologicos.model.RegistroSituacao;
 import com.example.dadosmeteorologicos.Services.SituacaoService;
 import com.example.dadosmeteorologicos.Services.CidadeService;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 
 
 
