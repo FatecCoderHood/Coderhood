@@ -18,7 +18,7 @@ public class SituacaoSQL extends IniciaBanco {
         RegistroSituacao registro = new RegistroSituacao();
         try{
             if(conn != null){
-                String sql = "SELECT * from registro WHERE siglaCidade = ? AND suspeito = false AND valor is not null ORDER BY data DESC, hora DESC LIMIT 5";
+                String sql = "SELECT * from registro WHERE siglaCidade = ? AND suspeito = false AND valor is not null AND valor <> 0.00 ORDER BY data DESC, hora DESC LIMIT 5";
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, cidade.getSigla());
                 ResultSet rs = stmt.executeQuery();
