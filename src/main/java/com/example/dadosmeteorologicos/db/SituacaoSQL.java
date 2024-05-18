@@ -18,23 +18,27 @@ public class SituacaoSQL extends IniciaBanco {
         RegistroSituacao registro = new RegistroSituacao();
         try{
             if(conn != null){
-                String sql = "SELECT * from registro WHERE siglaCidade = ? AND suspeito = false AND valor is not null ORDER BY data DESC, hora DESC LIMIT 5";
+                String sql = "SELECT * FROM ( " +
+                             "  SELECT *, ROW_NUMBER() OVER (PARTITION BY siglaCidade, tipo ORDER BY data DESC, hora DESC) AS rn " +
+                             "  FROM registro " +
+                             "  WHERE siglaCidade = ? AND suspeito = false AND valor IS NOT NULL" +
+                             ") subquery " +
+                             "WHERE rn = 1";
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, cidade.getSigla());
                 ResultSet rs = stmt.executeQuery();
-
+    
                 while(rs.next()){
-
                     registro.setSiglaCidade(rs.getString("siglaCidade"));
                     registro.setEstacao(rs.getString("estacao"));
                     registro.setData(rs.getDate("data").toLocalDate());
                     registro.setHora(rs.getTime("hora").toLocalTime());
-
+    
                     String tipo = rs.getString("tipo");
                     Double valor = rs.getDouble("valor");
-
+    
                     System.out.println("data:" + registro.getData() + "Hora:" + registro.getHora() + "Tipo: " + tipo + " Valor: " + valor);
-
+    
                     switch (tipo){
                         case "chuva":
                             registro.setChuva(valor);
@@ -60,5 +64,7 @@ public class SituacaoSQL extends IniciaBanco {
         }
         return null;
     }
-}
+    
+    }
+
 
