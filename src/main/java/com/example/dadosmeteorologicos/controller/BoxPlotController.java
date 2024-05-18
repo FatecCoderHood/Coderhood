@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.example.dadosmeteorologicos.Services.BoxPlotService;
+import com.example.dadosmeteorologicos.model.BoxPlot;
 
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
@@ -16,51 +18,62 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 
 public class BoxPlotController {
     private BoxPlotService service;
-    @FXML
-    private TableColumn<?, ?> columnsVelVento;
-
-    @FXML
-    private Button btnExecutar;
-
+   //adicionando selecionáveis
     @FXML
     private MenuButton menuButtonEstacao;
 
     @FXML
-    private TableColumn<?, ?> columnDirVento;
+    private DatePicker dataInicial;
+
+    //tabela de info da estação
+    @FXML
+    private TableColumn<BoxPlot, String> colunaCidade;
 
     @FXML
-    private TableColumn<?, ?> columnData;
+    private TableColumn<BoxPlot, LocalDate> colunaData;
+
+    @FXML
+    private TableColumn<BoxPlot, String> colunaEstacao;
+    
+    //tabela das variaveis boxplot
+    @FXML
+    private TableColumn<BoxPlot, String> colunaChuva;
+
+    @FXML
+    private TableColumn<BoxPlot, String> colunaDirVento;
+
+    @FXML
+    private TableColumn<BoxPlot, String> colunaTemperatura;
+
+    @FXML
+    private TableColumn<BoxPlot, String> colunaUmidade;
+
+    @FXML
+    private TableColumn<BoxPlot, String> colunaVelVento;
+
+    // adicionando botões
+    @FXML
+    private Button btnExecutar;
 
     @FXML
     private Button btnExportar;
 
-    @FXML
-    private TableColumn<?, ?> columnTemperatura;
-
-    @FXML
-    private TableColumn<?, ?> columnChuva;
-
-    @FXML
-    private DatePicker dataInicial;
-
-    @FXML
-    private TableColumn<?, ?> columnEstacao;
-
-    @FXML
-    private TableColumn<?, ?> columnLegenda;
 
     public BoxPlotController() {
         this.service = new BoxPlotService();
     }
 
+
     @FXML
     void initialize() {
         System.out.println("Iniciado boxplot");
 
-        btnExecutar.setVisible(false);
+        btnExecutar.setVisible(true);
 
         // Adiciona um ouvinte à propriedade de texto do menuButton de estação
         menuButtonEstacao.textProperty()
@@ -114,4 +127,9 @@ public class BoxPlotController {
         }
     }
 
+
+    public void buscarInfoBoxPlot(ActionEvent event){
+        System.out.println("eu tenho");
+
+    }
 }

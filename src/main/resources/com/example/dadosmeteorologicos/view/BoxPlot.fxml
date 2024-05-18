@@ -22,7 +22,7 @@
             <TableColumn fx:id="columnData" minWidth="5.0" prefWidth="108.0" text="Data " />
         </columns>
       </TableView>
-      <Button fx:id="btnExecutar" layoutX="315.0" layoutY="428.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="90.0" text="Executar" />
+      <Button fx:id="btnExecutar" layoutX="315.0" layoutY="428.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="90.0" text="Executar" onAction="#buscarInfoBoxPlot" />
       <Button fx:id="btnExportar" layoutX="505.0" layoutY="427.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="90.0" text="Exportar" />
       <Text layoutX="271.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dados para Gráfico BoxPlot" textAlignment="CENTER" wrappingWidth="343.4951171875">
          <font>
