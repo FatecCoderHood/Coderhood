@@ -137,12 +137,12 @@ public class IniciaBanco {
                 System.out.println("Tabela estacao");
                 String sql = "CREATE TABLE IF NOT EXISTS estacao (" +
                     "id SERIAL PRIMARY KEY," +
-                    "numero VARCHAR(255)," +
+                    "numero VARCHAR(255) UNIQUE," +
                     "siglaCidade VARCHAR(05)," +
                     "nome VARCHAR(255)," +
                     "descricao VARCHAR(255)," +
-                    "latitude VARCHAR(255)," +
-                    "longitude VARCHAR(255)" +
+                    "latitude DOUBLE PRECISION," +
+                    "longitude DOUBLE PRECISION" +
                     ")";
     
                 Statement stmt = conn.createStatement();

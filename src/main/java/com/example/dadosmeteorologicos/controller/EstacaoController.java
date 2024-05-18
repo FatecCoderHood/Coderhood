@@ -25,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
+import javafx.util.converter.DoubleStringConverter;
 import javafx.scene.control.TableCell;
 
 public class EstacaoController {
@@ -49,10 +50,10 @@ public class EstacaoController {
     private TableColumn<Estacao, String> ColumnDescricao; // Coluna para a descrição da estação
 
     @FXML
-    private TableColumn<Estacao, String> ColumnLatitude; // Coluna para a latitude da estação
+    private TableColumn<Estacao, Double> ColumnLatitude; // Coluna para a latitude da estação
 
     @FXML
-    private TableColumn<Estacao, String> ColumnLongitude; // Coluna para a longitude da estação
+    private TableColumn<Estacao, Double> ColumnLongitude; // Coluna para a longitude da estação
 
     @FXML
     private TableColumn<Estacao, Void> ColumnButton; // Coluna para os botões de ação
@@ -77,8 +78,8 @@ public class EstacaoController {
         criarTabela(listaEstacao);
         ColumnNome.setCellFactory(TextFieldTableCell.forTableColumn());
         ColumnDescricao.setCellFactory(TextFieldTableCell.forTableColumn());
-        ColumnLatitude.setCellFactory(TextFieldTableCell.forTableColumn());
-        ColumnLongitude.setCellFactory(TextFieldTableCell.forTableColumn());
+        ColumnLatitude.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        ColumnLongitude.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         estacoes.setEditable(true);
         gerenciarAlteracoes();
     }
@@ -112,6 +113,10 @@ public class EstacaoController {
 
     @FXML
     void criarTabela(List<Estacao> estacoesDoBanco) {
+        for (Estacao estacao : estacoesDoBanco) {
+            System.out.println(estacao.getLongitude());
+            System.out.println(estacao.getLongitude().getClass().getSimpleName());
+        }
         ColumnSigla.setCellValueFactory(new PropertyValueFactory<>("siglaCidade"));
         ColumnEstacao.setCellValueFactory(new PropertyValueFactory<>("numero"));
         ColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -260,12 +265,14 @@ public class EstacaoController {
         
         ColumnLatitude.setOnEditCommit(event -> {
             Estacao estacao = event.getRowValue();
+            // Double latitude = Double.parseDouble(event.getNewValue().replace(",", "."));
             estacao.setLatitude(event.getNewValue());
             estacaoService.atualizarEstacao(estacao.getId(), estacao);
         });
         
         ColumnLongitude.setOnEditCommit(event -> {
             Estacao estacao = event.getRowValue();
+            // Double longitude = Double.parseDouble(event.getNewValue().replace(",", "."));
             estacao.setLongitude(event.getNewValue());
             estacaoService.atualizarEstacao(estacao.getId(), estacao);
         });
