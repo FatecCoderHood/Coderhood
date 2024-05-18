@@ -46,7 +46,7 @@ public class MainController {
     @FXML
     public void initialize() {
         
-        Image imageFundo = new Image(getClass().getResourceAsStream("/com/example/dadosmeteorologicos/imagens/fundo.gif"));
+        Image imageFundo = new Image(getClass().getResourceAsStream("/com/example/dadosmeteorologicos/imagens/rain3.gif"));
         imageViewFundo.setImage(imageFundo);
         
         Image imageLogoCoderHood = new Image(getClass().getResourceAsStream("/com/example/dadosmeteorologicos/imagens/logo.png"));
