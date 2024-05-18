@@ -19,32 +19,19 @@
             </content>
           </Tab>
           <Tab fx:id="tabSituacao" text="Situação">
-            <content>
-              <fx:include source="Situacao.fxml" />
-            </content>
           </Tab>
           <Tab fx:id="tabValorMedio" text="Valor Medio">
-            <content>
-            </content>
           </Tab>
             <Tab fx:id="tabCidade" text="Cidade">
           </Tab>
           <Tab fx:id="tabEstacao" text="Estação">
-            <content>
-              
-            </content>
           </Tab>
           <Tab fx:id="tabSuspeito" text="Registros Suspeitos">
-
           </Tab>
           <Tab text="BoxPlot">
-            <content>
-              
-            </content>
           </Tab>
             <Tab fx:id="tabConf" text="Configurações">
-            <content>
-            </content>
+
           </Tab>
         </tabs>
       </TabPane>
