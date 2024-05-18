@@ -18,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.GridPane;
 
@@ -48,6 +49,9 @@ public class CidadeController {
     void initialize() {
         List<Cidade> cidadesDoBanco = cidadeService.getCidades();
         criarTabela(cidadesDoBanco);
+        colunaNome.setCellFactory(TextFieldTableCell.forTableColumn());
+        tabelaCidades.setEditable(true);
+        gerenciarCidade();
     }
 
     @FXML
@@ -159,5 +163,17 @@ public class CidadeController {
         colunaBotao.setStyle( "-fx-alignment: CENTER;");
 
         tabelaCidades.getItems().addAll(cidadesDoBanco);
+    }
+
+    private void gerenciarCidade(){
+        colunaNome.setOnEditCommit(event -> {
+            Cidade cidade = event.getRowValue();
+            cidade.setNome(event.getNewValue());
+            cidadeService.atualizarCidade(cidade.getId(), cidade.getNome());
+            tabelaCidades.getItems().clear();
+            List<Cidade> cidadesDoBanco = cidadeService.getCidades();
+            criarTabela(cidadesDoBanco);
+        });
+
     }
 }

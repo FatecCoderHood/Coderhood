@@ -23,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.TableCell;
 
@@ -42,10 +43,24 @@ public class EstacaoController {
     private TableColumn<Estacao, String> ColumnEstacao; // Coluna para o número da estação
 
     @FXML
+    private TableColumn<Estacao, String> ColumnNome; // Coluna para o nome da cidade
+
+    @FXML
+    private TableColumn<Estacao, String> ColumnDescricao; // Coluna para a descrição da estação
+
+    @FXML
+    private TableColumn<Estacao, String> ColumnLatitude; // Coluna para a latitude da estação
+
+    @FXML
+    private TableColumn<Estacao, String> ColumnLongitude; // Coluna para a longitude da estação
+
+    @FXML
     private TableColumn<Estacao, Void> ColumnButton; // Coluna para os botões de ação
 
     @FXML
     private Button adicionarNovaEstacao; // Botão para adicionar uma nova estação
+
+    
 
     private static EstacaoService estacaoService = new EstacaoService();
 
@@ -60,6 +75,12 @@ public class EstacaoController {
         System.out.println("Iniciado estacao");
         List<Estacao> listaEstacao = estacaoService.buscaEstacao();
         criarTabela(listaEstacao);
+        ColumnNome.setCellFactory(TextFieldTableCell.forTableColumn());
+        ColumnDescricao.setCellFactory(TextFieldTableCell.forTableColumn());
+        ColumnLatitude.setCellFactory(TextFieldTableCell.forTableColumn());
+        ColumnLongitude.setCellFactory(TextFieldTableCell.forTableColumn());
+        estacoes.setEditable(true);
+        gerenciarAlteracoes();
     }
 
     @FXML
@@ -70,13 +91,9 @@ public class EstacaoController {
     
         if (estacaoService.numeroEstacaoValido(estacaoInserida)) {
             if(!estacaoService.siglaCidadeExiste(siglaInserida)){
-                if (!dialogoCriarCidade()) {
-                    System.out.println();
-                    return;
-                }else{
-                    CidadeService cidadeService = new CidadeService();
-                    cidadeService.criarCidade(cidadeInserida, siglaInserida);
-                }
+                dialogoCriarCidade();
+                CidadeService cidadeService = new CidadeService();
+                cidadeService.criarCidade(cidadeInserida, siglaInserida);
                 
             }
             estacaoService.adicionarNovaEstacao(estacaoInserida, siglaInserida);
@@ -97,9 +114,13 @@ public class EstacaoController {
     void criarTabela(List<Estacao> estacoesDoBanco) {
         ColumnSigla.setCellValueFactory(new PropertyValueFactory<>("siglaCidade"));
         ColumnEstacao.setCellValueFactory(new PropertyValueFactory<>("numero"));
+        ColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        ColumnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        ColumnLatitude.setCellValueFactory(new PropertyValueFactory<>("latitude"));
+        ColumnLongitude.setCellValueFactory(new PropertyValueFactory<>("longitude"));
 
         ColumnButton.setCellFactory(param -> new TableCell<Estacao, Void>() {
-            private final Button btn = new Button("Deletar Estação");
+            private final Button btn = new Button("Deletar");
 
             @Override
             protected void updateItem(Void item, boolean empty) {
@@ -132,6 +153,10 @@ public class EstacaoController {
         ColumnButton.setStyle("-fx-alignment: CENTER;");
         ColumnEstacao.setStyle("-fx-alignment: CENTER;");
         ColumnSigla.setStyle("-fx-alignment: CENTER;");
+        ColumnNome.setStyle("-fx-alignment: CENTER;");
+        ColumnDescricao.setStyle("-fx-alignment: CENTER;");
+        ColumnLatitude.setStyle("-fx-alignment: CENTER;");
+        ColumnLongitude.setStyle("-fx-alignment: CENTER;");
 
         estacoes.getItems().addAll(estacoesDoBanco);
     }
@@ -187,8 +212,8 @@ public class EstacaoController {
         return dialog.showAndWait().orElse(false);
     }
 
-    private Boolean dialogoCriarCidade(){
-        Dialog<Boolean> dialog = new Dialog<>();
+    private void dialogoCriarCidade() {
+        Dialog<Void> dialog = new Dialog<>();
         dialog.setTitle("Cidade não encontrada, criar nova cidade?");
         ButtonType confirmButtonType = new ButtonType("Confirmar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, ButtonType.CANCEL);
@@ -213,27 +238,41 @@ public class EstacaoController {
             if (dialogButton == confirmButtonType) {
                 cidadeInserida = CampoNomeCidade.getText();
                 siglaInserida = CampoSiglaCidade.getText();
-        
-                // Verifica se os campos não estão vazios
-                if (cidadeInserida.trim().isEmpty() || siglaInserida.trim().isEmpty() ||siglaInserida.trim().length() < 2) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    if (cidadeInserida.trim().isEmpty() || siglaInserida.trim().isEmpty()) {
-                        alert.setTitle("ERRO");
-                        alert.setContentText("Os campos não podem estar vazios");
-                    } else {
-                        alert.setTitle("ERRO");
-                        alert.setContentText("Sigla precisa ter no mínimo 2 caracteres");
-                    }
-                    alert.showAndWait();
-                    return false;
-                }
-                return true;
             }
-            return false;
+            return null;
         });
-    
-        // Retorna o valor dentro do Optional
-        return dialog.showAndWait().orElse(false);
+        // Mostra o diálogo e aguarda
+        dialog.showAndWait();
+    }
+
+    private void gerenciarAlteracoes(){
+        ColumnNome.setOnEditCommit(event -> {
+            Estacao estacao = event.getRowValue();
+            estacao.setNome(event.getNewValue());
+            estacaoService.atualizarEstacao(estacao.getId(), estacao);
+        });
+        
+        ColumnDescricao.setOnEditCommit(event -> {
+            Estacao estacao = event.getRowValue();
+            estacao.setDescricao(event.getNewValue());
+            estacaoService.atualizarEstacao(estacao.getId(), estacao);
+        });
+        
+        ColumnLatitude.setOnEditCommit(event -> {
+            Estacao estacao = event.getRowValue();
+            estacao.setLatitude(event.getNewValue());
+            estacaoService.atualizarEstacao(estacao.getId(), estacao);
+        });
+        
+        ColumnLongitude.setOnEditCommit(event -> {
+            Estacao estacao = event.getRowValue();
+            estacao.setLongitude(event.getNewValue());
+            estacaoService.atualizarEstacao(estacao.getId(), estacao);
+        });
+
+        estacoes.getItems().clear();
+        List<Estacao> listaEstacao = estacaoService.buscaEstacao();
+        criarTabela(listaEstacao);
     }
 
 }

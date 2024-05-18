@@ -23,9 +23,6 @@
             </content>
           </Tab>
             <Tab fx:id="tabCidade" text="Cidade">
-            <content>
-              <fx:include source="Cidade.fxml" />
-            </content>
           </Tab>
           <Tab fx:id="tabEstacao" text="Estação">
             <content>

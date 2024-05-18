@@ -43,6 +43,12 @@ public class EstacaoService {
       return siglaValida;
    }
 
+   public void atualizarEstacao(int id, Estacao estacao){
+      EstacaoSQL banco = new EstacaoSQL();
+      banco.atualizarEstacaoBanco(id, estacao);
+      banco.fecharConexao();
+   }
+
 }
 
 

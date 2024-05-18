@@ -9,6 +9,10 @@ public class Estacao {
     private int id;
     private String numero;
     private String siglaCidade;
+    private String nome;
+    private String descricao;
+    private String latitude;
+    private String longitude;
 
 
     Estacao(String numero, String siglaCidade) {

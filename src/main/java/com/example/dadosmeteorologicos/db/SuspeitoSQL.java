@@ -48,15 +48,12 @@ public class SuspeitoSQL extends IniciaBanco {
 
 
     // Método para deletar um registro suspeito
-    public void deletarRegistroSuspeito(LocalDate data, LocalTime hora, String estacao, String siglaCidade){
+    public void deletarRegistroSuspeito(int id){
         try {
             if(conn != null){
-                String sql = "DELETE FROM registro WHERE data = ? AND hora = ? AND estacao = ? AND siglaCidade = ?";
+                String sql = "DELETE FROM registro WHERE id = ?";
                 PreparedStatement stmt = conn.prepareStatement(sql);
-                stmt.setDate(1, Date.valueOf(data));
-                stmt.setTime(2, Time.valueOf(hora));
-                stmt.setString(3, estacao);
-                stmt.setString(4, siglaCidade);
+                stmt.setInt(1,id);
                 stmt.executeUpdate();
             }
         } catch (SQLException e) {
