@@ -1,10 +1,8 @@
 package com.example.dadosmeteorologicos.controller;
 
-import java.net.URL;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import com.example.dadosmeteorologicos.Services.BoxPlotService;
 import com.example.dadosmeteorologicos.model.BoxPlot;
