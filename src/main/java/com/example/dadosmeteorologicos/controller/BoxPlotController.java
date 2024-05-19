@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.example.dadosmeteorologicos.Services.BoxPlotService;
-import com.example.dadosmeteorologicos.model.Registro;
 import com.example.dadosmeteorologicos.model.ValoresBoxPlot;
 import com.example.dadosmeteorologicos.model.BoxPlot;
 
@@ -25,7 +24,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class BoxPlotController {
     private BoxPlotService service;
-
     @FXML
     private MenuButton menuButtonEstacao;
 
@@ -75,6 +73,7 @@ public class BoxPlotController {
         this.service = new BoxPlotService();
     }
     
+
 
     @FXML
     void initialize() {
