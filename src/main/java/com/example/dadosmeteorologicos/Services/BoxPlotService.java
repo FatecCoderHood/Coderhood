@@ -1,8 +1,8 @@
 package com.example.dadosmeteorologicos.Services;
 
+import java.time.LocalDate;
 import java.util.List;
-
-
+import java.util.Map;
 
 import com.example.dadosmeteorologicos.db.BoxPlotSQL;
 
@@ -19,4 +19,15 @@ public class BoxPlotService {
         // Retorna a lista de estações
         return estacoes;
     }
+
+    // Método para obter os dados de um boxplot
+    public Map<String, List<String>> getBoxPlotDados(int numeroEstacao, LocalDate data){
+        // Cria uma nova instância da classe BoxPlotSQL
+        BoxPlotSQL banco = new BoxPlotSQL();
+        // Chama o método getBoxPlotDados para obter os dados do boxplot
+        Map<String, List<String>> boxPlotDados = banco.getBoxPlotDados(numeroEstacao, data);
+        // Fecha a conexão com o banco de dados
+        banco.fecharConexao();
+        // Retorna os dados do boxplot
+        return boxPlotDados;}
 }

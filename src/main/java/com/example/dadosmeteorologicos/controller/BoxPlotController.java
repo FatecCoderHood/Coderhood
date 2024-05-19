@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.example.dadosmeteorologicos.Services.BoxPlotService;
 import com.example.dadosmeteorologicos.model.ValoresBoxPlot;
@@ -17,10 +20,10 @@ import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 
 public class BoxPlotController {
     private BoxPlotService service;
@@ -34,22 +37,22 @@ public class BoxPlotController {
     private TableView<ValoresBoxPlot> tabelaDados;
 
     @FXML
-    private TableColumn<ValoresBoxPlot, String> columnLegenda;
+    private TableColumn<ValoresBoxPlot, String> columnTipo;
 
     @FXML
-    private TableColumn<ValoresBoxPlot, String> columnsVelVento;
+    private TableColumn<ValoresBoxPlot, Double> columnMin;
 
     @FXML
-    private TableColumn<ValoresBoxPlot, String> columnDirVento;
+    private TableColumn<ValoresBoxPlot, Double> columnQ1;
 
     @FXML
-    private TableColumn<ValoresBoxPlot, String> columnTemperatura;
+    private TableColumn<ValoresBoxPlot, Double> columnMediana;
 
     @FXML
-    private TableColumn<ValoresBoxPlot, String> columnUmidade;
+    private TableColumn<ValoresBoxPlot, Double> columnQ3;
 
     @FXML
-    private TableColumn<ValoresBoxPlot, String> columnChuva;
+    private TableColumn<ValoresBoxPlot, Double> columnMax;
 
     @FXML
     private TableView<BoxPlot> tabelaEstacao;
@@ -72,17 +75,12 @@ public class BoxPlotController {
     public BoxPlotController() {
         this.service = new BoxPlotService();
     }
-    
-
 
     @FXML
     void initialize() {
         System.out.println("Iniciado boxplot");
 
-
         btnExecutar.setVisible(false);
-
-        
 
         // Adiciona um ouvinte à propriedade de texto do menuButton de estação
         menuButtonEstacao.textProperty()
@@ -134,59 +132,122 @@ public class BoxPlotController {
         }
     }
 
+    private List<Double> convertToDoubleList(List<String> list) {
+        return list.stream()
+                .filter(Objects::nonNull)
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .map(Double::parseDouble)
+                .collect(Collectors.toList());
+    }
+    
     @FXML
     public void selecionarEstacao(ActionEvent event) {
         LocalDate dataSelecionada = dataInicial.getValue();
         String estacaoSelecionada = menuButtonEstacao.getText();
-
+    
         String[] partes = estacaoSelecionada.split(" - ");
         if (partes.length == 3) {
             String numeroEstacao = partes[0];
             String siglaCidade = partes[2];
             String siglaEstacao = partes[1];
-            System.out.println("Estação selecionada: " + numeroEstacao + " - " + siglaCidade + " - " + siglaEstacao);
-            System.out.println("Data selecionada: " + dataSelecionada);
-
+    
             BoxPlot boxPlotSelecionado = new BoxPlot(dataSelecionada, numeroEstacao, siglaCidade, siglaEstacao);
-
-            System.out.println("Data selecionada: " + dataSelecionada + "Texto");
-            System.out.println("Estação selecionada: " + numeroEstacao);
-            System.out.println("Cidade selecionada: " + siglaCidade);
-            System.out.println("Sigla selecionada: " + siglaEstacao);
-
+    
+            int numeroEstacaoDados = Integer.parseInt(numeroEstacao);
+            Map<String, List<String>> boxPlotDados = service.getBoxPlotDados(numeroEstacaoDados, dataSelecionada);
+    
+            List<Double> temperatura = convertToDoubleList(boxPlotDados.get("temperaturaMedia"));
+            List<Double> umidade = convertToDoubleList(boxPlotDados.get("umidadeMedia"));
+            List<Double> velVento = convertToDoubleList(boxPlotDados.get("velVento"));
+            List<Double> dirVento = convertToDoubleList(boxPlotDados.get("dirVento"));
+            List<Double> chuva = convertToDoubleList(boxPlotDados.get("chuva"));
+    
+            ValoresBoxPlot temperaturaBoxPlot = new ValoresBoxPlot("Temperatura", temperatura.stream().mapToDouble(Double::doubleValue).toArray());
+            ValoresBoxPlot umidadeBoxPlot = new ValoresBoxPlot("Umidade", umidade.stream().mapToDouble(Double::doubleValue).toArray());
+            ValoresBoxPlot velVentoBoxPlot = new ValoresBoxPlot("Velocidade do Vento", velVento.stream().mapToDouble(Double::doubleValue).toArray());
+            ValoresBoxPlot dirVentoBoxPlot = new ValoresBoxPlot("Direção do Vento", dirVento.stream().mapToDouble(Double::doubleValue).toArray());
+            ValoresBoxPlot chuvaBoxPlot = new ValoresBoxPlot("Chuva", chuva.stream().mapToDouble(Double::doubleValue).toArray());
+    
+            List<ValoresBoxPlot> dadosBoxPlot = Arrays.asList(
+                    temperaturaBoxPlot, umidadeBoxPlot, velVentoBoxPlot, dirVentoBoxPlot, chuvaBoxPlot);
+    
             criarTabelaCidade(boxPlotSelecionado);
-
-
-
+            criarTabelaDados(dadosBoxPlot);
         }
     }
 
     @FXML
     public void criarTabelaCidade(BoxPlot boxPlotSelecionado) {
+        // Cria a tabela informando a data, a estação, a cidade.
         List<BoxPlot> boxPlots = new ArrayList<>();
         boxPlots.add(boxPlotSelecionado);
 
         columnData.setCellValueFactory(new PropertyValueFactory<>("dataSelecionada"));
-        System.out.println("Data: " + boxPlotSelecionado.getDataSelecionada()); // Imprime o valor da primeira célula da coluna Data
-    
+
         columnEstacao.setCellValueFactory(new PropertyValueFactory<>("numeroEstacao"));
-        System.out.println("Estação: " + boxPlotSelecionado.getNumeroEstacao()); // Imprime o valor da primeira célula da coluna Estação
-    
+
         columnCidade.setCellValueFactory(new PropertyValueFactory<>("cidadeEsigla"));
-        System.out.println("Cidade: " + boxPlotSelecionado.getCidadeEstacao() + boxPlotSelecionado.getSiglaCidade()); // Imprime o valor da primeira célula da coluna Cidade
-        
+
         tabelaEstacao.getItems().setAll(boxPlots);
 
         columnData.setStyle("-fx-alignment: CENTER;");
         columnEstacao.setStyle("-fx-alignment: CENTER;");
         columnCidade.setStyle("-fx-alignment: CENTER;");
 
-        // Map(Registro, ValoresBoxPlot) dados = service.getDadosBoxPlot(boxPlotSelecionado);
+        // Map(Registro, ValoresBoxPlot) dados =
+        // service.getDadosBoxPlot(boxPlotSelecionado);
 
-        //TEMPERATURA     private double min; private double q1;private double mediana; private double q3;private double max;
+        // TEMPERATURA private double min; private double q1;private double mediana;
+        // private double q3;private double max;
 
-        //UMIDADE         private double min; private double q1;private double mediana; private double q3;private double max;
-
+        // UMIDADE private double min; private double q1;private double mediana; private
+        // double q3;private double max;
     }
+
+    @FXML
+    public void criarTabelaDados(List<ValoresBoxPlot> dadosBoxPlot) {
+        System.out.println(dadosBoxPlot.toString());
+    
+        columnTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        columnMin.setCellValueFactory(new PropertyValueFactory<>("min"));
+        columnQ1.setCellValueFactory(new PropertyValueFactory<>("q1"));
+        columnMediana.setCellValueFactory(new PropertyValueFactory<>("mediana"));
+        columnQ3.setCellValueFactory(new PropertyValueFactory<>("q3"));
+        columnMax.setCellValueFactory(new PropertyValueFactory<>("max"));
+    
+        // Aplicando formatação diretamente nas colunas de Double
+        formatColumnDouble(columnMin);
+        formatColumnDouble(columnQ1);
+        formatColumnDouble(columnMediana);
+        formatColumnDouble(columnQ3);
+        formatColumnDouble(columnMax);
+    
+        tabelaDados.getItems().setAll(dadosBoxPlot);
+    
+        columnTipo.setStyle("-fx-alignment: CENTER;");
+        columnMin.setStyle("-fx-alignment: CENTER;");
+        columnQ1.setStyle("-fx-alignment: CENTER;");
+        columnMediana.setStyle("-fx-alignment: CENTER;");
+        columnQ3.setStyle("-fx-alignment: CENTER;");
+        columnMax.setStyle("-fx-alignment: CENTER;");
+    }
+    
+    private void formatColumnDouble(TableColumn<ValoresBoxPlot, Double> column) {
+        column.setCellFactory(tc -> new TableCell<ValoresBoxPlot, Double>() {
+            @Override
+            protected void updateItem(Double value, boolean empty) {
+                super.updateItem(value, empty);
+                if (empty) {
+                    setText(null);
+                } else {
+                    setText(String.format("%.2f", value));
+                }
+            }
+        });
+    }
+    
+
+    
 
 }

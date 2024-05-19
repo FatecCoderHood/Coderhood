@@ -15,36 +15,37 @@
 
 <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.BoxPlotController">
    <children>
-      <TableView fx:id="tabelaEstacao" layoutX="295.0" layoutY="182.0" prefHeight="61.0" prefWidth="297.0">
+      <TableView fx:id="tabelaEstacao" layoutX="294.0" layoutY="166.0" prefHeight="61.0">
         <columns>
             <TableColumn fx:id="columnCidade" prefWidth="110.0" text="Cidade" />
             <TableColumn fx:id="columnEstacao" minWidth="5.0" prefWidth="74.0" text="Estação" />
             <TableColumn fx:id="columnData" minWidth="5.0" prefWidth="108.0" text="Data " />
         </columns>
       </TableView>
-      <Button fx:id="btnExecutar" layoutX="315.0" layoutY="428.0" mnemonicParsing="false" onAction="#selecionarEstacao" prefHeight="39.0" prefWidth="90.0" text="Executar" />
-      <Button fx:id="btnExportar" layoutX="505.0" layoutY="427.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="90.0" text="Exportar" />
+      <Button fx:id="btnExecutar" layoutX="310.0" layoutY="440.0" mnemonicParsing="false" onAction="#selecionarEstacao" prefHeight="39.0" prefWidth="90.0" text="Executar" />
+      <Button fx:id="btnExportar" layoutX="500.0" layoutY="439.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="90.0" text="Exportar" />
       <Text layoutX="271.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dados para Gráfico BoxPlot" textAlignment="CENTER" wrappingWidth="343.4951171875">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Text>
-      <Text layoutX="103.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estação" textAlignment="CENTER" wrappingWidth="97.3333511352539">
+      <Text layoutX="102.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estação" textAlignment="CENTER" wrappingWidth="97.3333511352539">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Text>
-      <MenuButton fx:id="menuButtonEstacao" layoutX="210.0" layoutY="79.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="574.0" text="Selecione a estação" />
-      <DatePicker fx:id="dataInicial" layoutX="364.0" layoutY="136.0" promptText="DATA" />
-      <TableView fx:id="tabelaDados" layoutX="132.0" layoutY="264.0" prefHeight="152.0" prefWidth="622.0">
+      <MenuButton fx:id="menuButtonEstacao" layoutX="209.0" layoutY="68.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="574.0" text="Selecione a estação" />
+      <DatePicker fx:id="dataInicial" layoutX="363.0" layoutY="126.0" promptText="DATA" />
+      <TableView fx:id="tabelaDados" layoutX="190.0" layoutY="243.0" prefHeight="166.0" prefWidth="502.0">
          <columns>
-            <TableColumn fx:id="columnLegenda" prefWidth="101.0" text="\%" />
-            <TableColumn fx:id="columnTemperatura" minWidth="5.0" prefWidth="100.0" text="Temperatura (C)" />
-            <TableColumn fx:id="columnUmidade" prefWidth="101.0" text="Umidade (%)" />
-            <TableColumn fx:id="columnsVelVento" prefWidth="140.0" text="Velocidade Vento (m/s)" />
-            <TableColumn fx:id="columnDirVento" prefWidth="91.0" text="Direção Vento" />
-            <TableColumn fx:id="columnChuva" prefWidth="88.0" text="Chuva (mm)" />
+            <TableColumn fx:id="columnTipo" prefWidth="125.0" text="Tipo" />
+            <TableColumn fx:id="columnMin" minWidth="5.0" prefWidth="75.0" text="Mínimo" />
+            <TableColumn fx:id="columnQ1" prefWidth="75.0" text="1° Quartil" />
+            <TableColumn fx:id="columnMediana" prefWidth="75.0" text="Mediana" />
+            <TableColumn fx:id="columnQ3" prefWidth="75.0" text="3° Quartil" />
+            <TableColumn fx:id="columnMax" prefWidth="75.0" text="Máximo" />
          </columns>
       </TableView>
+      <Label layoutX="190.0" layoutY="409.0" text="* Se a data não tiver pelo menos 3 registros, os valores serão zerados." />
    </children>
 </AnchorPane>

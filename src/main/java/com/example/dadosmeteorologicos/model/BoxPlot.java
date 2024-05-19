@@ -24,8 +24,4 @@ public class BoxPlot {
         this.cidadeEsigla = cidadeEstacao + " - " + siglaCidade;
     }
 
-        public BoxPlot(ValoresBoxPlot valoresBoxPlot) {
-        this.valoresBoxPlot = valoresBoxPlot;
-    }
-
 }
