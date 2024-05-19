@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+
+
 import java.sql.Statement;
 
 public class BoxPlotSQL extends IniciaBanco {
@@ -15,25 +18,30 @@ public class BoxPlotSQL extends IniciaBanco {
     }
 
     public List<String[]> getEstacoesMenuItem() {
-        List<String[]> estacoes = new ArrayList<>();
+        List<String[]> estacoes = new ArrayList<String[]>();
         try {
             if (conn != null) {
 
-                String sql = "SELECT estacao.nome AS nomeEstacao, estacao.siglacidade AS siglaCidade, cidade.nome AS nomeCidade, MIN(registro.data) AS dataMinima, MAX(registro.data) AS dataMaxima FROM estacao JOIN cidade ON estacao.siglacidade = cidade.sigla JOIN registro ON estacao.siglacidade = registro.siglacidade GROUP BY estacao.nome, estacao.siglacidade, cidade.nome";
+                String sql = "SELECT estacao.numero AS numeroEstacao,"+
+                    "estacao.siglacidade AS siglaCidade," +
+                    "cidade.nome AS nomeCidade,"+
+                    "MIN(registro.data) AS dataMinima, MAX(registro.data) AS dataMaxima " +
+                    "FROM estacao JOIN cidade ON estacao.siglacidade = cidade.sigla " +
+                    "JOIN registro ON estacao.siglacidade = registro.siglacidade " +
+                    "GROUP BY estacao.numero, estacao.siglacidade, cidade.nome";
 
                 
-
-                try (Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(sql)) {
-
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+                
                 while (rs.next()) {
-                    String nomeEstacao = rs.getString("nomeEstacao");
-                    String siglaCidade = rs.getString("siglaCidade");
+                    String numeroEstacao = rs.getString("numeroEstacao");
                     String nomeCidade = rs.getString("nomeCidade");
-                    String dataPrimeiroRegistro = rs.getDate("dataMinima").toString();
-                    String dataUltimoRegistro = rs.getDate("dataMaxima").toString();
-                    estacoes.add(new String[] {nomeEstacao, siglaCidade, nomeCidade, dataPrimeiroRegistro, dataUltimoRegistro});
-                    }
+                    String siglaCidade = rs.getString("siglaCidade");
+                    String dataMinima = rs.getString("dataMinima");
+                    String dataMaxima = rs.getString("dataMaxima");
+                    estacoes.add(new String[]{numeroEstacao, nomeCidade, siglaCidade, dataMinima, dataMaxima});
+                    
                 }
             }
         } catch (Exception e) {
@@ -41,5 +49,4 @@ public class BoxPlotSQL extends IniciaBanco {
         }
         return estacoes;
     }
-
 }

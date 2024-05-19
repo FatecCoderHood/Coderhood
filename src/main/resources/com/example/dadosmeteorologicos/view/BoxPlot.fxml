@@ -15,14 +15,14 @@
 
 <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.BoxPlotController">
    <children>
-      <TableView layoutX="304.0" layoutY="183.0" prefHeight="56.0" prefWidth="293.0">
+      <TableView fx:id="tabelaEstacao" layoutX="295.0" layoutY="182.0" prefHeight="61.0" prefWidth="297.0">
         <columns>
-            <TableColumn fx:id="columnEstacao" prefWidth="110.0" text="Cidade" />
+            <TableColumn fx:id="columnCidade" prefWidth="110.0" text="Cidade" />
             <TableColumn fx:id="columnEstacao" minWidth="5.0" prefWidth="74.0" text="Estação" />
             <TableColumn fx:id="columnData" minWidth="5.0" prefWidth="108.0" text="Data " />
         </columns>
       </TableView>
-      <Button fx:id="btnExecutar" layoutX="315.0" layoutY="428.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="90.0" text="Executar" />
+      <Button fx:id="btnExecutar" layoutX="315.0" layoutY="428.0" mnemonicParsing="false" onAction="#selecionarEstacao" prefHeight="39.0" prefWidth="90.0" text="Executar" />
       <Button fx:id="btnExportar" layoutX="505.0" layoutY="427.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="90.0" text="Exportar" />
       <Text layoutX="271.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dados para Gráfico BoxPlot" textAlignment="CENTER" wrappingWidth="343.4951171875">
          <font>
@@ -36,11 +36,11 @@
       </Text>
       <MenuButton fx:id="menuButtonEstacao" layoutX="210.0" layoutY="79.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="574.0" text="Selecione a estação" />
       <DatePicker fx:id="dataInicial" layoutX="364.0" layoutY="136.0" promptText="DATA" />
-      <TableView layoutX="132.0" layoutY="264.0" prefHeight="152.0" prefWidth="622.0">
+      <TableView fx:id="tabelaDados" layoutX="132.0" layoutY="264.0" prefHeight="152.0" prefWidth="622.0">
          <columns>
             <TableColumn fx:id="columnLegenda" prefWidth="101.0" text="\%" />
             <TableColumn fx:id="columnTemperatura" minWidth="5.0" prefWidth="100.0" text="Temperatura (C)" />
-            <TableColumn fx:id="columnEstacao" prefWidth="101.0" text="Umidade (%)" />
+            <TableColumn fx:id="columnUmidade" prefWidth="101.0" text="Umidade (%)" />
             <TableColumn fx:id="columnsVelVento" prefWidth="140.0" text="Velocidade Vento (m/s)" />
             <TableColumn fx:id="columnDirVento" prefWidth="91.0" text="Direção Vento" />
             <TableColumn fx:id="columnChuva" prefWidth="88.0" text="Chuva (mm)" />

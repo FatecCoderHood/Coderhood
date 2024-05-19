@@ -1,14 +1,17 @@
 package com.example.dadosmeteorologicos.controller;
 
-import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import com.example.dadosmeteorologicos.Services.BoxPlotService;
+import com.example.dadosmeteorologicos.model.Registro;
+import com.example.dadosmeteorologicos.model.ValoresBoxPlot;
+import com.example.dadosmeteorologicos.model.BoxPlot;
 
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
@@ -16,51 +19,71 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 
 public class BoxPlotController {
     private BoxPlotService service;
-    @FXML
-    private TableColumn<?, ?> columnsVelVento;
-
-    @FXML
-    private Button btnExecutar;
 
     @FXML
     private MenuButton menuButtonEstacao;
 
     @FXML
-    private TableColumn<?, ?> columnDirVento;
+    private DatePicker dataInicial;
 
     @FXML
-    private TableColumn<?, ?> columnData;
+    private TableView<ValoresBoxPlot> tabelaDados;
+
+    @FXML
+    private TableColumn<ValoresBoxPlot, String> columnLegenda;
+
+    @FXML
+    private TableColumn<ValoresBoxPlot, String> columnsVelVento;
+
+    @FXML
+    private TableColumn<ValoresBoxPlot, String> columnDirVento;
+
+    @FXML
+    private TableColumn<ValoresBoxPlot, String> columnTemperatura;
+
+    @FXML
+    private TableColumn<ValoresBoxPlot, String> columnUmidade;
+
+    @FXML
+    private TableColumn<ValoresBoxPlot, String> columnChuva;
+
+    @FXML
+    private TableView<BoxPlot> tabelaEstacao;
+
+    @FXML
+    private TableColumn<BoxPlot, LocalDate> columnData;
+
+    @FXML
+    private TableColumn<BoxPlot, String> columnEstacao;
+
+    @FXML
+    private TableColumn<BoxPlot, String> columnCidade;
 
     @FXML
     private Button btnExportar;
 
     @FXML
-    private TableColumn<?, ?> columnTemperatura;
-
-    @FXML
-    private TableColumn<?, ?> columnChuva;
-
-    @FXML
-    private DatePicker dataInicial;
-
-    @FXML
-    private TableColumn<?, ?> columnEstacao;
-
-    @FXML
-    private TableColumn<?, ?> columnLegenda;
+    private Button btnExecutar;
 
     public BoxPlotController() {
         this.service = new BoxPlotService();
     }
+    
 
     @FXML
     void initialize() {
         System.out.println("Iniciado boxplot");
 
+
         btnExecutar.setVisible(false);
+
+        
 
         // Adiciona um ouvinte à propriedade de texto do menuButton de estação
         menuButtonEstacao.textProperty()
@@ -88,8 +111,6 @@ public class BoxPlotController {
             menuItem.setOnAction(event -> {
                 menuButtonEstacao.setText(menuItem.getText());
 
-                menuButtonEstacao.getItems().add(menuItem);
-
                 LocalDate minDate = LocalDate.parse(estacao[3]);
                 LocalDate maxDate = LocalDate.parse(estacao[4]);
 
@@ -112,6 +133,61 @@ public class BoxPlotController {
         if (!menuButtonEstacao.getText().equals("Selecione a cidade") && dataInicial.getValue() != null) {
             btnExecutar.setVisible(true);
         }
+    }
+
+    @FXML
+    public void selecionarEstacao(ActionEvent event) {
+        LocalDate dataSelecionada = dataInicial.getValue();
+        String estacaoSelecionada = menuButtonEstacao.getText();
+
+        String[] partes = estacaoSelecionada.split(" - ");
+        if (partes.length == 3) {
+            String numeroEstacao = partes[0];
+            String siglaCidade = partes[2];
+            String siglaEstacao = partes[1];
+            System.out.println("Estação selecionada: " + numeroEstacao + " - " + siglaCidade + " - " + siglaEstacao);
+            System.out.println("Data selecionada: " + dataSelecionada);
+
+            BoxPlot boxPlotSelecionado = new BoxPlot(dataSelecionada, numeroEstacao, siglaCidade, siglaEstacao);
+
+            System.out.println("Data selecionada: " + dataSelecionada + "Texto");
+            System.out.println("Estação selecionada: " + numeroEstacao);
+            System.out.println("Cidade selecionada: " + siglaCidade);
+            System.out.println("Sigla selecionada: " + siglaEstacao);
+
+            criarTabelaCidade(boxPlotSelecionado);
+
+
+
+        }
+    }
+
+    @FXML
+    public void criarTabelaCidade(BoxPlot boxPlotSelecionado) {
+        List<BoxPlot> boxPlots = new ArrayList<>();
+        boxPlots.add(boxPlotSelecionado);
+
+        columnData.setCellValueFactory(new PropertyValueFactory<>("dataSelecionada"));
+        System.out.println("Data: " + boxPlotSelecionado.getDataSelecionada()); // Imprime o valor da primeira célula da coluna Data
+    
+        columnEstacao.setCellValueFactory(new PropertyValueFactory<>("numeroEstacao"));
+        System.out.println("Estação: " + boxPlotSelecionado.getNumeroEstacao()); // Imprime o valor da primeira célula da coluna Estação
+    
+        columnCidade.setCellValueFactory(new PropertyValueFactory<>("cidadeEsigla"));
+        System.out.println("Cidade: " + boxPlotSelecionado.getCidadeEstacao() + boxPlotSelecionado.getSiglaCidade()); // Imprime o valor da primeira célula da coluna Cidade
+        
+        tabelaEstacao.getItems().setAll(boxPlots);
+
+        columnData.setStyle("-fx-alignment: CENTER;");
+        columnEstacao.setStyle("-fx-alignment: CENTER;");
+        columnCidade.setStyle("-fx-alignment: CENTER;");
+
+        // Map(Registro, ValoresBoxPlot) dados = service.getDadosBoxPlot(boxPlotSelecionado);
+
+        //TEMPERATURA     private double min; private double q1;private double mediana; private double q3;private double max;
+
+        //UMIDADE         private double min; private double q1;private double mediana; private double q3;private double max;
+
     }
 
 }
