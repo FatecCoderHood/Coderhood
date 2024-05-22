@@ -6,6 +6,7 @@ module com.example.dadosmeteorologicos {
     requires java.sql;
     requires org.apache.commons.text;
     requires static lombok;
+    requires com.opencsv;
 
 
     opens com.example.dadosmeteorologicos to javafx.fxml;

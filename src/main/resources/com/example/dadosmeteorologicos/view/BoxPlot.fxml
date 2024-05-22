@@ -23,7 +23,7 @@
         </columns>
       </TableView>
       <Button fx:id="btnExecutar" layoutX="310.0" layoutY="440.0" mnemonicParsing="false" onAction="#selecionarEstacao" prefHeight="39.0" prefWidth="90.0" text="Executar" />
-      <Button fx:id="btnExportar" layoutX="500.0" layoutY="439.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="90.0" text="Exportar" />
+      <Button fx:id="btnExportar" layoutX="500.0" layoutY="439.0" mnemonicParsing="false" onAction="#exportaCsv" prefHeight="39.0" prefWidth="90.0" text="Exportar" />
       <Text layoutX="271.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dados para Gráfico BoxPlot" textAlignment="CENTER" wrappingWidth="343.4951171875">
          <font>
             <Font name="System Bold" size="22.0" />

@@ -1,5 +1,7 @@
 package com.example.dadosmeteorologicos.controller;
 
+import java.io.FileWriter;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,8 +11,9 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.example.dadosmeteorologicos.Services.BoxPlotService;
-import com.example.dadosmeteorologicos.model.ValoresBoxPlot;
 import com.example.dadosmeteorologicos.model.BoxPlot;
+import com.example.dadosmeteorologicos.model.ValoresBoxPlot;
+import com.opencsv.CSVWriter;
 
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -140,38 +143,43 @@ public class BoxPlotController {
                 .map(Double::parseDouble)
                 .collect(Collectors.toList());
     }
-    
+
     @FXML
     public void selecionarEstacao(ActionEvent event) {
         LocalDate dataSelecionada = dataInicial.getValue();
         String estacaoSelecionada = menuButtonEstacao.getText();
-    
+
         String[] partes = estacaoSelecionada.split(" - ");
         if (partes.length == 3) {
             String numeroEstacao = partes[0];
             String siglaCidade = partes[2];
             String siglaEstacao = partes[1];
-    
+
             BoxPlot boxPlotSelecionado = new BoxPlot(dataSelecionada, numeroEstacao, siglaCidade, siglaEstacao);
-    
+
             int numeroEstacaoDados = Integer.parseInt(numeroEstacao);
             Map<String, List<String>> boxPlotDados = service.getBoxPlotDados(numeroEstacaoDados, dataSelecionada);
-    
+
             List<Double> temperatura = convertToDoubleList(boxPlotDados.get("temperaturaMedia"));
             List<Double> umidade = convertToDoubleList(boxPlotDados.get("umidadeMedia"));
             List<Double> velVento = convertToDoubleList(boxPlotDados.get("velVento"));
             List<Double> dirVento = convertToDoubleList(boxPlotDados.get("dirVento"));
             List<Double> chuva = convertToDoubleList(boxPlotDados.get("chuva"));
-    
-            ValoresBoxPlot temperaturaBoxPlot = new ValoresBoxPlot("Temperatura", temperatura.stream().mapToDouble(Double::doubleValue).toArray());
-            ValoresBoxPlot umidadeBoxPlot = new ValoresBoxPlot("Umidade", umidade.stream().mapToDouble(Double::doubleValue).toArray());
-            ValoresBoxPlot velVentoBoxPlot = new ValoresBoxPlot("Velocidade do Vento", velVento.stream().mapToDouble(Double::doubleValue).toArray());
-            ValoresBoxPlot dirVentoBoxPlot = new ValoresBoxPlot("Direção do Vento", dirVento.stream().mapToDouble(Double::doubleValue).toArray());
-            ValoresBoxPlot chuvaBoxPlot = new ValoresBoxPlot("Chuva", chuva.stream().mapToDouble(Double::doubleValue).toArray());
-    
+
+            ValoresBoxPlot temperaturaBoxPlot = new ValoresBoxPlot("Temperatura",
+                    temperatura.stream().mapToDouble(Double::doubleValue).toArray());
+            ValoresBoxPlot umidadeBoxPlot = new ValoresBoxPlot("Umidade",
+                    umidade.stream().mapToDouble(Double::doubleValue).toArray());
+            ValoresBoxPlot velVentoBoxPlot = new ValoresBoxPlot("Velocidade do Vento",
+                    velVento.stream().mapToDouble(Double::doubleValue).toArray());
+            ValoresBoxPlot dirVentoBoxPlot = new ValoresBoxPlot("Direção do Vento",
+                    dirVento.stream().mapToDouble(Double::doubleValue).toArray());
+            ValoresBoxPlot chuvaBoxPlot = new ValoresBoxPlot("Chuva",
+                    chuva.stream().mapToDouble(Double::doubleValue).toArray());
+
             List<ValoresBoxPlot> dadosBoxPlot = Arrays.asList(
                     temperaturaBoxPlot, umidadeBoxPlot, velVentoBoxPlot, dirVentoBoxPlot, chuvaBoxPlot);
-    
+
             criarTabelaCidade(boxPlotSelecionado);
             criarTabelaDados(dadosBoxPlot);
         }
@@ -208,23 +216,23 @@ public class BoxPlotController {
     @FXML
     public void criarTabelaDados(List<ValoresBoxPlot> dadosBoxPlot) {
         System.out.println(dadosBoxPlot.toString());
-    
+
         columnTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         columnMin.setCellValueFactory(new PropertyValueFactory<>("min"));
         columnQ1.setCellValueFactory(new PropertyValueFactory<>("q1"));
         columnMediana.setCellValueFactory(new PropertyValueFactory<>("mediana"));
         columnQ3.setCellValueFactory(new PropertyValueFactory<>("q3"));
         columnMax.setCellValueFactory(new PropertyValueFactory<>("max"));
-    
+
         // Aplicando formatação diretamente nas colunas de Double
         formatColumnDouble(columnMin);
         formatColumnDouble(columnQ1);
         formatColumnDouble(columnMediana);
         formatColumnDouble(columnQ3);
         formatColumnDouble(columnMax);
-    
+
         tabelaDados.getItems().setAll(dadosBoxPlot);
-    
+
         columnTipo.setStyle("-fx-alignment: CENTER;");
         columnMin.setStyle("-fx-alignment: CENTER;");
         columnQ1.setStyle("-fx-alignment: CENTER;");
@@ -232,7 +240,7 @@ public class BoxPlotController {
         columnQ3.setStyle("-fx-alignment: CENTER;");
         columnMax.setStyle("-fx-alignment: CENTER;");
     }
-    
+
     private void formatColumnDouble(TableColumn<ValoresBoxPlot, Double> column) {
         column.setCellFactory(tc -> new TableCell<ValoresBoxPlot, Double>() {
             @Override
@@ -246,8 +254,24 @@ public class BoxPlotController {
             }
         });
     }
-    
 
+    @FXML
+    private static final String CSV_FILE_NAME = "dadosBoxPlot.csv";
+
+    public void exportaCsv(ActionEvent event) {
+    List<ValoresBoxPlot> dadosBoxPlot = tabelaDados.getItems(); // Obtém os dados da tabela
+
+    try {
+        // Use java.io.tmpdir como o caminho para o diretório temporário do sistema
+        String caminhoParaTemp = System.getProperty("java.io.tmpdir");
+        String caminhoCompleto = Paths.get(caminhoParaTemp, CSV_FILE_NAME).toString();
+
+        FileWriter fileWriter = new FileWriter(caminhoCompleto);
+        CSVWriter csvWriter = new CSVWriter(fileWriter);
     
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 
 }
