@@ -15,6 +15,7 @@ public class SituacaoService {
         Map<Cidade, RegistroSituacao> registroSituacaoPorCidade = new HashMap<>();
         for (Cidade cidade : cidades) {
             RegistroSituacao registro = situacaoSQL.getRegistroSituacao(cidade);
+            registro.setCidadeESigla(cidade.getNome() + " - " + cidade.getSigla());
             registroSituacaoPorCidade.put(cidade, registro);
         }
         return registroSituacaoPorCidade;

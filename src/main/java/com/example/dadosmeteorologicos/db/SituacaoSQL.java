@@ -18,14 +18,22 @@ public class SituacaoSQL extends IniciaBanco {
         RegistroSituacao registro = new RegistroSituacao();
         try{
             if(conn != null){
-                String sql = "SELECT * FROM ( " +
-                             "  SELECT *, ROW_NUMBER() OVER (PARTITION BY siglaCidade, tipo ORDER BY data DESC, hora DESC) AS rn " +
-                             "  FROM registro " +
-                             "  WHERE siglaCidade = ? AND suspeito = false AND valor IS NOT NULL" +
-                             ") subquery " +
-                             "WHERE rn = 1";
+                String sql = "(SELECT *, 'temperaturaMedia' as tipo FROM registro WHERE siglaCidade = ? AND tipo = 'temperaturaMedia' AND suspeito = FALSE AND valor IS NOT NULL ORDER BY data DESC, hora DESC LIMIT 1) " +
+                "UNION ALL " +
+                "(SELECT *, 'umidadeMedia' as tipo FROM registro WHERE siglaCidade = ? AND tipo = 'umidadeMedia' AND suspeito = FALSE AND valor IS NOT NULL ORDER BY data DESC, hora DESC LIMIT 1) " +
+                "UNION ALL " +
+                "(SELECT *, 'velVento' as tipo FROM registro WHERE siglaCidade = ? AND tipo = 'velVento' AND suspeito = FALSE AND valor IS NOT NULL ORDER BY data DESC, hora DESC LIMIT 1) " +
+                "UNION ALL " +
+                "(SELECT *, 'dirVento' as tipo FROM registro WHERE siglaCidade = ? AND tipo = 'dirVento' AND suspeito = FALSE AND valor IS NOT NULL ORDER BY data DESC, hora DESC LIMIT 1) " +
+                "UNION ALL " +
+                "(SELECT *, 'chuva' as tipo FROM registro WHERE siglaCidade = ? AND tipo = 'chuva' AND suspeito = FALSE AND valor IS NOT NULL ORDER BY data DESC, hora DESC LIMIT 1)";
+                
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, cidade.getSigla());
+                stmt.setString(2, cidade.getSigla());
+                stmt.setString(3, cidade.getSigla());
+                stmt.setString(4, cidade.getSigla());
+                stmt.setString(5, cidade.getSigla());
                 ResultSet rs = stmt.executeQuery();
     
                 while(rs.next()){
@@ -35,8 +43,6 @@ public class SituacaoSQL extends IniciaBanco {
     
                     String tipo = rs.getString("tipo");
                     Double valor = rs.getDouble("valor");
-    
-                    System.out.println("data:" + registro.getData() + "Hora:" + registro.getHora() + "Tipo: " + tipo + " Valor: " + valor);
     
                     switch (tipo){
                         case "chuva":

@@ -15,8 +15,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-
-
 public class SituacaoController {
 
     @FXML
@@ -32,7 +30,7 @@ public class SituacaoController {
     private TableColumn<RegistroSituacao, String> colunaChuva;
 
     @FXML
-    private TableColumn<RegistroSituacao, String> colunaCidade;
+    private TableColumn<RegistroSituacao, String> colunaCidadeESigla;
 
     @FXML
     private TableColumn<RegistroSituacao, String> colunaDirVento;
@@ -46,7 +44,6 @@ public class SituacaoController {
     @FXML
     private TableColumn<RegistroSituacao, String> colunaVelVento;
 
-
     @FXML
     public void initialize() {
         System.out.println("Iniciado situação");
@@ -56,7 +53,7 @@ public class SituacaoController {
 
     public void criarTabela() {
         // Inicialize as colunas da tabela
-        colunaCidade.setCellValueFactory(new PropertyValueFactory<>("siglaCidade"));
+        colunaCidadeESigla.setCellValueFactory(new PropertyValueFactory<>("cidadeESigla"));
         colunaData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colunaHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
         colunaTemperatura.setCellValueFactory(new PropertyValueFactory<>("temperaturaMedia"));
@@ -65,7 +62,7 @@ public class SituacaoController {
         colunaDirVento.setCellValueFactory(new PropertyValueFactory<>("dirVento"));
         colunaVelVento.setCellValueFactory(new PropertyValueFactory<>("velVento"));
 
-        colunaCidade.setStyle("-fx-alignment: CENTER;");
+        // Ajustar alinhamento das colunas
         colunaData.setStyle("-fx-alignment: CENTER;");
         colunaHora.setStyle("-fx-alignment: CENTER;");
         colunaTemperatura.setStyle("-fx-alignment: CENTER;");
@@ -73,9 +70,10 @@ public class SituacaoController {
         colunaChuva.setStyle("-fx-alignment: CENTER;");
         colunaDirVento.setStyle("-fx-alignment: CENTER;");
         colunaVelVento.setStyle("-fx-alignment: CENTER;");
+        colunaCidadeESigla.setStyle("-fx-alignment: CENTER;");
     }
 
-    // Carrega os ultimos registros de cada cidade
+    // Carrega os últimos registros de cada cidade
     private void loadSituacao() {
         SituacaoService situacaoService = new SituacaoService();
         CidadeService cidadeService = new CidadeService();

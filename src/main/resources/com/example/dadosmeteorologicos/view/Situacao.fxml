@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.SituacaoController">
+<AnchorPane prefHeight="500.0" prefWidth="900" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.SuspeitoController">
+    <cursor>
+        <Cursor fx:constant="DEFAULT" />
+    </cursor>
    <children>
-      <TableView fx:id="tabelaSituacao" layoutY="-7.0" prefHeight="512.0" prefWidth="914.0">
-        <columns>
-          <TableColumn fx:id="colunaCidade" prefWidth="246.35795271396637" text="Cidade" />
-            <TableColumn fx:id="colunaData" prefWidth="99.64204406738281" text="Data" />
-            <TableColumn fx:id="colunaHora" prefWidth="100.06881713867188" text="Hora" />
-            <TableColumn fx:id="colunaTemperatura" prefWidth="78.3670654296875" text="Temperatura" />
-            <TableColumn fx:id="colunaUmidade" prefWidth="81.63296508789062" text="Umidade" />
-            <TableColumn fx:id="colunaVelVento" prefWidth="86.0595703125" text="Vel. Vento" />
-            <TableColumn fx:id="colunaDirVento" prefWidth="108.44488525390625" text="Dir. Vento" />
-            <TableColumn fx:id="colunaChuva" prefWidth="122.2337646484375" text="Chuva" />
-        </columns>
-      </TableView>
+<TableView fx:id="tabelaSuspeitos" layoutX="33.0" layoutY="20.0" prefHeight="452.0" prefWidth="815.0">
+    <columns>
+        <TableColumn fx:id="colunaCidadeESigla" prefWidth="78.0" text="Cidade" />
+        <TableColumn fx:id="colunaEstacao" minWidth="0.0" prefWidth="120.0" text="Estação" />
+        <TableColumn fx:id="colunaData" prefWidth="89.0" text="Data" />
+        <TableColumn fx:id="colunaHora" prefWidth="116.0" text="Hora" />
+        <TableColumn fx:id="colunaTipo" prefWidth="140.0" text="Tipo" />
+        <TableColumn fx:id="colunaValor" prefWidth="126.0" text="Valor" />
+    </columns>
+</TableView>
    </children>
 </AnchorPane>
