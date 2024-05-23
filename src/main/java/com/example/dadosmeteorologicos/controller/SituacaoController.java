@@ -29,9 +29,6 @@ public class SituacaoController {
     private TableColumn<RegistroSituacao, LocalTime> colunaHora;
 
     @FXML
-    private TableColumn<RegistroSituacao, String> colunaEstacao;
-
-    @FXML
     private TableColumn<RegistroSituacao, String> colunaChuva;
 
     @FXML
@@ -60,7 +57,6 @@ public class SituacaoController {
     public void criarTabela() {
         // Inicialize as colunas da tabela
         colunaCidade.setCellValueFactory(new PropertyValueFactory<>("siglaCidade"));
-        colunaEstacao.setCellValueFactory(new PropertyValueFactory<>("estacao"));
         colunaData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colunaHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
         colunaTemperatura.setCellValueFactory(new PropertyValueFactory<>("temperaturaMedia"));
@@ -70,7 +66,6 @@ public class SituacaoController {
         colunaVelVento.setCellValueFactory(new PropertyValueFactory<>("velVento"));
 
         colunaCidade.setStyle("-fx-alignment: CENTER;");
-        colunaEstacao.setStyle("-fx-alignment: CENTER;");
         colunaData.setStyle("-fx-alignment: CENTER;");
         colunaHora.setStyle("-fx-alignment: CENTER;");
         colunaTemperatura.setStyle("-fx-alignment: CENTER;");

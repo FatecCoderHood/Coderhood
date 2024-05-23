@@ -30,7 +30,6 @@ public class SituacaoSQL extends IniciaBanco {
     
                 while(rs.next()){
                     registro.setSiglaCidade(rs.getString("siglaCidade"));
-                    registro.setEstacao(rs.getString("estacao"));
                     registro.setData(rs.getDate("data").toLocalDate());
                     registro.setHora(rs.getTime("hora").toLocalTime());
     

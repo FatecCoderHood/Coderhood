@@ -12,7 +12,6 @@ public class RegistroSituacao {
     private int id;
     private LocalDate data;
     private LocalTime hora;
-    private String estacao;
     private String siglaCidade;
     private Double temperaturaMedia;
     private Double umidadeMedia;
@@ -21,10 +20,9 @@ public class RegistroSituacao {
     private Double chuva;
 
     //Construtor para montar Registro para o banco
-    public RegistroSituacao(LocalDate data, LocalTime hora, String estacao, String siglaCidade, Double temperaturaMedia, Double umidadeMedia, Double velVento, Double dirVento, Double chuva) {
+    public RegistroSituacao(LocalDate data, LocalTime hora, String siglaCidade, Double temperaturaMedia, Double umidadeMedia, Double velVento, Double dirVento, Double chuva) {
         this.data = data;
         this.hora = hora;
-        this.estacao = estacao;
         this.siglaCidade = siglaCidade;
         this.temperaturaMedia = temperaturaMedia;
         this.umidadeMedia = umidadeMedia;
@@ -34,10 +32,9 @@ public class RegistroSituacao {
     }
 
     //Construtor para recuperar do banco
-    public RegistroSituacao(int id, LocalDate data, LocalTime hora, String estacao, String siglaCidade, Double temperaturaMedia, Double umidadeMedia, Double velVento, Double dirVento, Double chuva) {        this.id = id;
+    public RegistroSituacao(int id, LocalDate data, LocalTime hora, String siglaCidade, Double temperaturaMedia, Double umidadeMedia, Double velVento, Double dirVento, Double chuva) {        this.id = id;
         this.data = data;
         this.hora = hora;
-        this.estacao = estacao;
         this.siglaCidade = siglaCidade;
         this.temperaturaMedia = temperaturaMedia;
         this.umidadeMedia = umidadeMedia;
