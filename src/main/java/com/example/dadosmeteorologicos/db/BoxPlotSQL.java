@@ -51,45 +51,38 @@ public class BoxPlotSQL extends IniciaBanco {
     }
 
     public Map<String, List<String>> getBoxPlotDados(int numeroEstacao, LocalDate data) {
-    Map<String, List<String>> boxPlotDados = new HashMap<>();
-    boxPlotDados.put("temperaturaMedia", new ArrayList<>());
-    boxPlotDados.put("umidadeMedia", new ArrayList<>());
-    boxPlotDados.put("velVento", new ArrayList<>());
-    boxPlotDados.put("dirVento", new ArrayList<>());
-    boxPlotDados.put("chuva", new ArrayList<>());
+        Map<String, List<String>> boxPlotDados = new HashMap<>();
+        boxPlotDados.put("temperaturaMedia", new ArrayList<>());
+        boxPlotDados.put("umidadeMedia", new ArrayList<>());
+        boxPlotDados.put("velVento", new ArrayList<>());
+        boxPlotDados.put("dirVento", new ArrayList<>());
+        boxPlotDados.put("chuva", new ArrayList<>());
 
-    try {
-        if (conn != null) {
-            String sql = "SELECT registro.tipo, registro.valor FROM registro JOIN estacao ON registro.siglacidade = estacao.siglacidade AND registro.estacao = estacao.numero WHERE estacao.numero = ?::VARCHAR AND registro.data = ?";
+        try {
+            if (conn != null) {
+                String sql = "SELECT registro.tipo, registro.valor FROM registro JOIN estacao ON registro.siglacidade = estacao.siglacidade AND registro.estacao = estacao.numero WHERE estacao.numero = ?::VARCHAR AND registro.data = ?";
 
 
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setLong(1, numeroEstacao);
-            pstmt.setDate(2, java.sql.Date.valueOf(data));
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setLong(1, numeroEstacao);
+                pstmt.setDate(2, java.sql.Date.valueOf(data));
 
-            // Imprimir a consulta SQL e seus parâmetros
-            System.out.println("SQL Query: " + sql);
-            System.out.println("Parameters: numeroEstacao = " + numeroEstacao + ", data = " + data);
+                ResultSet rs = pstmt.executeQuery();
 
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                String tipo = rs.getString("tipo");
-                String valor = rs.getString("valor");
+                while (rs.next()) {
+                    String tipo = rs.getString("tipo");
+                    String valor = rs.getString("valor");
 
 
 
-                if (boxPlotDados.containsKey(tipo)) {
-                    boxPlotDados.get(tipo).add(valor);
+                    if (boxPlotDados.containsKey(tipo)) {
+                        boxPlotDados.get(tipo).add(valor);
+                    }
                 }
             }
+        } catch (Exception e) {
+                e.printStackTrace();
         }
-    } catch (Exception e) {
-        e.printStackTrace();
+        return boxPlotDados;
     }
-
-    System.out.println("Conteúdo de boxPlotDados: " + boxPlotDados);
-
-    return boxPlotDados;
-}
 }
