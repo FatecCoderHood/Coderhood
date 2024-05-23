@@ -273,7 +273,7 @@ public class BoxPlotController {
 
             FileWriter fileWriter = new FileWriter(caminhoCompleto);
             CSVWriter csvWriter = new CSVWriter(fileWriter);
-            String[] cabecalho = {" ", "Minimo", "1_quartil", "Mediana", "3_quartil", "Maximo"};
+            String[] cabecalho = {" ", "Minimo", "1º quartil", "Mediana", "3º quartil", "Maximo"};
             csvWriter.writeNext(cabecalho);
             for (ValoresBoxPlot valorLinha : dadosBoxPlot){
                 String[] valoresConvertidos = valorLinha.converteValorParaCsv(valorLinha);
