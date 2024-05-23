@@ -75,6 +75,13 @@ public class BoxPlotController {
     @FXML
     private Button btnExecutar;
 
+    // dadosBoxPlot e boxPlotSelecionado transformados em atributos do controllador afim de tornalos globais,
+    //  podendo ser usados em metodo independentes de serem passados como arguementos
+
+    private List<ValoresBoxPlot> dadosBoxPlot;
+
+    private BoxPlot boxPlotSelecionado;
+
     public BoxPlotController() {
         this.service = new BoxPlotService();
     }
@@ -155,7 +162,7 @@ public class BoxPlotController {
             String siglaCidade = partes[2];
             String siglaEstacao = partes[1];
 
-            BoxPlot boxPlotSelecionado = new BoxPlot(dataSelecionada, numeroEstacao, siglaCidade, siglaEstacao);
+            boxPlotSelecionado = new BoxPlot(dataSelecionada, numeroEstacao, siglaCidade, siglaEstacao);
 
             int numeroEstacaoDados = Integer.parseInt(numeroEstacao);
             Map<String, List<String>> boxPlotDados = service.getBoxPlotDados(numeroEstacaoDados, dataSelecionada);
@@ -177,7 +184,7 @@ public class BoxPlotController {
             ValoresBoxPlot chuvaBoxPlot = new ValoresBoxPlot("Chuva",
                     chuva.stream().mapToDouble(Double::doubleValue).toArray());
 
-            List<ValoresBoxPlot> dadosBoxPlot = Arrays.asList(
+            dadosBoxPlot = Arrays.asList(
                     temperaturaBoxPlot, umidadeBoxPlot, velVentoBoxPlot, dirVentoBoxPlot, chuvaBoxPlot);
 
             criarTabelaCidade(boxPlotSelecionado);
@@ -257,10 +264,10 @@ public class BoxPlotController {
 
     @FXML
     public void exportaCsv(ActionEvent event) {
-    List<ValoresBoxPlot> dadosBoxPlot = tabelaDados.getItems(); // Obtém os dados da tabela
-
     try {
-        String NomeCSV = "dadosBoxPlot.csv";
+        // Nome do csv contem numeroEstacao, siglaCidade, dataSelecionada e BoxPlot (ex: 420_SP_2021-01-01_BoxPlot.csv)
+        String NomeCSV = boxPlotSelecionado.getNumeroEstacao() + "_" + boxPlotSelecionado.getSiglaCidade() + "_" + 
+            boxPlotSelecionado.getDataSelecionada() + "_BoxPlot" + ".csv";
         String enderecoPastaDownload = System.getenv("USERPROFILE") + "/Downloads/";
         String caminhoCompleto = Paths.get(enderecoPastaDownload, NomeCSV).toString();
 
