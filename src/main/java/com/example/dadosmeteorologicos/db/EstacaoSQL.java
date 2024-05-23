@@ -33,8 +33,8 @@ public class EstacaoSQL extends IniciaBanco{
                     estacao.setSiglaCidade(rs.getString("siglaCidade"));
                     estacao.setNome(rs.getString("nome"));
                     estacao.setDescricao(rs.getString("descricao"));
-                    estacao.setLatitude(rs.getString("latitude"));
-                    estacao.setLongitude(rs.getString("longitude"));
+                    estacao.setLatitude(rs.getDouble("latitude"));
+                    estacao.setLongitude(rs.getDouble("longitude"));
                     listaEstacao.add(estacao);
                 }
             }
@@ -122,8 +122,8 @@ public class EstacaoSQL extends IniciaBanco{
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, estacao.getNome());
                 stmt.setString(2, estacao.getDescricao());
-                stmt.setString(3, estacao.getLatitude());
-                stmt.setString(4, estacao.getLongitude());
+                stmt.setDouble(3, estacao.getLatitude());
+                stmt.setDouble(4, estacao.getLongitude());
                 stmt.setInt(5, id);
                 stmt.executeUpdate();
             }

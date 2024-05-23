@@ -137,12 +137,12 @@ public class IniciaBanco {
                 System.out.println("Tabela estacao");
                 String sql = "CREATE TABLE IF NOT EXISTS estacao (" +
                     "id SERIAL PRIMARY KEY," +
-                    "numero VARCHAR(255)," +
+                    "numero VARCHAR(255) UNIQUE," +
                     "siglaCidade VARCHAR(05)," +
                     "nome VARCHAR(255)," +
                     "descricao VARCHAR(255)," +
-                    "latitude VARCHAR(255)," +
-                    "longitude VARCHAR(255)" +
+                    "latitude DOUBLE PRECISION," +
+                    "longitude DOUBLE PRECISION" +
                     ")";
     
                 Statement stmt = conn.createStatement();
@@ -160,8 +160,11 @@ public class IniciaBanco {
                 String sql = "CREATE TABLE IF NOT EXISTS variavel_climatica (" +
                     "id SERIAL PRIMARY KEY," +
                     "tipo VARCHAR(255)," +
-                    "ValorMinimo DECIMAL(5,2)," +
-                    "valorMaximo DECIMAL(5,2))";
+                    "valorMinimo DECIMAL(5,2)," +
+                    "valorMaximo DECIMAL(5,2)," +
+                    "unidadeMedida VARCHAR(20)," +
+                    "descricaoConversao VARCHAR(255)," +
+                    "formulaConversao VARCHAR(255))" ;
     
                 Statement stmt = conn.createStatement();
                 stmt.execute(sql);
