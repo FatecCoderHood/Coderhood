@@ -4,23 +4,33 @@ import java.util.List;
 
 import com.example.dadosmeteorologicos.Services.VariavelClimaticaService;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class VariavelClimatica {
-
     private String tipo;
     private Double valorMinimo;
     private Double valorMaximo;
+    private String unidadeMedida;
+    private String descricaoConversao;
+    private String formulaConversao;
     private static VariavelClimaticaService service = new VariavelClimaticaService();
     private List<VariavelClimatica> variaveisClimaticas;
+
 
     public VariavelClimatica(String tipo, Double valorMinimo, Double valorMaximo) {
         this.tipo = tipo;
         this.valorMinimo = valorMinimo;
         this.valorMaximo = valorMaximo;
+    }
+
+    public VariavelClimatica(String tipo, Double valorMinimo, Double valorMaximo, String unidadeMedida, String descricaoConversao, String formulaConversao) {
+        this.tipo = tipo;
+        this.valorMinimo = valorMinimo;
+        this.valorMaximo = valorMaximo;
+        this.unidadeMedida = unidadeMedida;
+        this.descricaoConversao = descricaoConversao;
+        this.formulaConversao = formulaConversao;
     }
 
     public VariavelClimatica() {
@@ -57,6 +67,9 @@ public class VariavelClimatica {
                 "tipo='" + tipo + '\'' +
                 ", valorMinimo=" + valorMinimo +
                 ", valorMaximo=" + valorMaximo +
+                ", unidadeMedida='" + unidadeMedida + '\'' +
+                ", descricaoConversao='" + descricaoConversao + '\'' +
+                ", formulaConversao='" + formulaConversao + '\'' +
                 '}';
     }
 }

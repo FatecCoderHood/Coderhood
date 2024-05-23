@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.ConfiguracoesController">
     <children>
-          <Text layoutX="81.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faixa de registro suspeito:">
+          <Text layoutX="308.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Configurações de tipo climático:" wrappingWidth="320.5279846191406">
          <font>
             <Font size="22.0" />
          </font></Text>
@@ -25,16 +25,48 @@
         <Text layoutX="59.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Temperatura" />
         <Text layoutX="74.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dir. vento" />
         <Text layoutX="84.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chuva" />
-        <TextField fx:id="temperaturaMin" layoutX="138.0" layoutY="181.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField fx:id="temperaturaMax" layoutX="240.0" layoutY="182.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField fx:id="umidadeMin" layoutX="138.0" layoutY="218.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField fx:id="umidadeMax" layoutX="240.0" layoutY="219.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField fx:id="velocidadeVentoMin" layoutX="138.0" layoutY="256.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField fx:id="velocidadeVentoMax" layoutX="240.0" layoutY="257.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField fx:id="direcaoVentoMin" layoutX="138.0" layoutY="292.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField fx:id="direcaoVentoMax" layoutX="240.0" layoutY="293.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField fx:id="chuvaMin" layoutX="138.0" layoutY="329.0" prefHeight="25.0" prefWidth="50.0" />
-        <TextField fx:id="chuvaMax" layoutX="240.0" layoutY="330.0" prefHeight="25.0" prefWidth="50.0" />
-        <Button layoutX="183.0" layoutY="376.0" mnemonicParsing="false" onAction="#SalvarFaixaSuspeito" text="Salvar" />
+        <TextField fx:id="temperaturaMin" alignment="CENTER" layoutX="138.0" layoutY="181.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="temperaturaMax" alignment="CENTER" layoutX="240.0" layoutY="182.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="umidadeMin" alignment="CENTER" layoutX="138.0" layoutY="218.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="umidadeMax" alignment="CENTER" layoutX="240.0" layoutY="219.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="velocidadeVentoMin" alignment="CENTER" layoutX="138.0" layoutY="256.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="velocidadeVentoMax" alignment="CENTER" layoutX="240.0" layoutY="257.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="direcaoVentoMin" alignment="CENTER" layoutX="138.0" layoutY="292.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="direcaoVentoMax" alignment="CENTER" layoutX="240.0" layoutY="293.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="chuvaMin" alignment="CENTER" layoutX="138.0" layoutY="329.0" prefHeight="25.0" prefWidth="50.0" />
+        <TextField fx:id="chuvaMax" alignment="CENTER" layoutX="240.0" layoutY="330.0" prefHeight="25.0" prefWidth="50.0" />
+        <Button layoutX="407.0" layoutY="381.0" mnemonicParsing="false" onAction="#SalvarFaixaSuspeito" prefHeight="38.0" prefWidth="100.0" text="Salvar" />
+
+      <!-- Unidade de media para frente -->
+      <Text layoutX="325.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unidade de media:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="502.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição conversão:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="667.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Formula de conversão:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="medidaTemperatura" alignment="CENTER" layoutX="325.0" layoutY="184.0" prefHeight="25.0" prefWidth="133.0" />
+      <TextField fx:id="medidaUmidade" alignment="CENTER" layoutX="325.0" layoutY="218.0" prefHeight="25.0" prefWidth="133.0" />
+      <TextField fx:id="medidaVelocVento" alignment="CENTER" layoutX="325.0" layoutY="257.0" prefHeight="25.0" prefWidth="133.0" />
+      <TextField fx:id="medidaDirVento" alignment="CENTER" layoutX="325.0" layoutY="293.0" prefHeight="25.0" prefWidth="133.0" />
+      <TextField fx:id="medidaChuva" alignment="CENTER" layoutX="325.0" layoutY="329.0" prefHeight="25.0" prefWidth="133.0" />
+      <TextField fx:id="descricaoTemperatura" alignment="CENTER" layoutX="494.0" layoutY="187.0" prefHeight="25.0" prefWidth="160.0" />
+      <TextField fx:id="descricaoUmidade" alignment="CENTER" layoutX="494.0" layoutY="223.0" prefHeight="25.0" prefWidth="160.0" />
+      <TextField fx:id="descricaoVelocVento" alignment="CENTER" layoutX="494.0" layoutY="262.0" prefHeight="25.0" prefWidth="160.0" />
+      <TextField fx:id="descricaoDirVento" alignment="CENTER" layoutX="495.0" layoutY="298.0" prefHeight="25.0" prefWidth="160.0" />
+      <TextField fx:id="descricaoChuva" alignment="CENTER" layoutX="496.0" layoutY="334.0" prefHeight="25.0" prefWidth="160.0" />
+      <TextField fx:id="formulaTemperatura" alignment="CENTER" layoutX="697.0" layoutY="187.0" prefHeight="25.0" prefWidth="100.0" />
+      <TextField fx:id="formulaUmidade" alignment="CENTER" layoutX="697.0" layoutY="223.0" prefHeight="25.0" prefWidth="100.0" />
+      <TextField fx:id="formulaVelocVento" alignment="CENTER" layoutX="697.0" layoutY="262.0" prefHeight="25.0" prefWidth="100.0" />
+      <TextField fx:id="formulaDirVento" alignment="CENTER" layoutX="697.0" layoutY="298.0" prefHeight="25.0" prefWidth="100.0" />
+      <TextField fx:id="formulaChuva" alignment="CENTER" layoutX="697.0" layoutY="334.0" prefHeight="25.0" prefWidth="100.0" />
     </children>
 </AnchorPane>
