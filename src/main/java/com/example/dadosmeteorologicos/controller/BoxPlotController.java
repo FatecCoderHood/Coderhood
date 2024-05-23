@@ -18,6 +18,7 @@ import com.opencsv.CSVWriter;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -278,9 +279,15 @@ public class BoxPlotController {
             for (ValoresBoxPlot valorLinha : dadosBoxPlot){
                 String[] valoresConvertidos = valorLinha.converteValorParaCsv(valorLinha);
                 csvWriter.writeNext(valoresConvertidos);
-            }       
-
+            }    
+               
             csvWriter.close();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("CSV exportado");
+            alert.setContentText("O Arquivo " + NomeCSV + " foi exportado com sucesso para a pasta Downloads");
+            alert.showAndWait();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
