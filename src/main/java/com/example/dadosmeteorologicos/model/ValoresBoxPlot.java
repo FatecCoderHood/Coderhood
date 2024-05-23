@@ -41,8 +41,8 @@ public class ValoresBoxPlot {
             return data[index];
         }
     }
+
     public String[] converteValorParaCsv(ValoresBoxPlot valoresBoxPlot){
-        
         String tipoConvertido = valoresBoxPlot.getTipo();
         String minConvertido = Double.toString(valoresBoxPlot.getMin());
         String q1Convertido = Double.toString(valoresBoxPlot.getQ1());

@@ -264,26 +264,26 @@ public class BoxPlotController {
 
     @FXML
     public void exportaCsv(ActionEvent event) {
-    try {
-        // Nome do csv contem numeroEstacao, siglaCidade, dataSelecionada e BoxPlot (ex: 420_SP_2021-01-01_BoxPlot.csv)
-        String NomeCSV = boxPlotSelecionado.getNumeroEstacao() + "_" + boxPlotSelecionado.getSiglaCidade() + "_" + 
-            boxPlotSelecionado.getDataSelecionada() + "_BoxPlot" + ".csv";
-        String enderecoPastaDownload = System.getenv("USERPROFILE") + "/Downloads/";
-        String caminhoCompleto = Paths.get(enderecoPastaDownload, NomeCSV).toString();
+        try {
+            // Nome do csv contem numeroEstacao, siglaCidade, dataSelecionada e BoxPlot (ex: 420_SP_2021-01-01_BoxPlot.csv)
+            String NomeCSV = boxPlotSelecionado.getNumeroEstacao() + "_" + boxPlotSelecionado.getSiglaCidade() + "_" + 
+                boxPlotSelecionado.getDataSelecionada() + "_BoxPlot" + ".csv";
+            String enderecoPastaDownload = System.getenv("USERPROFILE") + "/Downloads/";
+            String caminhoCompleto = Paths.get(enderecoPastaDownload, NomeCSV).toString();
 
-        FileWriter fileWriter = new FileWriter(caminhoCompleto);
-        CSVWriter csvWriter = new CSVWriter(fileWriter);
-        String[] cabecalho = {" ", "Minimo", "1_quartil", "Mediana", "3_quartil", "Maximo"};
-        csvWriter.writeNext(cabecalho);
-        for (ValoresBoxPlot valorLinha : dadosBoxPlot){
-            String[] valoresConvertidos = valorLinha.converteValorParaCsv(valorLinha);
-            csvWriter.writeNext(valoresConvertidos);
-        }       
+            FileWriter fileWriter = new FileWriter(caminhoCompleto);
+            CSVWriter csvWriter = new CSVWriter(fileWriter);
+            String[] cabecalho = {" ", "Minimo", "1_quartil", "Mediana", "3_quartil", "Maximo"};
+            csvWriter.writeNext(cabecalho);
+            for (ValoresBoxPlot valorLinha : dadosBoxPlot){
+                String[] valoresConvertidos = valorLinha.converteValorParaCsv(valorLinha);
+                csvWriter.writeNext(valoresConvertidos);
+            }       
 
-        csvWriter.close();
-    } catch (Exception e) {
-        e.printStackTrace();
+            csvWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-}
 
 }
