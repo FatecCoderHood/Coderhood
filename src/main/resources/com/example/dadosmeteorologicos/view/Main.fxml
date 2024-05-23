@@ -20,7 +20,7 @@
           </Tab>
           <Tab fx:id="tabSituacao" text="Situação">
           </Tab>
-          <Tab fx:id="tabValorMedio" text="Valor Medio">
+          <Tab fx:id="tabValorMedio" text="Valor Médio">
           </Tab>
             <Tab fx:id="tabCidade" text="Cidade">
           </Tab>
@@ -30,8 +30,7 @@
           </Tab>
           <Tab text="BoxPlot">
           </Tab>
-            <Tab fx:id="tabConf" text="Configurações">
-
+          <Tab fx:id="tabConf" text="Configurações">
           </Tab>
         </tabs>
       </TabPane>
