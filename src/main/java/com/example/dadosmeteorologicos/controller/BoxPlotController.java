@@ -80,7 +80,7 @@ public class BoxPlotController {
     }
 
     @FXML
-    void initialize() {
+    public void initialize() {
         System.out.println("Iniciado boxplot");
 
         btnExecutar.setVisible(false);
@@ -255,20 +255,32 @@ public class BoxPlotController {
         });
     }
 
-    @FXML
+    
     private static final String CSV_FILE_NAME = "dadosBoxPlot.csv";
-
+    @FXML
     public void exportaCsv(ActionEvent event) {
     List<ValoresBoxPlot> dadosBoxPlot = tabelaDados.getItems(); // Obtém os dados da tabela
 
     try {
-        // Use java.io.tmpdir como o caminho para o diretório temporário do sistema
-        String caminhoParaTemp = System.getProperty("java.io.tmpdir");
+        String caminhoParaTemp = "src/main/java/com/example/dadosmeteorologicos/";
         String caminhoCompleto = Paths.get(caminhoParaTemp, CSV_FILE_NAME).toString();
+
 
         FileWriter fileWriter = new FileWriter(caminhoCompleto);
         CSVWriter csvWriter = new CSVWriter(fileWriter);
-    
+        String[] cabecalho = {"Tipo", "Minimo", "1_quartil", "Mediana", "3_quartil", "Maximo"};
+        csvWriter.writeNext(cabecalho);
+        for (ValoresBoxPlot valorLinha : dadosBoxPlot){
+            String[] valoresConvertidos = valorLinha.converteValorParaCsv(valorLinha);
+            csvWriter.writeNext(valoresConvertidos);
+        }
+            
+            System.out.println("---");
+
+        
+        System.out.println(fileWriter.toString());
+
+        csvWriter.close();
     } catch (Exception e) {
         e.printStackTrace();
     }

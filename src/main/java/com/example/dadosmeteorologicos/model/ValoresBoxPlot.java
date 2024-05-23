@@ -11,11 +11,11 @@ import lombok.Data;
 public class ValoresBoxPlot {
 
     private String tipo;
-    private double min;
-    private double q1;
-    private double mediana;
-    private double q3;
-    private double max;
+    private Double min;
+    private Double q1;
+    private Double mediana;
+    private Double q3;
+    private Double max;
 
     public ValoresBoxPlot(String tipo, double[] data) {
         this.tipo = tipo;
@@ -41,5 +41,17 @@ public class ValoresBoxPlot {
             return data[index];
         }
     }
+    public String[] converteValorParaCsv(ValoresBoxPlot valoresBoxPlot){
+        
+        String tipoConvertido = valoresBoxPlot.getTipo();
+        String minConvertido = Double.toString(valoresBoxPlot.getMin());
+        String q1Convertido = Double.toString(valoresBoxPlot.getQ1());
+        String medianaConvertido = Double.toString(valoresBoxPlot.getMediana());
+        String q3Convertido = Double.toString(valoresBoxPlot.getQ3());
+        String maxConvertido = Double.toString(valoresBoxPlot.getMax());
+        String[] resultado = {tipoConvertido, minConvertido.replace(".", ","), q1Convertido.replace(".", ","), medianaConvertido.replace(".", ","), 
+        q3Convertido.replace(".", ","), maxConvertido.replace(".", ",")};
 
+        return resultado;
+    }
 }
