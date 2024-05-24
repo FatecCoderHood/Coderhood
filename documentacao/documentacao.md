@@ -211,7 +211,7 @@ Como pesquisador, posso visualizar relatório de situação, afim de verificar a
 
  **Interface do usuário:**
  
- ![Aba Relatório Situação](imagens/image-18.png)
+ ![Aba Relatório Situação](imagens/situacao.png)
 
 ##
 
