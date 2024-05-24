@@ -25,7 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
-import javafx.util.converter.DoubleStringConverter;
+import javafx.util.StringConverter;
 import javafx.scene.control.TableCell;
 
 public class EstacaoController {
@@ -78,8 +78,8 @@ public class EstacaoController {
         criarTabela(listaEstacao);
         ColumnNome.setCellFactory(TextFieldTableCell.forTableColumn());
         ColumnDescricao.setCellFactory(TextFieldTableCell.forTableColumn());
-        ColumnLatitude.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-        ColumnLongitude.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        ColumnLatitude.setCellFactory(TextFieldTableCell.forTableColumn(converterParaDouble));
+        ColumnLongitude.setCellFactory(TextFieldTableCell.forTableColumn(converterParaDouble));
         estacoes.setEditable(true);
         gerenciarAlteracoes();
     }
@@ -261,14 +261,12 @@ public class EstacaoController {
         
         ColumnLatitude.setOnEditCommit(event -> {
             Estacao estacao = event.getRowValue();
-            // Double latitude = Double.parseDouble(event.getNewValue().replace(",", "."));
             estacao.setLatitude(event.getNewValue());
             estacaoService.atualizarEstacao(estacao.getId(), estacao);
         });
         
         ColumnLongitude.setOnEditCommit(event -> {
             Estacao estacao = event.getRowValue();
-            // Double longitude = Double.parseDouble(event.getNewValue().replace(",", "."));
             estacao.setLongitude(event.getNewValue());
             estacaoService.atualizarEstacao(estacao.getId(), estacao);
         });
@@ -277,6 +275,24 @@ public class EstacaoController {
         List<Estacao> listaEstacao = estacaoService.buscaEstacao();
         criarTabela(listaEstacao);
     }
+
+    StringConverter<Double> converterParaDouble = new StringConverter<Double>() {
+        @Override
+        public String toString(Double object) {
+            return object.toString();
+        }
+    
+        @Override
+        public Double fromString(String string) {
+            string = string.replace(',', '.');
+            try {
+                return Double.parseDouble(string);
+            } catch (NumberFormatException e) {
+                System.out.println("Erro: o valor inserido não é um número válido.");
+                return null;
+            }
+        }
+    };
 
 }
 

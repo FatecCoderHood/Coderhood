@@ -15,7 +15,7 @@
 - [Sprint 3:](#sprint-3)
   - [Relatório de Situação](#Relatório-de-Situação)
   - [Dados BoxPlot](#dados-boxplot)
-  - [Gerenciamento de unidades de mediade]
+  - [Gerenciamento de unidades de medida]
   - [Adicionado mais informações as estações]
 
 
@@ -222,7 +222,7 @@ Como pesquisador, posso gerar dados necessários para a criação de um gráfico
 
 
 **Regras de negócio:**
-- Deve ser selecionado uma estação, uma data inicial eu uma data final.
+- Deve ser selecionado uma estaçãoe uma estação.
 - Será gerado para cada váriavel climatica("Temperatura Média", "Umidade Média", "Velocidade do Vento", "Direção do Vento", "Chuva"): 
   - Mínimo
   - Primeiro quartil
@@ -230,9 +230,42 @@ Como pesquisador, posso gerar dados necessários para a criação de um gráfico
   - Terceiro quartil
   - Máximo
 
-- Será possível exportar em formato excel(.xlsx).
+
+- Será possível exportar em formato CSV.
 
 
  **Interface do usuário:**
  
-![Aba Dados BoxPlot](imagens/image-19.png)
+![Dados BoxPlot](imagens/boxplot.png)
+
+
+
+  ### Gerenciamento de unidades de medida:
+
+**História do usuário:**
+Como pesquisador, quero poder informar o nome das unidades e exibir suas formulas de conversão de unidade, afim de manter a congiuração clara a todos os usuários.
+
+
+**Regras de negócio:**
+- Deve ser possível informar para cada variavel climática:
+  - Unidade de medida
+  - Descrição da conversão
+  - Formula de conversão
+
+
+ **Interface do usuário:**
+![Configuracoes tipo climatico](imagens/configuracoes_tipo_climatico.png)
+
+
+
+  ### Adicionado mais informações as estações:
+
+  **História do usuário:**
+Como pesquisador, quero poder adicionar dados adicionais aos extraidos do CSV, afim de identificar cada estação pela localização ou pelo nome.
+
+
+**Regras de negócio:**
+- Deve ser possível informar para cada variavel climática:
+  - Unidade de medida
+  - Descrição da conversão
+  - Formula de conversão

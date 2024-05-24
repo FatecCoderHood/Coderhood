@@ -38,7 +38,7 @@
         <Button layoutX="407.0" layoutY="381.0" mnemonicParsing="false" onAction="#SalvarFaixaSuspeito" prefHeight="38.0" prefWidth="100.0" text="Salvar" />
 
       <!-- Unidade de media para frente -->
-      <Text layoutX="325.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unidade de media:">
+      <Text layoutX="325.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unidade de medida:">
          <font>
             <Font size="16.0" />
          </font>
@@ -48,7 +48,7 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <Text layoutX="667.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Formula de conversão:">
+      <Text layoutX="667.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fórmula de conversão:">
          <font>
             <Font size="16.0" />
          </font>
