@@ -26,9 +26,10 @@ public class BoxPlotSQL extends IniciaBanco {
                 String sql = "SELECT estacao.numero AS numeroEstacao," +
                         "estacao.siglacidade AS siglaCidade," +
                         "cidade.nome AS nomeCidade," +
-                        "MIN(registro.data) AS dataMinima, MAX(registro.data) AS dataMaxima " +
+                        "MIN(registro.data) AS dataMinima,"+
+                        "MAX(registro.data) AS dataMaxima " +
                         "FROM estacao JOIN cidade ON estacao.siglacidade = cidade.sigla " +
-                        "JOIN registro ON estacao.siglacidade = registro.siglacidade " +
+                        "JOIN registro ON estacao.numero = registro.estacao " +
                         "GROUP BY estacao.numero, estacao.siglacidade, cidade.nome";
 
                 Statement stmt = conn.createStatement();
@@ -60,7 +61,12 @@ public class BoxPlotSQL extends IniciaBanco {
 
         try {
             if (conn != null) {
-                String sql = "SELECT registro.tipo, registro.valor FROM registro JOIN estacao ON registro.siglacidade = estacao.siglacidade AND registro.estacao = estacao.numero WHERE estacao.numero = ?::VARCHAR AND registro.data = ?";
+                String sql = "SELECT registro.tipo, "+
+                "registro.valor "+
+                "FROM registro JOIN estacao "+
+                "ON registro.siglacidade = estacao.siglacidade "+
+                "AND registro.estacao = estacao.numero " +
+                "WHERE estacao.numero = ?::VARCHAR AND registro.data = ?";
 
 
                 PreparedStatement pstmt = conn.prepareStatement(sql);

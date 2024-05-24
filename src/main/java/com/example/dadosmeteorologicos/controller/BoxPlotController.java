@@ -24,7 +24,6 @@ import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -76,8 +75,9 @@ public class BoxPlotController {
     @FXML
     private Button btnExecutar;
 
-    // dadosBoxPlot e boxPlotSelecionado transformados em atributos do controllador afim de tornalos globais,
-    //  podendo ser usados em metodo independentes de serem passados como arguementos
+    // dadosBoxPlot e boxPlotSelecionado transformados em atributos do controllador
+    // afim de tornalos globais,
+    // podendo ser usados em metodo independentes de serem passados como arguementos
 
     private List<ValoresBoxPlot> dadosBoxPlot;
 
@@ -174,16 +174,11 @@ public class BoxPlotController {
             List<Double> dirVento = convertToDoubleList(boxPlotDados.get("dirVento"));
             List<Double> chuva = convertToDoubleList(boxPlotDados.get("chuva"));
 
-            ValoresBoxPlot temperaturaBoxPlot = new ValoresBoxPlot("Temperatura",
-                    temperatura.stream().mapToDouble(Double::doubleValue).toArray());
-            ValoresBoxPlot umidadeBoxPlot = new ValoresBoxPlot("Umidade",
-                    umidade.stream().mapToDouble(Double::doubleValue).toArray());
-            ValoresBoxPlot velVentoBoxPlot = new ValoresBoxPlot("Velocidade do Vento",
-                    velVento.stream().mapToDouble(Double::doubleValue).toArray());
-            ValoresBoxPlot dirVentoBoxPlot = new ValoresBoxPlot("Direção do Vento",
-                    dirVento.stream().mapToDouble(Double::doubleValue).toArray());
-            ValoresBoxPlot chuvaBoxPlot = new ValoresBoxPlot("Chuva",
-                    chuva.stream().mapToDouble(Double::doubleValue).toArray());
+            ValoresBoxPlot temperaturaBoxPlot = new ValoresBoxPlot("Temperatura", temperatura.toArray(new Double[0]));
+            ValoresBoxPlot umidadeBoxPlot = new ValoresBoxPlot("Umidade", umidade.toArray(new Double[0]));
+            ValoresBoxPlot velVentoBoxPlot = new ValoresBoxPlot("Velocidade do Vento", velVento.toArray(new Double[0]));
+            ValoresBoxPlot dirVentoBoxPlot = new ValoresBoxPlot("Direção do Vento", dirVento.toArray(new Double[0]));
+            ValoresBoxPlot chuvaBoxPlot = new ValoresBoxPlot("Chuva", chuva.toArray(new Double[0]));
 
             dadosBoxPlot = Arrays.asList(
                     temperaturaBoxPlot, umidadeBoxPlot, velVentoBoxPlot, dirVentoBoxPlot, chuvaBoxPlot);
@@ -211,14 +206,6 @@ public class BoxPlotController {
         columnEstacao.setStyle("-fx-alignment: CENTER;");
         columnCidade.setStyle("-fx-alignment: CENTER;");
 
-        // Map(Registro, ValoresBoxPlot) dados =
-        // service.getDadosBoxPlot(boxPlotSelecionado);
-
-        // TEMPERATURA private double min; private double q1;private double mediana;
-        // private double q3;private double max;
-
-        // UMIDADE private double min; private double q1;private double mediana; private
-        // double q3;private double max;
     }
 
     @FXML
@@ -232,12 +219,8 @@ public class BoxPlotController {
         columnQ3.setCellValueFactory(new PropertyValueFactory<>("q3"));
         columnMax.setCellValueFactory(new PropertyValueFactory<>("max"));
 
-        // Aplicando formatação diretamente nas colunas de Double
-        formatColumnDouble(columnMin);
-        formatColumnDouble(columnQ1);
-        formatColumnDouble(columnMediana);
-        formatColumnDouble(columnQ3);
-        formatColumnDouble(columnMax);
+        // Aplicando formatação diretamente nas colunas
+
 
         tabelaDados.getItems().setAll(dadosBoxPlot);
 
@@ -249,38 +232,27 @@ public class BoxPlotController {
         columnMax.setStyle("-fx-alignment: CENTER;");
     }
 
-    private void formatColumnDouble(TableColumn<ValoresBoxPlot, Double> column) {
-        column.setCellFactory(tc -> new TableCell<ValoresBoxPlot, Double>() {
-            @Override
-            protected void updateItem(Double value, boolean empty) {
-                super.updateItem(value, empty);
-                if (empty) {
-                    setText(null);
-                } else {
-                    setText(String.format("%.2f", value));
-                }
-            }
-        });
-    }
+
 
     @FXML
     public void exportaCsv(ActionEvent event) {
         try {
-            // Nome do csv contem numeroEstacao, siglaCidade, dataSelecionada e BoxPlot (ex: 420_SP_2021-01-01_BoxPlot.csv)
-            String NomeCSV = boxPlotSelecionado.getNumeroEstacao() + "_" + boxPlotSelecionado.getSiglaCidade() + "_" + 
-                boxPlotSelecionado.getDataSelecionada() + "_BoxPlot" + ".csv";
+            // Nome do csv contem numeroEstacao, siglaCidade, dataSelecionada e BoxPlot (ex:
+            // 420_SP_2021-01-01_BoxPlot.csv)
+            String NomeCSV = boxPlotSelecionado.getNumeroEstacao() + "_" + boxPlotSelecionado.getSiglaCidade() + "_" +
+                    boxPlotSelecionado.getDataSelecionada() + "_BoxPlot" + ".csv";
             String enderecoPastaDownload = System.getenv("USERPROFILE") + "/Downloads/";
             String caminhoCompleto = Paths.get(enderecoPastaDownload, NomeCSV).toString();
 
             FileWriter fileWriter = new FileWriter(caminhoCompleto);
             CSVWriter csvWriter = new CSVWriter(fileWriter);
-            String[] cabecalho = {" ", "Minimo", "1º quartil", "Mediana", "3º quartil", "Maximo"};
+            String[] cabecalho = { " ", "Minimo", "1º quartil", "Mediana", "3º quartil", "Maximo" };
             csvWriter.writeNext(cabecalho);
-            for (ValoresBoxPlot valorLinha : dadosBoxPlot){
+            for (ValoresBoxPlot valorLinha : dadosBoxPlot) {
                 String[] valoresConvertidos = valorLinha.converteValorParaCsv(valorLinha);
                 csvWriter.writeNext(valoresConvertidos);
-            }    
-               
+            }
+
             csvWriter.close();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

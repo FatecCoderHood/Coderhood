@@ -46,6 +46,9 @@
             <TableColumn fx:id="columnMax" prefWidth="75.0" text="Máximo" />
          </columns>
       </TableView>
-      <Label layoutX="190.0" layoutY="409.0" text="* Se a data não tiver pelo menos 3 registros, os valores serão zerados." />
+      <Label layoutX="190.0" layoutY="409.0" text="* Se a data não tiver pelo menos 3 registros, não é possível gerar os dados para o gráfica BoxPlot">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
    </children>
 </AnchorPane>
