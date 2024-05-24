@@ -11,8 +11,8 @@ public class Estacao {
     private String siglaCidade;
     private String nome;
     private String descricao;
-    private String latitude;
-    private String longitude;
+    private Double latitude;
+    private Double longitude;
 
 
     Estacao(String numero, String siglaCidade) {

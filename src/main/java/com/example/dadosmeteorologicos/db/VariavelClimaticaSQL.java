@@ -53,7 +53,9 @@ public class VariavelClimaticaSQL extends IniciaBanco{
                 ResultSet rs = stmt.executeQuery(sql);
 
                 while (rs.next()) {
-                    VariavelClimatica variavel = new VariavelClimatica(rs.getString("tipo"), rs.getDouble("ValorMinimo"), rs.getDouble("ValorMaximo"));
+                    VariavelClimatica variavel = new VariavelClimatica(rs.getString("tipo"), 
+                    rs.getDouble("ValorMinimo"), rs.getDouble("ValorMaximo"), rs.getString("unidadeMedida"), 
+                    rs.getString("descricaoConversao"), rs.getString("formulaConversao"));
                     variaveis.add(variavel);
                 }
             }
@@ -76,21 +78,29 @@ public class VariavelClimaticaSQL extends IniciaBanco{
                 if (count == 0) {
                     // A tabela está vazia
                     for (VariavelClimatica variavel : variaveis){
-                        String insertSql = "INSERT INTO variavel_climatica (tipo, ValorMinimo, ValorMaximo) VALUES (?, ?, ?)";
+                        String insertSql = "INSERT INTO variavel_climatica (tipo, ValorMinimo, ValorMaximo, unidadeMedida, descricaoConversao, formuladescricao)" +
+                            "VALUES (?, ?, ?, ?, ?, ?)";
                         PreparedStatement insertStmt = conn.prepareStatement(insertSql);
                         insertStmt.setString(1, variavel.getTipo());
                         insertStmt.setDouble(2, variavel.getValorMinimo());
                         insertStmt.setDouble(3, variavel.getValorMaximo());
+                        insertStmt.setString(4, variavel.getUnidadeMedida());
+                        insertStmt.setString(5, variavel.getDescricaoConversao());
+                        insertStmt.setString(6, variavel.getFormulaConversao());
                         insertStmt.executeUpdate();
                     }
                 } else {
                     // A tabela não está vazia, então atualize os registros
                     for (VariavelClimatica variavel : variaveis){
-                        String updateSql = "UPDATE variavel_climatica SET ValorMinimo = ?, ValorMaximo = ? WHERE tipo = ?";
+                        String updateSql = "UPDATE variavel_climatica SET ValorMinimo = ?, ValorMaximo = ?, unidadeMedida = ?, descricaoConversao = ?, "+ 
+                            "formulaConversao = ? WHERE tipo = ?";
                         PreparedStatement updateStmt = conn.prepareStatement(updateSql);
                         updateStmt.setDouble(1, variavel.getValorMinimo());
                         updateStmt.setDouble(2, variavel.getValorMaximo());
-                        updateStmt.setString(3, variavel.getTipo());
+                        updateStmt.setString(3, variavel.getUnidadeMedida());
+                        updateStmt.setString(4, variavel.getDescricaoConversao());
+                        updateStmt.setString(5, variavel.getFormulaConversao());
+                        updateStmt.setString(6, variavel.getTipo());
                         updateStmt.executeUpdate();
                     }
                 }
