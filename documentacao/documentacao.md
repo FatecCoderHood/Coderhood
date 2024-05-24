@@ -23,6 +23,8 @@
   - [Otimização do banco](#otimização-do-banco)
   - [Otimização de código](#otimização-de-código)
   - [Testes Unitários](#testes-unitários)
+  - Manual do usuário
+  - Documentação 
 
 ## Entidade Relacionamento
 ![entidade-relacionamento](imagens/conceito_entidade-relacionamento.jpg)
