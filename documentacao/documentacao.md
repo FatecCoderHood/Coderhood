@@ -12,13 +12,17 @@
   - [Gerenciamento de estações](#gerenciamento-de-estações)
   - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)  
 
-- [Sprint 3:](#sprint-3)
+- [Sprint 3:](#sprint-3) Todos os requisitos funcionais foram entregues ✅
   - [Relatório de Situação](#Relatório-de-Situação)
   - [Dados BoxPlot](#dados-boxplot)
   - [Gerenciamento de unidades de medida](#gerenciamento-de-unidades-de-medida)
   - [Adicionado mais informações às estações](#adicionado-mais-informações-às-estações)
   - [Retirado a obrigatoriedade do nome da cidade](#retirado-a-obrigatoriedade-do-nome-da-cidade)
 
+- [Sprint 4:](#sprint-4)
+  - [Otimização do banco](#otimização-do-banco)
+  - [Otimização de código](#otimização-de-código)
+  - [Testes Unitários](#testes-unitários)
 
 ## Entidade Relacionamento
 ![entidade-relacionamento](imagens/conceito_entidade-relacionamento.jpg)
@@ -287,4 +291,16 @@ Como pesquisador, quero poder adicionar dados adicionais aos extraidos do CSV, a
 
   **Regras de negócio:**
   - Somente a sigla é exigida ao se criar uma cidade.
+
+
+  ### Sprint 4:
+
+#### Otimização do banco:
+Melhorar a eficiência do nosso banco de dados. Estaremos trabalhando na otimização de consultas, estruturação de dados e garantindo a integridade dos dados.
+
+#### Otimização de código:
+Revisão do código para identificar áreas que podem ser otimizadas. Isso inclui refatoração para melhor legibilidade, melhor desempenho e manutenibilidade.
+
+#### Testes Unitários:
+Para garantir a qualidade do código, estaremos escrevendo e executando testes unitários. Isso nos ajudará a identificar e corrigir bugs antes que eles cheguem ao ambiente de produção.
   
