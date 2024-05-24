@@ -113,10 +113,7 @@ public class EstacaoController {
 
     @FXML
     void criarTabela(List<Estacao> estacoesDoBanco) {
-        for (Estacao estacao : estacoesDoBanco) {
-            System.out.println(estacao.getLongitude());
-            System.out.println(estacao.getLongitude().getClass().getSimpleName());
-        }
+    
         ColumnSigla.setCellValueFactory(new PropertyValueFactory<>("siglaCidade"));
         ColumnEstacao.setCellValueFactory(new PropertyValueFactory<>("numero"));
         ColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
