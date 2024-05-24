@@ -15,6 +15,8 @@
 - [Sprint 3:](#sprint-3)
   - [Relatório de Situação](#Relatório-de-Situação)
   - [Dados BoxPlot](#dados-boxplot)
+  - [Gerenciamento de unidades de mediade]
+  - [Adicionado mais informações as estações]
 
 
 ## Entidade Relacionamento
