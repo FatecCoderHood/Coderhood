@@ -15,8 +15,9 @@
 - [Sprint 3:](#sprint-3)
   - [Relatório de Situação](#Relatório-de-Situação)
   - [Dados BoxPlot](#dados-boxplot)
-  - [Gerenciamento de unidades de medida]
-  - [Adicionado mais informações as estações]
+  - [Gerenciamento de unidades de medida](#gerenciamento-de-unidades-de-medida)
+  - [Adicionado mais informações às estações](#adicionado-mais-informações-às-estações)
+  - [Retirado a obrigatoriedade do nome da cidade](#retirado-a-obrigatoriedade-do-nome-da-cidade)
 
 
 ## Entidade Relacionamento
@@ -239,6 +240,11 @@ Como pesquisador, posso gerar dados necessários para a criação de um gráfico
 ![Dados BoxPlot](imagens/boxplot.png)
 
 
+ **CSV exportado:**
+
+![csv e boxplot](imagens/csv_boxplot.jpg)
+
+
 
   ### Gerenciamento de unidades de medida:
 
@@ -254,11 +260,12 @@ Como pesquisador, quero poder informar o nome das unidades e exibir suas formula
 
 
  **Interface do usuário:**
+
 ![Configuracoes tipo climatico](imagens/configuracoes_tipo_climatico.png)
 
 
 
-  ### Adicionado mais informações as estações:
+  ### Adicionado mais informações às estações:
 
   **História do usuário:**
 Como pesquisador, quero poder adicionar dados adicionais aos extraidos do CSV, afim de identificar cada estação pela localização ou pelo nome.
@@ -269,3 +276,15 @@ Como pesquisador, quero poder adicionar dados adicionais aos extraidos do CSV, a
   - Unidade de medida
   - Descrição da conversão
   - Formula de conversão
+
+ **Interface do usuário:**
+
+![estacao com informacoes adicionais](imagens/estacao_com_informacoes_adicionadas.png)
+
+
+
+  ### Retirado a obrigatoriedade do nome da cidade:
+
+  **Regras de negócio:**
+  - Somente a sigla é exigida ao se criar uma cidade.
+  
