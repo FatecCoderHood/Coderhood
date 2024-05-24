@@ -92,6 +92,7 @@ public class BoxPlotController {
         System.out.println("Iniciado boxplot");
 
         btnExecutar.setVisible(false);
+        btnExportar.setVisible(false);
 
         // Adiciona um ouvinte à propriedade de texto do menuButton de estação
         menuButtonEstacao.textProperty()
@@ -153,7 +154,7 @@ public class BoxPlotController {
     }
 
     @FXML
-    public void selecionarEstacao(ActionEvent event) {
+    public void selecionarEstacao(ActionEvent event) {        
         LocalDate dataSelecionada = dataInicial.getValue();
         String estacaoSelecionada = menuButtonEstacao.getText();
 
@@ -185,6 +186,8 @@ public class BoxPlotController {
 
             criarTabelaCidade(boxPlotSelecionado);
             criarTabelaDados(dadosBoxPlot);
+
+            btnExportar.setVisible(true);
         }
     }
 
