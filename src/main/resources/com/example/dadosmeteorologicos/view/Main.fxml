@@ -18,7 +18,7 @@
               <fx:include source="LeitorCsv.fxml" />
             </content>
           </Tab>
-          <Tab fx:id="tabValorMedio" text="Valor Medio">
+          <Tab fx:id="tabValorMedio" text="Valor Médio">
           </Tab>
           <Tab fx:id="tabCidade" text="Cidade">
           </Tab>
