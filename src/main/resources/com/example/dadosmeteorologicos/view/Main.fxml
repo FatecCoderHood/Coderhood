@@ -28,7 +28,7 @@
           </Tab>
           <Tab fx:id="tabSuspeito" text="Registros Suspeitos">
           </Tab>
-          <Tab text="BoxPlot">
+          <Tab fx:id="tabBoxPlot" text="BoxPlot">
           </Tab>
           <Tab fx:id="tabConf" text="Configurações">
           </Tab>
