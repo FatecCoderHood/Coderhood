@@ -170,8 +170,6 @@ public class BoxPlotController {
     @FXML
     public void selecionarEstacao(ActionEvent event) {
 
-        btnExportar.setVisible(true);
-
         LocalDate dataSelecionada = dataInicial.getValue();
         String estacaoSelecionada = menuButtonEstacao.getText();
 
@@ -203,6 +201,8 @@ public class BoxPlotController {
 
             criarTabelaCidade(boxPlotSelecionado);
             criarTabelaDados(dadosBoxPlot);
+
+            btnExportar.setVisible(true);
         }
     }
 
