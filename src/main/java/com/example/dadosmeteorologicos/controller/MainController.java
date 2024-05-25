@@ -34,20 +34,19 @@ public class MainController {
     
     @FXML
     private Tab tabConf;
-    
     @FXML
     private Tab tabSuspeito;
-
-    @FXML
-    private Tab tabBoxPlot;
 
     @FXML
     private Tab tabCidade;
 
     @FXML
+    private Tab tabSituacao;
+
+    @FXML
     public void initialize() {
         
-        Image imageFundo = new Image(getClass().getResourceAsStream("/com/example/dadosmeteorologicos/imagens/fundo.gif"));
+        Image imageFundo = new Image(getClass().getResourceAsStream("/com/example/dadosmeteorologicos/imagens/rain3.gif"));
         imageViewFundo.setImage(imageFundo);
         
         Image imageLogoCoderHood = new Image(getClass().getResourceAsStream("/com/example/dadosmeteorologicos/imagens/logo.png"));
@@ -94,14 +93,6 @@ public class MainController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-            } else if(newTab == tabBoxPlot){
-                try {
-                    Pane boxplotPane = FXMLLoader.load(getClass().getResource("/com/example/dadosmeteorologicos/view/BoxPlot.fxml"));
-                    tabBoxPlot.setContent(boxplotPane);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             } else if(newTab == tabCidade){
                 try {
                     Pane cidadePane = FXMLLoader.load(getClass().getResource("/com/example/dadosmeteorologicos/view/Cidade.fxml"));
@@ -110,7 +101,14 @@ public class MainController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+            } else if (newTab == tabSituacao) {
+                    try {
+                        Pane SituacaoPane = FXMLLoader.load(getClass().getResource("/com/example/dadosmeteorologicos/view/Situacao.fxml"));
+                        tabSituacao.setContent(SituacaoPane);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+            }  
         });
     }
 }
