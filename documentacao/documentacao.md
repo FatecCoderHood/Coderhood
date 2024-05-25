@@ -13,7 +13,7 @@
   - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)  
 
 - [Sprint 3:](#sprint-3) Todos os requisitos funcionais foram entregues ✅
-  - [Relatório de Situação](#Relatório-de-Situação)
+  - [Relatório de Situação](#relatório-de-situação)
   - [Dados BoxPlot](#dados-boxplot)
   - [Gerenciamento de unidades de medida](#gerenciamento-de-unidades-de-medida)
   - [Adicionado mais informações às estações](#adicionado-mais-informações-às-estações)
