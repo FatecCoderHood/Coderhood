@@ -78,7 +78,7 @@ public class VariavelClimaticaSQL extends IniciaBanco{
                 if (count == 0) {
                     // A tabela está vazia
                     for (VariavelClimatica variavel : variaveis){
-                        String insertSql = "INSERT INTO variavel_climatica (tipo, ValorMinimo, ValorMaximo, unidadeMedida, descricaoConversao, formuladescricao)" +
+                        String insertSql = "INSERT INTO variavel_climatica (tipo, ValorMinimo, ValorMaximo, unidadeMedida, descricaoConversao, formulaConversao)" +
                             "VALUES (?, ?, ?, ?, ?, ?)";
                         PreparedStatement insertStmt = conn.prepareStatement(insertSql);
                         insertStmt.setString(1, variavel.getTipo());

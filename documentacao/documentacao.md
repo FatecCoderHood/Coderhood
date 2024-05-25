@@ -12,10 +12,19 @@
   - [Gerenciamento de estações](#gerenciamento-de-estações)
   - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)  
 
-- [Sprint 3:](#sprint-3)
+- [Sprint 3:](#sprint-3) Todos os requisitos funcionais foram entregues ✅
   - [Relatório de Situação](#Relatório-de-Situação)
   - [Dados BoxPlot](#dados-boxplot)
+  - [Gerenciamento de unidades de medida](#gerenciamento-de-unidades-de-medida)
+  - [Adicionado mais informações às estações](#adicionado-mais-informações-às-estações)
+  - [Retirado a obrigatoriedade do nome da cidade](#retirado-a-obrigatoriedade-do-nome-da-cidade)
 
+- [Sprint 4:](#sprint-4)
+  - [Otimização do banco](#otimização-do-banco)
+  - [Otimização de código](#otimização-de-código)
+  - [Testes Unitários](#testes-unitários)
+  - Manual do usuário
+  - Documentação 
 
 ## Entidade Relacionamento
 ![entidade-relacionamento](imagens/conceito_entidade-relacionamento.jpg)
@@ -209,7 +218,7 @@ Como pesquisador, posso visualizar relatório de situação, afim de verificar a
 
  **Interface do usuário:**
  
- ![Aba Relatório Situação](imagens/image-18.png)
+ ![Aba Relatório Situação](imagens/situacao.png)
 
 ##
 
@@ -220,7 +229,7 @@ Como pesquisador, posso gerar dados necessários para a criação de um gráfico
 
 
 **Regras de negócio:**
-- Deve ser selecionado uma estação, uma data inicial eu uma data final.
+- Deve ser selecionado uma estaçãoe uma estação.
 - Será gerado para cada váriavel climatica("Temperatura Média", "Umidade Média", "Velocidade do Vento", "Direção do Vento", "Chuva"): 
   - Mínimo
   - Primeiro quartil
@@ -228,9 +237,72 @@ Como pesquisador, posso gerar dados necessários para a criação de um gráfico
   - Terceiro quartil
   - Máximo
 
-- Será possível exportar em formato excel(.xlsx).
+
+- Será possível exportar em formato CSV.
 
 
  **Interface do usuário:**
  
-![Aba Dados BoxPlot](imagens/image-19.png)
+![Dados BoxPlot](imagens/boxplot.png)
+
+
+ **CSV exportado:**
+
+![csv e boxplot](imagens/csv_boxplot.jpg)
+
+
+
+  ### Gerenciamento de unidades de medida:
+
+**História do usuário:**
+Como pesquisador, quero poder informar o nome das unidades e exibir suas formulas de conversão de unidade, afim de manter a congiuração clara a todos os usuários.
+
+
+**Regras de negócio:**
+- Deve ser possível informar para cada variavel climática:
+  - Unidade de medida
+  - Descrição da conversão
+  - Formula de conversão
+
+
+ **Interface do usuário:**
+
+![Configuracoes tipo climatico](imagens/configuracoes_tipo_climatico.png)
+
+
+
+  ### Adicionado mais informações às estações:
+
+  **História do usuário:**
+Como pesquisador, quero poder adicionar dados adicionais aos extraidos do CSV, afim de identificar cada estação pela localização ou pelo nome.
+
+
+**Regras de negócio:**
+- Deve ser possível informar para cada variavel climática:
+  - Unidade de medida
+  - Descrição da conversão
+  - Formula de conversão
+
+ **Interface do usuário:**
+
+![estacao com informacoes adicionais](imagens/estacao_com_informacoes_adicionadas.png)
+
+
+
+  ### Retirado a obrigatoriedade do nome da cidade:
+
+  **Regras de negócio:**
+  - Somente a sigla é exigida ao se criar uma cidade.
+
+
+  ### Sprint 4:
+
+#### Otimização do banco:
+Melhorar a eficiência do nosso banco de dados. Estaremos trabalhando na otimização de consultas, estruturação de dados e garantindo a integridade dos dados.
+
+#### Otimização de código:
+Revisão do código para identificar áreas que podem ser otimizadas. Isso inclui refatoração para melhor legibilidade, melhor desempenho e manutenibilidade.
+
+#### Testes Unitários:
+Para garantir a qualidade do código, estaremos escrevendo e executando testes unitários. Isso nos ajudará a identificar e corrigir bugs antes que eles cheguem ao ambiente de produção.
+  
