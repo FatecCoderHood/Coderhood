@@ -32,7 +32,7 @@
           <Tab fx:id="tabSuspeito" text="Registros Suspeitos">
 
           </Tab>
-          <Tab text="BoxPlot">
+          <Tab fx:id="tabBoxPlot" text="BoxPlot">
             <content>
               
             </content>
