@@ -22,13 +22,13 @@
           </Tab>
           <Tab fx:id="tabValorMedio" text="Valor Médio">
           </Tab>
-            <Tab fx:id="tabCidade" text="Cidade">
+          <Tab fx:id="tabCidade" text="Cidade">
           </Tab>
           <Tab fx:id="tabEstacao" text="Estação">
           </Tab>
           <Tab fx:id="tabSuspeito" text="Registros Suspeitos">
           </Tab>
-          <Tab text="BoxPlot">
+          <Tab fx:id="tabBoxPlot" text="BoxPlot">
           </Tab>
           <Tab fx:id="tabConf" text="Configurações">
           </Tab>
