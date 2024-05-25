@@ -92,15 +92,19 @@ public class BoxPlotController {
         System.out.println("Iniciado boxplot");
 
         btnExecutar.setVisible(false);
+        btnExportar.setVisible(false);
+
 
         // Adiciona um ouvinte à propriedade de texto do menuButton de estação
         menuButtonEstacao.textProperty()
                 .addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+                    resetPage();
                     checkFields();
                 });
 
         dataInicial.valueProperty().addListener(
                 (ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) -> {
+                    resetPage();
                     checkFields();
                 });
 
@@ -136,11 +140,22 @@ public class BoxPlotController {
 
     }
 
+
+    private void resetPage() {
+        tabelaDados.getItems().clear();
+        tabelaEstacao.getItems().clear();
+        btnExecutar.setVisible(false);
+        btnExportar.setVisible(false);
+    }
+
+
     private void checkFields() {
         // Se todos os campos estiverem preenchidos, mostra o botão de busca
         if (!menuButtonEstacao.getText().equals("Selecione a cidade") && dataInicial.getValue() != null) {
             btnExecutar.setVisible(true);
+
         }
+        
     }
 
     private List<Double> convertToDoubleList(List<String> list) {
@@ -154,6 +169,9 @@ public class BoxPlotController {
 
     @FXML
     public void selecionarEstacao(ActionEvent event) {
+
+        btnExportar.setVisible(true);
+
         LocalDate dataSelecionada = dataInicial.getValue();
         String estacaoSelecionada = menuButtonEstacao.getText();
 
@@ -187,6 +205,8 @@ public class BoxPlotController {
             criarTabelaDados(dadosBoxPlot);
         }
     }
+
+
 
     @FXML
     public void criarTabelaCidade(BoxPlot boxPlotSelecionado) {
