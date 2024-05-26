@@ -18,28 +18,22 @@
               <fx:include source="LeitorCsv.fxml" />
             </content>
           </Tab>
-          <Tab fx:id="tabValorMedio" text="Valor Medio">
-            <content>
-            </content>
+          <Tab fx:id="tabSituacao" text="Situação">
+          </Tab>
+          <Tab fx:id="tabValorMedio" text="Valor Médio">
           </Tab>
             <Tab fx:id="tabCidade" text="Cidade">
           </Tab>
           <Tab fx:id="tabEstacao" text="Estação">
-            <content>
-              
-            </content>
           </Tab>
           <Tab fx:id="tabSuspeito" text="Registros Suspeitos">
-
           </Tab>
           <Tab fx:id="tabBoxPlot" text="BoxPlot">
             <content>
               
             </content>
           </Tab>
-            <Tab fx:id="tabConf" text="Configurações">
-            <content>
-            </content>
+          <Tab fx:id="tabConf" text="Configurações">
           </Tab>
         </tabs>
       </TabPane>

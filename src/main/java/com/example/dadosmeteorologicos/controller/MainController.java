@@ -45,9 +45,12 @@ public class MainController {
     private Tab tabCidade;
 
     @FXML
+    private Tab tabSituacao;
+
+    @FXML
     public void initialize() {
         
-        Image imageFundo = new Image(getClass().getResourceAsStream("/com/example/dadosmeteorologicos/imagens/fundo.gif"));
+        Image imageFundo = new Image(getClass().getResourceAsStream("/com/example/dadosmeteorologicos/imagens/rain3.gif"));
         imageViewFundo.setImage(imageFundo);
         
         Image imageLogoCoderHood = new Image(getClass().getResourceAsStream("/com/example/dadosmeteorologicos/imagens/logo.png"));
@@ -110,7 +113,14 @@ public class MainController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+            } else if (newTab == tabSituacao) {
+                    try {
+                        Pane SituacaoPane = FXMLLoader.load(getClass().getResource("/com/example/dadosmeteorologicos/view/Situacao.fxml"));
+                        tabSituacao.setContent(SituacaoPane);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+            }  
         });
     }
 }
