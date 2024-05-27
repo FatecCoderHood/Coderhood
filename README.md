@@ -135,7 +135,7 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
 
 ## :chart_with_upwards_trend: Gráfico Burndown
 <div align="center">
-    <img src="documentacao\Gráfio Burndown.jpg" alt="Gráfico Burndown" alt="Gráfico Burndown" width="75%">
+    <img src="documentacao/imagens/Grafico Burndown  Sprint 3.png" alt="Gráfico Burndown 3" width="75%">
 </div>
 
 Para mais detalhes, [clique aqui](https://docs.google.com/spreadsheets/d/18BzTviEVx57DJYTtO7ZxyRwD-H_qZu2e2en_GfMsqkg/edit#gid=1164764710).
