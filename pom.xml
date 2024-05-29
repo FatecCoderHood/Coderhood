@@ -6,7 +6,7 @@
 
     <groupId>com.example</groupId>
     <artifactId>DadosMeteorologicos</artifactId>
-    <version>4.0.0</version>
+    <version>4.0.1</version>
     <name>Zeus</name>
 
     <properties>
