@@ -42,7 +42,7 @@ public class IniciaBancoTeste {
         }
     }
 
-     public void iniciarBanco(){
+    public void iniciarBanco(){
         try{
             conn = DriverManager.getConnection(url, user, password);
             if (conn != null) {
@@ -51,10 +51,10 @@ public class IniciaBancoTeste {
                 criarTabelaCidade();
                 criarTabelaEstacao();
                 conn.close();
-            } 
+            }
         }catch(SQLException e){
             System.err.format("iniciarBanco SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
-        }    
+        }
     }
 
     public void criarDataBase() throws SQLException{
