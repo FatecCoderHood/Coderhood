@@ -23,6 +23,7 @@ public class VariavelClimaticaTeste {
     public void setup() throws SQLException {
         bancoTeste = new IniciaBancoTeste();
         bancoTeste.iniciarBanco();
+        bancoTeste.popularBancoTeste();
         variavelClimaticaService = new VariavelClimaticaService(bancoTeste.conectarBanco());
     }
 
@@ -62,7 +63,6 @@ public class VariavelClimaticaTeste {
 
     @After
     public void tearDown() {
-        IniciaBancoTeste bancoTeste = new IniciaBancoTeste();
         bancoTeste.limparBanco();
     }
 }
