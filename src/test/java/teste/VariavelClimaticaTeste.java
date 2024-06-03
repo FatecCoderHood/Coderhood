@@ -1,33 +1,38 @@
 package teste;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 import com.example.dadosmeteorologicos.Services.VariavelClimaticaService;
 import com.example.dadosmeteorologicos.model.VariavelClimatica;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.sql.*;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class VariavelClimaticaTeste {
-    private VariavelClimaticaService variavelClimaticaService;
-    private IniciaBancoTeste bancoTeste;
+    private static VariavelClimaticaService variavelClimaticaService;
+    private static IniciaBancoTeste bancoTeste;
 
-
-    @Before
-    public void setup() throws SQLException {
+    @BeforeAll
+    public static void setup() throws SQLException {
+        System.out.println("testeA");
         bancoTeste = new IniciaBancoTeste();
         bancoTeste.iniciarBanco();
         bancoTeste.popularBancoTeste();
         variavelClimaticaService = new VariavelClimaticaService(bancoTeste.conectarBanco());
     }
 
-    @Test
+    @AfterAll
+    public static void tearDown() {
+        bancoTeste.fecharConexao();
+        bancoTeste.limparBanco();
+    }
+
+    @org.junit.jupiter.api.Test
     public void testGetVariavelClimatica() {
         List<VariavelClimatica> variaveisClimaticas = variavelClimaticaService.getVariaveisClimaticas();
         List<String> tipos = Arrays.asList("temperaturaMedia", "umidadeMedia", "velVento", "dirVento", "chuva");
@@ -36,7 +41,7 @@ public class VariavelClimaticaTeste {
         }
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetVariaveisClimaticas(){
         List<VariavelClimatica> variaveis = Arrays.asList(
             new VariavelClimatica("temperaturaMedia", 20.0, 30.0, "C", "Temperatura média", "Celsius"),
@@ -58,11 +63,6 @@ public class VariavelClimaticaTeste {
 
     @Test
     public void testeCelulasDaTabelaEstaoNulas() {
-        assertFalse("As células da tabela não deveriam ser nulas", variavelClimaticaService.celulasDaTabelaEstaoNulas());
-    }
-
-    @After
-    public void tearDown() {
-        bancoTeste.limparBanco();
+        assertFalse(variavelClimaticaService.celulasDaTabelaEstaoNulas());
     }
 }
