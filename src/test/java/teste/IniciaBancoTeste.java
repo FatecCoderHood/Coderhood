@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import lombok.Data;
+
+@Data
 public class IniciaBancoTeste {
     private String nomeDB = "apifatecteste";
     private String url = "jdbc:postgresql://localhost/" + nomeDB;
@@ -15,6 +18,7 @@ public class IniciaBancoTeste {
 
     public IniciaBancoTeste() {
         this.conn = conectarBanco();
+        criarDataBase();
     }
 
     public Connection conectarBanco() {
@@ -57,7 +61,20 @@ public class IniciaBancoTeste {
         }    
     }
 
-    public void criarDataBase() throws SQLException{
+    public void limparBanco(){
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+            if (conn != null) {
+                String sql = "DELETE FROM registro; DELETE FROM cidade; DELETE FROM estacao; DELETE FROM variavel_climatica";
+                Statement stmt = conn.createStatement();
+                stmt.execute(sql);
+            } 
+        } catch (SQLException e) {
+            System.err.format("limparBanco SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
+        }
+    }
+    
+    public void criarDataBase(){
         System.out.println("---------");
         System.out.println("Criando banco de dados");
         System.out.println("---------");
@@ -75,7 +92,6 @@ public class IniciaBancoTeste {
         }
         } catch (SQLException e) {
             System.err.format("criarDataBase SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
-            throw new SQLException("Falha ao conectar no banco!");
         }
     }
 
@@ -229,7 +245,7 @@ public class IniciaBancoTeste {
                     "('umidadeMedia', 0.0, 100.0, '%', 'Umidade relativa', 'umidade')," +
                     "('velVento', 0.0, 30.0, 'hPa', 'Pressão atmosférica', 'pressao')," +
                     "('dirVento', 0.0, 360.0, 'm/s', 'Direção do vento', 'direcao')," +
-                    "('chuva', 0.0, 400.0, 'm/s', 'Velocidade do vento', 'velocidade')";
+                    "('chuva', 0.0, 400.0, 'mm', 'Velocidade do vento', 'velocidade')";
                 Statement stmt = conn.createStatement();
                 stmt.executeUpdate(sql);
             }
