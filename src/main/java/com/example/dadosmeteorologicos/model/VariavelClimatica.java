@@ -14,7 +14,7 @@ public class VariavelClimatica {
     private String unidadeMedida;
     private String descricaoConversao;
     private String formulaConversao;
-    private static VariavelClimaticaService service = new VariavelClimaticaService();
+    private VariavelClimaticaService service = new VariavelClimaticaService();
     private List<VariavelClimatica> variaveisClimaticas;
 
 
@@ -53,12 +53,7 @@ public class VariavelClimatica {
    }
 
    public List<VariavelClimatica> getVariaveisClimaticas(){
-    System.out.println("VariavelClimatica getVariaveisClimaticas");
-        return service.getVariaveisClimaticas();
-    }
-
-    public void setVariaveisClimaticas(List<VariavelClimatica> variaveis){
-        service.setVariaveisClimaticas(variaveis);
+        return this.variaveisClimaticas;
     }
 
     @Override
