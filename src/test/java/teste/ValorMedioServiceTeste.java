@@ -61,16 +61,35 @@ public class ValorMedioServiceTeste {
        List<RegistroValorMedio> registroValorMedio = valorMedioService.getValorMedio("SC", 
         Date.valueOf("2021-01-01"),  Date.valueOf("2021-01-01"));
         RegistroValorMedio primeiroRegistro = registroValorMedio.get(0);
+        List<ValorMedioInfo> primeiroValorMedioInfo = primeiroRegistro.getValorMedioInfos();
         RegistroValorMedio segundoRegistro = registroValorMedio.get(1);
+
 
         // Verifique os valores do primeiro registro
         assertEquals(LocalDate.parse("2021-01-01"), primeiroRegistro.getData());
         assertEquals(LocalTime.parse("00:00"), primeiroRegistro.getHora());
         assertEquals("SC", primeiroRegistro.getSiglaCidade());
-        // Verifique os valores do primeiro ValorMedioInfo do primeiro registro
-        ValorMedioInfo primeiroValorMedioInfo = primeiroRegistro.getValorMedioInfos().get(0);
-        assertEquals("temperaturaMedia", primeiroValorMedioInfo.getTipo());
-        assertEquals(28.3, primeiroValorMedioInfo.getValor(), 1);
+
+        for (ValorMedioInfo info : primeiroValorMedioInfo) {
+            switch(info.getTipo()){
+                case "temperaturaMedia":
+                    assertEquals(28.3, info.getValor(), 1);
+                    break;
+                case "umidadeMedia":
+                    assertEquals(60.0, info.getValor(), 1);
+                    break;
+                case "velVento":
+                    assertEquals(10.0, info.getValor(), 1);
+                    break;
+                case "dirVento":
+                    assertEquals(186.67, info.getValor(), 1);
+                    break;
+                case "chuva":
+                    assertEquals(3.33, info.getValor(), 1);
+                    break;
+            }
+        }
+    
     }
 
     public List<Cidade> cidadesMock(){
