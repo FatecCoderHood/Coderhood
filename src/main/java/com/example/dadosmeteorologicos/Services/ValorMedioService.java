@@ -33,7 +33,7 @@ public class ValorMedioService {
   }
   
   // Método para consultar uma cidade por ID e datas
-  public List<RegistroValorMedio> consultaCidadePorIdEDatas(String siglaCidade, Date dataInicial, Date dataFinal){
+  public List<RegistroValorMedio> getValorMedio(String siglaCidade, Date dataInicial, Date dataFinal){
     // Chama o método getRelatorioValorMedio para obter a lista de registros da cidade
     List<RegistroValorMedio> listaRegistrosBD = banco.getRelatorioValorMedio(siglaCidade, dataInicial, dataFinal);
     // for (RegistroValorMedio registro : listaRegistrosBD) {

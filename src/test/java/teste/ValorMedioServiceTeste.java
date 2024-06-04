@@ -2,6 +2,7 @@ package teste;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import com.example.dadosmeteorologicos.Services.ValorMedioService;
 import com.example.dadosmeteorologicos.model.Cidade;
 import com.example.dadosmeteorologicos.model.CidadeDetalhes;
+import com.example.dadosmeteorologicos.model.RegistroValorMedio;
 
 
 public class ValorMedioServiceTeste {
@@ -48,6 +50,15 @@ public class ValorMedioServiceTeste {
                     assertEquals(cidade.getCidadeDetalhes().getDataUltimoRegistro(), cidadeMock.getCidadeDetalhes().getDataUltimoRegistro());
                 }
             }
+        }
+    }
+
+    @Test
+    public void consultaCidadePorIdEDatas(){
+       List<RegistroValorMedio> registroValorMedio = valorMedioService.getValorMedio("SC", 
+        Date.valueOf("2021-01-01"),  Date.valueOf("2021-01-01"));
+        for (RegistroValorMedio registro : registroValorMedio) {
+            System.out.println(registro.toString());
         }
     }
 

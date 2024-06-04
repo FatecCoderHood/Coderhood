@@ -7,13 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.example.dadosmeteorologicos.model.Cidade;
 import com.example.dadosmeteorologicos.model.CidadeDetalhes;
 import com.example.dadosmeteorologicos.model.RegistroValorMedio;
-import com.example.dadosmeteorologicos.model.ValorMedioInfo;
 
 public class ValorMedioSQL extends IniciaBanco {
 
@@ -56,10 +54,6 @@ public class ValorMedioSQL extends IniciaBanco {
                     Cidade cidade = new Cidade(nome, sigla, 
                         new CidadeDetalhes(dataPrimeiroRegistro, dataUltimoRegistro));
                     registros.add(cidade);
-                    System.out.println("valor medioSQL");
-                    System.out.println("URL do banco de dados: " + conn.getMetaData().getURL());
-                    System.out.println("Usuário do banco de dados: " + conn.getMetaData().getUserName());
-
                 }
             }
         } catch (SQLException e) {
@@ -73,21 +67,16 @@ public class ValorMedioSQL extends IniciaBanco {
     
         try {
             if (conn != null) {
-                String sql = "SELECT " +
-                                "data, " +
-                                "hora, " +
-                                "siglaCidade, " +
-                                "STRING_AGG(tipo, ', ' ORDER BY tipo) AS tipos, " +
-                                "STRING_AGG(COALESCE(valor::text, 'null'), ', ' ORDER BY tipo) AS valores " +
-                            "FROM " +
-                                "Registro " +
-                            "WHERE " +
-                                "siglaCidade = ? " +
-                                "AND data >= ? " +
-                                "AND data <= ? " +
-                            "GROUP BY " +
-                                "data, hora, estacao, siglaCidade " +
-                            "HAVING BOOL_OR(suspeito) = false";
+                String sql = "SELECT siglacidade, data, hora, " +
+                "AVG(CASE WHEN tipo = 'dirVento' THEN valor ELSE NULL END) AS dirVento, " +
+                "AVG(CASE WHEN tipo = 'temperaturaMedia' THEN valor ELSE NULL END) AS temperaturaMedia, " +
+                "AVG(CASE WHEN tipo = 'umidadeMedia' THEN valor ELSE NULL END) AS umidadeMedia, " +
+                "AVG(CASE WHEN tipo = 'velVento' THEN valor ELSE NULL END) AS velVento, " +
+                "AVG(CASE WHEN tipo = 'chuva' THEN valor ELSE NULL END) AS chuva " +
+                "FROM registro " +
+                " WHERE valor IS NOT NULL and siglaCidade = ? and data >= ? and data <= ? " +
+                "GROUP BY siglacidade, data, hora " +
+                "ORDER BY data, hora";
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, siglaCidade);
                 stmt.setDate(2, new java.sql.Date(dataInicial.getTime()));
@@ -99,26 +88,7 @@ public class ValorMedioSQL extends IniciaBanco {
                     registro.setData(rs.getDate("data").toLocalDate());
                     registro.setHora(rs.getTime("hora").toLocalTime());
                     registro.setSiglaCidade(rs.getString("siglaCidade"));
-                
-                    String tiposConcatenados = rs.getString("tipos");
-                    String valoresConcatenados = rs.getString("valores");
-                
-                    List<String> tipos = Arrays.asList(tiposConcatenados.split(", "));
-                    List<String> valores = Arrays.asList(valoresConcatenados.split(", "));
-                
-                    List<ValorMedioInfo> valorMedioInfos = new ArrayList<>();
-                    for (int i = 0; i < tipos.size(); i++) {
-                        ValorMedioInfo valorMedioInfo = new ValorMedioInfo();
-                        valorMedioInfo.setTipo(tipos.get(i));
-                        if (!valores.get(i).equals("null")) {
-                            valorMedioInfo.setValor(Double.parseDouble(valores.get(i)));
-                        } else {
-                            valorMedioInfo.setValor(null);
-                        }
-    
-                        valorMedioInfos.add(valorMedioInfo);
-                    }
-                    registro.setValorMedioInfos(valorMedioInfos);
+                    registro.carregarInfoValores(rs);
                     ListaRegistroBD.add(registro);
                 }
             }
