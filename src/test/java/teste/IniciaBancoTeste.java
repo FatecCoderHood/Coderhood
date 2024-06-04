@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import lombok.Data;
+
+@Data
 public class IniciaBancoTeste {
     private String nomeDB = "apifatecteste";
     private String url = "jdbc:postgresql://localhost/" + nomeDB;
@@ -15,6 +18,7 @@ public class IniciaBancoTeste {
 
     public IniciaBancoTeste() {
         this.conn = conectarBanco();
+        criarDataBase();
     }
 
     public Connection conectarBanco() {
@@ -57,7 +61,20 @@ public class IniciaBancoTeste {
         }    
     }
 
-    public void criarDataBase() throws SQLException{
+    public void limparBanco(){
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+            if (conn != null) {
+                String sql = "DELETE FROM registro; DELETE FROM cidade; DELETE FROM estacao; DELETE FROM variavel_climatica";
+                Statement stmt = conn.createStatement();
+                stmt.execute(sql);
+            } 
+        } catch (SQLException e) {
+            System.err.format("limparBanco SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
+        }
+    }
+    
+    public void criarDataBase(){
         System.out.println("---------");
         System.out.println("Criando banco de dados");
         System.out.println("---------");
@@ -75,7 +92,6 @@ public class IniciaBancoTeste {
         }
         } catch (SQLException e) {
             System.err.format("criarDataBase SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
-            throw new SQLException("Falha ao conectar no banco!");
         }
     }
 
@@ -209,6 +225,9 @@ public class IniciaBancoTeste {
                 System.out.println("Popular tabela estacao");
                 String sql = "INSERT INTO estacao (numero, siglaCidade, nome, descricao, latitude, longitude) VALUES " +
                     "('83726', 'SC', 'TESTE', 'TESTE', -23.223701, -45.900907)," +
+                    "('8888', 'SC', 'TESTE', 'TESTE', -23.223701, -45.900907)," +
+                    "('7777', 'SC', 'TESTE', 'TESTE', -23.223701, -45.900907)," +
+                    "('6666', 'SC', 'TESTE', 'TESTE', -23.223701, -45.900907)," +
                     "('777', 'SP', 'TESTE', 'TESTE', -23.223701, -45.900907)," +
                     "('420', 'SJC', 'TESTE', 'TESTE', -23.223701, -45.900907)," +
                     "('728', 'TBT', 'TESTE', 'TESTE', -23.223701, -45.900907)";
@@ -229,7 +248,7 @@ public class IniciaBancoTeste {
                     "('umidadeMedia', 0.0, 100.0, '%', 'Umidade relativa', 'umidade')," +
                     "('velVento', 0.0, 30.0, 'hPa', 'Pressão atmosférica', 'pressao')," +
                     "('dirVento', 0.0, 360.0, 'm/s', 'Direção do vento', 'direcao')," +
-                    "('chuva', 0.0, 400.0, 'm/s', 'Velocidade do vento', 'velocidade')";
+                    "('chuva', 0.0, 400.0, 'mm', 'Velocidade do vento', 'velocidade')";
                 Statement stmt = conn.createStatement();
                 stmt.executeUpdate(sql);
             }
@@ -249,29 +268,44 @@ public class IniciaBancoTeste {
                     "('2021-01-01', '00:00:00', '83726', 'SC', 'velVento', 10.0, false)," +
                     "('2021-01-01', '00:00:00', '83726', 'SC', 'dirVento', 180.0, false)," +
                     "('2021-01-01', '00:00:00', '83726', 'SC', 'chuva', 0.0, false)," +
-                    "('2021-01-01', '01:00:00', '83726', 'SC', 'chuva', 0.0, false)," +
-                    "('2021-01-01', '01:00:00', '83726', 'SC', 'temperaturaMedia', 20.0, false)," +
-                    "('2021-01-01', '01:00:00', '83726', 'SC', 'umidadeMedia', 50.0, false)," +
+                    "('2021-01-01', '00:00:00', '8888', 'SC', 'temperaturaMedia', 55, false)," +
+                    "('2021-01-01', '00:00:00', '8888', 'SC', 'umidadeMedia', 50.0, false)," +
+                    "('2021-01-01', '00:00:00', '8888', 'SC', 'velVento', 10.0, false)," +
+                    "('2021-01-01', '00:00:00', '8888', 'SC', 'dirVento', 190.0, false)," +
+                    "('2021-01-01', '00:00:00', '8888', 'SC', 'chuva', 5.0, false)," +
+                    "('2021-01-01', '00:00:00', '7777', 'SC', 'temperaturaMedia', 10, false)," +
+                    "('2021-01-01', '00:00:00', '7777', 'SC', 'umidadeMedia', 80.0, false)," +
+                    "('2021-01-01', '00:00:00', '7777', 'SC', 'velVento', 10.0, false)," +
+                    "('2021-01-01', '00:00:00', '7777', 'SC', 'dirVento', 190.0, false)," +
+                    "('2021-01-01', '00:00:00', '7777', 'SC', 'chuva', 5.0, false)," +
+                    "('2021-01-01', '01:00:00', '83726', 'SC', 'temperaturaMedia', 40.0, false)," +
+                    "('2021-01-01', '01:00:00', '83726', 'SC', 'umidadeMedia', 70.0, false)," +
                     "('2021-01-01', '01:00:00', '83726', 'SC', 'velVento', 10.0, false)," +
-                    "('2021-01-01', '01:00:00', '83726', 'SC', 'dirVento', 180.0, false)," +
-                    "('2021-01-01', '02:00:00', '83726', 'SC', 'chuva', 0.0, false)," +
-                    "('2021-01-01', '02:00:00', '83726', 'SC', 'temperaturaMedia', 20.0, false)," +
-                    "('2021-01-01', '02:00:00', '83726', 'SC', 'umidadeMedia', 50.0, false)," +
-                    "('2021-01-01', '02:00:00', '83726', 'SC', 'velVento', 10.0, false)," +
-                    "('2021-01-01', '02:00:00', '83726', 'SC', 'dirVento', 180.0, false)," +
-                    "('2021-01-01', '03:00:00', '83726', 'SC', 'chuva', 0.0, false)," +
+                    "('2021-01-01', '01:00:00', '83726', 'SC', 'dirVento', 120.0, false)," +
+                    "('2021-01-01', '01:00:00', '83726', 'SC', 'chuva', 5.0, false)," +
+                    "('2021-01-01', '01:00:00', '8888', 'SC', 'temperaturaMedia', NULL, false)," +
+                    "('2021-01-01', '01:00:00', '8888', 'SC', 'umidadeMedia', 50.0, false)," +
+                    "('2021-01-01', '01:00:00', '8888', 'SC', 'velVento', 10.0, false)," +
+                    "('2021-01-01', '01:00:00', '8888', 'SC', 'dirVento', 190.0, false)," +
+                    "('2021-01-01', '01:00:00', '8888', 'SC', 'chuva', 5.0, false)," +
+                    "('2021-01-01', '01:00:00', '6666', 'SC', 'temperaturaMedia', 10, false)," +
+                    "('2021-01-01', '01:00:00', '6666', 'SC', 'umidadeMedia', 50.0, false)," +
+                    "('2021-01-01', '01:00:00', '6666', 'SC', 'velVento', 10.0, false)," +
+                    "('2021-01-01', '01:00:00', '6666', 'SC', 'dirVento', 190.0, false)," +
+                    "('2021-01-01', '01:00:00', '6666', 'SC', 'chuva', 5.0, false)," +
+
                     //SP 1 registro para cada tipo
                     "('2021-01-01', '00:00:00', '777', 'SP', 'temperaturaMedia', 20.0, false)," +
                     "('2021-01-01', '00:00:00', '777', 'SP', 'umidadeMedia', 50.0, false)," +
                     "('2021-01-01', '00:00:00', '777', 'SP', 'velVento', 10.0, false)," +
                     "('2021-01-01', '00:00:00', '777', 'SP', 'dirVento', 180.0, false)," +
                     "('2021-01-01', '00:00:00', '777', 'SP', 'chuva', 0.0, false)," +
-                    //SJC 1 registro para cada tipo
+                    //TBT 1 registro para cada tipo
                     "('2021-01-01', '00:00:00', '728', 'TBT', 'temperaturaMedia', 20.0, false)," +
                     "('2021-01-01', '00:00:00', '728', 'TBT', 'umidadeMedia', 50.0, false)," +
                     "('2021-01-01', '00:00:00', '728', 'TBT', 'velVento', 10.0, false)," +
                     "('2021-01-01', '00:00:00', '728', 'TBT', 'dirVento', 180.0, false)," +
-                    "('2021-01-01', '00:00:00', '728', 'TBT', 'chuva', 0.0, false)";
+                    "('2021-01-02', '00:00:00', '728', 'TBT', 'chuva', 0.0, false)";
 
                     
                 Statement stmt = conn.createStatement();
