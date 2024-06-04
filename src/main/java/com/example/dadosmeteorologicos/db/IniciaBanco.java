@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import lombok.Data;
 
-
-
+@Data
 public class IniciaBanco {
 
     private String nomeDB = "apifatec";

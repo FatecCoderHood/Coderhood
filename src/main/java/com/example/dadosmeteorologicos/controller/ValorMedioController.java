@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.example.dadosmeteorologicos.App;
 import com.example.dadosmeteorologicos.Services.ValorMedioService;
+import com.example.dadosmeteorologicos.model.Cidade;
 import com.example.dadosmeteorologicos.model.RegistroValorMedio;
 
 import javafx.beans.value.ObservableValue;
@@ -31,12 +32,7 @@ public class ValorMedioController {
     private DatePicker dataFinal;
     @FXML
     private Button executar;
-
-    
-
-    public ValorMedioController() {
-        this.service = new ValorMedioService();
-    }
+    String siglaCidade;
 
 
     @FXML
@@ -60,15 +56,17 @@ public class ValorMedioController {
         });
 
         // Busca as cidades do banco de dados
-        List<String[]> cidades = service.getCidadesDoBancoDeDados();
+        service = new ValorMedioService();
+        List<Cidade> cidades = service.getCidadesDoBancoDeDados();
         //cidade[0] Nome cidade
         //cidade[1] Sigla cidade
         //cidade[2] Data primeiro registro
         //cidade[3] Data ultimo registro
         // Adiciona um MenuItem para cada cidade
-        for (String[] cidade : cidades) {
-            String texto = cidade[0] + " - " + cidade[1]  + " dados: " + cidade[2]+ " até " + cidade[3];
-            texto = String.format("%-100s", texto);
+        for (Cidade cidade : cidades) {
+            String texto = cidade.getNome() + " - " + cidade.getSigla()  + " dados: " + 
+                cidade.getCidadeDetalhes().getDataPrimeiroRegistro()+ " até " + 
+                cidade.getCidadeDetalhes().getDataUltimoRegistro();
             Label label = new Label(texto);
             // Aplica o CSS ao Label
             label.setStyle("-fx-font-size: 15px; -fx-font-family: 'Arial'; -fx-alignment: CENTER;");
@@ -76,13 +74,16 @@ public class ValorMedioController {
             // Cria um MenuItem e adiciona o Label a ele
             MenuItem menuItem = new MenuItem();
             menuItem.setGraphic(label);
-            menuItem.setId("menuItem" + cidade[0]);
+            menuItem.setId("menuItem" + cidade.getNome());
             menuItem.setOnAction(event -> {
-                menuButton.setText(cidade[0] + " - " + cidade[1]  + " dados: " + cidade[2]+ " até " + cidade[3]);
+                siglaCidade = cidade.getSigla();
+                menuButton.setText(cidade.getNome() + " - " + cidade.getSigla() + 
+                    " dados: " + cidade.getCidadeDetalhes().getDataPrimeiroRegistro() + 
+                    " até " + cidade.getCidadeDetalhes().getDataUltimoRegistro());
 
             // Atualiza os limites do DatePicker
-            LocalDate minDate = LocalDate.parse(cidade[2]);
-            LocalDate maxDate = LocalDate.parse(cidade[3]);
+            LocalDate minDate = LocalDate.parse(cidade.getCidadeDetalhes().getDataPrimeiroRegistro());
+            LocalDate maxDate = LocalDate.parse(cidade.getCidadeDetalhes().getDataUltimoRegistro());
 
             dataInicial.setDayCellFactory(picker -> new DateCell() {
                 @Override
@@ -119,22 +120,16 @@ public class ValorMedioController {
         java.sql.Date dataInicialSqlDate = java.sql.Date.valueOf(dataSelecionadaInicial);
         java.sql.Date dataFinalSqlDate = java.sql.Date.valueOf(dataSelecionadaFinal);
         
-        // Obtém a sigla da cidade do texto do botão do menu
-        String[] partes = menuButton.getText().split(" - ");
-        String siglaCidade = partes[1].split(" ")[0]; 
-        
-        List<RegistroValorMedio> resultado = service.consultaCidadePorIdEDatas(siglaCidade, dataInicialSqlDate, dataFinalSqlDate);
-        List<RegistroValorMedio> resultadoMedia = RegistroValorMedio.calcularMediaPorDataHora(resultado);
-        for(RegistroValorMedio registro : resultadoMedia){
-            System.out.println(registro.getData() + " " + registro.getHora() + " " + registro.getSiglaCidade() + " " + registro.getValorMedioInfos());
-        }
-
+        System.out.println("SiglaCidade selecionadas: " + siglaCidade);
+        service = new ValorMedioService();
+        List<RegistroValorMedio> resultado = service.getValorMedio(siglaCidade, dataInicialSqlDate, dataFinalSqlDate);
+        System.out.println("Resultado: " + resultado.toString());
         // Carrega a tela de resultados
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("view/TabelaRegistro.fxml"));
             Parent root = loader.load();
             TabelaRegistrosController controller = loader.getController();
-            controller.setRegistros(resultadoMedia);
+            controller.setRegistros(resultado);
             //controller.initialize();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
