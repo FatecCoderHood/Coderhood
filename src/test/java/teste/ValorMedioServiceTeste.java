@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,7 @@ import com.example.dadosmeteorologicos.Services.ValorMedioService;
 import com.example.dadosmeteorologicos.model.Cidade;
 import com.example.dadosmeteorologicos.model.CidadeDetalhes;
 import com.example.dadosmeteorologicos.model.RegistroValorMedio;
+import com.example.dadosmeteorologicos.model.ValorMedioInfo;
 
 
 public class ValorMedioServiceTeste {
@@ -54,12 +57,20 @@ public class ValorMedioServiceTeste {
     }
 
     @Test
-    public void consultaCidadePorIdEDatas(){
+    public void getValorMedio(){
        List<RegistroValorMedio> registroValorMedio = valorMedioService.getValorMedio("SC", 
         Date.valueOf("2021-01-01"),  Date.valueOf("2021-01-01"));
-        for (RegistroValorMedio registro : registroValorMedio) {
-            System.out.println(registro.toString());
-        }
+        RegistroValorMedio primeiroRegistro = registroValorMedio.get(0);
+        RegistroValorMedio segundoRegistro = registroValorMedio.get(1);
+
+        // Verifique os valores do primeiro registro
+        assertEquals(LocalDate.parse("2021-01-01"), primeiroRegistro.getData());
+        assertEquals(LocalTime.parse("00:00"), primeiroRegistro.getHora());
+        assertEquals("SC", primeiroRegistro.getSiglaCidade());
+        // Verifique os valores do primeiro ValorMedioInfo do primeiro registro
+        ValorMedioInfo primeiroValorMedioInfo = primeiroRegistro.getValorMedioInfos().get(0);
+        assertEquals("temperaturaMedia", primeiroValorMedioInfo.getTipo());
+        assertEquals(28.3, primeiroValorMedioInfo.getValor(), 1);
     }
 
     public List<Cidade> cidadesMock(){
