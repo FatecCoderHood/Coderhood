@@ -18,6 +18,10 @@ public class VariavelClimaticaSQL extends IniciaBanco{
         this.conn = super.conectarBanco();
     }
 
+    public VariavelClimaticaSQL(Connection conn) {
+        this.conn = conn;
+    }
+
     public boolean celulasDaTabelaEstaoNulas(){
         try {
             if (conn != null) {

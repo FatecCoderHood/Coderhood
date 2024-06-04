@@ -32,7 +32,7 @@ public class VariavelClimaticaTeste {
         bancoTeste.limparBanco();
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetVariavelClimatica() {
         List<VariavelClimatica> variaveisClimaticas = variavelClimaticaService.getVariaveisClimaticas();
         List<String> tipos = Arrays.asList("temperaturaMedia", "umidadeMedia", "velVento", "dirVento", "chuva");

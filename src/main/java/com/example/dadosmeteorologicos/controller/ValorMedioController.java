@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.example.dadosmeteorologicos.App;
 import com.example.dadosmeteorologicos.Services.ValorMedioService;
+import com.example.dadosmeteorologicos.model.Cidade;
 import com.example.dadosmeteorologicos.model.RegistroValorMedio;
 
 import javafx.beans.value.ObservableValue;
@@ -60,15 +61,16 @@ public class ValorMedioController {
         });
 
         // Busca as cidades do banco de dados
-        List<String[]> cidades = service.getCidadesDoBancoDeDados();
+        List<Cidade> cidades = service.getCidadesDoBancoDeDados();
         //cidade[0] Nome cidade
         //cidade[1] Sigla cidade
         //cidade[2] Data primeiro registro
         //cidade[3] Data ultimo registro
         // Adiciona um MenuItem para cada cidade
-        for (String[] cidade : cidades) {
-            String texto = cidade[0] + " - " + cidade[1]  + " dados: " + cidade[2]+ " até " + cidade[3];
-            texto = String.format("%-100s", texto);
+        for (Cidade cidade : cidades) {
+            String texto = cidade.getNome() + " - " + cidade.getSigla()  + " dados: " + 
+                cidade.getCidadeDetalhes().getDataPrimeiroRegistro()+ " até " + 
+                cidade.getCidadeDetalhes().getDataUltimoRegistro();
             Label label = new Label(texto);
             // Aplica o CSS ao Label
             label.setStyle("-fx-font-size: 15px; -fx-font-family: 'Arial'; -fx-alignment: CENTER;");
@@ -76,13 +78,15 @@ public class ValorMedioController {
             // Cria um MenuItem e adiciona o Label a ele
             MenuItem menuItem = new MenuItem();
             menuItem.setGraphic(label);
-            menuItem.setId("menuItem" + cidade[0]);
+            menuItem.setId("menuItem" + cidade.getNome());
             menuItem.setOnAction(event -> {
-                menuButton.setText(cidade[0] + " - " + cidade[1]  + " dados: " + cidade[2]+ " até " + cidade[3]);
+                menuButton.setText(cidade.getNome() + " - " + cidade.getSigla() + 
+                    " dados: " + cidade.getCidadeDetalhes().getDataPrimeiroRegistro() + 
+                    " até " + cidade.getCidadeDetalhes().getDataUltimoRegistro());
 
             // Atualiza os limites do DatePicker
-            LocalDate minDate = LocalDate.parse(cidade[2]);
-            LocalDate maxDate = LocalDate.parse(cidade[3]);
+            LocalDate minDate = LocalDate.parse(cidade.getCidadeDetalhes().getDataPrimeiroRegistro());
+            LocalDate maxDate = LocalDate.parse(cidade.getCidadeDetalhes().getDataUltimoRegistro());
 
             dataInicial.setDayCellFactory(picker -> new DateCell() {
                 @Override

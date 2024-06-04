@@ -14,8 +14,7 @@ public class VariavelClimaticaService {
     }
 
     public VariavelClimaticaService(Connection conn) {
-        this.banco = new VariavelClimaticaSQL();
-        banco.setConn(conn);
+        this.banco = new VariavelClimaticaSQL(conn);
     }
  
     public List<VariavelClimatica> getVariaveisClimaticas(){

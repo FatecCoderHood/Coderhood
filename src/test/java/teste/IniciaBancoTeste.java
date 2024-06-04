@@ -282,12 +282,12 @@ public class IniciaBancoTeste {
                     "('2021-01-01', '00:00:00', '777', 'SP', 'velVento', 10.0, false)," +
                     "('2021-01-01', '00:00:00', '777', 'SP', 'dirVento', 180.0, false)," +
                     "('2021-01-01', '00:00:00', '777', 'SP', 'chuva', 0.0, false)," +
-                    //SJC 1 registro para cada tipo
+                    //TBT 1 registro para cada tipo
                     "('2021-01-01', '00:00:00', '728', 'TBT', 'temperaturaMedia', 20.0, false)," +
                     "('2021-01-01', '00:00:00', '728', 'TBT', 'umidadeMedia', 50.0, false)," +
                     "('2021-01-01', '00:00:00', '728', 'TBT', 'velVento', 10.0, false)," +
                     "('2021-01-01', '00:00:00', '728', 'TBT', 'dirVento', 180.0, false)," +
-                    "('2021-01-01', '00:00:00', '728', 'TBT', 'chuva', 0.0, false)";
+                    "('2021-01-02', '00:00:00', '728', 'TBT', 'chuva', 0.0, false)";
 
                     
                 Statement stmt = conn.createStatement();
