@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.example.dadosmeteorologicos.model.Cidade;
+import com.example.dadosmeteorologicos.model.CidadeDetalhes;
 import com.example.dadosmeteorologicos.model.RegistroValorMedio;
 import com.example.dadosmeteorologicos.model.ValorMedioInfo;
 
@@ -21,8 +23,12 @@ public class ValorMedioSQL extends IniciaBanco {
         this.conn = super.conectarBanco();
     }
 
-     public List<String[]> getCidadesMenuItem() {
-        List<String[]> registros = new ArrayList<>();
+    public ValorMedioSQL(Connection conn) {
+        this.conn = conn;
+    }
+
+     public List<Cidade> getCidadesMenuItem() {
+        List<Cidade> registros = new ArrayList<>();
         try {
             if (conn != null) {
                 String sql = "SELECT " +
@@ -47,7 +53,13 @@ public class ValorMedioSQL extends IniciaBanco {
                     String sigla = rs.getString("sigla");
                     String dataPrimeiroRegistro = rs.getDate("data_primeiro_registro").toString();
                     String dataUltimoRegistro = rs.getDate("data_ultimo_registro").toString();
-                    registros.add(new String[] {nome, sigla, dataPrimeiroRegistro, dataUltimoRegistro});
+                    Cidade cidade = new Cidade(nome, sigla, 
+                        new CidadeDetalhes(dataPrimeiroRegistro, dataUltimoRegistro));
+                    registros.add(cidade);
+                    System.out.println("valor medioSQL");
+                    System.out.println("URL do banco de dados: " + conn.getMetaData().getURL());
+                    System.out.println("Usuário do banco de dados: " + conn.getMetaData().getUserName());
+
                 }
             }
         } catch (SQLException e) {

@@ -18,6 +18,10 @@ public class VariavelClimaticaSQL extends IniciaBanco{
         this.conn = super.conectarBanco();
     }
 
+    public VariavelClimaticaSQL(Connection conn) {
+        this.conn = conn;
+    }
+
     public boolean celulasDaTabelaEstaoNulas(){
         try {
             if (conn != null) {
@@ -43,7 +47,7 @@ public class VariavelClimaticaSQL extends IniciaBanco{
         return false;
     }
 
-    public List<VariavelClimatica>  getVariaveisClimaticasBanco(){
+    public List<VariavelClimatica> getVariaveisClimaticasBanco(){
         List<VariavelClimatica> variaveis = new ArrayList<>();
         try {
             if (conn != null) {
@@ -54,13 +58,14 @@ public class VariavelClimaticaSQL extends IniciaBanco{
 
                 while (rs.next()) {
                     VariavelClimatica variavel = new VariavelClimatica(rs.getString("tipo"), 
-                    rs.getDouble("ValorMinimo"), rs.getDouble("ValorMaximo"), rs.getString("unidadeMedida"), 
-                    rs.getString("descricaoConversao"), rs.getString("formulaConversao"));
+                        rs.getDouble("ValorMinimo"), rs.getDouble("ValorMaximo"),
+                        rs.getString("unidadeMedida"), rs.getString("descricaoConversao"), 
+                        rs.getString("formulaConversao"));
                     variaveis.add(variavel);
                 }
             }
         } catch (SQLException e) {
-            System.err.format(" get variaveis climaticas SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            System.err.format("get variaveis climaticas SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
         return variaveis;
     }
