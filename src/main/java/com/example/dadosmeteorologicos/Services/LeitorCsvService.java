@@ -52,4 +52,13 @@ public class LeitorCsvService {
         return registrosSuspeitos;
     }
 
+
+    @SuppressWarnings("unused")
+    private LeitorCsvSQL leitorCsvSQL;
+
+    // Construtor que aceita um objeto LeitorCsvSQL como parâmetro
+    public LeitorCsvService(LeitorCsvSQL leitorCsvSQL) {
+        this.leitorCsvSQL = leitorCsvSQL;
+    }
+
 }
