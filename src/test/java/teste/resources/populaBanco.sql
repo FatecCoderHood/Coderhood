@@ -91,4 +91,14 @@ INSERT INTO registro (data, hora, estacao, siglaCidade, tipo, valor, suspeito) V
 ('2021-01-01', '01:00:00', '6666', 'SC', 'umidadeMedia', 50.0, false),
 ('2021-01-01', '01:00:00', '6666', 'SC', 'velVento', 10.0, false),
 ('2021-01-01', '01:00:00', '6666', 'SC', 'dirVento', 190.0, false),
-('2021-01-01', '01:00:00', '6666', 'SC', 'chuva', 5.0, false);
+('2021-01-01', '01:00:00', '6666', 'SC', 'chuva', 5.0, false),
+('2021-01-01', '00:00:00', '777', 'SP', 'temperaturaMedia', 20.0, false),
+('2021-01-01', '00:00:00', '777', 'SP', 'umidadeMedia', 50.0, false),
+('2021-01-01', '00:00:00', '777', 'SP', 'velVento', 10.0, false),
+('2021-01-01', '00:00:00', '777', 'SP', 'dirVento', 180.0, false),
+('2021-01-01', '00:00:00', '777', 'SP', 'chuva', 0.0, false),
+('2021-01-01', '00:00:00', '728', 'TBT', 'temperaturaMedia', 20.0, false),
+('2021-01-01', '00:00:00', '728', 'TBT', 'umidadeMedia', 50.0, false),
+('2021-01-01', '00:00:00', '728', 'TBT', 'velVento', 10.0, false),
+('2021-01-01', '00:00:00', '728', 'TBT', 'dirVento', 180.0, false),
+('2021-01-02', '00:00:00', '728', 'TBT', 'chuva', 0.0, false);

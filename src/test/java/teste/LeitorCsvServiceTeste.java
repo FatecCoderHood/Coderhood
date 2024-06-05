@@ -1,56 +1,95 @@
 package teste;
 
-import static org.junit.Assert.*;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
 import com.example.dadosmeteorologicos.Services.LeitorCsvService;
-import com.example.dadosmeteorologicos.db.LeitorCsvSQL;
+import com.example.dadosmeteorologicos.model.Cidade;
 import com.example.dadosmeteorologicos.model.Registro;
 
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
 public class LeitorCsvServiceTeste {
 
-    private LeitorCsvService leitorCsvService;
-    private LeitorCsvSQL leitorCsvSQLMock;
+    private static LeitorCsvService leitorCsvService;
+    private static IniciaBancoTeste bancoTeste;
 
-    @Before
-    public void setUp() {
-        leitorCsvSQLMock = mock(LeitorCsvSQL.class);
-        leitorCsvService = new LeitorCsvService(leitorCsvSQLMock);
+    @BeforeAll
+    public static void setUp() {
+        bancoTeste = new IniciaBancoTeste(); 
+        bancoTeste.iniciarBanco();
+        bancoTeste.popularBancoTeste();  
+        leitorCsvService = new LeitorCsvService(bancoTeste.conectarBanco());
     }
 
-    @After
-    public void tearDown() {
-        leitorCsvService = null; 
+    @AfterAll
+    public static void tearDown() {
+        bancoTeste.fecharConexao();
+        bancoTeste.reiniciarBanco();
     }
 
     @Test
     public void testSalvarRegistro() {
-        // Criando alguns registros fictícios para teste
-        List<Registro> registros = new ArrayList<>();
-        registros.add(new Registro("Temperatura", 25, "SP", false));
-        registros.add(new Registro("Umidade", 60, "RJ", true));
+        List<Registro> listaRegistro = criaRegistrosQueSeraoSalvosNobanco();
+        int[] infoRegistrosSalvos = leitorCsvService.salvarRegistro(listaRegistro);
+
+        int salvos = 0;
+        int duplicados = 1;
+
+        assertEquals(30, infoRegistrosSalvos[salvos]);
+        assertEquals(1, infoRegistrosSalvos[duplicados]);
+    }
     
-        // Config mock
-        when(leitorCsvSQLMock.salvarRegistro(registros)).thenReturn(new int[] {0, 0});
-    
-        int[] resultado = leitorCsvService.salvarRegistro(registros);
-    
-        // Verifica se o tamanho do array retornado é igual a 2
-        assertEquals(2, resultado.length);
-        // Verifica se o primeiro elemento do array é igual a 0 (registros salvos)
-        assertEquals(0, resultado[0]);
-        // Verifica se o segundo elemento do array é igual a 0 (registros duplicados)
-        assertEquals(0, resultado[1]);
+    @Test
+    public void validarNomeCidadePelaSigla(){
+        Cidade cidade = new Cidade();
+        cidade.setNome("");
+
     }
 
-    // Adicionar mais testes
+    public List<Registro> criaRegistrosQueSeraoSalvosNobanco() {
+        List<Registro> listaRegistroMock = new ArrayList<>();
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "temperaturaMedia", 20.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "temperaturaMedia", 20.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "umidadeMedia", 50.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "velVento", 10.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "dirVento", 180.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "chuva", 0.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "8888", "SC", "temperaturaMedia", 55.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "8888", "SC", "umidadeMedia", 50.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "8888", "SC", "velVento", 10.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "8888", "SC", "dirVento", 190.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "8888", "SC", "chuva", 5.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "7777", "SC", "temperaturaMedia", 10.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "7777", "SC", "umidadeMedia", 80.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "7777", "SC", "velVento", 10.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "7777", "SC", "dirVento", 190.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "7777", "SC", "chuva", 5.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(1, 0, 0), "83726", "SC", "temperaturaMedia", 40.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(1, 0, 0), "83726", "SC", "umidadeMedia", 70.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(1, 0, 0), "83726", "SC", "velVento", 10.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(1, 0, 0), "83726", "SC", "dirVento", 120.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(1, 0, 0), "83726", "SC", "chuva", 5.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(1, 0, 0), "8888", "SC", "temperaturaMedia", null, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(1, 0, 0), "8888", "SC", "umidadeMedia", 50.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(1, 0, 0), "8888", "SC", "velVento", 10.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(1, 0, 0), "8888", "SC", "dirVento", 190.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(1, 0, 0), "8888", "SC", "chuva", 5.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(1, 0, 0), "6666", "SC", "temperaturaMedia", 10.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(1, 0, 0), "6666", "SC", "umidadeMedia", 50.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(1, 0, 0), "6666", "SC", "velVento", 10.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(1, 0, 0), "6666", "SC", "dirVento", 190.0, false));
+        listaRegistroMock.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(1, 0, 0), "6666", "SC", "chuva", 5.0, false));
+
+        return listaRegistroMock;
+    }
+
 }
 
 

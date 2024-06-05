@@ -40,9 +40,4 @@ public class Registro {
         this.valor = valor;
         this.suspeito = suspeito;
     }
-
-    public Registro(String string, int i, String string2, boolean b) {
-        //TODO Auto-generated constructor stub
-    }
-
 }
