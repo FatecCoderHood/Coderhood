@@ -106,5 +106,14 @@ public class CidadeServiceTeste {
 
     @Test
     public void testeAtualizarCidade() {
+       
+            int id = 2;
+            String novoNomeCidade = "Cidade do vai tomando";
+    
+            cidadeService.atualizarCidade(id, novoNomeCidade);
+
+            assertTrue(bancoTeste.verificarNomeCidade(id, novoNomeCidade));
+        
     }
+    
 }
