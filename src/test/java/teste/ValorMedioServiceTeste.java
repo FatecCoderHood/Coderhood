@@ -62,8 +62,6 @@ public class ValorMedioServiceTeste {
         Date.valueOf("2021-01-01"),  Date.valueOf("2021-01-01"));
         RegistroValorMedio primeiroRegistro = registroValorMedio.get(0);
         List<ValorMedioInfo> primeiroValorMedioInfo = primeiroRegistro.getValorMedioInfos();
-        RegistroValorMedio segundoRegistro = registroValorMedio.get(1);
-
 
         // Verifique os valores do primeiro registro
         assertEquals(LocalDate.parse("2021-01-01"), primeiroRegistro.getData());
@@ -89,7 +87,31 @@ public class ValorMedioServiceTeste {
                     break;
             }
         }
-    
+
+        RegistroValorMedio segundoRegistro = registroValorMedio.get(1);
+        List<ValorMedioInfo> segundoValorMedioInfo = segundoRegistro.getValorMedioInfos();
+        assertEquals(LocalDate.parse("2021-01-01"), segundoRegistro.getData());
+        assertEquals(LocalTime.parse("01:00"), segundoRegistro.getHora());
+
+        for (ValorMedioInfo info : segundoValorMedioInfo) {
+            switch(info.getTipo()){
+                case "temperaturaMedia":
+                    assertEquals(25, info.getValor(), 1);
+                    break;
+                case "umidadeMedia":
+                    assertEquals(56.67, info.getValor(), 1);
+                    break;
+                case "velVento":
+                    assertEquals(10.0, info.getValor(), 1);
+                    break;
+                case "dirVento":
+                    assertEquals(166.67, info.getValor(), 1);
+                    break;
+                case "chuva":
+                    assertEquals(5, info.getValor(), 1);
+                    break;
+            }
+        }
     }
 
     public List<Cidade> cidadesMock(){
