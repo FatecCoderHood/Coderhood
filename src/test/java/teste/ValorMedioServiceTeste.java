@@ -28,14 +28,14 @@ public class ValorMedioServiceTeste {
     public static void setup() throws SQLException {
         bancoTeste = new IniciaBancoTeste();
         bancoTeste.iniciarBanco();
-        
+        bancoTeste.popularBancoTeste();
         valorMedioService = new ValorMedioService(bancoTeste.conectarBanco());
     }
 
     @AfterAll
     public static void tearDown() {
         bancoTeste.fecharConexao();
-        bancoTeste.limparBanco();
+        bancoTeste.reiniciarBanco();
     }
 
     @Test
