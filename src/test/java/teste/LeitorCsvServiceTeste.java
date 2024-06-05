@@ -60,24 +60,31 @@ public class LeitorCsvServiceTeste {
 
     }
 
-   
+    @Test
+    public void testCriarCidade() {
+        String nomeCidade = "São Paulo";
+        String siglaCidade = "SP";
 
+        leitorCsvService.criarCidade(nomeCidade, siglaCidade);
 
-
-
-
-
-
-
-
-
-
-
-
+        assertTrue(bancoTeste.verificarCidade(nomeCidade, siglaCidade));
+    }
+ 
 
 
     @Test
-    public void validarCidadeEstacao() {
+    public void testCriarEstacao() {
+        String numeroEstacao = "7777";
+        String siglaCidade = "SC";
+
+        leitorCsvService.criarEstacao(numeroEstacao, siglaCidade);
+
+        assertTrue(bancoTeste.verificarEstacao(numeroEstacao, siglaCidade));
+    }
+   
+
+    @Test
+    public void testvalidarCidadeEstacao() {
         Estacao estacao = new Estacao();
         estacao.setSiglaCidade("SC");
         estacao.setNumero("7777");
@@ -88,20 +95,32 @@ public class LeitorCsvServiceTeste {
 
     }
 
-
-
-
-   /* @Test
-    public void validarCidadeEstacao() {
-        Cidade cidade = new Cidade();
-        cidade.setNome("Taubaté");
-        cidade.setSigla("TBT");
+    @Test
+    public void testRegistrosSuspeitos() {
+        @SuppressWarnings("unused")
+        Registro registro = new Registro(); 
         
-        boolean validandoSigla = leitorCsvService.validarNomeCidadePelaSigla(cidade.getSigla());
+        List<Registro> listaRegistroDto = new ArrayList<>();
+        listaRegistroDto.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "temperaturaMedia", 200.0, true)); 
+        listaRegistroDto.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "temperaturaMedia", 20.0, false));
+        listaRegistroDto.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "umidadeMedia", 500.0, true));
+        listaRegistroDto.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "velVento", 10.0, false));
+        listaRegistroDto.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "dirVento", 1800.0, true));
+        listaRegistroDto.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "chuva", 0.0, false));
 
-        assertEquals("Taubaté", validandoSigla);
+       
+        int contador = 0;
+        for (Registro reg : listaRegistroDto) {
+        if (reg.isSuspeito()) {
+            contador++;
+        }
+     }
 
-    }*/
+        int registrosSuspeitos = leitorCsvService.registrosSuspeitos(listaRegistroDto);
+        assertEquals(contador, registrosSuspeitos);
+        System.err.println("o total de registro suspeito é:" + contador);
+    }
+ 
 
     public List<Registro> criaRegistrosQueSeraoSalvosNobanco() {
         List<Registro> listaRegistroMock = new ArrayList<>();
@@ -141,33 +160,3 @@ public class LeitorCsvServiceTeste {
     }
 
 }
-
-
-
-
-
-/*
-// Teste salvarRegistro
-int[] resultado = salvarRegistro(listaRegistroDto);
-
- // Teste validarNomeCidadePelaSigla
-String nomeCidade = validarNomeCidadePelaSigla("SP");
-
-// Teste criarCidade
-criarCidade("São Paulo", "SP");
-
-// Teste criarEstacao
-criarEstacao("001", "SP");
-
-// Teste  validarCidadeEstacao
-boolean cidadeEstacaoValido = validarCidadeEstacao("SP", "001");
-
-// Criando uma lista de registros fictícios para teste
-List<Registro> listaRegistroDto = new ArrayList<>();
-listaRegistroDto.add(new Registro("Temperatura", 25, "Leitura da temperatura ambiente", false));
-listaRegistroDto.add(new Registro("Umidade", 60, "Leitura da umidade relativa do ar", true));
-
-// Teste registrosSuspeitos
-int registrosSuspeitos = registrosSuspeitos(listaRegistroDto);
-
- */

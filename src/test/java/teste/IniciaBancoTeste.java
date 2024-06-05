@@ -2,6 +2,7 @@ package teste;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -328,5 +329,37 @@ public class IniciaBancoTeste {
             System.err.format("Popular tabela registro SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
     }
+
+    public boolean verificarEstacao(String numeroEstacao, String siglaCidade) {
+    try {
+        String sql = "SELECT COUNT(*) FROM Estacao WHERE numero = ? AND siglaCidade = ?";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, numeroEstacao);
+        stmt.setString(2, siglaCidade);
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        int count = rs.getInt(1);
+        return count > 0;
+    } catch (SQLException e) {
+        System.err.format("Erro ao verificar estação: %s\n", e.getMessage());
+        return false;
+    }
+ }
+
+    public boolean verificarCidade(String nomeCidade, String siglaCidade) {
+    try {
+        String sql = "SELECT COUNT(*) FROM Cidade WHERE nome = ? AND sigla = ?";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, nomeCidade);
+        stmt.setString(2, siglaCidade);
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        int count = rs.getInt(1);
+        return count > 0;
+    } catch (SQLException e) {
+        System.err.format("Erro ao verificar cidade: %s\n", e.getMessage());
+        return false;
+    }
+ }
 }
 
