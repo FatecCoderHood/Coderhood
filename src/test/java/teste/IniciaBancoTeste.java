@@ -95,6 +95,19 @@ public class IniciaBancoTeste {
         }
     }
 
+    public void reiniciarBanco(){
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+            if (conn != null) {
+                String sql = "DROP TABLE IF EXISTS registro, cidade, estacao, variavel_climatica";
+                Statement stmt = conn.createStatement();
+                stmt.execute(sql);
+            } 
+        } catch (SQLException e) {
+            System.err.format("reiniciarBanco SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
+        }
+    }
+
     private void criarTabelaRegistro(){
         try {
             if (conn != null) {
@@ -313,19 +326,6 @@ public class IniciaBancoTeste {
             }
         } catch (SQLException e) {
             System.err.format("Popular tabela registro SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        }
-    }
-
-    public void reiniciarBanco(){
-        try {
-            conn = DriverManager.getConnection(url, user, password);
-            if (conn != null) {
-                String sql = "DROP TABLE IF EXISTS registro, cidade, estacao, variavel_climatica";
-                Statement stmt = conn.createStatement();
-                stmt.execute(sql);
-            } 
-        } catch (SQLException e) {
-            System.err.format("reiniciarBanco SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
         }
     }
 }

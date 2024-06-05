@@ -15,9 +15,14 @@ public class LeitorCsvSQL extends IniciaBanco{
         this.conn = super.conectarBanco();
     }
 
+    public LeitorCsvSQL(Connection conn) {
+        this.conn = conn;
+    }
+
     public int[] salvarRegistro(List<Registro> listaRegistroDto) {
         int[] salvoDuplicado = new int[]{0, 0};
         try {
+            System.out.println(conn.getMetaData().getURL());
             if (conn != null) {
                 conn.setAutoCommit(false);
                 int registrosSalvos = 0;
@@ -44,10 +49,14 @@ public class LeitorCsvSQL extends IniciaBanco{
                         // atualizadas ou excluídas.
                         // No contexto do seu código, registrosAfetados == 0 verifica se a operação INSERT não afetou 
                         // nenhuma linha.
-                        int registrosAfetados = pstmt.executeUpdate();
+                        int registrosAfetados = pstmt.executeUpdate();;
                         if (registrosAfetados == 0) {
+                            System.out.println("Registro duplicado: " + registro);
+                            System.out.println("duplicados:     " + registrosDuplicados);
                             registrosDuplicados++;
                         } else {
+                            System.out.println("Registro salvo: " + registro);
+                            System.out.println("salvos:     " + registrosSalvos);
                             registrosSalvos++;
                         }  
                     }
