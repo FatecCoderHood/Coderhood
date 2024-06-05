@@ -2,9 +2,11 @@ package teste;
 
 import com.example.dadosmeteorologicos.Services.LeitorCsvService;
 import com.example.dadosmeteorologicos.model.Cidade;
+import com.example.dadosmeteorologicos.model.Estacao;
 import com.example.dadosmeteorologicos.model.Registro;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -47,11 +49,59 @@ public class LeitorCsvServiceTeste {
     }
     
     @Test
-    public void validarNomeCidadePelaSigla(){
+    public void validarNomeCidadePelaSigla() {
         Cidade cidade = new Cidade();
-        cidade.setNome("");
+        cidade.setNome("Taubaté");
+        cidade.setSigla("TBT");
+        
+        String validandoSigla = leitorCsvService.validarNomeCidadePelaSigla(cidade.getSigla());
+
+        assertEquals("Taubaté", validandoSigla);
 
     }
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Test
+    public void validarCidadeEstacao() {
+        Estacao estacao = new Estacao();
+        estacao.setSiglaCidade("SC");
+        estacao.setNumero("7777");
+        
+        boolean verificandoEstacao = leitorCsvService.validarCidadeEstacao(estacao.getSiglaCidade(), estacao.getNumero());
+
+        assertTrue(verificandoEstacao, "A estação não é válida para a cidade com a sigla 'SC'");
+
+    }
+
+
+
+
+   /* @Test
+    public void validarCidadeEstacao() {
+        Cidade cidade = new Cidade();
+        cidade.setNome("Taubaté");
+        cidade.setSigla("TBT");
+        
+        boolean validandoSigla = leitorCsvService.validarNomeCidadePelaSigla(cidade.getSigla());
+
+        assertEquals("Taubaté", validandoSigla);
+
+    }*/
 
     public List<Registro> criaRegistrosQueSeraoSalvosNobanco() {
         List<Registro> listaRegistroMock = new ArrayList<>();
