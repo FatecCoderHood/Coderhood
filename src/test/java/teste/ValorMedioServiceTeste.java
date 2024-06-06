@@ -1,6 +1,6 @@
 package teste;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class ValorMedioServiceTeste {
     private static ValorMedioService valorMedioService;
     private static IniciaBancoTeste bancoTeste;
 
-       @BeforeAll
+    @BeforeAll
     public static void setup() throws SQLException {
         bancoTeste = new IniciaBancoTeste();
         bancoTeste.iniciarBanco();
