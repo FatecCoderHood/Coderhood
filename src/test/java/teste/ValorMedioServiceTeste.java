@@ -138,8 +138,4 @@ public class ValorMedioServiceTeste {
         return cidadesMockadas;
     }
 
-
-
-        
-
 }

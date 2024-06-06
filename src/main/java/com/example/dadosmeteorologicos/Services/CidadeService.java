@@ -48,9 +48,9 @@ public class CidadeService {
         banco.fecharConexao();
     }
 
-    public void atualizarCidade(int id, String nome) {
+    public void atualizarNomeCidade(int id, String nome) {
         banco.conectarBanco();
-        banco.atualizarCidadeBanco(id, WordUtils.capitalizeFully(nome));
+        banco.atualizarNomeCidadeBanco(id, WordUtils.capitalizeFully(nome));
         banco.fecharConexao();
     }
 

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -30,6 +31,12 @@ public class CidadeServiceTeste {
         bancoTeste.reiniciarBanco();
     }
 
+    @AfterEach
+    public void limparBanco() {
+        bancoTeste.limparBanco();
+        bancoTeste.popularBancoTeste();
+    }
+
     @Test
     public void testeGetCidades() {
         List<Cidade> cidades = cidadeService.getCidades();
@@ -41,8 +48,6 @@ public class CidadeServiceTeste {
         assertFalse(cidades.contains(cidadeNãoExistente));
 
         Cidade cidadeExiste = cidades.get(0).getClass().cast(cidades.get(0));
-        // System.out.println("cidadeServiceTeste(testeGetCidades) Cidade existe: " + cidadeExiste.toString());
-        // System.out.println("cidadeServiceTeste(testeGetCidades) São José dos Campos: " + cidades.get(0).toString());
 
         assertEquals("São José dos Campos", cidadeExiste.getNome());
 
@@ -65,11 +70,15 @@ public class CidadeServiceTeste {
     @Test
     public void testeDeletarCidade() {
         List<Cidade> cidades = cidadeService.getCidades();
-        System.out.println(cidades.toString());
-        System.out.println("-----------");
         // Apagando São josé dos Campos
-        Cidade cidadeDeletar = cidades.get(0).getClass().cast(cidades.get(0));
+        Cidade cidadeDeletar = new Cidade();
 
+        for (Cidade cidade : cidades) {
+            if (cidade.getNome().equals("São José dos Campos")) {
+                cidadeDeletar = cidade;
+                System.out.println(cidadeDeletar.toString());
+            }
+        }
         assertEquals("São José dos Campos", cidadeDeletar.getNome());
 
         cidadeService.deletarCidade(cidadeDeletar.getId(), cidadeDeletar.getSigla());
@@ -100,11 +109,28 @@ public class CidadeServiceTeste {
         }
 
         List<Cidade> cidades = cidadeService.getCidades();
-        System.out.println(cidades);
         assertEquals(5, cidades.size());
     }
 
     @Test
     public void testeAtualizarCidade() {
+        List<Cidade> cidades = cidadeService.getCidades();
+        Cidade cidadeAtualizar = cidades.get(0);
+        assertEquals("São José dos Campos", cidadeAtualizar.getNome());
+        cidadeAtualizar.setNome("Teste nome cidade");
+
+        assertNotEquals("São José dos Campos", cidadeAtualizar.getNome());
+        assertEquals("Teste nome cidade", cidadeAtualizar.getNome());
+
+        cidadeService.atualizarNomeCidade(cidadeAtualizar.getId(), cidadeAtualizar.getNome());
+
+        cidades = cidadeService.getCidades();
+        for (Cidade cidade : cidades) {
+            if (cidade.getId() == cidadeAtualizar.getId()) {
+                assertEquals("Teste Nome Cidade", cidade.getNome());
+                assertNotEquals("Teste nome cidade", cidade.getNome());
+            }
+        }
+
     }
 }

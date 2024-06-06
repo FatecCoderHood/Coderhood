@@ -111,7 +111,7 @@ public class CidadeSQL extends IniciaBanco{
         }
     }
 
-    public void atualizarCidadeBanco(int id, String nome) {
+    public void atualizarNomeCidadeBanco(int id, String nome) {
         try {
             String sql = "UPDATE cidade SET nome = ? WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
