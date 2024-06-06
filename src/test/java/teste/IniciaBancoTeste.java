@@ -2,6 +2,7 @@ package teste;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -326,6 +327,27 @@ public class IniciaBancoTeste {
             }
         } catch (SQLException e) {
             System.err.format("Popular tabela registro SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        }
+    }
+
+
+    public boolean verificarNomeCidade(int id, String novoNomeCidade) {
+        try {
+            String sql = "SELECT nome FROM cidade WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String nomeCidadeAtualizado = rs.getString("nome").trim();
+                novoNomeCidade = novoNomeCidade.trim(); 
+                return nomeCidadeAtualizado.equalsIgnoreCase(novoNomeCidade);
+            } else {
+                System.out.println("Nenhuma cidade encontrada para o ID: " + id);
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.format("Erro ao verificar nome da cidade: %s\n", e.getMessage());
+            return false;
         }
     }
 }
