@@ -10,13 +10,15 @@ import com.example.dadosmeteorologicos.model.Estacao;
 
 
 public class EstacaoSQL extends IniciaBanco{
-
     private Connection conn;
 
     public EstacaoSQL() {
         conn = super.conectarBanco();
     }
 
+    public EstacaoSQL(Connection conn) {
+        this.conn = conn;
+    }
 
     public List<Estacao> buscaEstacaoBanco(){
         List<Estacao> listaEstacao = new ArrayList<>();

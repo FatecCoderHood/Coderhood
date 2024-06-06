@@ -1,6 +1,7 @@
 package teste;
 
 import com.example.dadosmeteorologicos.Services.CidadeService;
+import com.example.dadosmeteorologicos.Services.EstacaoService;
 import com.example.dadosmeteorologicos.Services.LeitorCsvService;
 import com.example.dadosmeteorologicos.model.Cidade;
 import com.example.dadosmeteorologicos.model.Estacao;
@@ -26,6 +27,7 @@ public class LeitorCsvServiceTeste {
     private static IniciaBancoTeste bancoTeste;
     private static Connection conn;
     private static CidadeService cidadeService;
+    private static EstacaoService estacaoService;
 
 
     @BeforeAll
@@ -37,6 +39,7 @@ public class LeitorCsvServiceTeste {
         conn = bancoTeste.conectarBanco();
         leitorCsvService = new LeitorCsvService(conn);
         cidadeService = new CidadeService(conn);
+        estacaoService = new EstacaoService(conn);
     }
 
     @AfterAll
@@ -92,11 +95,25 @@ public class LeitorCsvServiceTeste {
     
 
 
-    // @Test
-    // public void testCriarEstacao() {
+    @Test
+    public void testCriarEstacao() {
+        Estacao estacaorepetida = new Estacao();
+        estacaorepetida.setSiglaCidade("SC");
+        estacaorepetida.setNumero("6666");
 
-    // }
-   
+        leitorCsvService.criarEstacao(estacaorepetida.getSiglaCidade(), estacaorepetida.getNumero());
+
+        assertEquals(1, estacaoService.buscaEstacao().size());
+
+        Estacao estacaoNova = new Estacao();
+        estacaoNova.setSiglaCidade("SC");
+        estacaoNova.setNumero("6666");
+
+        leitorCsvService.criarEstacao(estacaoNova.getSiglaCidade(), estacaoNova.getNumero());
+
+        assertEquals(1, estacaoService.buscaEstacao().size());
+        
+    }
 
     @Test
     public void testvalidarCidadeEstacao() {

@@ -1,13 +1,24 @@
 package com.example.dadosmeteorologicos.Services;
 
+import java.sql.Connection;
 import java.util.List;
 
 import com.example.dadosmeteorologicos.db.EstacaoSQL;
 import com.example.dadosmeteorologicos.model.Estacao;
 
 public class EstacaoService {
+   private EstacaoSQL banco;
+
+   public EstacaoService(){
+      this.banco = new EstacaoSQL();
+  }
+
+   public EstacaoService(Connection conn){
+      this.banco = new EstacaoSQL(conn);
+   }
 
    public List<Estacao> buscaEstacao(){
+      banco.conectarBanco();
       EstacaoSQL estacaoSQL = new EstacaoSQL();
       List<Estacao> listaEstacao = estacaoSQL.buscaEstacaoBanco();
       estacaoSQL.fecharConexao();
@@ -29,6 +40,7 @@ public class EstacaoService {
    }
 
    public Boolean numeroEstacaoValido(String numero){
+      banco.conectarBanco();
       EstacaoSQL estacaoSQL = new EstacaoSQL();
       Boolean siglaValida = estacaoSQL.numeroEstacaoValido(numero);
       estacaoSQL.fecharConexao();
@@ -36,6 +48,7 @@ public class EstacaoService {
    }
 
    public Boolean siglaCidadeExiste(String sigla){
+      banco.conectarBanco();
       sigla = sigla.toUpperCase();
       EstacaoSQL estacaoSQL = new EstacaoSQL();
       Boolean siglaValida = estacaoSQL.siglaCidadeExiste(sigla);
