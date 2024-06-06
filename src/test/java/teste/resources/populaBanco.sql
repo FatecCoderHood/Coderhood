@@ -44,7 +44,7 @@ INSERT INTO cidade (nome, sigla) VALUES
 ('São Carlos', 'SC');
 
 -- Popular tabela estacao
-INSERT INTO estacao (numero, siglaCidade, nome, descricao, latitude, longitude) VALUES 
+INSERT INTO estacao (numero, siglaCidade, nome, descricao, latitude, longitude) VALUES
 ('83726', 'SC', 'TESTE', 'TESTE', -23.223701, -45.900907),
 ('777', 'SP', 'TESTE', 'TESTE', -23.223701, -45.900907),
 ('420', 'SJC', 'TESTE', 'TESTE', -23.223701, -45.900907),
