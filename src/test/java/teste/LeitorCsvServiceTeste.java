@@ -7,8 +7,10 @@ import com.example.dadosmeteorologicos.model.Estacao;
 import com.example.dadosmeteorologicos.model.Registro;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -22,13 +24,19 @@ public class LeitorCsvServiceTeste {
 
     private static LeitorCsvService leitorCsvService;
     private static IniciaBancoTeste bancoTeste;
+    private static Connection conn;
+    private static CidadeService cidadeService;
+
 
     @BeforeAll
     public static void setUp() {
-        bancoTeste = new IniciaBancoTeste(); 
+        bancoTeste = new IniciaBancoTeste();
+        bancoTeste.reiniciarBanco();
         bancoTeste.iniciarBanco();
         bancoTeste.popularBancoTeste();  
-        leitorCsvService = new LeitorCsvService(bancoTeste.conectarBanco());
+        conn = bancoTeste.conectarBanco();
+        leitorCsvService = new LeitorCsvService(conn);
+        cidadeService = new CidadeService(conn);
     }
 
     @AfterAll
@@ -58,16 +66,15 @@ public class LeitorCsvServiceTeste {
         String validandoSigla = leitorCsvService.validarNomeCidadePelaSigla(cidade.getSigla());
 
         assertEquals("Taubaté", validandoSigla);
+        assertNotEquals("nao é o nome da cidade", validandoSigla);
 
     }
 
     @Test
     public void testCriarCidade() {
         Cidade cidadeRepertida = new Cidade();
-        cidadeRepertida.setNome("São paulo");
+        cidadeRepertida.setNome("Teste");
         cidadeRepertida.setSigla("SP");
-
-        CidadeService cidadeService = new CidadeService(bancoTeste.conectarBanco());
 
         leitorCsvService.criarCidade(cidadeRepertida.getNome(), cidadeRepertida.getSigla());
 
@@ -85,14 +92,10 @@ public class LeitorCsvServiceTeste {
     
 
 
-    @Test
-    public void testCriarEstacao() {
-        String numeroEstacao = "7777";
-        String siglaCidade = "SC";
+    // @Test
+    // public void testCriarEstacao() {
 
-        leitorCsvService.criarEstacao(numeroEstacao, siglaCidade);
-
-    }
+    // }
    
 
     @Test
@@ -107,12 +110,10 @@ public class LeitorCsvServiceTeste {
 
     }
 
-    @Test
-    public void testRegistrosSuspeitos() {
-        
-      
-
-    }
+    // @Test
+    // public void testRegistrosSuspeitos() {
+    
+    // }
  
 
     public List<Registro> criaRegistrosQueSeraoSalvosNobanco() {

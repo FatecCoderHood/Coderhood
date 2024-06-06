@@ -19,7 +19,6 @@ public class VariavelClimaticaTeste {
 
     @BeforeAll
     public static void setup() throws SQLException {
-        System.out.println("testeA");
         bancoTeste = new IniciaBancoTeste();
         bancoTeste.iniciarBanco();
         bancoTeste.popularBancoTeste();

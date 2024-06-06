@@ -41,7 +41,6 @@ public class ValorMedioServiceTeste {
     @Test
     public void getCidadesDoBancoDeDados(){
         List<Cidade> cidades = valorMedioService.getCidadesDoBancoDeDados();
-        System.out.println(cidades.size());
         List<Cidade> cidadesMock = cidadesMock();
 
         for (Cidade cidade : cidades) {
