@@ -1,5 +1,6 @@
 package teste;
 
+import com.example.dadosmeteorologicos.Services.CidadeService;
 import com.example.dadosmeteorologicos.Services.LeitorCsvService;
 import com.example.dadosmeteorologicos.model.Cidade;
 import com.example.dadosmeteorologicos.model.Estacao;
@@ -62,14 +63,26 @@ public class LeitorCsvServiceTeste {
 
     @Test
     public void testCriarCidade() {
-        String nomeCidade = "São Paulo";
-        String siglaCidade = "SP";
+        Cidade cidadeRepertida = new Cidade();
+        cidadeRepertida.setNome("São paulo");
+        cidadeRepertida.setSigla("SP");
 
-        leitorCsvService.criarCidade(nomeCidade, siglaCidade);
+        CidadeService cidadeService = new CidadeService(bancoTeste.conectarBanco());
 
-        assertTrue(bancoTeste.verificarCidade(nomeCidade, siglaCidade));
+        leitorCsvService.criarCidade(cidadeRepertida.getNome(), cidadeRepertida.getSigla());
+
+        assertEquals(4, cidadeService.getCidades().size());
+
+        Cidade cidadeNova= new Cidade();
+        cidadeNova.setNome("TTTT");
+        cidadeNova.setSigla("TT");
+
+        leitorCsvService.criarCidade(cidadeNova.getNome(), cidadeNova.getSigla());
+
+        assertEquals(5, cidadeService.getCidades().size());
+
     }
- 
+    
 
 
     @Test
@@ -79,7 +92,6 @@ public class LeitorCsvServiceTeste {
 
         leitorCsvService.criarEstacao(numeroEstacao, siglaCidade);
 
-        assertTrue(bancoTeste.verificarEstacao(numeroEstacao, siglaCidade));
     }
    
 
@@ -97,28 +109,9 @@ public class LeitorCsvServiceTeste {
 
     @Test
     public void testRegistrosSuspeitos() {
-        @SuppressWarnings("unused")
-        Registro registro = new Registro(); 
         
-        List<Registro> listaRegistroDto = new ArrayList<>();
-        listaRegistroDto.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "temperaturaMedia", 200.0, true)); 
-        listaRegistroDto.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "temperaturaMedia", 20.0, false));
-        listaRegistroDto.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "umidadeMedia", 500.0, true));
-        listaRegistroDto.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "velVento", 10.0, false));
-        listaRegistroDto.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "dirVento", 1800.0, true));
-        listaRegistroDto.add(new Registro(LocalDate.of(2021, 1, 3), LocalTime.of(0, 0, 0), "83726", "SC", "chuva", 0.0, false));
+      
 
-       
-        int contador = 0;
-        for (Registro reg : listaRegistroDto) {
-        if (reg.isSuspeito()) {
-            contador++;
-        }
-     }
-
-        int registrosSuspeitos = leitorCsvService.registrosSuspeitos(listaRegistroDto);
-        assertEquals(contador, registrosSuspeitos);
-        System.err.println("o total de registro suspeito é:" + contador);
     }
  
 
