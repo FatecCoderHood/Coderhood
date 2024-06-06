@@ -4,6 +4,8 @@ import com.example.dadosmeteorologicos.model.RegistroSituacao;
 import com.example.dadosmeteorologicos.model.Cidade;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 public class SituacaoSQL extends IniciaBanco {
@@ -38,26 +40,37 @@ public class SituacaoSQL extends IniciaBanco {
     
                 while(rs.next()){
                     registro.setSiglaCidade(rs.getString("siglaCidade"));
-                    registro.setData(rs.getDate("data").toLocalDate());
-                    registro.setHora(rs.getTime("hora").toLocalTime());
-    
+
+                    LocalDate dataRegistro = rs.getDate("data").toLocalDate();
+                    LocalTime dataregistro = rs.getTime("hora").toLocalTime();
                     String tipo = rs.getString("tipo");
-                    Double valor = rs.getDouble("valor");
+                    double valorDouble = rs.getDouble("valor");
+                    String valor = Double.toString(valorDouble);
     
                     switch (tipo){
                         case "chuva":
+                            registro.setDataChuva(dataRegistro);
+                            registro.setHoraChuva(dataregistro);
                             registro.setChuva(valor);
                             break;
                         case "dirVento":
+                            registro.setDataDirVento(dataRegistro);
+                            registro.setHoraDirVento(dataregistro);
                             registro.setDirVento(valor);
                             break;
                         case "temperaturaMedia":
+                            registro.setDataTemperaturaMedia(dataRegistro);
+                            registro.setHoraTemperaturaMedia(dataregistro);
                             registro.setTemperaturaMedia(valor);
                             break;
                         case "umidadeMedia":
+                            registro.setDataUmidadeMedia(dataRegistro);
+                            registro.setHoraUmidadeMedia(dataregistro);
                             registro.setUmidadeMedia(valor);
                             break;
                         case "velVento":
+                            registro.setDataVelVento(dataRegistro);
+                            registro.setHoraVelVento(dataregistro);
                             registro.setVelVento(valor);
                             break;
                     }
