@@ -19,9 +19,8 @@ public class EstacaoService {
 
    public List<Estacao> buscaEstacao(){
       banco.conectarBanco();
-      EstacaoSQL estacaoSQL = new EstacaoSQL();
-      List<Estacao> listaEstacao = estacaoSQL.buscaEstacaoBanco();
-      estacaoSQL.fecharConexao();
+      List<Estacao> listaEstacao = banco.buscaEstacaoBanco();
+      banco.fecharConexao();
       return listaEstacao;
    }
 

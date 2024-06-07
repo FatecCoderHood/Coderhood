@@ -100,18 +100,22 @@ public class LeitorCsvServiceTeste {
         Estacao estacaorepetida = new Estacao();
         estacaorepetida.setSiglaCidade("SC");
         estacaorepetida.setNumero("6666");
+        System.out.println(estacaoService.buscaEstacao().toString());
+
+        // tem que ver as regras de negocio para ver se algum metodo é chamado antes
 
         leitorCsvService.criarEstacao(estacaorepetida.getSiglaCidade(), estacaorepetida.getNumero());
+        
 
-        assertEquals(1, estacaoService.buscaEstacao().size());
+        assertEquals(7, estacaoService.buscaEstacao().size());
 
         Estacao estacaoNova = new Estacao();
-        estacaoNova.setSiglaCidade("SC");
-        estacaoNova.setNumero("6666");
+        estacaoNova.setSiglaCidade("TET");
+        estacaoNova.setNumero("999");
 
         leitorCsvService.criarEstacao(estacaoNova.getSiglaCidade(), estacaoNova.getNumero());
 
-        assertEquals(1, estacaoService.buscaEstacao().size());
+        assertEquals(8, estacaoService.buscaEstacao().size());
         
     }
 
