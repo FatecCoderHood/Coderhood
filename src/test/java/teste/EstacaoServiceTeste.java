@@ -81,11 +81,11 @@ public class EstacaoServiceTeste {
     public void testeAdicionarNovaEstacao() {
         
         List<Estacao> estacoes = Arrays.asList(
-            // Estação Existente
+            // Estação com número repetido
             new Estacao("83726", "SC"),
-            // Estação com número associado a uma estação existente
+            // Estação com número associado já associado a outra cidade
             new Estacao("83726", "SP"),
-            // Estação Inexistente
+            // Cidade Inexistente
             new Estacao("83727", "JC"),
             // Nova Estação
             new Estacao("9999","SC")

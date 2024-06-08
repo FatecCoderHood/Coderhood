@@ -20,13 +20,4 @@ public class Estacao {
         this.siglaCidade = siglaCidade;
     }
 
-
-    public void atualizarEstacao(Object setId, Object setNumero, Object setSiglaCidade, Object setNome,
-            Object setDescricao, Object setLatitude, Object setLongitude) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atualizarEstacao'");
-    }
-
-
-
 }
