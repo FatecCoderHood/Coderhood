@@ -3,8 +3,8 @@ package com.example.dadosmeteorologicos.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data  
-@NoArgsConstructor 
+@Data
+@NoArgsConstructor
 public class Cidade {
     private String nome;
     private String sigla;

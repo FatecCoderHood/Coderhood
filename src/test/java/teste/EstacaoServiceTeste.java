@@ -3,85 +3,144 @@ package teste;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import com.example.dadosmeteorologicos.Services.CidadeService;
 import com.example.dadosmeteorologicos.Services.EstacaoService;
+import com.example.dadosmeteorologicos.model.Cidade;
 import com.example.dadosmeteorologicos.model.Estacao;
 
 public class EstacaoServiceTeste {
     private static EstacaoService estacaoService;
+    private static CidadeService cidadeService;
     private static IniciaBancoTeste bancoTeste;
 
     @BeforeAll
     public static void setup() throws SQLException {
         bancoTeste = new IniciaBancoTeste();
+        bancoTeste.reiniciarBanco();
         bancoTeste.iniciarBanco();
         bancoTeste.popularBancoTeste();
         estacaoService = new EstacaoService(bancoTeste.conectarBanco());
+        cidadeService = new CidadeService(bancoTeste.conectarBanco());
     }
+
+    @AfterEach
+    public void limparBanco() {
+        bancoTeste.limparBanco();
+        bancoTeste.popularBancoTeste();
+    }
+        
 
     @AfterAll
     public static void tearDown() {
         bancoTeste.fecharConexao();
-        bancoTeste.limparBanco();
+        bancoTeste.reiniciarBanco();
     }
 
     @Test
     public void testeBuscaEstacao() {
-        List<Estacao> listaEstacao = estacaoService.buscaEstacao();
-        assertFalse(listaEstacao.isEmpty());
-        assertEquals(4, listaEstacao.size());
-        assertEquals("83726", listaEstacao.get(0).getNumero());
-        assertEquals("777", listaEstacao.get(1).getNumero());
-        assertEquals("420", listaEstacao.get(2).getNumero());
-        assertEquals("728", listaEstacao.get(3).getNumero());
+
+        List<Estacao> estacoes = estacaoService.buscaEstacao();
+        assertFalse(estacoes.isEmpty());
+        
+        Estacao estacaoNaoExistente = new Estacao();
+
+        estacaoNaoExistente.setNumero("0000");
+        estacaoNaoExistente.setSiglaCidade("XX");
+
+        assertFalse(estacoes.contains(estacaoNaoExistente));
+
+        Estacao estacaoExistente = estacoes.get(0);
+        assertEquals("83726", estacaoExistente.getNumero());
+        assertEquals("SC", estacaoExistente.getSiglaCidade());
+
+        assertTrue(estacoes.contains(estacaoExistente));
+    }
+    @Test
+    public void testeDeletarEstacao() {
+        
+        List<Estacao> estacoes = estacaoService.buscaEstacao();
+        assertEquals(4, estacoes.size());
+        for(Estacao estacao : estacoes) {
+            if (estacao.getNumero().equals("83726")) {
+                estacaoService.deletarEstacao(estacao.getId(), estacao.getNumero());
+                assertFalse(estacaoService.buscaEstacao().contains(estacao));
+            }
+        }
+        estacoes = estacaoService.buscaEstacao();
+        assertEquals(3, estacoes.size());
+    }
+    @Test
+    public void testeAdicionarNovaEstacao() {
+        
+        List<Estacao> estacoes = Arrays.asList(
+            // Estação Existente
+            new Estacao("83726", "SC"),
+            // Estação com número associado a uma estação existente
+            new Estacao("83726", "SP"),
+            // Estação Inexistente
+            new Estacao("83727", "JC"),
+            // Nova Estação
+            new Estacao("9999","SC")
+        );
+
+        assertFalse(estacaoService.numeroEstacaoValido(estacoes.get(0).getNumero()));
+        assertFalse(estacaoService.numeroEstacaoValido(estacoes.get(1).getNumero()));
+        assertTrue(estacaoService.numeroEstacaoValido(estacoes.get(2).getNumero()));
+        assertTrue(estacaoService.numeroEstacaoValido(estacoes.get(3).getNumero()));
+
+        assertTrue(estacaoService.siglaCidadeExiste(estacoes.get(0).getSiglaCidade()));
+        assertTrue(estacaoService.siglaCidadeExiste(estacoes.get(1).getSiglaCidade()));
+        assertFalse(estacaoService.siglaCidadeExiste(estacoes.get(2).getSiglaCidade()));
+        Cidade novaCidade = new Cidade("Jacareí", "JC");
+        cidadeService.criarCidade(novaCidade.getNome(),novaCidade.getSigla());
+        assertTrue(estacaoService.siglaCidadeExiste(estacoes.get(2).getSiglaCidade()));
+        assertTrue(estacaoService.siglaCidadeExiste(estacoes.get(3).getSiglaCidade()));
+
+        for(Estacao estacao : estacoes) {
+            if(estacaoService.numeroEstacaoValido(estacao.getNumero())) {
+                if(estacaoService.siglaCidadeExiste(estacao.getSiglaCidade())) {
+                    estacaoService.adicionarNovaEstacao(estacao.getNumero(), estacao.getSiglaCidade());
+                }
+            }
+        }
+
+        List<Estacao> novasEstacoes = estacaoService.buscaEstacao();
+        assertEquals(6, novasEstacoes.size());
+
     }
 
-    
-    // @Test
-    // public void testeDeletarEstacao() {
+    @Test
+    public void testeAtualizarEstacao(){
 
+        List<Estacao> estacoes = estacaoService.buscaEstacao();
+        Estacao estacaoAntiga = estacoes.get(0);
+        assertEquals("83726", estacaoAntiga.getNumero());
+        assertEquals("SC", estacaoAntiga.getSiglaCidade());
 
-    //     estacaoService.deletarEstacao(00, "83726");
-    //     List<Estacao> listaEstacao = estacaoService.buscaEstacao();
-    // }
+        Estacao estacaoAtualizada = new Estacao("0000", "XX");
 
+        estacaoAtualizada.setDescricao("Estação Atualizada");
+        estacaoAtualizada.setNome("Estação Atualizada");
+        estacaoAtualizada.setLatitude(0.9999);
+        estacaoAtualizada.setLongitude(0.9999);
 
+        System.out.println(estacaoAntiga.toString());
+        System.out.println("...........");
+        System.out.println(estacaoAtualizada.toString());
+        System.out.println("...........");
 
-    // @Test
-    // public void testeAdicionarNovaEstacao() {
-    //     estacao.setNumero("001");
-    //     estacao.setSiglaCidade("SC");
-        
-    //     assertEquals("001", estacao.getNumero());
-    //     assertEquals("SC", estacao.getSiglaCidade());
+        estacaoService.atualizarEstacao(estacaoAntiga.getId(), estacaoAtualizada);
 
-    //     estacaoService.adicionarNovaEstacao(estacao.getNumero(), estacao.getSiglaCidade());
-    //     assertFalse(estacaoService.buscaEstacao().isEmpty());
-    // }
+        estacoes = estacaoService.buscaEstacao();
 
-
-    // public List<Estacao> estacoesMock() {
-    //     Estacao estacao83726 = new Estacao();
-    //     estacao83726.setNumero("83726");
-    //     estacao83726.setSiglaCidade("SC");
-
-    //     Estacao estacao777 = new Estacao();
-    //     estacao777.setNumero("777");
-    //     estacao777.setSiglaCidade("SP");
-
-    //     Estacao estacao420 = new Estacao();
-    //     estacao420.setNumero("420");
-    //     estacao420.setSiglaCidade("SJC");
-
-    //     Estacao estacao728 = new Estacao();
-    //     estacao728.setNumero("728");
-    //     estacao728.setSiglaCidade("TBT");
-    // }
-    
+        System.out.println(estacaoAtualizada.toString());
+    }
 }
-
