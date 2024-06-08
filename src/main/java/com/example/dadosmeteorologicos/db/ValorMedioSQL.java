@@ -56,9 +56,6 @@ public class ValorMedioSQL extends IniciaBanco {
                     Cidade cidade = new Cidade(nome, sigla, 
                         new CidadeDetalhes(dataPrimeiroRegistro, dataUltimoRegistro));
                     registros.add(cidade);
-                    System.out.println("valor medioSQL");
-                    System.out.println("URL do banco de dados: " + conn.getMetaData().getURL());
-                    System.out.println("Usuário do banco de dados: " + conn.getMetaData().getUserName());
 
                 }
             }
