@@ -32,12 +32,7 @@ public class ValorMedioController {
     private DatePicker dataFinal;
     @FXML
     private Button executar;
-
-    
-
-    public ValorMedioController() {
-        this.service = new ValorMedioService();
-    }
+    String siglaCidade;
 
 
     @FXML
@@ -61,6 +56,7 @@ public class ValorMedioController {
         });
 
         // Busca as cidades do banco de dados
+        service = new ValorMedioService();
         List<Cidade> cidades = service.getCidadesDoBancoDeDados();
         //cidade[0] Nome cidade
         //cidade[1] Sigla cidade
@@ -80,6 +76,7 @@ public class ValorMedioController {
             menuItem.setGraphic(label);
             menuItem.setId("menuItem" + cidade.getNome());
             menuItem.setOnAction(event -> {
+                siglaCidade = cidade.getSigla();
                 menuButton.setText(cidade.getNome() + " - " + cidade.getSigla() + 
                     " dados: " + cidade.getCidadeDetalhes().getDataPrimeiroRegistro() + 
                     " até " + cidade.getCidadeDetalhes().getDataUltimoRegistro());
@@ -123,22 +120,16 @@ public class ValorMedioController {
         java.sql.Date dataInicialSqlDate = java.sql.Date.valueOf(dataSelecionadaInicial);
         java.sql.Date dataFinalSqlDate = java.sql.Date.valueOf(dataSelecionadaFinal);
         
-        // Obtém a sigla da cidade do texto do botão do menu
-        String[] partes = menuButton.getText().split(" - ");
-        String siglaCidade = partes[1].split(" ")[0]; 
-        
-        List<RegistroValorMedio> resultado = service.consultaCidadePorIdEDatas(siglaCidade, dataInicialSqlDate, dataFinalSqlDate);
-        List<RegistroValorMedio> resultadoMedia = RegistroValorMedio.calcularMediaPorDataHora(resultado);
-        for(RegistroValorMedio registro : resultadoMedia){
-            System.out.println(registro.getData() + " " + registro.getHora() + " " + registro.getSiglaCidade() + " " + registro.getValorMedioInfos());
-        }
-
+        System.out.println("SiglaCidade selecionadas: " + siglaCidade);
+        service = new ValorMedioService();
+        List<RegistroValorMedio> resultado = service.getValorMedio(siglaCidade, dataInicialSqlDate, dataFinalSqlDate);
+        System.out.println("Resultado: " + resultado.toString());
         // Carrega a tela de resultados
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("view/TabelaRegistro.fxml"));
             Parent root = loader.load();
             TabelaRegistrosController controller = loader.getController();
-            controller.setRegistros(resultadoMedia);
+            controller.setRegistros(resultado);
             //controller.initialize();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
