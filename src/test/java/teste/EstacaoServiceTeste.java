@@ -81,11 +81,11 @@ public class EstacaoServiceTeste {
     public void testeAdicionarNovaEstacao() {
         
         List<Estacao> estacoes = Arrays.asList(
-            // Estação com número repetido
+            // Estação Existente
             new Estacao("83726", "SC"),
-            // Estação com número associado já associado a outra cidade
+            // Estação com número associado a uma estação existente
             new Estacao("83726", "SP"),
-            // Cidade Inexistente
+            // Estação Inexistente
             new Estacao("83727", "JC"),
             // Nova Estação
             new Estacao("9999","SC")
@@ -120,27 +120,32 @@ public class EstacaoServiceTeste {
     @Test
     public void testeAtualizarEstacao(){
 
+        // Criando lista com estações contidas no banco;
         List<Estacao> estacoes = estacaoService.buscaEstacao();
+
+        // Verificando se a estação foi criada
         Estacao estacaoAntiga = estacoes.get(0);
         assertEquals("83726", estacaoAntiga.getNumero());
         assertEquals("SC", estacaoAntiga.getSiglaCidade());
 
-        Estacao estacaoAtualizada = new Estacao("0000", "XX");
+        
+        estacaoAntiga.setDescricao("Estação Antiga");
+        estacaoAntiga.setNome("Estação Antiga");
+        estacaoAntiga.setLatitude(0.9999);
+        estacaoAntiga.setLongitude(0.9999);
 
-        estacaoAtualizada.setDescricao("Estação Atualizada");
-        estacaoAtualizada.setNome("Estação Atualizada");
-        estacaoAtualizada.setLatitude(0.9999);
-        estacaoAtualizada.setLongitude(0.9999);
+        estacaoService.atualizarEstacao(estacaoAntiga.getId(), estacaoAntiga);
 
-        System.out.println(estacaoAntiga.toString());
-        System.out.println("...........");
-        System.out.println(estacaoAtualizada.toString());
-        System.out.println("...........");
+        List<Estacao> novasEstacoes = estacaoService.buscaEstacao();
 
-        estacaoService.atualizarEstacao(estacaoAntiga.getId(), estacaoAtualizada);
-
-        estacoes = estacaoService.buscaEstacao();
-
-        System.out.println(estacaoAtualizada.toString());
+        for(Estacao estacao : novasEstacoes) {
+            if(estacaoAntiga.getId() == estacao.getId()) {
+                assertEquals("Estação Antiga", estacaoAntiga.getDescricao());
+                assertEquals("Estação Antiga", estacaoAntiga.getNome());
+                assertEquals(0.9999, estacaoAntiga.getLatitude());
+                assertEquals(0.9999, estacaoAntiga.getLongitude());
+            }
+        }
+        
     }
 }
