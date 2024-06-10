@@ -51,20 +51,27 @@ public class SituacaoServiceTest {
         criarRegistrosTabelaSituacao();
         List<Cidade> cidades = cidadeService.getCidades();
         Map<Cidade, RegistroSituacao> registroSituacaoPorCidade = situacaoService.getRegistroSituacao(cidades);
-        for (Map.Entry<Cidade, RegistroSituacao> entry : registroSituacaoPorCidade.entrySet()) {
-            if (entry.getKey().getSigla().equals("TBT"))
-                System.out.println(entry);
+        for (Map.Entry<Cidade, RegistroSituacao> mapa : registroSituacaoPorCidade.entrySet()) {
+            if (mapa.getKey().getSigla().equals("TBT"))
+                System.out.println(mapa.getValue());
+                assertNotEquals(LocalDate.parse("2021-01-05"), mapa.getValue().getDataTemperaturaMedia());
+                assertEquals(LocalTime.parse("00:00:00"), mapa.getValue().getHoraTemperaturaMedia());
+                // assertEquals("20.0", mapa.getValue().getTemperaturaMedia());
+                // assertEquals(LocalDate.parse("2021-01-01") ,mapa.getValue().getDataUmidadeMedia());
+                // assertEquals(LocalTime.parse("01:00"), mapa.getValue().getHoraUmidadeMedia());
+
+                
         }
 
     }
 
     public void criarRegistrosTabelaSituacao(){
         List<Registro> registros = Arrays.asList(
-            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), "728", "TBT", "chuva", 0.0, false),
+            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), "728", "TBT", "temperaturaMedia", 50.0, false),
+            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), "728", "TBT", "umidadeMedia", 30.0, false),
+            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), "728", "TBT", "velVento", 0.0, false),
             new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), "728", "TBT", "dirVento", 0.0, false),
-            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), "728", "TBT", "temperaturaMedia", 500.0, true),
-            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), "728", "TBT", "umidadeMedia", null, false),
-            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), "728", "TBT", "velVento", 0.0, false)
+            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), "728", "TBT", "chuva", 0.0, false)
         );
         leitorCSVService.salvarRegistro(registros);
     } 
