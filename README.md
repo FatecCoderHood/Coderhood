@@ -11,9 +11,13 @@
   <a href="#page_with_curl-requisitos-não-funcionais"> Requisitos Não Funcionais </a>
 </p>
 <p align="center">
-  <a href ="#calendar-cronograma"> Cronograma </a>  •
-  <a href="#date-product-backlog"> Product Backlog </a> •
-  <a href="#bookmark-tecnologias-utilizadas"> Tecnologias Utilizadas </a>
+    <a href ="#calendar-cronograma"> Cronograma </a>  •
+    <a href="#date-product-backlog"> Product Backlog </a> •
+    <a href="#bookmark-tecnologias-utilizadas"> Tecnologias Utilizadas </a>
+</p>
+<p align="center">
+<strong><a href="https://github.com/CoderhoodFatec-2024-1/Coderhood/blob/main/documentacao/documentacao.md" style="font-size: larger;"> Documentação </a></strong> •
+    <strong><a href="https://github.com/CoderhoodFatec-2024-1/Coderhood/blob/main/documentacao/manual%20Zeus/manual%20Zeus.md" style="font-size: larger;"> Manual </a></strong>
 </p>
 
 
