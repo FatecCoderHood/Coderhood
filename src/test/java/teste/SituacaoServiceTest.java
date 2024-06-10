@@ -51,27 +51,36 @@ public class SituacaoServiceTest {
         criarRegistrosTabelaSituacao();
         List<Cidade> cidades = cidadeService.getCidades();
         Map<Cidade, RegistroSituacao> registroSituacaoPorCidade = situacaoService.getRegistroSituacao(cidades);
+        
         for (Map.Entry<Cidade, RegistroSituacao> mapa : registroSituacaoPorCidade.entrySet()) {
-            if (mapa.getKey().getSigla().equals("TBT"))
-                System.out.println(mapa.getValue());
-                assertNotEquals(LocalDate.parse("2021-01-05"), mapa.getValue().getDataTemperaturaMedia());
-                assertEquals(LocalTime.parse("00:00:00"), mapa.getValue().getHoraTemperaturaMedia());
-                // assertEquals("20.0", mapa.getValue().getTemperaturaMedia());
-                // assertEquals(LocalDate.parse("2021-01-01") ,mapa.getValue().getDataUmidadeMedia());
-                // assertEquals(LocalTime.parse("01:00"), mapa.getValue().getHoraUmidadeMedia());
-
-                
+            if (mapa.getKey().getSigla().equals("TBT")){
+                RegistroSituacao registro = mapa.getValue();
+                assertEquals(LocalDate.parse("2021-01-01"), registro.getDataTemperaturaMedia());
+                assertEquals(LocalTime.parse("00:00:00"), registro.getHoraTemperaturaMedia());
+                assertEquals("20.0", registro.getTemperaturaMedia());
+                assertEquals(LocalDate.parse("2021-01-05"), registro.getDataUmidadeMedia());
+                assertEquals(LocalTime.parse("12:00:00"), registro.getHoraUmidadeMedia());
+                assertEquals("30.0", registro.getUmidadeMedia());
+                assertEquals("10.0", registro.getVelVento());
+                assertEquals("0.0", registro.getDirVento());
+                assertEquals("15.0", registro.getChuva());
+            }
         }
 
     }
 
     public void criarRegistrosTabelaSituacao(){
         List<Registro> registros = Arrays.asList(
-            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), "728", "TBT", "temperaturaMedia", 50.0, false),
-            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), "728", "TBT", "umidadeMedia", 30.0, false),
-            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), "728", "TBT", "velVento", 0.0, false),
-            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), "728", "TBT", "dirVento", 0.0, false),
-            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), "728", "TBT", "chuva", 0.0, false)
+            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), 
+                "728", "TBT", "temperaturaMedia", 70.0, true),
+            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), 
+                "728", "TBT", "umidadeMedia", 30.0, false),
+            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), 
+                "728", "TBT", "velVento", null, false),
+            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"),
+                "728", "TBT", "dirVento", 0.0, false),
+            new Registro(LocalDate.parse("2021-01-05"), LocalTime.parse("12:00:00"), 
+                "728", "TBT", "chuva", 15.0, false)
         );
         leitorCSVService.salvarRegistro(registros);
     } 

@@ -21,7 +21,7 @@ public class CidadeService {
     }
 
     public List<Cidade> getCidades() {
-        CidadeSQL banco = new CidadeSQL();
+        banco.conectarBanco();
         List<Cidade> listaCidades = banco.buscaCidadesBanco();
         banco.fecharConexao();
         return listaCidades;
