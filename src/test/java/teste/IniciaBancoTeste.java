@@ -46,7 +46,7 @@ public class IniciaBancoTeste {
         }
     }
 
-     public void iniciarBanco(){
+    public void iniciarBanco(){
         try{
             conn = DriverManager.getConnection(url, user, password);
             if (conn != null) {
@@ -55,10 +55,10 @@ public class IniciaBancoTeste {
                 criarTabelaCidade();
                 criarTabelaEstacao();
                 conn.close();
-            } 
+            }
         }catch(SQLException e){
             System.err.format("iniciarBanco SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
-        }    
+        }
     }
 
     public void limparBanco(){
@@ -323,7 +323,7 @@ public class IniciaBancoTeste {
                 String sql = "DROP TABLE IF EXISTS registro, cidade, estacao, variavel_climatica";
                 Statement stmt = conn.createStatement();
                 stmt.execute(sql);
-            } 
+            }
         } catch (SQLException e) {
             System.err.format("reiniciarBanco SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
         }

@@ -1,6 +1,6 @@
 package teste;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -41,7 +41,6 @@ public class ValorMedioServiceTeste {
     @Test
     public void getCidadesDoBancoDeDados(){
         List<Cidade> cidades = valorMedioService.getCidadesDoBancoDeDados();
-        System.out.println(cidades.size());
         List<Cidade> cidadesMock = cidadesMock();
 
         for (Cidade cidade : cidades) {
@@ -58,7 +57,7 @@ public class ValorMedioServiceTeste {
 
     @Test
     public void getValorMedio(){
-       List<RegistroValorMedio> registroValorMedio = valorMedioService.getValorMedio("SC", 
+        List<RegistroValorMedio> registroValorMedio = valorMedioService.getValorMedio("SC", 
         Date.valueOf("2021-01-01"),  Date.valueOf("2021-01-01"));
         RegistroValorMedio primeiroRegistro = registroValorMedio.get(0);
         List<ValorMedioInfo> primeiroValorMedioInfo = primeiroRegistro.getValorMedioInfos();

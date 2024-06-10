@@ -15,7 +15,7 @@ public class Estacao {
     private Double longitude;
 
 
-    Estacao(String numero, String siglaCidade) {
+    public Estacao(String numero, String siglaCidade) {
         this.numero = numero;
         this.siglaCidade = siglaCidade;
     }
