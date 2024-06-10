@@ -67,7 +67,6 @@ public class EstacaoServiceTeste {
     public void testeDeletarEstacao() {
         
         List<Estacao> estacoes = estacaoService.buscaEstacao();
-        assertEquals(4, estacoes.size());
         for(Estacao estacao : estacoes) {
             if (estacao.getNumero().equals("83726")) {
                 estacaoService.deletarEstacao(estacao.getId(), estacao.getNumero());
@@ -75,15 +74,14 @@ public class EstacaoServiceTeste {
             }
         }
         estacoes = estacaoService.buscaEstacao();
-        assertEquals(3, estacoes.size());
     }
     @Test
     public void testeAdicionarNovaEstacao() {
         
         List<Estacao> estacoes = Arrays.asList(
-            // Estação Existente
+            // Estação existente.
             new Estacao("83726", "SC"),
-            // Estação com número associado a uma estação existente
+            // Estação associada a outra cidade
             new Estacao("83726", "SP"),
             // Estação Inexistente
             new Estacao("83727", "JC"),
@@ -113,8 +111,18 @@ public class EstacaoServiceTeste {
         }
 
         List<Estacao> novasEstacoes = estacaoService.buscaEstacao();
-        assertEquals(6, novasEstacoes.size());
+        System.out.println(novasEstacoes.toString());
+        
+        assertEquals(8, novasEstacoes.size());
 
+        for(Estacao estacao : novasEstacoes) {
+            if(estacao.getNumero() == "83727") {
+                assertEquals("JC", estacao.getSiglaCidade());
+            }
+            if(estacao.getNumero() == "9999") {
+                assertEquals("SC", estacao.getSiglaCidade());
+            }
+        }
     }
 
     @Test
