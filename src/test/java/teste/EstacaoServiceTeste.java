@@ -113,8 +113,7 @@ public class EstacaoServiceTeste {
         List<Estacao> novasEstacoes = estacaoService.buscaEstacao();
         System.out.println(novasEstacoes.toString());
         
-        assertEquals(8, novasEstacoes.size());
-
+        assertEquals(9, novasEstacoes.size());
         for(Estacao estacao : novasEstacoes) {
             if(estacao.getNumero() == "83727") {
                 assertEquals("JC", estacao.getSiglaCidade());
@@ -154,6 +153,5 @@ public class EstacaoServiceTeste {
                 assertEquals(0.9999, estacaoAntiga.getLongitude());
             }
         }
-        
     }
 }
