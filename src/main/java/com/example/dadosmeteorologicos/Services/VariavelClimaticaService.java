@@ -7,6 +7,7 @@ import com.example.dadosmeteorologicos.db.VariavelClimaticaSQL;
 import com.example.dadosmeteorologicos.model.VariavelClimatica;
 
 public class VariavelClimaticaService {
+    
     private VariavelClimaticaSQL banco;
 
     public VariavelClimaticaService() {
@@ -16,7 +17,7 @@ public class VariavelClimaticaService {
     public VariavelClimaticaService(Connection conn) {
         this.banco = new VariavelClimaticaSQL(conn);
     }
- 
+
     public List<VariavelClimatica> getVariaveisClimaticas(){
         // Chama o método getVariaveisClimaticas para obter a lista de variaveis climaticas
         List<VariavelClimatica> variaveisClimaticas = banco.getVariaveisClimaticasBanco();

@@ -1,16 +1,17 @@
 package teste;
 
-import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import com.example.dadosmeteorologicos.Services.VariavelClimaticaService;
 import com.example.dadosmeteorologicos.model.VariavelClimatica;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.sql.*;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class VariavelClimaticaTeste {
@@ -19,7 +20,6 @@ public class VariavelClimaticaTeste {
 
     @BeforeAll
     public static void setup() throws SQLException {
-        System.out.println("testeA");
         bancoTeste = new IniciaBancoTeste();
         bancoTeste.iniciarBanco();
         bancoTeste.popularBancoTeste();
