@@ -13,6 +13,10 @@ public class SituacaoSQL extends IniciaBanco {
     public SituacaoSQL() {
         conn = super.conectarBanco();
     }
+    
+    public SituacaoSQL(Connection conn) {
+        this.conn = conn;
+    }
 
     public RegistroSituacao getRegistroSituacao(Cidade cidade){
         RegistroSituacao registro = new RegistroSituacao();
