@@ -11,22 +11,12 @@ import com.example.dadosmeteorologicos.model.Cidade;
 public class CidadeService {
     private CidadeSQL banco;
 
-    private CidadeSQL banco;
-
     public CidadeService() {
         this.banco = new CidadeSQL();
     }
 
     public CidadeService (Connection conn){
         this.banco = new CidadeSQL(conn);
-    }
-
-    public CidadeService() {
-        this.banco = new CidadeSQL();
-    }
-
-    public CidadeService(Connection connection) {
-        this.banco = new CidadeSQL(connection);
     }
 
     public List<Cidade> getCidades() {

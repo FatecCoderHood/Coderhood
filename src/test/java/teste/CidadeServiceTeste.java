@@ -76,7 +76,6 @@ public class CidadeServiceTeste {
         for (Cidade cidade : cidades) {
             if (cidade.getNome().equals("São José dos Campos")) {
                 cidadeDeletar = cidade;
-                System.out.println(cidadeDeletar.toString());
             }
         }
         assertEquals("São José dos Campos", cidadeDeletar.getNome());

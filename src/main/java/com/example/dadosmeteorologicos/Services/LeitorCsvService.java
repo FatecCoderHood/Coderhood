@@ -1,7 +1,6 @@
 package com.example.dadosmeteorologicos.Services;
 
 import java.sql.Connection;
-import java.sql.Connection;
 import java.util.List;
 
 import org.apache.commons.text.WordUtils;

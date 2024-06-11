@@ -2,7 +2,6 @@ package teste;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -327,21 +326,6 @@ public class IniciaBancoTeste {
             }
         } catch (SQLException e) {
             System.err.format("Popular tabela registro SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        }
-    }
-
-
-    public boolean verificarNomeCidade(int id, String novoNomeCidade) {
-        try {
-            conn = DriverManager.getConnection(url, user, password);
-            if (conn != null) {
-                String sql = "DROP TABLE IF EXISTS registro, cidade, estacao, variavel_climatica";
-                Statement stmt = conn.createStatement();
-                stmt.execute(sql);
-            }
-        } catch (SQLException e) {
-            System.err.format("Erro ao verificar nome da cidade: %s\n", e.getMessage());
-            return false;
         }
     }
 }
