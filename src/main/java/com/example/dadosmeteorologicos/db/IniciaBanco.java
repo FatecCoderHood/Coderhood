@@ -55,10 +55,10 @@ public class IniciaBanco {
                 criarTabelaCidade();
                 criarTabelaEstacao();
                 conn.close();
-            } 
+            }
         }catch(SQLException e){
             System.err.format("iniciarBanco SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
-        }    
+        }
     }
 
     public void criarDataBase() throws SQLException{

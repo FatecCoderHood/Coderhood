@@ -11,8 +11,10 @@ import com.example.dadosmeteorologicos.Services.SituacaoService;
 import com.example.dadosmeteorologicos.Services.CidadeService;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class SituacaoController {
@@ -21,16 +23,10 @@ public class SituacaoController {
     private TableView<RegistroSituacao> tabelaSituacao;
 
     @FXML
-    private TableColumn<RegistroSituacao, LocalDate> colunaData;
-
-    @FXML
-    private TableColumn<RegistroSituacao, LocalTime> colunaHora;
+    private TableColumn<RegistroSituacao, String> colunaCidadeESigla;
 
     @FXML
     private TableColumn<RegistroSituacao, String> colunaChuva;
-
-    @FXML
-    private TableColumn<RegistroSituacao, String> colunaCidadeESigla;
 
     @FXML
     private TableColumn<RegistroSituacao, String> colunaDirVento;
@@ -54,8 +50,6 @@ public class SituacaoController {
     public void criarTabela() {
         // Inicialize as colunas da tabela
         colunaCidadeESigla.setCellValueFactory(new PropertyValueFactory<>("cidadeESigla"));
-        colunaData.setCellValueFactory(new PropertyValueFactory<>("data"));
-        colunaHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
         colunaTemperatura.setCellValueFactory(new PropertyValueFactory<>("temperaturaMedia"));
         colunaUmidade.setCellValueFactory(new PropertyValueFactory<>("umidadeMedia"));
         colunaChuva.setCellValueFactory(new PropertyValueFactory<>("chuva"));
@@ -63,14 +57,18 @@ public class SituacaoController {
         colunaVelVento.setCellValueFactory(new PropertyValueFactory<>("velVento"));
 
         // Ajustar alinhamento das colunas
-        colunaData.setStyle("-fx-alignment: CENTER;");
-        colunaHora.setStyle("-fx-alignment: CENTER;");
         colunaTemperatura.setStyle("-fx-alignment: CENTER;");
         colunaUmidade.setStyle("-fx-alignment: CENTER;");
         colunaChuva.setStyle("-fx-alignment: CENTER;");
         colunaDirVento.setStyle("-fx-alignment: CENTER;");
         colunaVelVento.setStyle("-fx-alignment: CENTER;");
         colunaCidadeESigla.setStyle("-fx-alignment: CENTER;");
+
+        adicionarToolTipDataHora(colunaTemperatura, "dataTemperaturaMedia");
+        adicionarToolTipDataHora(colunaUmidade, "dataUmidadeMedia");
+        adicionarToolTipDataHora(colunaChuva, "dataChuva");
+        adicionarToolTipDataHora(colunaDirVento, "dataDirVento");
+        adicionarToolTipDataHora(colunaVelVento, "dataVelVento");
     }
 
     // Carrega os últimos registros de cada cidade
@@ -87,4 +85,56 @@ public class SituacaoController {
             tabelaSituacao.getItems().add(registro);
         }
     }
+
+    private void adicionarToolTipDataHora(TableColumn<RegistroSituacao, String> coluna, String tipo) {
+        coluna.setCellFactory(col -> new TableCell<RegistroSituacao, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item);
+    
+                    RegistroSituacao registro = getTableView().getItems().get(getIndex());
+    
+                    LocalDate date = null;
+                    LocalTime time = null;
+    
+                    switch (tipo) {
+                        case "dataTemperaturaMedia":
+                            date = registro.getDataTemperaturaMedia();
+                            time = registro.getHoraTemperaturaMedia();
+                            break;
+                        case "dataUmidadeMedia":
+                            date = registro.getDataUmidadeMedia();
+                            time = registro.getHoraUmidadeMedia();
+                            break;
+                        case "dataVelVento":
+                            date = registro.getDataVelVento();
+                            time = registro.getHoraVelVento();
+                            break;
+                        case "dataDirVento":
+                            date = registro.getDataDirVento();
+                            time = registro.getHoraDirVento();
+                            break;
+                        case "dataChuva":
+                            date = registro.getDataChuva();
+                            time = registro.getHoraChuva();
+                            break;
+                    }
+    
+                    if (date != null && time != null) {
+                        String tooltipText = date + " " + time;
+                        Tooltip tooltip = new Tooltip(tooltipText);
+                        setTooltip(tooltip);
+                    } else {
+                        setTooltip(null);
+                    }
+                }
+            }
+        });
+    }
+    
 }

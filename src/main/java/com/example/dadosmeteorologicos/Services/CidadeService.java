@@ -15,7 +15,13 @@ public class CidadeService {
         this.banco = new CidadeSQL();
     }
 
-    public CidadeService(Connection conn){
+    private CidadeSQL banco;
+
+    public CidadeService() {
+        this.banco = new CidadeSQL();
+    }
+
+    public CidadeService (Connection conn){
         this.banco = new CidadeSQL(conn);
     }
 
