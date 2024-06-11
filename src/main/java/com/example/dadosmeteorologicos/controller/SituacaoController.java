@@ -156,7 +156,6 @@ public class SituacaoController {
             SimpleDateFormat formatador = new SimpleDateFormat("dd-MM-YYYY");
             Date dataAtual = new Date();
             String dataFormatada = formatador.format(dataAtual);
-            System.out.println(dataFormatada);
 
             String NomeCSV = "Relatório de situação " + dataFormatada + ".csv";
             String enderecoPastaDownload = System.getenv("USERPROFILE") + "/Downloads/";
