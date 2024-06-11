@@ -1,5 +1,6 @@
 package com.example.dadosmeteorologicos.Services;
 
+import java.sql.Connection;
 import java.util.List;
 
 import org.apache.commons.text.WordUtils;
@@ -9,9 +10,18 @@ import com.example.dadosmeteorologicos.model.Cidade;
 
 public class CidadeService {
 
+    private CidadeSQL banco;
+
+    public CidadeService() {
+        this.banco = new CidadeSQL();
+    }
+
+    public CidadeService (Connection conn){
+        this.banco = new CidadeSQL(conn);
+    }
 
     public List<Cidade> getCidades() {
-        CidadeSQL banco = new CidadeSQL();
+        banco.conectarBanco();
         List<Cidade> listaCidades = banco.buscaCidadesBanco();
         banco.fecharConexao();
         return listaCidades;
@@ -33,7 +43,7 @@ public class CidadeService {
     }
     
     public void criarCidade(String nomeCidade, String siglaCidade) {
-        CidadeSQL banco = new CidadeSQL();
+        banco.conectarBanco();
         banco.criarCidade(WordUtils.capitalizeFully(nomeCidade), siglaCidade.toUpperCase());
         banco.fecharConexao();
     }
