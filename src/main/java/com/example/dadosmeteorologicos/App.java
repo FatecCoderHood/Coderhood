@@ -1,5 +1,9 @@
 package com.example.dadosmeteorologicos;
 
+import java.io.IOException;
+
+import com.example.dadosmeteorologicos.db.IniciaBanco;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -7,9 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import java.io.IOException;
-
-import com.example.dadosmeteorologicos.db.IniciaBanco;
 
 
  //JavaFX App
@@ -26,7 +27,7 @@ public class App extends Application {
             banco.iniciarBanco();
             banco.fecharConexao();
         } catch (Exception e) {
-             Platform.runLater(() -> {
+            Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText("Ocorreu um erro com a conexão do banco de dados.\nEntre em contato com os administradores");

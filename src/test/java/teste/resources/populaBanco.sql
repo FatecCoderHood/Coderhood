@@ -44,16 +44,16 @@ INSERT INTO cidade (nome, sigla) VALUES
 ('São Carlos', 'SC');
 
 -- Popular tabela estacao
-INSERT INTO estacao (numero, siglaCidade, nome, descricao, latitude, longitude) VALUES 
+INSERT INTO estacao (numero, siglaCidade, nome, descricao, latitude, longitude) VALUES
 ('83726', 'SC', 'TESTE', 'TESTE', -23.223701, -45.900907),
 ('7777', 'SC', 'TESTE', 'TESTE', -23.223701, -45.900907),
-('6666', 'SC', 'TESTE', 'TESTE', -23.223701, -45.900907), 
+('6666', 'SC', 'TESTE', 'TESTE', -23.223701, -45.900907),
 ('777', 'SP', 'TESTE', 'TESTE', -23.223701, -45.900907),
 ('420', 'SJC', 'TESTE', 'TESTE', -23.223701, -45.900907),
 ('728', 'TBT', 'TESTE', 'TESTE', -23.223701, -45.900907);
 
 -- Popular tabela variavel_climatica
-INSERT INTO variavel_climatica (tipo, valorMinimo, valorMaximo, unidadeMedida, descricaoConversao, formulaConversao) VALUES 
+INSERT INTO variavel_climatica (tipo, valorMinimo, valorMaximo, unidadeMedida, descricaoConversao, formulaConversao) VALUES
 ('temperaturaMedia', -20.0, 60.0, '°C', 'Celsius para Kelvin', 'c = kelvin - 273'),
 ('umidadeMedia', 0.0, 100.0, '%', 'Umidade relativa', 'umidade'),
 ('velVento', 0.0, 30.0, 'hPa', 'Pressão atmosférica', 'pressao'),
@@ -61,7 +61,7 @@ INSERT INTO variavel_climatica (tipo, valorMinimo, valorMaximo, unidadeMedida, d
 ('chuva', 0.0, 400.0, 'mm', 'Velocidade do vento', 'velocidade');
 
 -- Popular tabela registro
-INSERT INTO registro (data, hora, estacao, siglaCidade, tipo, valor, suspeito) VALUES 
+INSERT INTO registro (data, hora, estacao, siglaCidade, tipo, valor, suspeito) VALUES
 ('2021-01-01', '00:00:00', '83726', 'SC', 'temperaturaMedia', 20.0, false),
 ('2021-01-01', '00:00:00', '83726', 'SC', 'umidadeMedia', 50.0, false),
 ('2021-01-01', '00:00:00', '83726', 'SC', 'velVento', 10.0, false),

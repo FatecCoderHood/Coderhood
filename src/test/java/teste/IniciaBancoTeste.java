@@ -47,7 +47,7 @@ public class IniciaBancoTeste {
         }
     }
 
-     public void iniciarBanco(){
+    public void iniciarBanco(){
         try{
             conn = DriverManager.getConnection(url, user, password);
             if (conn != null) {
@@ -56,10 +56,10 @@ public class IniciaBancoTeste {
                 criarTabelaCidade();
                 criarTabelaEstacao();
                 conn.close();
-            } 
+            }
         }catch(SQLException e){
             System.err.format("iniciarBanco SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
-        }    
+        }
     }
 
     public void limparBanco(){
@@ -333,17 +333,11 @@ public class IniciaBancoTeste {
 
     public boolean verificarNomeCidade(int id, String novoNomeCidade) {
         try {
-            String sql = "SELECT nome FROM cidade WHERE id = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                String nomeCidadeAtualizado = rs.getString("nome").trim();
-                novoNomeCidade = novoNomeCidade.trim(); 
-                return nomeCidadeAtualizado.equalsIgnoreCase(novoNomeCidade);
-            } else {
-                System.out.println("Nenhuma cidade encontrada para o ID: " + id);
-                return false;
+            conn = DriverManager.getConnection(url, user, password);
+            if (conn != null) {
+                String sql = "DROP TABLE IF EXISTS registro, cidade, estacao, variavel_climatica";
+                Statement stmt = conn.createStatement();
+                stmt.execute(sql);
             }
         } catch (SQLException e) {
             System.err.format("Erro ao verificar nome da cidade: %s\n", e.getMessage());
