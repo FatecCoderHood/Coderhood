@@ -2,20 +2,25 @@ package teste;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.example.dadosmeteorologicos.Services.CSVResolve;
+import com.example.dadosmeteorologicos.model.Registro;
+import com.example.dadosmeteorologicos.model.RegistroSituacao;
 
 
 public class CsvResolveTeste {
     private static CSVResolve csvResolve;
 
-    @BeforeEach
-    public void setUp() {
+    @BeforeAll
+    public static void setUp() {
     // C:/Users/mateu/Desktop/Backup/Estudos/Fatec/Coderhood/src/test/java/teste/resources/A777_SP.csv
         String enderecoCSV = "src/test/java/teste/resources/A777_SP.csv";
         csvResolve = new CSVResolve(enderecoCSV);
@@ -82,9 +87,7 @@ public class CsvResolveTeste {
                 for (int j = 0; j < esperado.length; j++) {
                     assertEquals(esperado[j], atual[j]);
                 }
-            }
-
-            
+            }            
         } catch (Exception e) {
             e.printStackTrace();
         } 
@@ -92,6 +95,37 @@ public class CsvResolveTeste {
 
     @Test
     public void criarRegistro(){
-        
+        List<Registro> resultadoCriacao = csvResolve.criarRegistro();
+        List<Registro> registroMock = registroMock();
+        System.out.println(resultadoCriacao);
+        for (Registro registro : resultadoCriacao){
+
+        }
+    }
+
+    public List<Registro> registroMock(){
+        List<Registro> registros = Arrays.asList(
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(0, 0), "777", "SP", "temperaturaMedia", 20.75, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(0, 0), "777", "SP", "umidadeMedia", 92.5, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(0, 0), "777", "SP", "velVento", 2.7, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(0, 0), "777", "SP", "dirVento", 46.0, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(0, 0), "777", "SP", "chuva", 0.2, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(1, 0), "777", "SP", "temperaturaMedia", 21.0, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(1, 0), "777", "SP", "umidadeMedia", 93.5, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(1, 0), "777", "SP", "velVento", 2.6, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(1, 0), "777", "SP", "dirVento", 48.0, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(1, 0), "777", "SP", "chuva", 0.2, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(2, 0), "777", "SP", "temperaturaMedia", 20.85, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(2, 0), "777", "SP", "umidadeMedia", 93.0, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(2, 0), "777", "SP", "velVento", 2.0, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(2, 0), "777", "SP", "dirVento", 29.0, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(2, 0), "777", "SP", "chuva", 0.0, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(3, 0), "777", "SP", "temperaturaMedia", 20.7, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(3, 0), "777", "SP", "umidadeMedia", 93.0, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(3, 0), "777", "SP", "velVento", 1.1, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(3, 0), "777", "SP", "dirVento", 57.0, false),
+            new Registro(0, LocalDate.of(2023, 11, 1), LocalTime.of(3, 0), "777", "SP", "chuva", 0.0, false)
+        );
+        return registros;
     }
 }
