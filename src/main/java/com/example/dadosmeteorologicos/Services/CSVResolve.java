@@ -1,6 +1,7 @@
 package com.example.dadosmeteorologicos.Services;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -65,12 +66,12 @@ public class CSVResolve {
                     dados[i] = dados[i].replace(",", ".");
                     dados[i] = dados[i].replace(",", ".");
                     dados[i] = dados[i].replace("ï»¿", "");
+                    dados[i] = dados[i].trim().replace("\uFEFF", "");
                 }
                 if (linhaAtual == 0) {
-                        cabecalhoCSV = dados; 
-                        linhaAtual++;
-                    }
-                
+                    cabecalhoCSV = dados; 
+                    linhaAtual++;
+                }
                     csvPadronizado.add(dados);
             }
             br.close();
@@ -172,7 +173,7 @@ public class CSVResolve {
     private boolean validarCabecalhoComCampos(String[] cabecalho, Map<String, Integer> camposEsperados) {
         for (String campoEsperado : camposEsperados.keySet()) {
             Integer posicaoEsperada = camposEsperados.get(campoEsperado);
-            String valorCabecalho = cabecalho[posicaoEsperada].trim().replace("\uFEFF", "");
+            String valorCabecalho = cabecalho[posicaoEsperada];
             if(!valorCabecalho.equals(campoEsperado)) {
                 return false;   
             }
@@ -200,7 +201,7 @@ public class CSVResolve {
     }
 
      private String obterNomeAquivo() {
-        String nomecsv = caminhoCSV.substring(caminhoCSV.lastIndexOf('\\') + 1);
+        String nomecsv = new File(caminhoCSV).getName();
         return nomecsv;
     }
 
