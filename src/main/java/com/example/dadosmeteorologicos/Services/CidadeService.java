@@ -11,12 +11,6 @@ import com.example.dadosmeteorologicos.model.Cidade;
 public class CidadeService {
     private CidadeSQL banco;
 
-    public CidadeService(){
-        this.banco = new CidadeSQL();
-    }
-
-    private CidadeSQL banco;
-
     public CidadeService() {
         this.banco = new CidadeSQL();
     }
