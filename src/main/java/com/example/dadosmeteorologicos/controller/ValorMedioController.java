@@ -9,6 +9,7 @@ import com.example.dadosmeteorologicos.Services.ValorMedioService;
 import com.example.dadosmeteorologicos.model.RegistroValorMedio;
 
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,18 +32,18 @@ public class ValorMedioController {
     private DatePicker dataFinal;
     @FXML
     private Button executar;
-
-    
+    @FXML
+    private Button exportaCsv;
 
     public ValorMedioController() {
         this.service = new ValorMedioService();
     }
 
-
     @FXML
     public void initialize() {
         System.out.println("Iniciado valor medio");
         executar.setVisible(false);
+        exportaCsv.setVisible(false);
 
         // Adiciona um ouvinte à propriedade de texto do menuButton
         menuButton.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
@@ -108,6 +109,7 @@ public class ValorMedioController {
         // Se todos os campos estiverem preenchidos, mostra o botão de busca
         if (!menuButton.getText().equals("Selecione a cidade") && dataInicial.getValue() != null && dataFinal.getValue() != null) {
             executar.setVisible(true);
+            exportaCsv.setVisible(true);
         }
     }
 
@@ -142,5 +144,8 @@ public class ValorMedioController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void exportaCsv(ActionEvent event) {
     }
 }
