@@ -15,6 +15,10 @@ public class LeitorCsvSQL extends IniciaBanco{
         this.conn = super.conectarBanco();
     }
 
+    public LeitorCsvSQL(Connection conn) {
+        this.conn = conn;
+    }
+
     public int[] salvarRegistro(List<Registro> listaRegistroDto) {
         int[] salvoDuplicado = new int[]{0, 0};
         try {
