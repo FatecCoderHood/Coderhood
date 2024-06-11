@@ -1,5 +1,6 @@
 package com.example.dadosmeteorologicos.Services;
 
+import java.sql.Connection;
 import java.util.List;
 
 import org.apache.commons.text.WordUtils;
@@ -7,11 +8,21 @@ import org.apache.commons.text.WordUtils;
 import com.example.dadosmeteorologicos.db.LeitorCsvSQL;
 import com.example.dadosmeteorologicos.model.Registro;
 
-public class LeitorCsvService {    
+public class LeitorCsvService {  
+    
+    private LeitorCsvSQL banco;
+
+    public LeitorCsvService(){
+        this.banco = new LeitorCsvSQL();
+    }
+
+    public LeitorCsvService(Connection conn){
+        this.banco = new LeitorCsvSQL(conn);
+    }
 
     public int[] salvarRegistro(List<Registro> listaRegistroDto){
         int[] salvoDuplicado = new int[2];
-        LeitorCsvSQL banco = new LeitorCsvSQL();
+        banco.conectarBanco();
         salvoDuplicado = banco.salvarRegistro(listaRegistroDto);
         banco.fecharConexao();
         return salvoDuplicado;
