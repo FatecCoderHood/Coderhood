@@ -19,8 +19,7 @@ public class LeitorCsvService {
     public LeitorCsvService(Connection conn) {
         this.banco = new LeitorCsvSQL(conn);
     }
-
-
+    
     public int[] salvarRegistro(List<Registro> listaRegistroDto){
         banco.conectarBanco();
         int[] salvoDuplicado = new int[2];
