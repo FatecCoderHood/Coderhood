@@ -61,8 +61,14 @@ public class SituacaoServiceTest {
                 assertEquals(LocalDate.parse("2021-01-05"), registro.getDataUmidadeMedia());
                 assertEquals(LocalTime.parse("12:00:00"), registro.getHoraUmidadeMedia());
                 assertEquals("30.0", registro.getUmidadeMedia());
+                assertEquals(LocalDate.parse("2021-01-01"), registro.getDataVelVento());
+                assertEquals(LocalTime.parse("00:00:00"), registro.getHoraVelVento());
                 assertEquals("10.0", registro.getVelVento());
+                assertEquals(LocalDate.parse("2021-01-05"), registro.getDataDirVento());
+                assertEquals(LocalTime.parse("12:00:00"), registro.getHoraDirVento());
                 assertEquals("0.0", registro.getDirVento());
+                assertEquals(LocalDate.parse("2021-01-05"), registro.getDataChuva());
+                assertEquals(LocalTime.parse("12:00:00"), registro.getHoraChuva());
                 assertEquals("15.0", registro.getChuva());
             }
         }
