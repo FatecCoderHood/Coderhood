@@ -71,10 +71,13 @@ Se o upload for bem-sucedido, você verá uma mensagem de sucesso.![Upload CSV](
 <br/><br/>
 
 ## Situação.
-Na aba Situação, o usuário receberá uma tabela com as informações do registro mais recente de cada dado meteorológico feito pela estação, para saber a data e a hora do registro o usuario deve posicionar o cursor do mouse por cima do registro.<br/><br/>![](../imagens/08_Situacao.jpeg)
+Clique na aba Situação, o usuário receberá uma tabela com as informações que o mesmo pesqquisou ao inserir os dados do registro mais recente de cada dado meteorológico feito pela estação.<br/><br/>![](../imagens/08_Situacao.jpeg)
+<br/><br/>
+O usuario acessando o botão CSV ira gerar um relatorio em excell.
+<br/><br/>![](../imagens/09_Relatorio_%20de_%20Situação.jpeg)
 <br/><br/>
 
-Para saber a data e a hora do registro o usuario deve posicionar o cursor do mouse por cima do 
+Para saber a data e a hora do registro o usuario deve posicionar o cursor do mouse por cima do registro.
 <br/><br/>![](../imagens/image(10).png)
 <br/><br/>
 
