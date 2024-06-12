@@ -8,6 +8,7 @@ import org.apache.commons.text.WordUtils;
 import com.example.dadosmeteorologicos.db.LeitorCsvSQL;
 import com.example.dadosmeteorologicos.model.Registro;
 
+
 public class LeitorCsvService {  
     
     private LeitorCsvSQL banco;
@@ -21,33 +22,34 @@ public class LeitorCsvService {
     }
 
     public int[] salvarRegistro(List<Registro> listaRegistroDto){
-        int[] salvoDuplicado = new int[2];
         banco.conectarBanco();
+        int[] salvoDuplicado = new int[2];
         salvoDuplicado = banco.salvarRegistro(listaRegistroDto);
         banco.fecharConexao();
         return salvoDuplicado;
     }
+
     public String validarNomeCidadePelaSigla(String siglaCidade){
-        LeitorCsvSQL banco = new LeitorCsvSQL();
+        banco.conectarBanco();
         String nomeCidadebanco = banco.validarNomeCidadePelaSigla(siglaCidade);
         banco.fecharConexao();
         return nomeCidadebanco;
     }
 
     public void criarCidade(String nomeCidade, String siglaCidade){
-        LeitorCsvSQL banco = new LeitorCsvSQL();
+        banco.conectarBanco();
         banco.criarCidade(WordUtils.capitalizeFully(nomeCidade), siglaCidade.toUpperCase());
         banco.fecharConexao();
     }
 
     public void criarEstacao(String numeroEstacao, String siglaCidade){
-        LeitorCsvSQL banco = new LeitorCsvSQL();
+        banco.conectarBanco();
         banco.criarEstacao(numeroEstacao, siglaCidade);
         banco.fecharConexao();
     }
 
     public boolean validarCidadeEstacao(String siglaCidade, String numeroEstacao){
-        LeitorCsvSQL banco = new LeitorCsvSQL();
+        banco.conectarBanco();
         boolean cidadeEstacaoValido = banco.validarCidadeEstacao(siglaCidade, numeroEstacao);
         System.out.println("cidadeEstacaoValido " + cidadeEstacaoValido);
         banco.fecharConexao();
@@ -62,5 +64,5 @@ public class LeitorCsvService {
         }
         return registrosSuspeitos;
     }
-
 }
+

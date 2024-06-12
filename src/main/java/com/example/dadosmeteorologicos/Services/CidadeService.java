@@ -9,7 +9,6 @@ import com.example.dadosmeteorologicos.db.CidadeSQL;
 import com.example.dadosmeteorologicos.model.Cidade;
 
 public class CidadeService {
-
     private CidadeSQL banco;
 
     public CidadeService() {
@@ -29,16 +28,16 @@ public class CidadeService {
 
     public boolean siglaValida(String siglaCidade) {
         siglaCidade = siglaCidade.toUpperCase();
-        CidadeSQL banco = new CidadeSQL();
+        banco.conectarBanco();
         boolean siglaValida = banco.siglaValida(siglaCidade);
         banco.fecharConexao();
         return siglaValida;
     }
 
     public Boolean deletarCidade (int id, String sigla) {
-        CidadeSQL cidadeSQL = new CidadeSQL();
-        cidadeSQL.deletarCidadeBanco(id, sigla);
-        cidadeSQL.fecharConexao();
+        banco.conectarBanco();
+        banco.deletarCidadeBanco(id, sigla);
+        banco.fecharConexao();
         return true;
     }
     
@@ -49,7 +48,7 @@ public class CidadeService {
     }
 
     public void atualizarCidade(int id, String nome) {
-        CidadeSQL banco = new CidadeSQL();
+        banco.conectarBanco();
         banco.atualizarCidadeBanco(id, WordUtils.capitalizeFully(nome));
         banco.fecharConexao();
     }
