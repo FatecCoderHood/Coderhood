@@ -47,7 +47,9 @@ Ao iniciar o aplicativo pela primeira vez, um erro será exibido, pois é necess
 
 Para definir a faixa de valores, vá até a aba de configurações:
 
-![aba de configurações](imagens/image(6).png)
+![aba de configurações](../imagens/07_Configuracoes_tipo_climatico.png)
+
+As configurações do tipo climático podem ser alteradas conforme a intenção do usuario
 
 ## Fazer upload do arquivo CSV.
 
@@ -61,7 +63,10 @@ Se a sigla ainda não estiver relacionada a uma cidade, aparecerá uma mensagem 
 Se o upload for bem-sucedido, você verá uma mensagem de sucesso.![Upload CSV](../imagens/image-2.png)
 
 ## Situação.
-
+Clique na aba Situação,abrirá a tela com as cidades
+ inseridas pelo usuario
+ [](../imagens/documentacao/imagens/08_Situacao.jpeg)
+ 
 ## Valor Médio.
 
 Clique na aba Valor Médio, abrirá a tela com os espaços para inserir as informações necessária: Cidade, data e hora.
