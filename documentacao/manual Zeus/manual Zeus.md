@@ -83,13 +83,22 @@ Para saber a data e a hora do registro o usuario deve posicionar o cursor do mou
 
 ## Valor Médio.
 
-Clique na aba Valor Médio, abrirá a tela com os espaços para inserir as informações necessária: Cidade, data e hora.
-Após o preenchimento das informações, clique em executar.<br/><br/>![Upload CSV](../imagens/image(11).png)
+Clique na aba Valor Médio, o usuario podera escolher o registro da cidade eo seu periodo de pesquisa 
+.<br/><br/>![Upload CSV](../imagens/image(11).png)
 <br/><br/>
 
-O tabela de valor médio será exibido na tela.<br/><br/>
+Apos a escolha do periodo , aparecerá os botoes
+de Executar eo de Exportar.
+<br/><br/>![](../imagens/10_Executar_e_Exportar.png)
+<br/><br/>
+
+Ao clicar o botão de executar a tabela de valor médio será exibido na tela.<br/><br/>
 ![Upload CSV](../imagens/image(12).png)
-<br/>
+<br/><br/>
+
+Ao clicar o botão de Exportar o CSV a tabela de valor médio ira gerar um relatorio em excell.<br/><br/>
+![](../imagens/11-Executar_o_CSV.jpeg)
+<br/><br/>
 
 ## Gerenciamento de Cidades.
 
