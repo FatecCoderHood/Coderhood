@@ -1,16 +1,24 @@
 package com.example.dadosmeteorologicos.controller;
 
+import java.io.FileWriter;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import com.example.dadosmeteorologicos.model.Cidade;
 import com.example.dadosmeteorologicos.model.RegistroSituacao;
+import com.opencsv.CSVWriter;
 import com.example.dadosmeteorologicos.Services.SituacaoService;
 import com.example.dadosmeteorologicos.Services.CidadeService;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -41,7 +49,13 @@ public class SituacaoController {
     private TableColumn<RegistroSituacao, String> colunaVelVento;
 
     @FXML
+    private Button exportaCsv;
+
+    private Map<Cidade, RegistroSituacao> registroSituacao;
+
+    @FXML
     public void initialize() {
+        exportaCsv.setVisible(false);
         System.out.println("Iniciado situação");
         criarTabela();
         loadSituacao();
@@ -77,13 +91,13 @@ public class SituacaoController {
         CidadeService cidadeService = new CidadeService();
         List<Cidade> cidades = cidadeService.getCidades();
 
-        Map<Cidade, RegistroSituacao> registroSituacao = situacaoService.getRegistroSituacao(cidades);
-        System.out.println(registroSituacao);
+        registroSituacao = situacaoService.getRegistroSituacao(cidades);
 
         for (Map.Entry<Cidade, RegistroSituacao> entry : registroSituacao.entrySet()) {
             RegistroSituacao registro = entry.getValue();
             tabelaSituacao.getItems().add(registro);
         }
+        exportaCsv.setVisible(true);
     }
 
     private void adicionarToolTipDataHora(TableColumn<RegistroSituacao, String> coluna, String tipo) {
@@ -135,6 +149,48 @@ public class SituacaoController {
                 }
             }
         });
+    }
+
+    public void exportaCsv(ActionEvent event) {
+         try {
+            SimpleDateFormat formatador = new SimpleDateFormat("dd-MM-YYYY");
+            Date dataAtual = new Date();
+            String dataFormatada = formatador.format(dataAtual);
+
+            String NomeCSV = "Relatório de situação " + dataFormatada + ".csv";
+            String enderecoPastaDownload = System.getenv("USERPROFILE") + "/Downloads/";
+            String caminhoCompleto = Paths.get(enderecoPastaDownload, NomeCSV).toString();
+
+            FileWriter fileWriter = new FileWriter(caminhoCompleto);
+            CSVWriter csvWriter = new CSVWriter(fileWriter);
+            String[] cabecalho = { "Cidade", "Data/hora Temperatura", "Temperatura (C)",
+            "Data/hora Umidade", "Umidade (%)",
+            "Data/hora Vel. Vento", "Vel. Vento (M/S)",
+            "Data/hora Dir. Vento", "Dir. Vento (M/S)",
+            "Data/hora Chuva", "Chuva (MM)"};
+            csvWriter.writeNext(cabecalho);
+            for (Map.Entry<Cidade, RegistroSituacao> cidadeEInfo : registroSituacao.entrySet()) {
+                RegistroSituacao info = cidadeEInfo.getValue();
+                String[] linha = { cidadeEInfo.getKey().getNome(), 
+                info.getDataTemperaturaMedia().toString()+ " " +info.getHoraTemperaturaMedia().toString(), info.getTemperaturaMedia(),
+                info.getDataUmidadeMedia().toString() + " " +info.getHoraUmidadeMedia().toString(), info.getUmidadeMedia(),
+                info.getDataVelVento().toString()+ " " +info.getHoraVelVento().toString(), info.getVelVento(),
+                info.getDataDirVento().toString()+ " " +info.getHoraDirVento().toString(), info.getDirVento(),
+                info.getDataChuva().toString()+ " " +info.getHoraChuva().toString(), info.getChuva()};
+                csvWriter.writeNext(linha);
+
+            }
+
+            csvWriter.close();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("CSV exportado");
+            alert.setContentText("O Arquivo " + NomeCSV + " foi exportado com sucesso para a pasta Downloads");
+            alert.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
 }

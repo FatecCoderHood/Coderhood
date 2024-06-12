@@ -9,17 +9,18 @@ import com.example.dadosmeteorologicos.db.LeitorCsvSQL;
 import com.example.dadosmeteorologicos.model.Registro;
 
 
-public class LeitorCsvService {
-    private LeitorCsvSQL banco;
+public class LeitorCsvService {  
     
-    public LeitorCsvService() {
+    private LeitorCsvSQL banco;
+
+    public LeitorCsvService(){
         this.banco = new LeitorCsvSQL();
     }
 
-    public LeitorCsvService(Connection conn) {
+    public LeitorCsvService(Connection conn){
         this.banco = new LeitorCsvSQL(conn);
     }
-    
+
     public int[] salvarRegistro(List<Registro> listaRegistroDto){
         banco.conectarBanco();
         int[] salvoDuplicado = new int[2];
