@@ -68,37 +68,46 @@ Se a sigla ainda não estiver relacionada a uma cidade, aparecerá uma mensagem 
 <br/><br/>
 
 Se o upload for bem-sucedido, você verá uma mensagem de sucesso.![Upload CSV](../imagens/image(9).png)
+<br/><br/>
 
 ## Situação.
+Na aba Situação, o usuário receberá uma tabela com as informações do registro mais recente de cada dado meteorológico feito pela estação, para saber a data e a hora do registro o usuario deve posicionar o cursor do mouse por cima do registro.<br/><br/>![alt text](image(10).png)
+<br/><br/>
+
 
 ## Valor Médio.
 
 Clique na aba Valor Médio, abrirá a tela com os espaços para inserir as informações necessária: Cidade, data e hora.
-Após o preenchimento das informações, clique em executar.![Upload CSV](../imagens/image-6.png)
+Após o preenchimento das informações, clique em executar.<br/><br/>![Upload CSV](../imagens/image(11).png)
+<br/><br/>
 
-O tabela de valor médio será exibido na tela.
-![Upload CSV](../imagens/image-8.png)
+O tabela de valor médio será exibido na tela.<br/><br/>
+![Upload CSV](../imagens/image(12).png)
 <br/>
 
 ## Gerenciamento de Cidades.
 
-Clique na aba Cidade, tera a opção de deletar e adicionar cidades.<br/>![Upload CSV](../imagens/image-12.png)
+Clique na aba Cidade, tera a opção de deletar e adicionar cidades.<br/>![Upload CSV](../imagens/image(13).png)
 <br/>
 
-Para adicionar uma cidade, clique em adicionar cidade e preencha as informações necessárias: Cidade e Sigla.<br/>![Upload CSV](../imagens/image-13.png)
-<br/>
+Para adicionar uma cidade, clique em adicionar cidade e preencha as informações necessárias: Cidade e Sigla.<br/><br/>![Upload CSV](../imagens/image(14).png)
+<br/><br/>
 
 Para deletar uma cidade, selecione a cidade e clique em deletar. Aparecerá uma mensagem de confirmação.
-![Upload CSV](../imagens/image-14.png)
-<br/>
+<br/><br/>![Upload CSV](../imagens/image(15).png)
+<br/><br/>
 
 ## Gerenciamento de Estações.
 
-Clique na aba Estação, aparecera as informações das estações cadastradas, tera a opção de nomear estação, descrição, deletar e adicionar estações.![Upload CSV](../imagens/image-22.png)
+Clique na aba Estação, aparecera as informações das estações cadastradas, tera a opção de nomear estação, descrição, deletar e adicionar estações.<br/><br/>![Upload CSV](../imagens/image(16).png)
+<br/><br/>
 
-Para nomear, fazer alguma descrição e adicionar as coordenadas de uma estação, clique na respectiva caixa de mensagem, preencha com as informações necessárias e aperte enter.![Upload CSV](../imagens/image-23.png)
+Para nomear, fazer alguma descrição e adicionar as coordenadas de uma estação, clique na respectiva caixa de mensagem, preencha com as informações necessárias e aperte enter.<br/><br/>![Upload CSV](../imagens/image(17).png)
+<br/><br/>
 
-Para adicionar uma estação, clique em adicionar estação e preencha as informações necessárias:![Upload CSV](../imagens/image-10.png)
+Para adicionar uma estação, clique em adicionar estação e preencha as informações necessárias:<br/><br/>![Upload CSV](../imagens/image(18).png)
+<br/><br/>
 
-Para deletar uma estação, clique em deletar estação, aparecerá uma mensagem de confirmação.![Upload CSV](../imagens/image-9.png)
+Para deletar uma estação, clique em deletar estação, aparecerá uma mensagem de confirmação.<br/><br/>![Upload CSV](../imagens/image(19).png)
+<br/><br/>
 
