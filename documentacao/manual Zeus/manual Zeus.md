@@ -71,9 +71,12 @@ Se o upload for bem-sucedido, você verá uma mensagem de sucesso.![Upload CSV](
 <br/><br/>
 
 ## Situação.
-Na aba Situação, o usuário receberá uma tabela com as informações do registro mais recente de cada dado meteorológico feito pela estação, para saber a data e a hora do registro o usuario deve posicionar o cursor do mouse por cima do registro.<br/><br/>![alt text](image(10).png)
+Na aba Situação, o usuário receberá uma tabela com as informações do registro mais recente de cada dado meteorológico feito pela estação, para saber a data e a hora do registro o usuario deve posicionar o cursor do mouse por cima do registro.<br/><br/>![](../imagens/08_Situacao.jpeg)
 <br/><br/>
 
+Para saber a data e a hora do registro o usuario deve posicionar o cursor do mouse por cima do 
+<br/><br/>![](../imagens/image(10).png)
+<br/><br/>
 
 ## Valor Médio.
 
