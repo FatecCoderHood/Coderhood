@@ -18,6 +18,12 @@ public class BoxPlotSQL extends IniciaBanco {
         this.conn = super.conectarBanco();
     }
 
+    public BoxPlotSQL (Connection conn) {
+        this.conn = conn;
+    }
+
+    
+
     public List<String[]> getEstacoesMenuItem() {
         List<String[]> estacoes = new ArrayList<String[]>();
         try {
