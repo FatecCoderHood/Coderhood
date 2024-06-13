@@ -102,14 +102,18 @@ Ao clicar o botão de Exportar o CSV a tabela de valor médio ira gerar um relat
 
 ## Gerenciamento de Cidades.
 
-Clique na aba Cidade, tera a opção de deletar e adicionar cidades.<br/>![Upload CSV](../imagens/image(13).png)
-<br/>
+Clique na aba Cidade, tera a opção de deletar e adicionar cidades.<br/>![Upload CSV](../imagens/12_Tela_Cidade.png)
+<br/><br/>
 
 Para adicionar uma cidade, clique em adicionar cidade e preencha as informações necessárias: Cidade e Sigla.<br/><br/>![Upload CSV](../imagens/image(14).png)
 <br/><br/>
 
 Para deletar uma cidade, selecione a cidade e clique em deletar. Aparecerá uma mensagem de confirmação.
 <br/><br/>![Upload CSV](../imagens/image(15).png)
+<br/><br/>
+
+Ao cadastrar uma sigla que a mesma ja esta cadastrada aparecera uma mensagem.
+<br/><br/>![](../imagens/13_Aviso_Cidade.png)
 <br/><br/>
 
 ## Gerenciamento de Estações.
