@@ -71,20 +71,31 @@ Se o upload for bem-sucedido, você verá uma mensagem de sucesso.![Upload CSV](
 <br/><br/>
 
 ## Situação.
-Clique na aba Situação, o usuário receberá uma tabela com as informações que o mesmo pesqquisou ao inserir os dados do registro mais recente de cada dado meteorológico feito pela estação.<br/><br/>![](../imagens/08_Situacao.jpeg)
-<br/><br/>
-O usuario acessando o botão CSV ira gerar um relatorio em excell.
-<br/><br/>![](../imagens/09_Relatorio_%20de_%20Situação.jpeg)
+Clique na aba Situação, o usuário receberá uma tabela com as informações das ultimas cidades que
+ constam no banco de dados, com o registro mais recente de cada tipo de dado.
+
+ <br/><br/>![](../imagens/08_Situacao.jpeg)
 <br/><br/>
 
-Para saber a data e a hora do registro o usuario deve posicionar o cursor do mouse por cima do registro.
+Para saber a data e a hora do registro o usuario deve posicionar o cursor do mouse por cima do dado.
 <br/><br/>![](../imagens/image(10).png)
+<br/><br/>
+
+Caso o usuario deseje, ele pode exportar um arquivo CSV clicando no botão exportar. O Registro de Situação será exibido como na imagem abaixo: 
+<br/><br/>![](../imagens/09_Relatorio_%20de_%20Situação.jpeg)
 <br/><br/>
 
 ## Valor Médio.
 
-Clique na aba Valor Médio, o usuario podera escolher o registro da cidade eo seu periodo de pesquisa 
-.<br/><br/>![Upload CSV](../imagens/image(11).png)
+Clique na aba do Valor Médio escolha a cidade desejada na lista suspensa qie ira aparecer na tela
+<br/><br/>![Upload CSV](../imagens/1%20tela%20Valor%20Medio%20.png)
+<br/><br/>
+
+Após escolher a cidade, o usuário devera escolher a data inicial:  
+<br/><br/>![Upload CSV](../imagens/2%20Tela%20valor%20medio%20.png)
+<br/><br/>
+E a data final:
+.<br/><br/>![Upload CSV](../imagens/3%20Tela%20Valor%20Medio%20.png)
 <br/><br/>
 
 Apos a escolha do periodo , aparecerá os botoes
@@ -96,13 +107,17 @@ Ao clicar o botão de executar a tabela de valor médio será exibido na tela.<b
 ![Upload CSV](../imagens/image(12).png)
 <br/><br/>
 
-Ao clicar o botão de Exportar o CSV a tabela de valor médio ira gerar um relatorio em excell.<br/><br/>
+Ao clicar o botão de Exportar o CSV a tabela de valor médio ira gerar um relatorio em excel.<br/><br/>
 ![](../imagens/11-Executar_o_CSV.jpeg)
 <br/><br/>
 
 ## Gerenciamento de Cidades.
 
-Clique na aba Cidade, tera a opção de deletar e adicionar cidades.<br/>![Upload CSV](../imagens/12_Tela_Cidade.png)
+Clique na aba Cidade, tera a opção de: adicionar,editar, deletar as cidades disponiveis em seu banco de dados.
+<br/>![Upload CSV](../imagens/1%20Tela%20Cidade%20.png)
+<br/><br/>
+Para editar, clique duas vezes no nome da cidade pretendida e assim uma caixa de texto aparecera para que o usuario possa inserir um novo nome.
+<br/>![Upload CSV](../imagens/12_Tela_Cidade.png)
 <br/><br/>
 
 Para adicionar uma cidade, clique em adicionar cidade e preencha as informações necessárias: Cidade e Sigla.<br/><br/>![Upload CSV](../imagens/image(14).png)
