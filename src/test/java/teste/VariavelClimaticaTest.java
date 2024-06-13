@@ -14,7 +14,7 @@ import com.example.dadosmeteorologicos.Services.VariavelClimaticaService;
 import com.example.dadosmeteorologicos.model.VariavelClimatica;
 
 
-public class VariavelClimaticaTeste {
+public class VariavelClimaticaTest {
     private static VariavelClimaticaService variavelClimaticaService;
     private static IniciaBancoTeste bancoTeste;
 
