@@ -21,33 +21,33 @@ Para baixar e configurar o PostgreSQL 16.3, siga estas etapas:
 
 2. Selecione as seguintes opções:
 
-![opções](imagens/image.png)
+![opções](../imagens/00%20-%20Instalação_PostegreSQL.png)
 
 3. Senha padrão: `root`
 
-![senha](imagens/image(1).png)
+![senha](../imagens/01%20-%20Instalação_PostegreSQL.png)
 
 4. Porta: `5432`
 
-![porta postgre](imagens/image(3).png)
+![porta postgre](../imagens/03%20-%20Instalação_PostegreSQL.png)
 
 5. Locale: `Default locale`
 
-![locale](imagens/image(2).png)
+![locale](../imagens/02%20-%20Instalação_PostegreSQL.png)
 
 Se o PostgreSQL não for instalado corretamente, um erro será exibido:
 
-![erro de conexão](imagens/image(4).png)
+![erro de conexão](../imagens/04%20-%20Instalação_PostegreSQL.png)
 
 ## Configuração do Zeus:
 
 Ao iniciar o aplicativo pela primeira vez, um erro será exibido, pois é necessário definir a faixa de valores para carregar o CSV:
 
-![erro de faixa de valores](imagens/image(5).png)
+![erro de faixa de valores](../imagens/05%20-%20Instalação_PostegreSQL.png)
 
 Para definir a faixa de valores, vá até a aba de configurações:
 
-![aba de configurações](imagens/image(6).png)
+![aba de configurações](../imagens/06%20-%20Instalação_PostegreSQL.png)
 
 ## Fazer upload do arquivo CSV.
 
