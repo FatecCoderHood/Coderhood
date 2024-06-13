@@ -130,3 +130,38 @@ Para adicionar uma estação, clique em adicionar estação e preencha as inform
 Para deletar uma estação, clique em deletar estação, aparecerá uma mensagem de confirmação.<br/><br/>![Upload CSV](../imagens/image(19).png)
 <br/><br/>
 
+## Registros Suspeitos 
+
+Clique na aba Registros Suspeitos, aparecera os 
+registros com valores descrepantes  
+<br/><br/>![](../imagens/image-15.png)
+<br/><br/>
+
+O usuario pode editar a onde estiver o registro com os valores contraditorios.
+<br/><br/>![](../imagens/image-16.png)
+<br/><br/>
+
+O usuario pode tambem ao inves de editar e pode excluir o registro.
+<br/><br/>![](../imagens/image-17.png)
+<br/><br/>
+
+## Boxplot 
+
+Clique na aba Boxplot (boxplot é uma ferramenta gráfica utilizada na estatística para exibir a distribuição de um conjunto de dados)
+o usuario pode escolher a cidade com seus registros 
+<br/><br/>![](../imagens/boxplot.png)
+<br/><br/>
+
+O usuario pode executar as informações, que aparecera na tela.
+<br/><br/>![](../imagens/image(12).png)
+<br/><br/>
+
+Ou se não o usuario pode exportar as informações 
+para gerar o relatorio de excell.
+
+##
+
+No qual o usuario pode gerar os graficos 
+com as informaçoçes do boxplot
+<br/><br/>![](../imagens/csv_boxplot.jpg)
+<br/><br/>
