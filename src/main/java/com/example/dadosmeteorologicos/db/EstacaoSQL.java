@@ -8,21 +8,22 @@ import java.util.List;
 
 import com.example.dadosmeteorologicos.model.Estacao;
 
-
 public class EstacaoSQL extends IniciaBanco{
-
     private Connection conn;
 
     public EstacaoSQL() {
         conn = super.conectarBanco();
     }
 
+    public EstacaoSQL(Connection conn) {
+        this.conn = conn;
+    }
 
     public List<Estacao> buscaEstacaoBanco(){
         List<Estacao> listaEstacao = new ArrayList<>();
         try {
             if(conn != null){
-                String sql = "SELECT * FROM Estacao"; 
+                String sql = "SELECT * FROM Estacao";
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery();
 
@@ -43,6 +44,7 @@ public class EstacaoSQL extends IniciaBanco{
         }
         return listaEstacao;
     }
+    
 
     public Boolean deletarEstacaoBanco(int id, String numero) {
         try {

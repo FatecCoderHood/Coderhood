@@ -100,11 +100,11 @@ public class CidadeController {
                 siglaInserida = CampoSiglaCidade.getText();
         
                 // Verifica se os campos não estão vazios
-                if (cidadeInserida.trim().isEmpty() || siglaInserida.trim().isEmpty() ||siglaInserida.trim().length() < 2) {
+                if (siglaInserida.trim().isEmpty() || siglaInserida.trim().length() < 2) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    if (cidadeInserida.trim().isEmpty() || siglaInserida.trim().isEmpty()) {
+                    if (siglaInserida.trim().isEmpty()) {
                         alert.setTitle("ERRO");
-                        alert.setContentText("Os campos não podem estar vazios");
+                        alert.setContentText("Campo sigl não podem estar vazios");
                     } else {
                         alert.setTitle("ERRO");
                         alert.setContentText("Sigla precisa ter no mínimo 2 caracteres");
@@ -148,8 +148,6 @@ public class CidadeController {
                         if (result.isPresent() && result.get() == ButtonTypeSim) {
                             Cidade cidade = getTableView().getItems().get(getIndex());
                             cidadeService.deletarCidade(cidade.getId(), cidade.getSigla());
-                            System.out.println("Cidade deletada, ID: "+cidade.getId()+" Sigla cidade: "+cidade.getSigla()+ " Deletado com sucesso!");
-
                             tabelaCidades.getItems().remove(cidade);
                         }
                     });

@@ -17,6 +17,10 @@ public class CidadeSQL extends IniciaBanco{
         conn = super.conectarBanco();
     }
 
+    public CidadeSQL(Connection conn) {
+        this.conn = conn;
+    }
+
     public List<Cidade> buscaCidadesBanco() {
         List<Cidade> listaCidades = new ArrayList<>();
         try {

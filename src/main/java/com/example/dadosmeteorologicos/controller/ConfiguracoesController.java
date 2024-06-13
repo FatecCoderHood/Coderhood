@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.UnaryOperator;
 
+import com.example.dadosmeteorologicos.Services.VariavelClimaticaService;
 import com.example.dadosmeteorologicos.model.VariavelClimatica;
 
 import javafx.event.ActionEvent;
@@ -91,11 +92,13 @@ public class ConfiguracoesController {
     
     @FXML
     private Button btSalvarFaixaSuspeito;
+
+    private VariavelClimatica variavelClimatica;
     
     @FXML
     public void initialize() {
         System.out.println("Iniciando ConfiguracoesController");
-        VariavelClimatica variavelClimatica = new VariavelClimatica();
+        variavelClimatica = new VariavelClimatica();
         List<VariavelClimatica> variaveis = variavelClimatica.getVariaveisClimaticas();
         iniciarCampos(variaveis);
     }
@@ -170,7 +173,7 @@ public class ConfiguracoesController {
             variaveis.add(new VariavelClimatica("chuva", Double.parseDouble(chuvaMin.getText()), 
                 Double.parseDouble(chuvaMax.getText()), medidaChuva.getText(), descricaoChuva.getText(), formulaChuva.getText()));   
           
-            new VariavelClimatica().setVariaveisClimaticas(variaveis);
+            new VariavelClimaticaService().setVariaveisClimaticas(variaveis);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Valores Salvos");
             alert.setContentText("Faixa de valores suspeitos salva com sucesso");
