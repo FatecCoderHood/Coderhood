@@ -182,9 +182,9 @@ Como pesquisador, eu quero gerenciar estações, podendo assim escalar e manejar
 
 **Interface do usuário:**
 
- ![estacao-1](imagens/image(18).png)
+ ![estacao-1](imagens/image-10.png)
 
- ![estacao-2](imagens/image(19).png)
+ ![estacao-2](imagens/image-9.png)
 
 ##
 
