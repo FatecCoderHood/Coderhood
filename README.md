@@ -59,8 +59,8 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | --  | KickOff   | 04/03   | 08/03 | Ok |
 |  1  | Sprint 1   | 25/03   | 14/04 | Ok |
-|  2  | Sprint 2   | 15/04   | 05/05 |    |
-|  3  | Sprint 3   | 06/05   | 26/05 |    |
+|  2  | Sprint 2   | 15/04   | 05/05 | Ok |
+|  3  | Sprint 3   | 06/05   | 26/05 | Ok |
 |  4  | Sprint 4   | 27/05   | 16/06 |    |
 |  5  | Feira de Soluções  | 27/06 |    |
 
@@ -146,7 +146,7 @@ Para mais detalhes, [clique aqui](https://docs.google.com/spreadsheets/d/18BzTvi
 
 ## :bookmark: Tecnologias Utilizadas
 > * [Java](https://www.java.com/pt-BR/) - Versão 17
-> * [JavaFX](https://openjfx.io/) - versão 17.0.6
+> * [JavaFX](https://openjfx.io/) - versão 22
 > * [PostgreSQL](https://www.postgresql.org/) - Versão 16.2
 > * [JDBC PostgreSQL](https://jdbc.postgresql.org/) -  Versão 42.2.5
 > * [Git](https://git-scm.com/)
