@@ -57,7 +57,7 @@ public class BoxPlotServiceTest {
         BoxPlot boxPlotSelecionado = new BoxPlot(dataSelecionada, numeroEstacao, nomeCidade, siglaCidade);
         Map <String, List<String>> resultadoDaBusca = boxPlotService.getBoxPlotDados(boxPlotSelecionado.getNumeroEstacao(), boxPlotSelecionado.getDataSelecionada());
 
-        List<ValoresBoxPlot> dadosBoxPlot = resolvebaguncaDoJulio(resultadoDaBusca);
+        List<ValoresBoxPlot> dadosBoxPlot = resultadoBusca(resultadoDaBusca);
     
         System.out.println(dadosBoxPlot.toString());
 
@@ -117,7 +117,7 @@ public class BoxPlotServiceTest {
         }
     }
 
-    private List<ValoresBoxPlot> resolvebaguncaDoJulio( Map <String, List<String>> resultadoDaBusca){
+    private List<ValoresBoxPlot> resultadoBusca( Map <String, List<String>> resultadoDaBusca){
         List<Double> temperatura = convertToDoubleList(resultadoDaBusca.get("temperaturaMedia"));
         List<Double> umidade = convertToDoubleList(resultadoDaBusca.get("umidadeMedia"));
         List<Double> velVento = convertToDoubleList(resultadoDaBusca.get("velVento"));
