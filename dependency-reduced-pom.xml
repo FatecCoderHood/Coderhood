@@ -4,7 +4,7 @@
   <groupId>com.example</groupId>
   <artifactId>DadosMeteorologicos</artifactId>
   <name>Zeus</name>
-  <version>4.0.0</version>
+  <version>4.0.1</version>
   <build>
     <plugins>
       <plugin>
@@ -80,9 +80,15 @@
       <artifactId>junit</artifactId>
       <version>4.13.2</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-core</artifactId>
+      <version>2.2</version>
+      <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>hamcrest-core</artifactId>
+          <artifactId>hamcrest</artifactId>
           <groupId>org.hamcrest</groupId>
         </exclusion>
       </exclusions>

@@ -24,7 +24,8 @@
       </MenuButton>
       <DatePicker fx:id="dataInicial" layoutX="258.0" layoutY="205.0" promptText="DATA INICIAL" />
       <DatePicker fx:id="dataFinal" layoutX="456.0" layoutY="205.0" promptText="DATA FINAL" />
-      <Button fx:id="executar" layoutX="363.0" layoutY="401.0" mnemonicParsing="false" onAction="#onExecutarClicked" prefHeight="45.0" prefWidth="126.0" text="Executar" />
+      <Button fx:id="executar" layoutX="288.0" layoutY="408.0" mnemonicParsing="false" onAction="#onExecutarClicked" prefHeight="45.0" prefWidth="126.0" text="Executar" />
+        <Button fx:id="exportaCsv" layoutX="456.0" layoutY="408.0" mnemonicParsing="false" onAction="#exportaCsv" prefHeight="45.0" prefWidth="126.0" text="ExportaCsv" />
     </children>
     <cursor>
         <Cursor fx:constant="DEFAULT" />

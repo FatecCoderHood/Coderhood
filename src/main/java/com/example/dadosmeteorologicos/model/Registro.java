@@ -40,5 +40,4 @@ public class Registro {
         this.valor = valor;
         this.suspeito = suspeito;
     }
-
 }
