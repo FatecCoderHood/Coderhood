@@ -163,20 +163,56 @@ O usuario pode tambem ao inves de editar e pode excluir o registro.
 ## Boxplot 
 
 Clique na aba Boxplot (boxplot é uma ferramenta gráfica utilizada na estatística para exibir a distribuição de um conjunto de dados)
-o usuario pode escolher a cidade com seus registros 
-<br/><br/>![](../imagens/boxplot.png)
+o usuario pode escolher a cidade com seus registros eo perido desejado 
+<br/><br/>![](../imagens/1%20Tela%20Boxplot.png)
 <br/><br/>
 
-O usuario pode executar as informações, que aparecera na tela.
-<br/><br/>![](../imagens/image(12).png)
+O usuario pode escolher a cidade desejada na lista suspensa que ira aparecer na tela
+<br/><br/>![](../imagens/2%20Tela%20Box%20plot%20.png)
 <br/><br/>
 
-Ou se não o usuario pode exportar as informações 
-para gerar o relatorio de excell.
+Depois pode escolher o periodo desejado para pesquisa
+<br/><br/>![](../imagens/3%20Tela%20Box%20plot%20.png)
+<br/><br/>
 
-##
+Apos escolher o periodo especifico aparecera o botão de excutar. 
+<br/><br/>![](../imagens/4%20tela%20Boxplot.png)
+<br/><br/>
 
-No qual o usuario pode gerar os graficos 
-com as informaçoçes do boxplot
-<br/><br/>![](../imagens/csv_boxplot.jpg)
+Ao apertar o botão de executar aparecer as informações referente ao periodo exigido
+<br/><br/>![](../imagens/5%20Tela%20Boxplot.png)
+<br/><br/>
+
+O usuario ao clicar no exportar que aparecera na tela ,gerara um aviso que o CSV foi exportado para a pasta de dowloads.
+<br/><br/>![](../imagens/6%20Tela%20de%20Boxplot%20.png)
+<br/><br/>
+
+O relatorio aparecera em CSV para converter em uma tabela em excel, para formatar o mesmo selecione a 1ª coluna e clique na aba dados
+<br/><br/>![](../imagens/2%20Tela%20A%20Relatorio%20Boxplot.png)
+<br/><br/>
+
+O usuario ao acessar a aba dados clique no icone texto para colunas e aparecera o assistente para conversão de texto em colunas e clique 1 vez para avançar e marque na opção vírgula na caixa de delimitadores,depois clique em concluir. 
+<br/><br/>![](../imagens/4%20Tela%20Relatorio%20Box%20Plot%20.png)
+<br/><br/>
+
+O Relatorio estara formatado como uma tabela em excel. 
+<br/><br/>![](../imagens/3%20Tela%20Relatorio%20BoxPlot.png)
+<br/><br/>
+
+Para mostrar um grafico da tabela que o usuario formatou anteriormente, vá a aba inserir,selecione a linha que irá transformar em um gráfico , em seguida clique no ícone que irá mostrar o tipo de gráfico e selecione o grafico de Box Plot. 
+<br/><br/>![](../imagens/5%20Tela%20Relatoio%20Box%20plot.png)
+<br/><br/>
+
+Fazendo esse procedimentos com todos os registros da tabela,
+o usuário chegara noseguinte resultado.
+<br/>![](../imagens/csv_boxplot.jpg)
+<br/><br/>
+
+
+
+
+Caso necessite de suporte, por favor, entre em contato via e-mail:  
+coderhood.fatec@gmail.com
+
+<br/>![](../imagens/CoderHood%20logo.png)
 <br/><br/>
