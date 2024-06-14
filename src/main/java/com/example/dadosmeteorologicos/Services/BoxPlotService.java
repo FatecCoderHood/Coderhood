@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.dadosmeteorologicos.db.BoxPlotSQL;
+import com.example.dadosmeteorologicos.model.Estacao;
 
-import javafx.scene.shape.Box;
 
 public class BoxPlotService {
 
@@ -22,11 +22,11 @@ public class BoxPlotService {
     }
 
     // Método para obter uma lista de estações do banco de dados
-    public List<String[]> getEstacoesDoBancoDeDados(){
+    public List<Estacao> getEstacoesDoBancoDeDados(){
         // Cria uma nova instância da classe BoxPlotSQL
         banco.conectarBanco();
         // Chama o método getEstacoesMenuItem para obter a lista de estações
-        List<String[]> estacoes = banco.getEstacoesMenuItem();
+        List<Estacao> estacoes = banco.getEstacoesMenuItem();
         // Fecha a conexão com o banco de dados
         banco.fecharConexao();
         // Retorna a lista de estações
@@ -34,7 +34,7 @@ public class BoxPlotService {
     }
 
     // Método para obter os dados de um boxplot
-    public Map<String, List<String>> getBoxPlotDados(int numeroEstacao, LocalDate data){
+    public Map<String, List<String>> getBoxPlotDados(String numeroEstacao, LocalDate data){
         // Cria uma nova instância da classe BoxPlotSQL
         banco.conectarBanco();
         // Chama o método getBoxPlotDados para obter os dados do boxplot
