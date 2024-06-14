@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import com.example.dadosmeteorologicos.Services.CidadeService;
 import com.example.dadosmeteorologicos.model.Cidade;
 
-public class CidadeServiceTeste {
+public class CidadeServiceTest {
     private static CidadeService cidadeService;
     private static IniciaBancoTeste bancoTeste;
 
