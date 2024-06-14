@@ -18,18 +18,31 @@ import com.example.dadosmeteorologicos.exceptions.NomeCSVInvalidoException;
 import com.example.dadosmeteorologicos.model.Registro;
 import com.example.dadosmeteorologicos.model.VariavelClimatica;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashMap;
 
-@Data
 public class CSVResolve {
+    @Getter
+    @Setter
     private String caminhoCSV;
+    @Getter
+    @Setter
     private List<String[]> csvPadronizado = new ArrayList<>();
+    @Getter
+    @Setter
     private boolean automatico = true;
+    @Getter
     private boolean nomeInvalido = false;
+    @Getter
+    @Setter
     private String codigoEstacao = "";
+    @Getter
+    @Setter
     private String siglaCidade = "";
+    @Getter
+    @Setter
     private String[] cabecalhoCSV = null;
     private Map<String, Integer> camposAutomatico = new HashMap<>();
     private Map<String, Integer> camposManual = new HashMap<>();
