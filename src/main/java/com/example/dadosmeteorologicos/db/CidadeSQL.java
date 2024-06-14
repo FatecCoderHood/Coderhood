@@ -17,7 +17,7 @@ public class CidadeSQL extends IniciaBanco{
         conn = super.conectarBanco();
     }
 
-    public CidadeSQL(Connection conn){
+    public CidadeSQL(Connection conn) {
         this.conn = conn;
     }
 

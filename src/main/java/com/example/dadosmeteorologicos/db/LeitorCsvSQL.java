@@ -22,7 +22,6 @@ public class LeitorCsvSQL extends IniciaBanco{
     public int[] salvarRegistro(List<Registro> listaRegistroDto) {
         int[] salvoDuplicado = new int[]{0, 0};
         try {
-            System.out.println(conn.getMetaData().getURL());
             if (conn != null) {
                 conn.setAutoCommit(false);
                 int registrosSalvos = 0;
@@ -32,8 +31,6 @@ public class LeitorCsvSQL extends IniciaBanco{
                 "(data, hora, estacao, siglaCidade, tipo, valor, suspeito)" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)"+
                 "ON CONFLICT(data, hora, estacao, siglaCidade, tipo) DO NOTHING";
-                // talvez seja possivel ja verificar aqui se o registro está suspeito.
-                 // PreparedStatement é uma interface usada para executar consultas SQL parametrizadas. 
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     for (Registro registro : listaRegistroDto) {
                         pstmt.setDate(1, java.sql.Date.valueOf(registro.getData()));
@@ -51,12 +48,8 @@ public class LeitorCsvSQL extends IniciaBanco{
                         // nenhuma linha.
                         int registrosAfetados = pstmt.executeUpdate();;
                         if (registrosAfetados == 0) {
-                            System.out.println("Registro duplicado: " + registro);
-                            System.out.println("duplicados:     " + registrosDuplicados);
                             registrosDuplicados++;
                         } else {
-                            System.out.println("Registro salvo: " + registro);
-                            System.out.println("salvos:     " + registrosSalvos);
                             registrosSalvos++;
                         }  
                     }
@@ -159,7 +152,6 @@ public class LeitorCsvSQL extends IniciaBanco{
     
                 if(rs.next()) {
                     String siglaCidadeEstacao = rs.getString("siglaCidade");
-                    System.out.println("siglaCidadeEstacao " + siglaCidadeEstacao + " siglaCidade " + siglaCidade);
                     if(!siglaCidadeEstacao.trim().equals(siglaCidade.trim())){
                         cidadeEstacaoValido = false; 
                     }              

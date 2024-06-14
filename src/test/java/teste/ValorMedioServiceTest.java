@@ -20,7 +20,7 @@ import com.example.dadosmeteorologicos.model.RegistroValorMedio;
 import com.example.dadosmeteorologicos.model.ValorMedioInfo;
 
 
-public class ValorMedioServiceTeste {
+public class ValorMedioServiceTest {
     private static ValorMedioService valorMedioService;
     private static IniciaBancoTeste bancoTeste;
 

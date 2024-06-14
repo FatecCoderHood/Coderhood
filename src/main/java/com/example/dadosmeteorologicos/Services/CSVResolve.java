@@ -1,6 +1,7 @@
 package com.example.dadosmeteorologicos.Services;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -17,26 +18,17 @@ import com.example.dadosmeteorologicos.exceptions.NomeCSVInvalidoException;
 import com.example.dadosmeteorologicos.model.Registro;
 import com.example.dadosmeteorologicos.model.VariavelClimatica;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.HashMap;
 
+@Data
 public class CSVResolve {
-
     private String caminhoCSV;
-    
     private List<String[]> csvPadronizado = new ArrayList<>();
-    @Getter
-    @Setter
     private boolean automatico = true;
-    @Getter
     private boolean nomeInvalido = false;
-    @Getter
-    @Setter
     private String codigoEstacao = "";
-    @Getter
-    @Setter
     private String siglaCidade = "";
     private String[] cabecalhoCSV = null;
     private Map<String, Integer> camposAutomatico = new HashMap<>();
@@ -74,12 +66,12 @@ public class CSVResolve {
                     dados[i] = dados[i].replace(",", ".");
                     dados[i] = dados[i].replace(",", ".");
                     dados[i] = dados[i].replace("ï»¿", "");
+                    dados[i] = dados[i].trim().replace("\uFEFF", "");
                 }
                 if (linhaAtual == 0) {
-                        cabecalhoCSV = dados; 
-                        linhaAtual++;
-                    }
-                
+                    cabecalhoCSV = dados; 
+                    linhaAtual++;
+                }
                     csvPadronizado.add(dados);
             }
             br.close();
@@ -169,19 +161,20 @@ public class CSVResolve {
         return registroFiltrado;
     }      
 
-    private boolean validarCabecalho(String[] cabecalho){
-        boolean cabecalhoValidoAutomatico = validarCabecalhoComCampos(cabecalho, camposAutomatico);
-        boolean cabecalhoValidoManual = validarCabecalhoComCampos(cabecalho, camposManual);
-        if (cabecalhoValidoManual) {
-            automatico = false;
+    private boolean validarCabecalho(String[] cabecalho){ 
+        if(automatico){
+            return validarCabecalhoComCampos(cabecalho, camposAutomatico);
+        } else if (nomeInvalido){
+            return validarCabecalhoComCampos(cabecalho, camposAutomatico) || validarCabecalhoComCampos(cabecalho, camposManual);
         }
-        return cabecalhoValidoAutomatico || cabecalhoValidoManual;
+        return validarCabecalhoComCampos(cabecalho, camposManual);
     }
 
     private boolean validarCabecalhoComCampos(String[] cabecalho, Map<String, Integer> camposEsperados) {
         for (String campoEsperado : camposEsperados.keySet()) {
             Integer posicaoEsperada = camposEsperados.get(campoEsperado);
-            if(!cabecalho[posicaoEsperada].equals(campoEsperado)) {
+            String valorCabecalho = cabecalho[posicaoEsperada];
+            if(!valorCabecalho.equals(campoEsperado)) {
                 return false;   
             }
         }
@@ -208,7 +201,7 @@ public class CSVResolve {
     }
 
      private String obterNomeAquivo() {
-        String nomecsv = caminhoCSV.substring(caminhoCSV.lastIndexOf('\\') + 1);
+        String nomecsv = new File(caminhoCSV).getName();
         return nomecsv;
     }
 

@@ -102,6 +102,7 @@ public class IniciaBancoTeste {
                 String sql = "DROP TABLE IF EXISTS registro, cidade, estacao, variavel_climatica";
                 Statement stmt = conn.createStatement();
                 stmt.execute(sql);
+                conn.close();
             } 
         } catch (SQLException e) {
             System.err.format("reiniciarBanco SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());

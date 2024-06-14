@@ -16,7 +16,7 @@ import com.example.dadosmeteorologicos.Services.EstacaoService;
 import com.example.dadosmeteorologicos.model.Cidade;
 import com.example.dadosmeteorologicos.model.Estacao;
 
-public class EstacaoServiceTeste {
+public class EstacaoServiceTest {
     private static EstacaoService estacaoService;
     private static CidadeService cidadeService;
     private static IniciaBancoTeste bancoTeste;

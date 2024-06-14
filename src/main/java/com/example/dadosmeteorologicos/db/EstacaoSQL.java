@@ -9,7 +9,6 @@ import java.util.List;
 import com.example.dadosmeteorologicos.model.Estacao;
 
 public class EstacaoSQL extends IniciaBanco{
-    
     private Connection conn;
 
     public EstacaoSQL() {
@@ -19,7 +18,6 @@ public class EstacaoSQL extends IniciaBanco{
     public EstacaoSQL(Connection conn) {
         this.conn = conn;
     }
-
 
     public List<Estacao> buscaEstacaoBanco(){
         List<Estacao> listaEstacao = new ArrayList<>();
