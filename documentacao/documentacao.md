@@ -131,7 +131,7 @@ Como pesquisador, eu quero relatórios de valor médio de cada váriavel climati
 - Se houver registros para mesma data e hora mas com estações diferentes, deve ser feito uma média.
 
 **Interface do usuário:**
-![registro valor médio](imagens/image-20.png)
+![registro valor médio](imagens/04%20-%20Relatorio%20Valor%20Medio/08%20Relatorio%20Valor%20Medio.png)
 
 ##
 
@@ -145,7 +145,7 @@ Como pesquisador, eu quero alterar os valores minimos e máximos de cada tipo cl
 - Alterar os valores minimos e máximos fará efeito somente nas novas leituras, registros já processados não serão válidados.
 
 **Interface do usuário:**
-![conf dados suspeitos em configurações](imagens/image-21.png)
+![conf dados suspeitos em configurações](imagens/04%20-%20Relatorio%20Valor%20Medio/09%20Relatorio%20Valor%20Medio.png)
 
 ##
 
@@ -163,9 +163,9 @@ Como pesquisador, eu quero gerenciar cidades, podendo assim escalar e manejar as
 
 **Interface do usuário:**
 
-![cidade-1](imagens/image(13).png)<br/><br/>
-![cidade-2](imagens/image(14).png)<br/><br/>
-![cidade-3](imagens/image(15).png)<br/><br/>
+![Gerenciamento de Cidade](imagens/05%20-%20Gerenciamento%20de%20Cidade/01%20Gerenciamento%20de%20Cidade.png)<br/><br/>
+![Gerenciamento de Cidade](imagens/05%20-%20Gerenciamento%20de%20Cidade/02%20Gerenciamento%20de%20Cidade.png)<br/><br/>
+![Gerenciamento de Cidade](imagens/05%20-%20Gerenciamento%20de%20Cidade/04%20Gerenciamento%20de%20Cidade.png)<br/><br/>
 
 ##
 
@@ -183,9 +183,9 @@ Como pesquisador, eu quero gerenciar estações, podendo assim escalar e manejar
 
 **Interface do usuário:**
 
- ![estacao-1](imagens/image-10.png)
+ ![Gerenciamento de Estação](imagens/06%20-%20Gerenciamento%20de%20Estação/01%20Gerenciamento%20de%20Estacao.png)
 
- ![estacao-2](imagens/image-9.png)
+ ![Gerenciamento de Estação](imagens/06%20-%20Gerenciamento%20de%20Estação/03%20Gerenciamento%20de%20Estacao.png)
 
 ##
 
@@ -201,9 +201,9 @@ Como pesquisador, eu quero gerenciar registros que contêm valores suspeitos, af
 
  **Interface do usuário:**
 
-![suspeito-1](imagens/image-15.png)
-![suspeito-2](imagens/image-16.png)
-![suspeito-3](imagens/image-17.png)
+![Registro suspeito](imagens/07%20-%20Registros%20Suspeitos/00%20-%20Registros%20Suspeitos.pngimage-15.png)
+![Registro suspeito](imagens/07%20-%20Registros%20Suspeitos/01%20-%20Registros%20Suspeitos.png)
+![Registro suspeito](imagens/07%20-%20Registros%20Suspeitos/02%20-%20Registros%20Suspeitos.png)
 
 
 ##
