@@ -313,7 +313,7 @@ Revisão do código para identificar áreas que podem ser otimizadas. Isso inclu
 
 
 #### Testes de Unidade:
-Para garantir a qualidade do código, estaremos escrevendo e executando testes de Unidade. Isso nos ajudará a identificar e corrigir bugs antes que eles cheguem ao ambiente de produção.
+Para garantir a qualidade do código, estaremos escrevendo e executando Testes de Unidade. Isso nos ajudará a identificar e corrigir bugs antes que eles cheguem ao ambiente de produção.
 
 - Construído testes de unidade
 
@@ -336,7 +336,7 @@ Criado a possibilidade de exportação de arquivo CSV com os dados do Relatório
 
 - Exportando Relatório de Valor Médio:
 
-![Relatório Valor Médio CSV](./imagens/04%20-%20Relatorio%20Valor%20Medio/07%20Relatorio%20Valor%20Medio.png)
+![Relatório Valor Médio CSV](./imagens/04%20-%20Relatorio%20Valor%20Medio/06%20Relatorio%20Valor%20Medio.png)
 
 
 
