@@ -74,9 +74,14 @@ Caso esse arquivo possua uma cidade sem que nenhuma sigla esteja relacionada a e
 
 ![Upload CSV](../imagens/02%20-%20Upload%20CSV/01%20Upload%20CSV.png)
 
-Se o upload for bem-sucedido, será exibida uma mensagem de sucesso.
+Se o upload for bem-sucedido, as informações serão exibidas  na tela inicial.
 
 ![Upload CSV](../imagens/02%20-%20Upload%20CSV/02%20Upload%20CSV.png)
+
+Para salvar, clique no botão de mesmo nome. Uma mensagem aparecerá confirmando essa ação:
+
+![Upload CSV](../imagens/02%20-%20Upload%20CSV/03%20Upload%20CSV.png)
+
 
 
 ## Relatório de Situação

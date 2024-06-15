@@ -62,18 +62,18 @@ Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de u
 **Tela inicial:**
 - Clicar no botão para selecionar o arquivo CSV.
 
-![Tela Inicial](imagens/image(7).png)
+![Tela Inicial](../documentacao/imagens/02%20-%20Upload%20CSV/00%20Upload%20CSV.png)
 
 **Arquivo selecionado com sucesso:**
 - Serão exibidos: o nome da cidade, a estação processada, quantos registros foram feitos, e se existem registros suspeitos.
 
-![Arquivo Selecionado](imagens/image-1.png)
+![Arquivo Selecionado](./imagens/02%20-%20Upload%20CSV/02%20Upload%20CSV.png)
 
 **Após arquivo selecionado, clique em salvar para que o arquivo seja adicionado à base de dados:**
 
 - Será exibido um alerta de confirmação com as informações do registro.
 
-![Salvar na Base de Dados](imagens/image(9).png)
+![Salvar na Base de Dados](./imagens/02%20-%20Upload%20CSV/03%20Upload%20CSV.png)
 
 ##
 
@@ -82,15 +82,15 @@ Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de u
 
 **A estação inserida está relacionada com uma cidade diferente:**
 
-![Erro de Estação](imagens/image-5.png)
+![Erro de Estação](../documentacao/imagens/05%20-%20Gerenciamento%20de%20Cidade/02%20Gerenciamento%20de%20Cidade.png)
 
 **A sigla ainda não está associada a uma cidade:**
 
-![Erro de Sigla](imagens/image(8).png)
+![Erro de Sigla](/documentacao/imagens/02%20-%20Upload%20CSV/01%20Upload%20CSV.png)
 
 **O nome do CSV não está no padrão esperado:**
 
-![Erro de CSV](imagens/image-4.png)
+![Erro de CSV](./imagens/02%20-%20Upload%20CSV/04%20Upload%20CSV.png)
 
 
 ### Relatório de valor médio:
@@ -108,11 +108,11 @@ Como meteorologista, eu quero gerar um relatório de valores médios de uma cida
 
 **Selecionar cidade e datas:**
 
-![alt text](imagens/image-7.png)
+![alt text](./imagens/04%20-%20Relatorio%20Valor%20Medio/03%20Relatorio%20Valor%20Medio.png)
 
 **Tabela com registros:**
 
-![alt text](imagens/image(12).png)
+![alt text](./imagens/04%20-%20Relatorio%20Valor%20Medio/04%20Relatorio%20Valor%20Medio.png)
 
 
 
@@ -220,7 +220,7 @@ Como pesquisador, posso visualizar relatório de situação, afim de verificar a
 
  **Interface do usuário:**
  
- ![Aba Relatório Situação](imagens/situacao.png)
+ ![Aba Relatório Situação](./imagens/03%20-%20Relatorio%20Situação/00%20Relatorio%20Situação.jpeg)
 
 ##
 
@@ -232,7 +232,8 @@ Como pesquisador, posso gerar dados necessários para a criação de um gráfico
 
 **Regras de negócio:**
 - Deve ser selecionado uma estaçãoe uma estação.
-- Será gerado para cada váriavel climatica("Temperatura Média", "Umidade Média", "Velocidade do Vento", "Direção do Vento", "Chuva"): 
+- Será gerado para cada váriavel climatica("Temperatura Média", "Umidade Média", "Velocidade do Vento", "Direção do Vento", "Chuva"):
+
   - Mínimo
   - Primeiro quartil
   - Mediana
@@ -245,12 +246,11 @@ Como pesquisador, posso gerar dados necessários para a criação de um gráfico
 
  **Interface do usuário:**
  
-![Dados BoxPlot](imagens/boxplot.png)
-
+![Dados BoxPlot](./imagens/08%20-%20Relatório%20Box%20Plot/04%20-%20Relatório%20Box%20Plot.png)
 
  **CSV exportado:**
 
-![csv e boxplot](imagens/csv_boxplot.jpg)
+![csv e boxplot](./imagens/08%20-%20Relatório%20Box%20Plot/11%20-%20Relatório%20Box%20Plot.jpg)
 
 
 
@@ -269,7 +269,7 @@ Como pesquisador, quero poder informar o nome das unidades e exibir suas formula
 
  **Interface do usuário:**
 
-![Configuracoes tipo climatico](imagens/configuracoes_tipo_climatico.png)
+![Configuracoes tipo climatico](./imagens/01%20-%20Configuração%20Zeus/02%20Configuração%20Zeus.png)
 
 
 
@@ -287,7 +287,7 @@ Como pesquisador, quero poder adicionar dados adicionais aos extraidos do CSV, a
 
  **Interface do usuário:**
 
-![estacao com informacoes adicionais](imagens/estacao_com_informacoes_adicionadas.png)
+![estacao com informacoes adicionais](./imagens/06%20-%20Gerenciamento%20de%20Estação/04%20Gerenciamento%20de%20Estacao.png)
 
 
 
@@ -302,9 +302,14 @@ Como pesquisador, quero poder adicionar dados adicionais aos extraidos do CSV, a
 #### Otimização do banco:
 Melhorar a eficiência do nosso banco de dados. Estaremos trabalhando na otimização de consultas, estruturação de dados e garantindo a integridade dos dados.
 
+
+
 #### Otimização de código:
 Revisão do código para identificar áreas que podem ser otimizadas. Isso inclui refatoração para melhor legibilidade, melhor desempenho e manutenibilidade.
 
 #### Testes Unitários:
 Para garantir a qualidade do código, estaremos escrevendo e executando testes unitários. Isso nos ajudará a identificar e corrigir bugs antes que eles cheguem ao ambiente de produção.
-  
+
+#### Manual de Usuário:
+Visando garantir a melhor utilização do Zeus pelo usuário, construimos um manual de instruções, com um direcionamento claro e objetivo com os detalhes de cada funcionalidade.
+
