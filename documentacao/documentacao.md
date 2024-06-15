@@ -10,7 +10,7 @@
   - [Faixa de valores suspeitos configurável](#faixa-de-valores-suspeitos-configurável)
   - [Gerenciamento de cidades](#gerenciamento-de-cidades)
   - [Gerenciamento de estações](#gerenciamento-de-estações)
-  - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)  
+  - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)
 
 - [Sprint 3:](#sprint-3) Todos os requisitos funcionais foram entregues ✅
   - [Relatório de Situação](#relatório-de-situação)
@@ -24,7 +24,7 @@
   - [Otimização de código](#otimização-de-código)
   - [Testes Unitários](#testes-unitários)
   - Manual do usuário
-  - Documentação 
+  - Documentação
 
 ## Entidade Relacionamento
 ![entidade-relacionamento](imagens/conceito_entidade-relacionamento.jpg)
