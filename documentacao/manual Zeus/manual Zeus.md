@@ -21,40 +21,40 @@ Para baixar e configurar o PostgreSQL 16.3, siga estas etapas:
 
 2. Selecione as seguintes opções:
 
-![opções](../imagens/image(0).png)
+![opções](../imagens/Instalação%20PostgreSQL/00%20Instalação%20PostgreSQL.png)
 <br/><br/>
 
 3. Senha padrão: `root`
 
-![senha](../imagens/image(1).png)
+![senha](../imagens/Instalação%20PostgreSQL/01%20Instalação%20PostgreSQL.png)
 <br/><br/>
 
 4. Porta: `5432`
 
-![porta postgre](../imagens/image(3).png)
+![porta postgre](../imagens/Instalação%20PostgreSQL/02%20Instalação%20PostgreSQL.png)
 <br/><br/>
 
 5. Locale: `Default locale`
 
-![locale](../imagens/image(2).png)
+![locale](../imagens/Instalação%20PostgreSQL/03%20Instalação%20PostgreSQL.png)
 <br/><br/>
 
 Se o PostgreSQL não for instalado corretamente, um erro será exibido:
 
-![erro de conexão](../imagens/image(4).png)
+![erro de conexão](../imagens/Instalação%20PostgreSQL/04%20Instalação%20PostgreSQL.png)
 <br/><br/>
 
 ## Configuração do Zeus:
 
 Ao iniciar o aplicativo pela primeira vez, um erro será exibido, pois é necessário definir a faixa de valores para carregar o CSV:
 
-![erro de faixa de valores](../imagens/image(5).png)
+![erro de faixa de valores](../imagens/Configuração%20Zeus/00%20Configuração%20Zeus.png)
 <br/><br/>
 
 
 Para definir a faixa de valores, vá até a aba de configurações:
 
-![aba de configurações](../imagens/07_Configuracoes_tipo_climatico.png)
+![aba de configurações](../imagens/Configuração%20Zeus/01%20Configuração%20Zeus.png)
 
 As configurações do tipo climático podem ser alteradas conforme a intenção do usuario
 
@@ -62,55 +62,55 @@ As configurações do tipo climático podem ser alteradas conforme a intenção 
 
 Para fazer upload do arquivo CSV, abra o Zeus, vá até a aba de Inserir Dados, clique em selecionar arquivo.(imagens/image.png).
 
-![Upload CSV](../imagens/image(7).png)
+![Upload CSV](../imagens/Upload%20CSV/00%20Upload%20CSV.png)
 <br/><br/>
 
 Selecione o arquivo CSV que você deseja fazer upload e clique em "Salvar".
-Se a sigla ainda não estiver relacionada a uma cidade, aparecerá uma mensagem para cadastrar a sigla.<br/>![Upload CSV](../imagens/image(8).png)
+Se a sigla ainda não estiver relacionada a uma cidade, aparecerá uma mensagem para cadastrar a sigla.<br/>![Upload CSV](../imagens/Upload%20CSV/01%20Upload%20CSV.png)
 <br/><br/>
 
-Se o upload for bem-sucedido, você verá uma mensagem de sucesso.![Upload CSV](../imagens/image(9).png)
+Se o upload for bem-sucedido, você verá uma mensagem de sucesso.![Upload CSV](../imagens/Upload%20CSV/02%20Upload%20CSV.png)
 <br/><br/>
 
 ## Situação.
 Clique na aba Situação, o usuário receberá uma tabela com as informações das ultimas cidades que
  constam no banco de dados, com o registro mais recente de cada tipo de dado.
 
- <br/><br/>![](../imagens/08_Situacao.jpeg)
+ <br/><br/>![](../imagens/Relatorio%20Situação/00%20Relatorio%20Situação.jpeg)
 <br/><br/>
 
 Para saber a data e a hora do registro o usuario deve posicionar o cursor do mouse por cima do dado.
-<br/><br/>![](../imagens/image(10).png)
+<br/><br/>![](../imagens/Relatorio%20Situação/01%20Relatorio%20Situação.png)
 <br/><br/>
 
 Caso o usuario deseje, ele pode exportar um arquivo CSV clicando no botão exportar. O Registro de Situação será exibido como na imagem abaixo: 
-<br/><br/>![](../imagens/09_Relatorio_%20de_%20Situação.jpeg)
+<br/><br/>![](../imagens/Relatorio%20Situação/02%20Relatorio%20Situação.jpeg)
 <br/><br/>
 
 ## Valor Médio.
 
 Clique na aba do Valor Médio escolha a cidade desejada na lista suspensa qie ira aparecer na tela
-<br/><br/>![Upload CSV](../imagens/1%20tela%20Valor%20Medio%20.png)
+<br/><br/>![Upload CSV](../imagens/Relatorio%20Valor%20Medio/00%20Relatorio%20Valor%20Medio.png)
 <br/><br/>
 
 Após escolher a cidade, o usuário devera escolher a data inicial:  
-<br/><br/>![Upload CSV](../imagens/2%20Tela%20valor%20medio%20.png)
+<br/><br/>![Upload CSV](../imagens/Relatorio%20Valor%20Medio/01%20Relatorio%20Valor%20Medio.png)
 <br/><br/>
 E a data final:
-.<br/><br/>![Upload CSV](../imagens/3%20Tela%20Valor%20Medio%20.png)
+.<br/><br/>![Upload CSV](../imagens/Relatorio%20Valor%20Medio/02%20Relatorio%20Valor%20Medio.png)
 <br/><br/>
 
 Apos a escolha do periodo , aparecerá os botoes
 de Executar eo de Exportar.
-<br/><br/>![](../imagens/10_Executar_e_Exportar.png)
+<br/><br/>![](../imagens/Relatorio%20Valor%20Medio/03%20Relatorio%20Valor%20Medio.png)
 <br/><br/>
 
 Ao clicar o botão de executar a tabela de valor médio será exibido na tela.<br/><br/>
-![Upload CSV](../imagens/image(12).png)
+![Upload CSV](../imagens/Relatorio%20Valor%20Medio/04%20Relatorio%20Valor%20Medio.png)
 <br/><br/>
 
 Ao clicar o botão de Exportar o CSV a tabela de valor médio ira gerar um relatorio em excel.<br/><br/>
-![](../imagens/11-Executar_o_CSV.jpeg)
+![](../imagens/Relatorio%20Valor%20Medio/05%20Relatorio%20Valor%20Medio.jpeg)
 <br/><br/>
 
 ## Gerenciamento de Cidades.
