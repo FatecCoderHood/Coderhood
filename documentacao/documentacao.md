@@ -60,16 +60,20 @@ Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de u
 **Interface do usuário:**
 
 **Tela inicial:**
+- Clicar no botão para selecionar o arquivo CSV.
 
-![Tela Inicial](imagens/image.png)
+![Tela Inicial](imagens/image(7).png)
 
 **Arquivo selecionado com sucesso:**
+- Serão exibidos: o nome da cidade, a estação processada, quantos registros foram feitos, e se existem registros suspeitos.
 
 ![Arquivo Selecionado](imagens/image-1.png)
 
-**Após selecionar para salvar na base de dados:**
+**Após arquivo selecionado, clique em salvar para que o arquivo seja adicionado à base de dados:**
 
-![Salvar na Base de Dados](imagens/image-2.png)
+- Será exibido um alerta de confirmação com as informações do registro.
+
+![Salvar na Base de Dados](imagens/image(9).png)
 
 ##
 
@@ -82,7 +86,7 @@ Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de u
 
 **A sigla ainda não está associada a uma cidade:**
 
-![Erro de Sigla](imagens/image-3.png)
+![Erro de Sigla](imagens/image(8).png)
 
 **O nome do CSV não está no padrão esperado:**
 
@@ -108,7 +112,7 @@ Como meteorologista, eu quero gerar um relatório de valores médios de uma cida
 
 **Tabela com registros:**
 
-![alt text](imagens/image-8.png)
+![alt text](imagens/image(12).png)
 
 
 
@@ -158,9 +162,9 @@ Como pesquisador, eu quero gerenciar cidades, podendo assim escalar e manejar as
 
 **Interface do usuário:**
 
-![cidade-1](imagens/image-12.png)
-![cidade-2](imagens/image-13.png)
-![cidade-3](imagens/image-14.png)
+![cidade-1](imagens/image(13).png)<br/><br/>
+![cidade-2](imagens/image(14).png)<br/><br/>
+![cidade-3](imagens/image(15).png)<br/><br/>
 
 ##
 
@@ -178,11 +182,9 @@ Como pesquisador, eu quero gerenciar estações, podendo assim escalar e manejar
 
 **Interface do usuário:**
 
- ![estacao-1](imagens/image-9.png)
+ ![estacao-1](imagens/image-10.png)
 
- ![estacao-2](imagens/image-10.png)
-
-![estaco-3](imagens/image-11.png)
+ ![estacao-2](imagens/image-9.png)
 
 ##
 
