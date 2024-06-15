@@ -2,18 +2,24 @@
 
 Manual produzido pela equipe Coderhood - FATEC São José dos Campos - Prof. Jessen Vidal
 
-Qualquer dúvida entrar em contato (12) 98242-7304.
+Qualquer dúvida, entre em contato pelo telefone (12) 98242-7304.
 
+- [Instalação do Java 17.0.10](#instalação-do-java-17010)
+- [Instalação e configuração do PostgreSQL 16.3](#instalação-e-configuração-do-postgresql-163)
+- [Configuração do Zeus](#configuração-do-zeus)
+- [Upload do Arquivo CSV](#upload-do-arquivo-csv)
+- [Relatório de Situação](#relatório-de-situação)
+- [Relatório de Valor Médio](#relatório-de-valor-médio)
+- [Gerenciamento de Cidades](#gerenciamento-de-cidades)
+- [Gerenciamento de Estações](#gerenciamento-de-estações)
+- [Gerenciamento de Dados Suspeitos](#gerenciamento-de-dados-suspeitos)
+- [Relatório Boxplot](#relatório-boxplot)
 
-- [Instalação do Java 17.0.10.](#instalação-do-java-17010)
-- [Instalação e configuração do PostgreSQL 16.3.](#instalação-e-configuração-do-postgresql-163)
-- [Configuração do Zeus.](#configuração-do-zeus)
-
-## Instalação do Java 17.0.10:
+## Instalação do Java 17.0.10
 
 Para baixar o Java 17.0.10, visite o seguinte link: [Download Java 17.0.10](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 
-## Instalação e configuração do PostgreSQL 16.3:
+## Instalação e configuração do PostgreSQL 16.3
 
 Para baixar e configurar o PostgreSQL 16.3, siga estas etapas:
 
@@ -21,213 +27,201 @@ Para baixar e configurar o PostgreSQL 16.3, siga estas etapas:
 
 2. Selecione as seguintes opções:
 
-![opções](../imagens/Instalação%20PostgreSQL/00%20Instalação%20PostgreSQL.png)
-<br/><br/>
+![opções](../imagens/00%20-%20Instalação%20PostgreSQL/00%20Instalação%20PostgreSQL.png)
 
 3. Senha padrão: `root`
 
-![senha](../imagens/Instalação%20PostgreSQL/01%20Instalação%20PostgreSQL.png)
-<br/><br/>
+![senha](../imagens/00%20-%20Instalação%20PostgreSQL/01%20Instalação%20PostgreSQL.png)
 
 4. Porta: `5432`
 
-![porta postgre](../imagens/Instalação%20PostgreSQL/02%20Instalação%20PostgreSQL.png)
-<br/><br/>
+![porta postgre](../imagens/00%20-%20Instalação%20PostgreSQL/02%20Instalação%20PostgreSQL.png)
 
 5. Locale: `Default locale`
 
-![locale](../imagens/Instalação%20PostgreSQL/03%20Instalação%20PostgreSQL.png)
-<br/><br/>
+![locale](../imagens/00%20-%20Instalação%20PostgreSQL/03%20Instalação%20PostgreSQL.png)
 
 Se o PostgreSQL não for instalado corretamente, um erro será exibido:
 
-![erro de conexão](../imagens/Instalação%20PostgreSQL/04%20Instalação%20PostgreSQL.png)
-<br/><br/>
+![erro de conexão](../imagens/00%20-%20Instalação%20PostgreSQL/04%20Instalação%20PostgreSQL.png)
 
-## Configuração do Zeus:
+## Configuração do Zeus
 
-Ao iniciar o aplicativo pela primeira vez, um erro será exibido, pois é necessário definir a faixa de valores para carregar o CSV:
+Ao iniciar o Zeus pela primeira vez, um erro será exibido, pois é necessário definir a faixa de valores para carregar o CSV:
 
-![erro de faixa de valores](../imagens/Configuração%20Zeus/00%20Configuração%20Zeus.png)
-<br/><br/>
-
+![erro de faixa de valores](../imagens/01%20-%20Configuração%20Zeus/00%20Configuração%20Zeus.png)
 
 Para definir a faixa de valores, vá até a aba de configurações:
 
-![aba de configurações](../imagens/Configuração%20Zeus/01%20Configuração%20Zeus.png)
+![aba de configurações](../imagens/01%20-%20Configuração%20Zeus/01%20Configuração%20Zeus.png)
 
-As configurações do tipo climático podem ser alteradas conforme a intenção do usuario
+Insira os valores limites para cada unidade de medida nas duas primeiras colunas:
 
-## Fazer upload do arquivo CSV.
+![aba de configurações](../imagens/01%20-%20Configuração%20Zeus/03%20Configuração%20Zeus.png)
 
-Para fazer upload do arquivo CSV, abra o Zeus, vá até a aba de Inserir Dados, clique em selecionar arquivo.(imagens/image.png).
+As configurações do tipo climático podem ser alteradas conforme a intenção do usuário. Existe também a possibilidade de converter os dados gerados inserindo o nome da unidade de medida, uma descrição da conversão e a fórmula de conversão.
 
-![Upload CSV](../imagens/Upload%20CSV/00%20Upload%20CSV.png)
-<br/><br/>
+![aba de configurações](../imagens/01%20-%20Configuração%20Zeus/04%20Configuração%20Zeus.png)
 
-Selecione o arquivo CSV que você deseja fazer upload e clique em "Salvar".
-Se a sigla ainda não estiver relacionada a uma cidade, aparecerá uma mensagem para cadastrar a sigla.<br/>![Upload CSV](../imagens/Upload%20CSV/01%20Upload%20CSV.png)
-<br/><br/>
 
-Se o upload for bem-sucedido, você verá uma mensagem de sucesso.![Upload CSV](../imagens/Upload%20CSV/02%20Upload%20CSV.png)
-<br/><br/>
+## Upload do Arquivo CSV
 
-## Situação.
-Clique na aba Situação, o usuário receberá uma tabela com as informações das ultimas cidades que
- constam no banco de dados, com o registro mais recente de cada tipo de dado.
+Para fazer upload do arquivo CSV, execute o software e vá até a aba de Inserir Dados. Ao clicar no botão "Selecionar Arquivo", abrirá uma janela de busca. Selecione o arquivo CSV que você deseja fazer upload e clique em "Salvar".
 
- <br/><br/>![](../imagens/Relatorio%20Situação/00%20Relatorio%20Situação.jpeg)
-<br/><br/>
+![Upload CSV](../imagens/02%20-%20Upload%20CSV/00%20Upload%20CSV.png)
 
-Para saber a data e a hora do registro o usuario deve posicionar o cursor do mouse por cima do dado.
-<br/><br/>![](../imagens/Relatorio%20Situação/01%20Relatorio%20Situação.png)
-<br/><br/>
+Caso esse arquivo possua uma cidade sem que nenhuma sigla esteja relacionada a ela, aparecerá uma janela pedindo para cadastrar a sigla.
 
-Caso o usuario deseje, ele pode exportar um arquivo CSV clicando no botão exportar. O Registro de Situação será exibido como na imagem abaixo: 
-<br/><br/>![](../imagens/Relatorio%20Situação/02%20Relatorio%20Situação.jpeg)
-<br/><br/>
+![Upload CSV](../imagens/02%20-%20Upload%20CSV/01%20Upload%20CSV.png)
 
-## Valor Médio.
+Se o upload for bem-sucedido, será exibida uma mensagem de sucesso.
 
-Clique na aba do Valor Médio escolha a cidade desejada na lista suspensa qie ira aparecer na tela
-<br/><br/>![Upload CSV](../imagens/Relatorio%20Valor%20Medio/00%20Relatorio%20Valor%20Medio.png)
-<br/><br/>
+![Upload CSV](../imagens/02%20-%20Upload%20CSV/02%20Upload%20CSV.png)
 
-Após escolher a cidade, o usuário devera escolher a data inicial:  
-<br/><br/>![Upload CSV](../imagens/Relatorio%20Valor%20Medio/01%20Relatorio%20Valor%20Medio.png)
-<br/><br/>
+
+## Relatório de Situação
+
+Para ter acesso ao Relatório de Situação, selecione a aba Situação. Na tela será exibida uma tabela com os últimos dados das cidades cadastradas no banco de dados.
+
+![Situacao](../imagens/03%20-%20Relatorio%20Situação/00%20Relatorio%20Situação.jpeg)
+
+Para saber a data e a hora do registro, o usuário deve posicionar o cursor do mouse sobre o dado.
+
+![Situacao](../imagens/03%20-%20Relatorio%20Situação/01%20Relatorio%20Situação.png)
+
+Caso o usuário deseje, ele pode exportar um arquivo CSV com os dados clicando no botão exportar. Uma pop-up será exibida indicando onde o arquivo foi salvo.
+
+![Situacao](../imagens/03%20-%20Relatorio%20Situação/03%20Relatorio%20Situação.png)
+
+## Relatório de Valor Médio
+
+Para ter acesso ao Relatório de Valor Médio, selecione a aba Valor Médio. Clique em selecionar para receber uma lista com as cidades contidas no banco de dados.
+
+![ValorMedio](../imagens/04%20-%20Relatorio%20Valor%20Medio/00%20Relatorio%20Valor%20Medio.png)
+
+Após escolher a cidade, o usuário devera escolher a data inicial:
+
+![ValorMedio](../imagens/04%20-%20Relatorio%20Valor%20Medio/01%20Relatorio%20Valor%20Medio.png)
+
 E a data final:
-.<br/><br/>![Upload CSV](../imagens/Relatorio%20Valor%20Medio/02%20Relatorio%20Valor%20Medio.png)
-<br/><br/>
 
-Apos a escolha do periodo , aparecerá os botoes
-de Executar eo de Exportar.
-<br/><br/>![](../imagens/Relatorio%20Valor%20Medio/03%20Relatorio%20Valor%20Medio.png)
-<br/><br/>
+![Valor Medio](../imagens/04%20-%20Relatorio%20Valor%20Medio/02%20Relatorio%20Valor%20Medio.png)
 
-Ao clicar o botão de executar a tabela de valor médio será exibido na tela.<br/><br/>
-![Upload CSV](../imagens/Relatorio%20Valor%20Medio/04%20Relatorio%20Valor%20Medio.png)
-<br/><br/>
+Após a escolha do periodo, será exibido o botão executar.
 
-Ao clicar o botão de Exportar o CSV a tabela de valor médio ira gerar um relatorio em excel.<br/><br/>
-![](../imagens/Relatorio%20Valor%20Medio/05%20Relatorio%20Valor%20Medio.jpeg)
-<br/><br/>
+![ValorMedio](../imagens/04%20-%20Relatorio%20Valor%20Medio/03%20Relatorio%20Valor%20Medio.png)
 
-## Gerenciamento de Cidades.
+Ao clicar o botão de executar a tabela de Valor Médio será exibido na tela.
 
-Clique na aba Cidade, tera a opção de: adicionar,editar, deletar as cidades disponiveis em seu banco de dados.
-<br/>![Upload CSV](../imagens/1%20Tela%20Cidade%20.png)
-<br/><br/>
-Para editar, clique duas vezes no nome da cidade pretendida e assim uma caixa de texto aparecera para que o usuario possa inserir um novo nome.
-<br/>![Upload CSV](../imagens/12_Tela_Cidade.png)
-<br/><br/>
+![Valor Medio](../imagens/04%20-%20Relatorio%20Valor%20Medio/04%20Relatorio%20Valor%20Medio.png)
 
-Para adicionar uma cidade, clique em adicionar cidade e preencha as informações necessárias: Cidade e Sigla.<br/><br/>![Upload CSV](../imagens/image(14).png)
-<br/><br/>
+
+Caso o usuário deseje, ele pode exportar um arquivo CSV com os dados clicando no botão exportar. Uma pop-up será exibida indicando onde o arquivo foi salvo.
+
+![Valor Medio](../imagens/04%20-%20Relatorio%20Valor%20Medio/07%20-%20Relatorio%20Valor%20Medio.png)
+
+
+## Gerenciamento de Cidades
+
+Para ter acesso ao Gerenciamento de Cidades, selecione a aba Cidade. Na tela inicial, será exibida uma lista com as cidades contidas no banco de dados.
+
+![Gerenciamento de Cidades](../imagens/05%20-%20Gerenciamento%20de%20Cidade/00%20Gerenciamento%20de%20Cidade.png)
+
+Para adicionar uma cidade, clique em adicionar cidade e insira um nome e uma sigla para a nova cidade.
+
+![Gerenciamento de Cidades](../imagens/05%20-%20Gerenciamento%20de%20Cidade/01%20Gerenciamento%20de%20Cidade.png)
+
+Ao cadastrar uma sigla que já está cadastrada, aparecerá uma mensagem.
+
+![Gerenciamento de Cidades](../imagens/05%20-%20Gerenciamento%20de%20Cidade/02%20Gerenciamento%20de%20Cidade.png)
+
+Para editar, clique duas vezes no nome da cidade pretendida e uma caixa de texto aparecerá para que o usuário possa inserir um novo nome.
+
+![Gerenciamento de Cidades](../imagens/05%20-%20Gerenciamento%20de%20Cidade/03%20Gerenciamento%20de%20Cidade.png)
 
 Para deletar uma cidade, selecione a cidade e clique em deletar. Aparecerá uma mensagem de confirmação.
-<br/><br/>![Upload CSV](../imagens/image(15).png)
-<br/><br/>
 
-Ao cadastrar uma sigla que a mesma ja esta cadastrada aparecera uma mensagem.
-<br/><br/>![](../imagens/13_Aviso_Cidade.png)
-<br/><br/>
+![Gerenciamento de Cidades](../imagens/05%20-%20Gerenciamento%20de%20Cidade/04%20Gerenciamento%20de%20Cidade.png)
 
-## Gerenciamento de Estações.
+## Gerenciamento de Estações
 
-Clique na aba Estação, aparecera as informações das estações cadastradas, tera a opção de nomear estação, descrição, deletar e adicionar estações.<br/><br/>![Upload CSV](../imagens/image(16).png)
-<br/><br/>
+Para ter acesso ao Gerenciamento de Estações, selecione a aba Estações. Na tela inicial, será exibida uma lista com as estações contidas no banco de dados.
 
-Para nomear, fazer alguma descrição e adicionar as coordenadas de uma estação, clique na respectiva caixa de mensagem, preencha com as informações necessárias e aperte enter.<br/><br/>![Upload CSV](../imagens/image(17).png)
-<br/><br/>
+![Gerenciamento de Estacoes](../imagens/06%20-%20Gerenciamento%20de%20Estação/00%20Gerenciamento%20de%20Estacao.png)
 
-Para adicionar uma estação, clique em adicionar estação e preencha as informações necessárias:<br/><br/>![Upload CSV](../imagens/image(18).png)
-<br/><br/>
+Para adicionar uma estação, clique no botão de Adicionar Nova Estação:
 
-Para deletar uma estação, clique em deletar estação, aparecerá uma mensagem de confirmação.<br/><br/>![Upload CSV](../imagens/image(19).png)
-<br/><br/>
+![Gerenciamento de Estacoes](../imagens/06%20-%20Gerenciamento%20de%20Estação/01%20Gerenciamento%20de%20Estacao.png)
 
-## Adicionando configuração para dados suspeitos.
+Para editar nome, descrição, latitude ou longitude da estação, clique duas vezes para habilitar a funcionalidade e aperte enter para inserir os dados.
 
-Clique na aba Confuguração, aparecera as opções de configuração para temperatura, umidade, velocidade do vento, direção do vento e chuva, clicando e escrevendo o máximo e mínimo nas opções de configuração.
-<br/><br/>![Upload CSV](../imagens/image-21.png)
-<br/><br/>
+![Gerenciamento de Estacoes](../imagens/06%20-%20Gerenciamento%20de%20Estação/02%20Gerenciamento%20de%20Estacao.png)
 
-Após escrever cada parâmetro, clique em salvar que os dados, para que esteja funcionando.
-<br/><br/>![Upload CSV](../imagens/image-25.png)
-<br/><br/>
-Caso tenha dados suspeitos, os dados irão aparecer na aba Registros Suspeitos.
-<br/><br/>![Upload CSV](../imagens/image-26.png)
-<br/><br/>
+Para deletar uma estação, clique em deletar estação, e aparecerá uma mensagem de confirmação.
 
-## Registros Suspeitos 
+![Gerenciamento de Estacoes](../imagens/06%20-%20Gerenciamento%20de%20Estação/03%20Gerenciamento%20de%20Estacao.png)
 
-Clique na aba Registros Suspeitos, aparecera os 
-registros com valores descrepantes  
-<br/><br/>![](../imagens/image-15.png)
-<br/><br/>
+## Gerenciamento de Dados Suspeitos
 
-O usuario pode editar a onde estiver o registro com os valores contraditorios.
-<br/><br/>![](../imagens/image-16.png)
-<br/><br/>
+Para ter acesso ao Gerenciamento de Dados Suspeitos, selecione a aba Registros Suspeitos. Na tela inicial, serão exibidos os dados que estiverem acima ou abaixo dos parâmetros estipulados inicialmente.
 
-O usuario pode tambem ao inves de editar e pode excluir o registro.
-<br/><br/>![](../imagens/image-17.png)
-<br/><br/>
+![Dados Suspeitos](../imagens/07%20-%20Registros%20Suspeitos/00%20-%20Registros%20Suspeitos.png)
 
-## Boxplot 
+Caso o usuário deseje, ele pode editar um dado suspeito. Ao clicar no botão, será exibida uma janela onde ele poderá inserir os novos dados.
 
-Clique na aba Boxplot (boxplot é uma ferramenta gráfica utilizada na estatística para exibir a distribuição de um conjunto de dados)
-o usuario pode escolher a cidade com seus registros eo perido desejado 
-<br/><br/>![](../imagens/1%20Tela%20Boxplot.png)
-<br/><br/>
+![Dados Suspeitos](../imagens/07%20-%20Registros%20Suspeitos/01%20-%20Registros%20Suspeitos.png)
 
-O usuario pode escolher a cidade desejada na lista suspensa que ira aparecer na tela
-<br/><br/>![](../imagens/2%20Tela%20Box%20plot%20.png)
-<br/><br/>
+Ele também tem a opção de excluir aquele registro.
 
-Depois pode escolher o periodo desejado para pesquisa
-<br/><br/>![](../imagens/3%20Tela%20Box%20plot%20.png)
-<br/><br/>
+![Dados Suspeitos](../imagens/07%20-%20Registros%20Suspeitos/02%20-%20Registros%20Suspeitos.png)
 
-Apos escolher o periodo especifico aparecera o botão de excutar. 
-<br/><br/>![](../imagens/4%20tela%20Boxplot.png)
-<br/><br/>
+## Relatório Box Plot
 
-Ao apertar o botão de executar aparecer as informações referente ao periodo exigido
-<br/><br/>![](../imagens/5%20Tela%20Boxplot.png)
-<br/><br/>
+Para ter acesso ao Relatório Boxplot, selecione a aba Boxplot. Ao clicar na aba Boxplot, o usuário terá acesso à página inicial.
 
-O usuario ao clicar no exportar que aparecera na tela ,gerara um aviso que o CSV foi exportado para a pasta de dowloads.
-<br/><br/>![](../imagens/6%20Tela%20de%20Boxplot%20.png)
-<br/><br/>
+![BoxPlot](../imagens/08%20-%20Relatório%20Box%20Plot/00%20-%20Relatório%20Box%20Plot.png)
 
-O relatorio aparecera em CSV para converter em uma tabela em excel, para formatar o mesmo selecione a 1ª coluna e clique na aba dados
-<br/><br/>![](../imagens/2%20Tela%20A%20Relatorio%20Boxplot.png)
-<br/><br/>
+O usuário pode clicar no botão de seleção de estação e escolher na lista suspensa qual estação desejar.
 
-O usuario ao acessar a aba dados clique no icone texto para colunas e aparecera o assistente para conversão de texto em colunas e clique 1 vez para avançar e marque na opção vírgula na caixa de delimitadores,depois clique em concluir. 
-<br/><br/>![](../imagens/4%20Tela%20Relatorio%20Box%20Plot%20.png)
-<br/><br/>
+![BoxPlot](../imagens/08%20-%20Relatório%20Box%20Plot/01%20-%20Relatório%20Box%20Plot.png)
 
-O Relatorio estara formatado como uma tabela em excel. 
-<br/><br/>![](../imagens/3%20Tela%20Relatorio%20BoxPlot.png)
-<br/><br/>
+Depois, pode escolher o período desejado para pesquisa.
 
-Para mostrar um grafico da tabela que o usuario formatou anteriormente, vá a aba inserir,selecione a linha que irá transformar em um gráfico , em seguida clique no ícone que irá mostrar o tipo de gráfico e selecione o grafico de Box Plot. 
-<br/><br/>![](../imagens/5%20Tela%20Relatoio%20Box%20plot.png)
-<br/><br/>
+![BoxPlot](../imagens/08%20-%20Relatório%20Box%20Plot/02%20-%20Relatório%20Box%20Plot.png)
 
-Fazendo esse procedimentos com todos os registros da tabela,
-o usuário chegara noseguinte resultado.
-<br/>![](../imagens/csv_boxplot.jpg)
-<br/><br/>
+Após escolher o período específico, aparecerá o botão de executar..
 
+![BoxPlot](../imagens/08%20-%20Relatório%20Box%20Plot/03%20-%20Relatório%20Box%20Plot.png)
 
+Ao apertar o botão de executar, aparecerão as informações referentes ao período selecionado. Após essa ação, também será exibido o botão de exportação.
 
+![BoxPlot](../imagens/08%20-%20Relatório%20Box%20Plot/04%20-%20Relatório%20Box%20Plot.png)
 
-Caso necessite de suporte, por favor, entre em contato via e-mail:  
+Ao clicar no botão exportar, será gerado um aviso de que o CSV foi exportado para a pasta de downloads.
+
+![BoxPlot](../imagens/08%20-%20Relatório%20Box%20Plot/05%20-%20Relatório%20Box%20Plot.png)
+
+O relatório aparecerá em CSV e para converter em uma tabela em Excel, clique em Dados na barra superior.
+
+![BoxPlot](../imagens/08%20-%20Relatório%20Box%20Plot/06%20-%20Relatório%20Box%20Plot.png)
+
+Ao acessar a aba Dados, clique no ícone Texto para Colunas para ter acesso ao assistente para conversão de texto em colunas. Clique uma vez para avançar e marque na opção vírgula na caixa de delimitadores, depois clique em concluir.
+
+![BoxPlot](../imagens/08%20-%20Relatório%20Box%20Plot/07%20-%20Relatório%20Box%20Plot.png)
+
+O relatório será exportado um CSV.
+
+![BoxPlot](../imagens/08%20-%20Relatório%20Box%20Plot/09%20-%20Relatório%20Box%20Plot.png)
+
+Para mostrar um grafico boxplot, vá a aba inserir,selecione a linha que irá transformar em um gráfico , em seguida clique no ícone que irá mostrar o tipo de gráfico e selecione o grafico de Box Plot.
+
+![BoxPlot](../imagens/08%20-%20Relatório%20Box%20Plot/10%20-%20Relatório%20Box%20Plot.png)
+
+Realizando esses procedimentos com todos os registros da tabela, o usuário chegará ao seguinte resultado.
+
+![BoxPlot](../imagens/08%20-%20Relatório%20Box%20Plot/11%20-%20Relatório%20Box%20Plot.jpg)
+
+Caso necessite de suporte, por favor, entre em contato via e-mail:
 coderhood.fatec@gmail.com
 
-<br/>![](../imagens/CoderHood%20logo.png)
-<br/><br/>
+<img src="../imagens/CoderHood%20logo.png" width="160">
