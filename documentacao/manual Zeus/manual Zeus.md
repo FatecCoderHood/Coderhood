@@ -123,7 +123,11 @@ Ao clicar o botão de executar a tabela de Valor Médio será exibido na tela.
 
 Caso o usuário deseje, ele pode exportar um arquivo CSV com os dados clicando no botão exportar. Uma pop-up será exibida indicando onde o arquivo foi salvo.
 
-![Valor Medio](../imagens/04%20-%20Relatorio%20Valor%20Medio/07%20-%20Relatorio%20Valor%20Medio.png)
+![Valor Medio](../imagens/04%20-%20Relatorio%20Valor%20Medio/06%20Relatorio%20Valor%20Medio.png)
+
+CSV exportado.
+
+![Valor Medio](../imagens/04%20-%20Relatorio%20Valor%20Medio/07%20Relatorio%20Valor%20Medio.jpeg)
 
 
 ## Gerenciamento de Cidades
