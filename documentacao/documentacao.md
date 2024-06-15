@@ -300,22 +300,33 @@ Como pesquisador, quero poder adicionar dados adicionais aos extraidos do CSV, a
 
   ### Sprint 4:
 
-#### Otimização do banco:
-Melhorar a eficiência do nosso banco de dados. Estaremos trabalhando na otimização de consultas, estruturação de dados e garantindo a integridade dos dados.
-
-- Otimizado a estrutura do Relatório de Valor Médio SQL.
-
 #### Otimização de código:
 Revisão do código para identificar áreas que podem ser otimizadas. Isso inclui refatoração para melhor legibilidade, melhor desempenho e manutenibilidade.
 
+
  - Otimizado a estrutura do Relatório Box Plot do Controller e do Model.
  - Otimizado a estrutura do Relatório Valor Médio do Controller e do Model.
+ - Otimizado a estrutura do Relatório de Valor Médio SQL.
 
 
 #### Testes de Unidade:
 Para garantir a qualidade do código, estaremos escrevendo e executando Testes de Unidade. Isso nos ajudará a identificar e corrigir bugs antes que eles cheguem ao ambiente de produção.
 
-- Construído testes de unidade
+- Construído Testes de Unidade para as funcionalidades da camada de serviço:
+  
+  - Csv Resolve
+  - Leitor de CSV Service
+  - Estação Service
+  - Cidade Service
+  - Situação Service
+  - Suspeito Service
+  - Valor Médio Service
+  - Box Plot Service
+  - Variável Climática Service
+
+  ![Testes Jacoco 1](./imagens/09%20-%20Testes/Jacoco%201.jpg)
+
+  ![Testes Jacoco 2](./imagens/09%20-%20Testes/Jacoco%202.jpg)
 
 #### Manual de Usuário:
 Visando garantir a melhor utilização do Zeus pelo usuário, construimos um manual de instruções, com um direcionamento claro e objetivo com os detalhes de cada funcionalidade.
