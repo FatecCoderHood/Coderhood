@@ -22,9 +22,10 @@
 - [Sprint 4:](#sprint-4)
   - [Otimização do banco](#otimização-do-banco)
   - [Otimização de código](#otimização-de-código)
-  - [Testes Unitários](#testes-unitários)
-  - Manual do usuário
-  - Documentação
+  - [Testes de Unidade](#testes-de-unidade)
+  - [Manual do Usuário](#manual-de-usuário)
+  - [Ajuste Relatório Situação](#ajuste-na-exibição-dos-dados-do-relatório-de-situação)
+  - [Exportação CSV Relatório Situação e Valor Médio](#exportação-de-csv-para-relatório-de-situação-e-relatório-de-valor-médio)
 
 ## Entidade Relacionamento
 ![entidade-relacionamento](imagens/conceito_entidade-relacionamento.jpg)
@@ -302,14 +303,40 @@ Como pesquisador, quero poder adicionar dados adicionais aos extraidos do CSV, a
 #### Otimização do banco:
 Melhorar a eficiência do nosso banco de dados. Estaremos trabalhando na otimização de consultas, estruturação de dados e garantindo a integridade dos dados.
 
-
+- Otimizado a estrutura do Relatório de Valor Médio SQL.
 
 #### Otimização de código:
 Revisão do código para identificar áreas que podem ser otimizadas. Isso inclui refatoração para melhor legibilidade, melhor desempenho e manutenibilidade.
 
-#### Testes Unitários:
-Para garantir a qualidade do código, estaremos escrevendo e executando testes unitários. Isso nos ajudará a identificar e corrigir bugs antes que eles cheguem ao ambiente de produção.
+ - Otimizado a estrutura do Relatório Box Plot do Controller e do Model.
+ - Otimizado a estrutura do Relatório Valor Médio do Controller e do Model.
+
+
+#### Testes de Unidade:
+Para garantir a qualidade do código, estaremos escrevendo e executando testes de Unidade. Isso nos ajudará a identificar e corrigir bugs antes que eles cheguem ao ambiente de produção.
+
+- Construído testes de unidade
 
 #### Manual de Usuário:
 Visando garantir a melhor utilização do Zeus pelo usuário, construimos um manual de instruções, com um direcionamento claro e objetivo com os detalhes de cada funcionalidade.
+
+ - [Manual Zeus](./manual%20Zeus/manual%20Zeus.md)
+
+#### Ajuste na exibição dos dados do Relatório de Situação.
+Alterado exibição da data e hora da coleta de cada dado. Agora, o pesquisador encontra a data e hora da coleta do registro descansando o mouse em cima do dado.
+
+![Relatório Situção](./imagens/03%20-%20Relatorio%20Situação/01%20Relatorio%20Situação.png)
+
+#### Exportação de CSV para Relatório de Situação e Relatório de Valor Médio.
+Criado a possibilidade de exportação de arquivo CSV com os dados do Relatório de Situação e Relatório de Valor Médio.
+
+- Exportando Relatório de Situação:
+
+![Reltório Situação CSV](./imagens/03%20-%20Relatorio%20Situação/03%20Relatorio%20Situação.png)
+
+- Exportando Relatório de Valor Médio:
+
+![Relatório Valor Médio CSV](./imagens/04%20-%20Relatorio%20Valor%20Medio/07%20Relatorio%20Valor%20Medio.png)
+
+
 
