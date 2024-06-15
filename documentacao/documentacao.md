@@ -201,7 +201,7 @@ Como pesquisador, eu quero gerenciar registros que contêm valores suspeitos, af
 
  **Interface do usuário:**
 
-![Registro suspeito](imagens/07%20-%20Registros%20Suspeitos/00%20-%20Registros%20Suspeitos.pngimage-15.png)
+![Registro suspeito](./imagens/07%20-%20Registros%20Suspeitos/00%20-%20Registros%20Suspeitos.png)
 ![Registro suspeito](imagens/07%20-%20Registros%20Suspeitos/01%20-%20Registros%20Suspeitos.png)
 ![Registro suspeito](imagens/07%20-%20Registros%20Suspeitos/02%20-%20Registros%20Suspeitos.png)
 
