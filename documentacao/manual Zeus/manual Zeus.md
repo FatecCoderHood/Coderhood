@@ -98,6 +98,10 @@ Caso o usuário deseje, ele pode exportar um arquivo CSV com os dados clicando n
 
 ![Situacao](../imagens/03%20-%20Relatorio%20Situação/03%20Relatorio%20Situação.png)
 
+CSV exportado.
+
+![Situacao](../imagens/03%20-%20Relatorio%20Situação/02%20Relatorio%20Situação.jpeg)
+
 ## Relatório de Valor Médio
 
 Para ter acesso ao Relatório de Valor Médio, selecione a aba Valor Médio. Clique em selecionar para receber uma lista com as cidades contidas no banco de dados.
