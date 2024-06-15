@@ -139,10 +139,10 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
 
 ## :chart_with_upwards_trend: Gráfico Burndown
 <div align="center">
-    <img src="documentacao\Gráfio Burndown.jpg" alt="Gráfico Burndown" alt="Gráfico Burndown" width="75%">
+    <img src="./documentacao/imagens/Gráfico BurnDown Sprint 4.png" alt="Gráfico Burndown" alt="Gráfico Burndown" width="75%">
 </div>
 
-Para mais detalhes, [clique aqui](https://docs.google.com/spreadsheets/d/18BzTviEVx57DJYTtO7ZxyRwD-H_qZu2e2en_GfMsqkg/edit#gid=1164764710).
+Para mais detalhes, [clique aqui](https://docs.google.com/spreadsheets/d/1nS472wif8jxiT-QqrEeOhHWo78G994Crm7ALtZq7TSU/edit?gid=0#gid=0).
 
 ## :bookmark: Tecnologias Utilizadas
 > * [Java](https://www.java.com/pt-BR/) - Versão 17
