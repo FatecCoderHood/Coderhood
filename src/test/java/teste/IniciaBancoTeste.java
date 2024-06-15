@@ -339,6 +339,5 @@ public class IniciaBancoTeste {
             System.err.format("Popular tabela registro SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
     }
-
 }
 

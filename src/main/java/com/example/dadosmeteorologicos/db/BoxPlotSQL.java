@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.example.dadosmeteorologicos.model.Estacao;
+import com.example.dadosmeteorologicos.model.EstacaoDetalhes;
+
 import java.sql.Statement;
 import java.time.LocalDate;
 
@@ -18,8 +22,14 @@ public class BoxPlotSQL extends IniciaBanco {
         this.conn = super.conectarBanco();
     }
 
-    public List<String[]> getEstacoesMenuItem() {
-        List<String[]> estacoes = new ArrayList<String[]>();
+    public BoxPlotSQL (Connection conn) {
+        this.conn = conn;
+    }
+
+    
+
+    public List<Estacao> getEstacoesMenuItem() {
+        List<Estacao> estacoes = new ArrayList<>();
         try {
             if (conn != null) {
 
@@ -41,7 +51,7 @@ public class BoxPlotSQL extends IniciaBanco {
                     String siglaCidade = rs.getString("siglaCidade");
                     String dataMinima = rs.getString("dataMinima");
                     String dataMaxima = rs.getString("dataMaxima");
-                    estacoes.add(new String[] { numeroEstacao, nomeCidade, siglaCidade, dataMinima, dataMaxima });
+                    estacoes.add(new Estacao(numeroEstacao, siglaCidade, new EstacaoDetalhes(dataMinima, dataMaxima, nomeCidade)));
 
                 }
             }
@@ -51,7 +61,7 @@ public class BoxPlotSQL extends IniciaBanco {
         return estacoes;
     }
 
-    public Map<String, List<String>> getBoxPlotDados(int numeroEstacao, LocalDate data) {
+    public Map<String, List<String>> getBoxPlotDados(String numeroEstacao, LocalDate data) {
         Map<String, List<String>> boxPlotDados = new HashMap<>();
         boxPlotDados.put("temperaturaMedia", new ArrayList<>());
         boxPlotDados.put("umidadeMedia", new ArrayList<>());
@@ -66,11 +76,11 @@ public class BoxPlotSQL extends IniciaBanco {
                 "FROM registro JOIN estacao "+
                 "ON registro.siglacidade = estacao.siglacidade "+
                 "AND registro.estacao = estacao.numero " +
-                "WHERE estacao.numero = ?::VARCHAR AND registro.data = ?";
+                "WHERE estacao.numero = ?::VARCHAR AND registro.data = ? AND registro.suspeito = false";
 
 
                 PreparedStatement pstmt = conn.prepareStatement(sql);
-                pstmt.setLong(1, numeroEstacao);
+                pstmt.setString(1, numeroEstacao);
                 pstmt.setDate(2, java.sql.Date.valueOf(data));
 
                 ResultSet rs = pstmt.executeQuery();
