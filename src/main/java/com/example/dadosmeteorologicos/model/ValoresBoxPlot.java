@@ -19,26 +19,26 @@ public class ValoresBoxPlot {
     private String q3;
     private String max;
 
-public ValoresBoxPlot(String tipo, Double[] data) {
-    this.tipo = tipo;
-    if (data.length < 3) {
-        this.min = this.q1 = this.mediana = this.q3 = this.max = "--";
-        Platform.runLater(() -> {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Aviso");
-            alert.setHeaderText(null);
-            alert.setContentText("O dados de " + tipo + " não tem pelo menos 3 registros");
-            alert.showAndWait();
-        });
-    } else {
-        Arrays.sort(data);
-        this.min = String.format("%.2f", data[0]);
-        this.q1 = String.format("%.2f", getPercentil(data, 25.0));
-        this.mediana = String.format("%.2f", getPercentil(data, 50.0));
-        this.q3 = String.format("%.2f", getPercentil(data, 75.0));
-        this.max = String.format("%.2f", data[data.length - 1]);
+    public ValoresBoxPlot(String tipo, Double[] data) {
+        this.tipo = tipo;
+        if (data.length < 3) {
+            this.min = this.q1 = this.mediana = this.q3 = this.max = "--";
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Aviso");
+                alert.setHeaderText(null);
+                alert.setContentText("O dados de " + tipo + " não tem pelo menos 3 registros");
+                alert.showAndWait();
+            });
+        } else {
+            Arrays.sort(data);
+            this.min = String.format("%.2f", data[0]);
+            this.q1 = String.format("%.2f", getPercentil(data, 25.0));
+            this.mediana = String.format("%.2f", getPercentil(data, 50.0));
+            this.q3 = String.format("%.2f", getPercentil(data, 75.0));
+            this.max = String.format("%.2f", data[data.length - 1]);
+        }
     }
-}
 
     private Double getPercentil(Double[] data, Double percentil) {
         int index = (int) Math.ceil(percentil / 100.0 * (data.length - 1));
