@@ -147,6 +147,19 @@ Para adicionar uma estação, clique em adicionar estação e preencha as inform
 Para deletar uma estação, clique em deletar estação, aparecerá uma mensagem de confirmação.<br/><br/>![Upload CSV](../imagens/image(19).png)
 <br/><br/>
 
+## Adicionando configuração para dados suspeitos.
+
+Clique na aba Confuguração, aparecera as opções de configuração para temperatura, umidade, velocidade do vento, direção do vento e chuva, clicando e escrevendo o máximo e mínimo nas opções de configuração.
+<br/><br/>![Upload CSV](../imagens/image-21.png)
+<br/><br/>
+
+Após escrever cada parâmetro, clique em salvar que os dados, para que esteja funcionando.
+<br/><br/>![Upload CSV](../imagens/image-25.png)
+<br/><br/>
+Caso tenha dados suspeitos, os dados irão aparecer na aba Registros Suspeitos.
+<br/><br/>![Upload CSV](../imagens/image-26.png)
+<br/><br/>
+
 ## Registros Suspeitos 
 
 Clique na aba Registros Suspeitos, aparecera os 
