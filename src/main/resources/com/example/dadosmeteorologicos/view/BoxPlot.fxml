@@ -35,7 +35,7 @@
          </font>
       </Text>
       <MenuButton fx:id="menuButtonEstacao" layoutX="209.0" layoutY="68.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="574.0" text="Selecione a estação" />
-      <DatePicker fx:id="dataInicial" layoutX="363.0" layoutY="126.0" promptText="DATA" />
+      <DatePicker fx:id="dataSelecionada" layoutX="363.0" layoutY="126.0" promptText="DATA" />
       <TableView fx:id="tabelaDados" layoutX="190.0" layoutY="243.0" prefHeight="166.0" prefWidth="502.0">
          <columns>
             <TableColumn fx:id="columnTipo" prefWidth="125.0" text="Tipo" />

@@ -3,7 +3,6 @@ package com.example.dadosmeteorologicos.controller;
 import java.io.FileWriter;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +11,7 @@ import java.util.stream.Collectors;
 
 import com.example.dadosmeteorologicos.Services.BoxPlotService;
 import com.example.dadosmeteorologicos.model.BoxPlot;
+import com.example.dadosmeteorologicos.model.Estacao;
 import com.example.dadosmeteorologicos.model.ValoresBoxPlot;
 import com.opencsv.CSVWriter;
 
@@ -34,7 +34,7 @@ public class BoxPlotController {
     private MenuButton menuButtonEstacao;
 
     @FXML
-    private DatePicker dataInicial;
+    private DatePicker dataSelecionada;
 
     @FXML
     private TableView<ValoresBoxPlot> tabelaDados;
@@ -102,14 +102,14 @@ public class BoxPlotController {
                     checkFields();
                 });
 
-        dataInicial.valueProperty().addListener(
+        dataSelecionada.valueProperty().addListener(
                 (ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) -> {
                     resetPage();
                     checkFields();
                 });
 
         // Busca as estações disponíveis no banco de dados
-        List<String[]> estacoes = service.getEstacoesDoBancoDeDados();
+        List<Estacao> estacoes = service.getEstacoesDoBancoDeDados();
 
         if (estacoes == null) {
             System.out.println("Estacoes é null");
@@ -117,16 +117,17 @@ public class BoxPlotController {
             System.out.println("Número de estações: " + estacoes.size());
         }
 
-        for (String[] estacao : estacoes) {
-            System.out.println(Arrays.toString(estacao));
-            MenuItem menuItem = new MenuItem(estacao[0] + " - " + estacao[2] + " - " + estacao[1]);
+
+     
+        for (Estacao estacao : estacoes) {
+            MenuItem menuItem = new MenuItem(estacao.getNumero() + " - " + estacao.getEstacaoDetalhes().getNomeCidade()+ " - " + estacao.getSiglaCidade()  + " - dados: " + estacao.getEstacaoDetalhes().getDataPrimeiroRegistro() + " até " + estacao.getEstacaoDetalhes().getDataUltimoRegistro());
             menuItem.setOnAction(event -> {
                 menuButtonEstacao.setText(menuItem.getText());
 
-                LocalDate minDate = LocalDate.parse(estacao[3]);
-                LocalDate maxDate = LocalDate.parse(estacao[4]);
+                LocalDate minDate = LocalDate.parse(estacao.getEstacaoDetalhes().getDataPrimeiroRegistro());
+                LocalDate maxDate = LocalDate.parse(estacao.getEstacaoDetalhes().getDataUltimoRegistro());
 
-                dataInicial.setDayCellFactory(picker -> new DateCell() {
+                dataSelecionada.setDayCellFactory(picker -> new DateCell() {
                     @Override
                     public void updateItem(LocalDate date, boolean empty) {
                         super.updateItem(date, empty);
@@ -151,7 +152,7 @@ public class BoxPlotController {
 
     private void checkFields() {
         // Se todos os campos estiverem preenchidos, mostra o botão de busca
-        if (!menuButtonEstacao.getText().equals("Selecione a cidade") && dataInicial.getValue() != null) {
+        if (!menuButtonEstacao.getText().equals("Selecione a cidade") && dataSelecionada.getValue() != null) {
             btnExecutar.setVisible(true);
 
         }
@@ -169,66 +170,59 @@ public class BoxPlotController {
 
     @FXML
     public void selecionarEstacao(ActionEvent event) {
-
-        LocalDate dataSelecionada = dataInicial.getValue();
+        
+        LocalDate dataSelecionadaLocalDate = dataSelecionada.getValue();
         String estacaoSelecionada = menuButtonEstacao.getText();
 
         String[] partes = estacaoSelecionada.split(" - ");
-        if (partes.length == 3) {
-            String numeroEstacao = partes[0];
-            String siglaCidade = partes[2];
-            String siglaEstacao = partes[1];
+        String numeroEstacao = partes[0];
+        String nomeCidade = partes[1];
+        String siglaEstacao = partes[2];
 
-            boxPlotSelecionado = new BoxPlot(dataSelecionada, numeroEstacao, siglaCidade, siglaEstacao);
+        boxPlotSelecionado = new BoxPlot(dataSelecionadaLocalDate, numeroEstacao, nomeCidade, siglaEstacao);
 
-            int numeroEstacaoDados = Integer.parseInt(numeroEstacao);
-            Map<String, List<String>> boxPlotDados = service.getBoxPlotDados(numeroEstacaoDados, dataSelecionada);
+        Map<String, List<String>> boxPlotDados = service.getBoxPlotDados(numeroEstacao, dataSelecionadaLocalDate);
 
-            List<Double> temperatura = convertToDoubleList(boxPlotDados.get("temperaturaMedia"));
-            List<Double> umidade = convertToDoubleList(boxPlotDados.get("umidadeMedia"));
-            List<Double> velVento = convertToDoubleList(boxPlotDados.get("velVento"));
-            List<Double> dirVento = convertToDoubleList(boxPlotDados.get("dirVento"));
-            List<Double> chuva = convertToDoubleList(boxPlotDados.get("chuva"));
+        List<Double> temperatura = convertToDoubleList(boxPlotDados.get("temperaturaMedia"));
+        List<Double> umidade = convertToDoubleList(boxPlotDados.get("umidadeMedia"));
+        List<Double> velVento = convertToDoubleList(boxPlotDados.get("velVento"));
+        List<Double> dirVento = convertToDoubleList(boxPlotDados.get("dirVento"));
+        List<Double> chuva = convertToDoubleList(boxPlotDados.get("chuva"));
 
-            ValoresBoxPlot temperaturaBoxPlot = new ValoresBoxPlot("Temperatura", temperatura.toArray(new Double[0]));
-            ValoresBoxPlot umidadeBoxPlot = new ValoresBoxPlot("Umidade", umidade.toArray(new Double[0]));
-            ValoresBoxPlot velVentoBoxPlot = new ValoresBoxPlot("Velocidade do Vento", velVento.toArray(new Double[0]));
-            ValoresBoxPlot dirVentoBoxPlot = new ValoresBoxPlot("Direção do Vento", dirVento.toArray(new Double[0]));
-            ValoresBoxPlot chuvaBoxPlot = new ValoresBoxPlot("Chuva", chuva.toArray(new Double[0]));
+        ValoresBoxPlot temperaturaBoxPlot = new ValoresBoxPlot("Temperatura", temperatura.toArray(new Double[0]));
+        ValoresBoxPlot umidadeBoxPlot = new ValoresBoxPlot("Umidade", umidade.toArray(new Double[0]));
+        ValoresBoxPlot velVentoBoxPlot = new ValoresBoxPlot("Velocidade do Vento", velVento.toArray(new Double[0]));
+        ValoresBoxPlot dirVentoBoxPlot = new ValoresBoxPlot("Direção do Vento", dirVento.toArray(new Double[0]));
+        ValoresBoxPlot chuvaBoxPlot = new ValoresBoxPlot("Chuva", chuva.toArray(new Double[0]));
 
-            dadosBoxPlot = Arrays.asList(
-                    temperaturaBoxPlot, umidadeBoxPlot, velVentoBoxPlot, dirVentoBoxPlot, chuvaBoxPlot);
+        dadosBoxPlot = Arrays.asList(
+                temperaturaBoxPlot, umidadeBoxPlot, velVentoBoxPlot, dirVentoBoxPlot, chuvaBoxPlot);
 
-            criarTabelaCidade(boxPlotSelecionado);
-            criarTabelaDados(dadosBoxPlot);
+        criarTabelaEstacao(boxPlotSelecionado);
+        criarTabelaDados(dadosBoxPlot);
 
-            btnExportar.setVisible(true);
-        }
+        btnExportar.setVisible(true);
+        
     }
 
 
-
-    @FXML
-    public void criarTabelaCidade(BoxPlot boxPlotSelecionado) {
+    public void criarTabelaEstacao(BoxPlot boxPlotSelecionado) {
         // Cria a tabela informando a data, a estação, a cidade.
-        List<BoxPlot> boxPlots = new ArrayList<>();
-        boxPlots.add(boxPlotSelecionado);
-
-        columnData.setCellValueFactory(new PropertyValueFactory<>("dataSelecionada"));
-
-        columnEstacao.setCellValueFactory(new PropertyValueFactory<>("numeroEstacao"));
 
         columnCidade.setCellValueFactory(new PropertyValueFactory<>("cidadeEsigla"));
+        
+        columnEstacao.setCellValueFactory(new PropertyValueFactory<>("numeroEstacao"));
+        
+        columnData.setCellValueFactory(new PropertyValueFactory<>("dataSelecionada"));
 
-        tabelaEstacao.getItems().setAll(boxPlots);
+        tabelaEstacao.getItems().setAll(boxPlotSelecionado);
 
+        columnCidade.setStyle("-fx-alignment: CENTER;");
         columnData.setStyle("-fx-alignment: CENTER;");
         columnEstacao.setStyle("-fx-alignment: CENTER;");
-        columnCidade.setStyle("-fx-alignment: CENTER;");
 
     }
 
-    @FXML
     public void criarTabelaDados(List<ValoresBoxPlot> dadosBoxPlot) {
         System.out.println(dadosBoxPlot.toString());
 

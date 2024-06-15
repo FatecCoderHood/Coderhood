@@ -14,6 +14,12 @@ public class SuspeitoSQL extends IniciaBanco {
     public SuspeitoSQL() {
         conn = super.conectarBanco();
     }
+
+    public SuspeitoSQL(Connection conn) {
+        this.conn = conn;
+    }
+
+
     // Método para buscar registros suspeitos no banco
     public List<Registro> buscaRegistrosSuspeitosBanco() {
         // Lista de registros suspeitos

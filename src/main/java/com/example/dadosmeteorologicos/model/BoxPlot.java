@@ -11,17 +11,17 @@ import lombok.NoArgsConstructor;
 public class BoxPlot {
     private LocalDate dataSelecionada;
     private String numeroEstacao;
-    private String cidadeEstacao;
+    private String nomeCidade;
     private String siglaCidade;
     private String cidadeEsigla;
     private ValoresBoxPlot valoresBoxPlot;
 
-    public BoxPlot(LocalDate dataSelecionada, String numeroEstacao, String cidadeEstacao, String siglaCidade) {
+    public BoxPlot(LocalDate dataSelecionada, String numeroEstacao, String nomeCidade, String siglaCidade) {
         this.dataSelecionada = dataSelecionada;
         this.numeroEstacao = numeroEstacao;
-        this.cidadeEstacao = cidadeEstacao;
+        this.nomeCidade = nomeCidade;
         this.siglaCidade = siglaCidade;
-        this.cidadeEsigla = cidadeEstacao + " - " + siglaCidade;
+        this.cidadeEsigla = nomeCidade + " - " + siglaCidade;
     }
 
 }
