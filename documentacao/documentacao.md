@@ -300,6 +300,9 @@ Como pesquisador, quero poder adicionar dados adicionais aos extraidos do CSV, a
 
   ### Sprint 4:
 
+#### Otimização do banco
+  Melhorias na consulta SQL, estrutura do controlador de tela e fluxos de lógica.
+
 #### Otimização de código:
 Revisão do código para identificar áreas que podem ser otimizadas. Isso inclui refatoração para melhor legibilidade, melhor desempenho e manutenibilidade.
 

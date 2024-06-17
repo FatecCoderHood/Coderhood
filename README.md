@@ -144,7 +144,7 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
         </tr>
         <tr>
         <td>10</td>
-        <td>Melhorias na consulta SQL, estrutura do controlador de tela e .</td>
+        <td>Melhorias na consulta SQL, estrutura do controlador de tela e fluxos de lógica.</td>
         <td>Testes de unidade</td>
         <td>4</td>
         <td>3</td>
