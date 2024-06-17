@@ -16,8 +16,8 @@
     <a href="#bookmark-tecnologias-utilizadas"> Tecnologias Utilizadas </a>
 </p>
 <p align="center">
-<strong><a href="https://github.com/CoderhoodFatec-2024-1/Coderhood/blob/main/documentacao/documentacao.md" style="font-size: larger;"> Documentação </a></strong> •
-    <strong><a href="https://github.com/CoderhoodFatec-2024-1/Coderhood/blob/main/documentacao/manual%20Zeus/manual%20Zeus.md" style="font-size: larger;"> Manual </a></strong>
+<strong><a href="https://github.com/CoderhoodFatec-2024-1/Coderhood/blob/4a45f938bf7aff28ff9277a84cbb458355e899e0/documentacao/documentacao.md" style="font-size: larger;"> Documentação </a></strong> •
+    <strong><a href="https://github.com/CoderhoodFatec-2024-1/Coderhood/blob/27de3ccef7e543b7f77055b8b10cc0afb30bd2ce/documentacao/manual%20Zeus/manual%20Zeus.md" style="font-size: larger;"> Manual </a></strong>
 </p>
 
 
