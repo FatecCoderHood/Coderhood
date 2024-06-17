@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.dadosmeteorologicos.db.SituacaoSQL;
-import com.example.dadosmeteorologicos.model.RegistroSituacao;
 import com.example.dadosmeteorologicos.model.Cidade;
+import com.example.dadosmeteorologicos.model.RegistroSituacao;
 
 public class SituacaoService {
 

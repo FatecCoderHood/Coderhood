@@ -9,11 +9,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.example.dadosmeteorologicos.Services.CidadeService;
+import com.example.dadosmeteorologicos.Services.SituacaoService;
 import com.example.dadosmeteorologicos.model.Cidade;
 import com.example.dadosmeteorologicos.model.RegistroSituacao;
 import com.opencsv.CSVWriter;
-import com.example.dadosmeteorologicos.Services.SituacaoService;
-import com.example.dadosmeteorologicos.Services.CidadeService;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -171,12 +171,12 @@ public class SituacaoController {
             csvWriter.writeNext(cabecalho);
             for (Map.Entry<Cidade, RegistroSituacao> cidadeEInfo : registroSituacao.entrySet()) {
                 RegistroSituacao info = cidadeEInfo.getValue();
-                String[] linha = { cidadeEInfo.getKey().getNome(), 
-                info.getDataTemperaturaMedia().toString()+ " " +info.getHoraTemperaturaMedia().toString(), info.getTemperaturaMedia(),
-                info.getDataUmidadeMedia().toString() + " " +info.getHoraUmidadeMedia().toString(), info.getUmidadeMedia(),
-                info.getDataVelVento().toString()+ " " +info.getHoraVelVento().toString(), info.getVelVento(),
-                info.getDataDirVento().toString()+ " " +info.getHoraDirVento().toString(), info.getDirVento(),
-                info.getDataChuva().toString()+ " " +info.getHoraChuva().toString(), info.getChuva()};
+                String[] linha = { cidadeEInfo.getKey().getNome() + " - " + cidadeEInfo.getKey().getSigla(), 
+                    info.getDataTemperaturaMedia() != null && info.getHoraTemperaturaMedia() != null ? info.getDataTemperaturaMedia().toString() + " " + info.getHoraTemperaturaMedia().toString() : "--", info.getTemperaturaMedia(),
+                    info.getDataUmidadeMedia() != null && info.getHoraUmidadeMedia() != null ? info.getDataUmidadeMedia().toString() + " " + info.getHoraUmidadeMedia().toString() : "--", info.getUmidadeMedia(),
+                    info.getDataVelVento() != null && info.getHoraVelVento() != null ? info.getDataVelVento().toString() + " " + info.getHoraVelVento().toString() : "--", info.getVelVento(),
+                    info.getDataDirVento() != null && info.getHoraDirVento() != null ? info.getDataDirVento().toString() + " " + info.getHoraDirVento().toString() : "--", info.getDirVento(),
+                    info.getDataChuva() != null && info.getHoraChuva() != null ? info.getDataChuva().toString() + " " + info.getHoraChuva().toString() : "--", info.getChuva()};
                 csvWriter.writeNext(linha);
 
             }

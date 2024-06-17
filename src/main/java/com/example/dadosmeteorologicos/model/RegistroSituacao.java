@@ -41,6 +41,6 @@ public class RegistroSituacao {
         if (this.getVelVento() == null) this.setVelVento("--");
         if (this.getDirVento() == null) this.setDirVento("--");
         if (this.getChuva() == null) this.setChuva("--");
-    
+        
     }
 }

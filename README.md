@@ -61,7 +61,7 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
 |  1  | Sprint 1   | 25/03   | 14/04 | Ok |
 |  2  | Sprint 2   | 15/04   | 05/05 | Ok |
 |  3  | Sprint 3   | 06/05   | 26/05 | Ok |
-|  4  | Sprint 4   | 27/05   | 16/06 |    |
+|  4  | Sprint 4   | 27/05   | 16/06 | Ok |
 |  5  | Feira de Soluções  | 27/06 |    |
 
 
@@ -131,6 +131,21 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
         <td>8</td>
         <td>Como pesquisador, eu quero documentações detalhadas, incluindo um manual de usuário e instruções de instalação, para facilitar o uso e a manutenção do sistema.</td>
         <td>Criar Documentação</td>
+        <td>4</td>
+        <td>3</td>
+    </tr>
+        <tr>
+        <td>9</td>
+        <td>Criação de testes de unidade e de integração, afim de garantir a integridade do software.</td>
+        <td>Testes de unidade</td>
+        <td>4</td>
+        <td>3</td>
+    </tr>
+        </tr>
+        <tr>
+        <td>10</td>
+        <td>Melhorias na consulta SQL, estrutura do controlador de tela e .</td>
+        <td>Testes de unidade</td>
         <td>4</td>
         <td>3</td>
     </tr>
