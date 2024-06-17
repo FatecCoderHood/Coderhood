@@ -11,9 +11,13 @@
   <a href="#page_with_curl-requisitos-não-funcionais"> Requisitos Não Funcionais </a>
 </p>
 <p align="center">
-  <a href ="#calendar-cronograma"> Cronograma </a>  •
-  <a href="#date-product-backlog"> Product Backlog </a> •
-  <a href="#bookmark-tecnologias-utilizadas"> Tecnologias Utilizadas </a>
+    <a href ="#calendar-cronograma"> Cronograma </a>  •
+    <a href="#date-product-backlog"> Product Backlog </a> •
+    <a href="#bookmark-tecnologias-utilizadas"> Tecnologias Utilizadas </a>
+</p>
+<p align="center">
+<strong><a href="https://github.com/CoderhoodFatec-2024-1/Coderhood/blob/4a45f938bf7aff28ff9277a84cbb458355e899e0/documentacao/documentacao.md" style="font-size: larger;"> Documentação </a></strong> •
+    <strong><a href="https://github.com/CoderhoodFatec-2024-1/Coderhood/blob/27de3ccef7e543b7f77055b8b10cc0afb30bd2ce/documentacao/manual%20Zeus/manual%20Zeus.md" style="font-size: larger;"> Manual </a></strong>
 </p>
 
 
@@ -55,9 +59,9 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | --  | KickOff   | 04/03   | 08/03 | Ok |
 |  1  | Sprint 1   | 25/03   | 14/04 | Ok |
-|  2  | Sprint 2   | 15/04   | 05/05 |    |
-|  3  | Sprint 3   | 06/05   | 26/05 |    |
-|  4  | Sprint 4   | 27/05   | 16/06 |    |
+|  2  | Sprint 2   | 15/04   | 05/05 | Ok |
+|  3  | Sprint 3   | 06/05   | 26/05 | Ok |
+|  4  | Sprint 4   | 27/05   | 16/06 | Ok |
 |  5  | Feira de Soluções  | 27/06 |    |
 
 
@@ -130,19 +134,34 @@ Desenvolver uma ferramenta eficiente para consolidar e gerenciar dados climátic
         <td>4</td>
         <td>3</td>
     </tr>
+        <tr>
+        <td>9</td>
+        <td>Criação de testes de unidade e de integração, afim de garantir a integridade do software.</td>
+        <td>Testes de unidade</td>
+        <td>4</td>
+        <td>3</td>
+    </tr>
+        </tr>
+        <tr>
+        <td>10</td>
+        <td>Melhorias na consulta SQL, estrutura do controlador de tela e fluxos de lógica.</td>
+        <td>Testes de unidade</td>
+        <td>4</td>
+        <td>3</td>
+    </tr>
     </tbody>
 </table>
 
 ## :chart_with_upwards_trend: Gráfico Burndown
 <div align="center">
-    <img src="documentacao\Gráfio Burndown.jpg" alt="Gráfico Burndown" alt="Gráfico Burndown" width="75%">
+    <img src="./documentacao/imagens/Gráfico BurnDown Sprint 4.png" alt="Gráfico Burndown" alt="Gráfico Burndown" width="75%">
 </div>
 
-Para mais detalhes, [clique aqui](https://docs.google.com/spreadsheets/d/18BzTviEVx57DJYTtO7ZxyRwD-H_qZu2e2en_GfMsqkg/edit#gid=1164764710).
+Para mais detalhes, [clique aqui](https://docs.google.com/spreadsheets/d/1nS472wif8jxiT-QqrEeOhHWo78G994Crm7ALtZq7TSU/edit?gid=0#gid=0).
 
 ## :bookmark: Tecnologias Utilizadas
 > * [Java](https://www.java.com/pt-BR/) - Versão 17
-> * [JavaFX](https://openjfx.io/) - versão 17.0.6
+> * [JavaFX](https://openjfx.io/) - versão 22
 > * [PostgreSQL](https://www.postgresql.org/) - Versão 16.2
 > * [JDBC PostgreSQL](https://jdbc.postgresql.org/) -  Versão 42.2.5
 > * [Git](https://git-scm.com/)

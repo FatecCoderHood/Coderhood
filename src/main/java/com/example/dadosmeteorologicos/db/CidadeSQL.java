@@ -17,6 +17,10 @@ public class CidadeSQL extends IniciaBanco{
         conn = super.conectarBanco();
     }
 
+    public CidadeSQL(Connection conn) {
+        this.conn = conn;
+    }
+
     public List<Cidade> buscaCidadesBanco() {
         List<Cidade> listaCidades = new ArrayList<>();
         try {
@@ -106,7 +110,7 @@ public class CidadeSQL extends IniciaBanco{
         }
     }
 
-    public void atualizarCidadeBanco(int id, String nome) {
+    public void atualizarNomeCidadeBanco(int id, String nome) {
         try {
             String sql = "UPDATE cidade SET nome = ? WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
