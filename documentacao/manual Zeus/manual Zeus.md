@@ -74,9 +74,14 @@ Caso esse arquivo possua uma cidade sem que nenhuma sigla esteja relacionada a e
 
 ![Upload CSV](../imagens/02%20-%20Upload%20CSV/01%20Upload%20CSV.png)
 
-Se o upload for bem-sucedido, será exibida uma mensagem de sucesso.
+Se o upload for bem-sucedido, as informações serão exibidas  na tela inicial.
 
 ![Upload CSV](../imagens/02%20-%20Upload%20CSV/02%20Upload%20CSV.png)
+
+Para salvar, clique no botão de mesmo nome. Uma mensagem aparecerá confirmando essa ação:
+
+![Upload CSV](../imagens/02%20-%20Upload%20CSV/03%20Upload%20CSV.png)
+
 
 
 ## Relatório de Situação
@@ -92,6 +97,10 @@ Para saber a data e a hora do registro, o usuário deve posicionar o cursor do m
 Caso o usuário deseje, ele pode exportar um arquivo CSV com os dados clicando no botão exportar. Uma pop-up será exibida indicando onde o arquivo foi salvo.
 
 ![Situacao](../imagens/03%20-%20Relatorio%20Situação/03%20Relatorio%20Situação.png)
+
+CSV exportado.
+
+![Situacao](../imagens/03%20-%20Relatorio%20Situação/02%20Relatorio%20Situação.jpeg)
 
 ## Relatório de Valor Médio
 
@@ -118,7 +127,11 @@ Ao clicar o botão de executar a tabela de Valor Médio será exibido na tela.
 
 Caso o usuário deseje, ele pode exportar um arquivo CSV com os dados clicando no botão exportar. Uma pop-up será exibida indicando onde o arquivo foi salvo.
 
-![Valor Medio](../imagens/04%20-%20Relatorio%20Valor%20Medio/07%20-%20Relatorio%20Valor%20Medio.png)
+![Valor Medio](../imagens/04%20-%20Relatorio%20Valor%20Medio/06%20Relatorio%20Valor%20Medio.png)
+
+CSV exportado.
+
+![Valor Medio](../imagens/04%20-%20Relatorio%20Valor%20Medio/07%20Relatorio%20Valor%20Medio.jpeg)
 
 
 ## Gerenciamento de Cidades

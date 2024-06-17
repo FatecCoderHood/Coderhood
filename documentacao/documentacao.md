@@ -10,7 +10,7 @@
   - [Faixa de valores suspeitos configurável](#faixa-de-valores-suspeitos-configurável)
   - [Gerenciamento de cidades](#gerenciamento-de-cidades)
   - [Gerenciamento de estações](#gerenciamento-de-estações)
-  - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)  
+  - [Tratamento de registros suspeitos](#tratamento-de-registros-suspeitos)
 
 - [Sprint 3:](#sprint-3) Todos os requisitos funcionais foram entregues ✅
   - [Relatório de Situação](#relatório-de-situação)
@@ -22,9 +22,10 @@
 - [Sprint 4:](#sprint-4)
   - [Otimização do banco](#otimização-do-banco)
   - [Otimização de código](#otimização-de-código)
-  - [Testes Unitários](#testes-unitários)
-  - Manual do usuário
-  - Documentação 
+  - [Testes de Unidade](#testes-de-unidade)
+  - [Manual do Usuário](#manual-de-usuário)
+  - [Ajuste Relatório Situação](#ajuste-na-exibição-dos-dados-do-relatório-de-situação)
+  - [Exportação CSV Relatório Situação e Valor Médio](#exportação-de-csv-para-relatório-de-situação-e-relatório-de-valor-médio)
 
 ## Entidade Relacionamento
 ![entidade-relacionamento](imagens/conceito_entidade-relacionamento.jpg)
@@ -62,18 +63,18 @@ Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de u
 **Tela inicial:**
 - Clicar no botão para selecionar o arquivo CSV.
 
-![Tela Inicial](imagens/image(7).png)
+![Tela Inicial](../documentacao/imagens/02%20-%20Upload%20CSV/00%20Upload%20CSV.png)
 
 **Arquivo selecionado com sucesso:**
 - Serão exibidos: o nome da cidade, a estação processada, quantos registros foram feitos, e se existem registros suspeitos.
 
-![Arquivo Selecionado](imagens/image-1.png)
+![Arquivo Selecionado](./imagens/02%20-%20Upload%20CSV/02%20Upload%20CSV.png)
 
 **Após arquivo selecionado, clique em salvar para que o arquivo seja adicionado à base de dados:**
 
 - Será exibido um alerta de confirmação com as informações do registro.
 
-![Salvar na Base de Dados](imagens/image(9).png)
+![Salvar na Base de Dados](./imagens/02%20-%20Upload%20CSV/03%20Upload%20CSV.png)
 
 ##
 
@@ -82,15 +83,15 @@ Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de u
 
 **A estação inserida está relacionada com uma cidade diferente:**
 
-![Erro de Estação](imagens/image-5.png)
+![Erro de Estação](../documentacao/imagens/05%20-%20Gerenciamento%20de%20Cidade/02%20Gerenciamento%20de%20Cidade.png)
 
 **A sigla ainda não está associada a uma cidade:**
 
-![Erro de Sigla](imagens/image(8).png)
+![Erro de Sigla](/documentacao/imagens/02%20-%20Upload%20CSV/01%20Upload%20CSV.png)
 
 **O nome do CSV não está no padrão esperado:**
 
-![Erro de CSV](imagens/image-4.png)
+![Erro de CSV](./imagens/02%20-%20Upload%20CSV/04%20Upload%20CSV.png)
 
 
 ### Relatório de valor médio:
@@ -108,11 +109,11 @@ Como meteorologista, eu quero gerar um relatório de valores médios de uma cida
 
 **Selecionar cidade e datas:**
 
-![alt text](imagens/image-7.png)
+![alt text](./imagens/04%20-%20Relatorio%20Valor%20Medio/03%20Relatorio%20Valor%20Medio.png)
 
 **Tabela com registros:**
 
-![alt text](imagens/image(12).png)
+![alt text](./imagens/04%20-%20Relatorio%20Valor%20Medio/04%20Relatorio%20Valor%20Medio.png)
 
 
 
@@ -130,7 +131,7 @@ Como pesquisador, eu quero relatórios de valor médio de cada váriavel climati
 - Se houver registros para mesma data e hora mas com estações diferentes, deve ser feito uma média.
 
 **Interface do usuário:**
-![registro valor médio](imagens/image-20.png)
+![registro valor médio](imagens/04%20-%20Relatorio%20Valor%20Medio/08%20Relatorio%20Valor%20Medio.png)
 
 ##
 
@@ -144,7 +145,7 @@ Como pesquisador, eu quero alterar os valores minimos e máximos de cada tipo cl
 - Alterar os valores minimos e máximos fará efeito somente nas novas leituras, registros já processados não serão válidados.
 
 **Interface do usuário:**
-![conf dados suspeitos em configurações](imagens/image-21.png)
+![conf dados suspeitos em configurações](imagens/04%20-%20Relatorio%20Valor%20Medio/09%20Relatorio%20Valor%20Medio.png)
 
 ##
 
@@ -162,9 +163,9 @@ Como pesquisador, eu quero gerenciar cidades, podendo assim escalar e manejar as
 
 **Interface do usuário:**
 
-![cidade-1](imagens/image(13).png)<br/><br/>
-![cidade-2](imagens/image(14).png)<br/><br/>
-![cidade-3](imagens/image(15).png)<br/><br/>
+![Gerenciamento de Cidade](imagens/05%20-%20Gerenciamento%20de%20Cidade/01%20Gerenciamento%20de%20Cidade.png)<br/><br/>
+![Gerenciamento de Cidade](imagens/05%20-%20Gerenciamento%20de%20Cidade/02%20Gerenciamento%20de%20Cidade.png)<br/><br/>
+![Gerenciamento de Cidade](imagens/05%20-%20Gerenciamento%20de%20Cidade/04%20Gerenciamento%20de%20Cidade.png)<br/><br/>
 
 ##
 
@@ -182,9 +183,9 @@ Como pesquisador, eu quero gerenciar estações, podendo assim escalar e manejar
 
 **Interface do usuário:**
 
- ![estacao-1](imagens/image-10.png)
+ ![Gerenciamento de Estação](imagens/06%20-%20Gerenciamento%20de%20Estação/01%20Gerenciamento%20de%20Estacao.png)
 
- ![estacao-2](imagens/image-9.png)
+ ![Gerenciamento de Estação](imagens/06%20-%20Gerenciamento%20de%20Estação/03%20Gerenciamento%20de%20Estacao.png)
 
 ##
 
@@ -200,9 +201,9 @@ Como pesquisador, eu quero gerenciar registros que contêm valores suspeitos, af
 
  **Interface do usuário:**
 
-![suspeito-1](imagens/image-15.png)
-![suspeito-2](imagens/image-16.png)
-![suspeito-3](imagens/image-17.png)
+![Registro suspeito](./imagens/07%20-%20Registros%20Suspeitos/00%20-%20Registros%20Suspeitos.png)
+![Registro suspeito](imagens/07%20-%20Registros%20Suspeitos/01%20-%20Registros%20Suspeitos.png)
+![Registro suspeito](imagens/07%20-%20Registros%20Suspeitos/02%20-%20Registros%20Suspeitos.png)
 
 
 ##
@@ -220,7 +221,7 @@ Como pesquisador, posso visualizar relatório de situação, afim de verificar a
 
  **Interface do usuário:**
  
- ![Aba Relatório Situação](imagens/situacao.png)
+ ![Aba Relatório Situação](./imagens/03%20-%20Relatorio%20Situação/00%20Relatorio%20Situação.jpeg)
 
 ##
 
@@ -232,7 +233,8 @@ Como pesquisador, posso gerar dados necessários para a criação de um gráfico
 
 **Regras de negócio:**
 - Deve ser selecionado uma estaçãoe uma estação.
-- Será gerado para cada váriavel climatica("Temperatura Média", "Umidade Média", "Velocidade do Vento", "Direção do Vento", "Chuva"): 
+- Será gerado para cada váriavel climatica("Temperatura Média", "Umidade Média", "Velocidade do Vento", "Direção do Vento", "Chuva"):
+
   - Mínimo
   - Primeiro quartil
   - Mediana
@@ -245,12 +247,11 @@ Como pesquisador, posso gerar dados necessários para a criação de um gráfico
 
  **Interface do usuário:**
  
-![Dados BoxPlot](imagens/boxplot.png)
-
+![Dados BoxPlot](./imagens/08%20-%20Relatório%20Box%20Plot/04%20-%20Relatório%20Box%20Plot.png)
 
  **CSV exportado:**
 
-![csv e boxplot](imagens/csv_boxplot.jpg)
+![csv e boxplot](./imagens/08%20-%20Relatório%20Box%20Plot/11%20-%20Relatório%20Box%20Plot.jpg)
 
 
 
@@ -269,7 +270,7 @@ Como pesquisador, quero poder informar o nome das unidades e exibir suas formula
 
  **Interface do usuário:**
 
-![Configuracoes tipo climatico](imagens/configuracoes_tipo_climatico.png)
+![Configuracoes tipo climatico](./imagens/01%20-%20Configuração%20Zeus/02%20Configuração%20Zeus.png)
 
 
 
@@ -287,7 +288,7 @@ Como pesquisador, quero poder adicionar dados adicionais aos extraidos do CSV, a
 
  **Interface do usuário:**
 
-![estacao com informacoes adicionais](imagens/estacao_com_informacoes_adicionadas.png)
+![estacao com informacoes adicionais](./imagens/06%20-%20Gerenciamento%20de%20Estação/04%20Gerenciamento%20de%20Estacao.png)
 
 
 
@@ -299,12 +300,54 @@ Como pesquisador, quero poder adicionar dados adicionais aos extraidos do CSV, a
 
   ### Sprint 4:
 
-#### Otimização do banco:
-Melhorar a eficiência do nosso banco de dados. Estaremos trabalhando na otimização de consultas, estruturação de dados e garantindo a integridade dos dados.
-
 #### Otimização de código:
 Revisão do código para identificar áreas que podem ser otimizadas. Isso inclui refatoração para melhor legibilidade, melhor desempenho e manutenibilidade.
 
-#### Testes Unitários:
-Para garantir a qualidade do código, estaremos escrevendo e executando testes unitários. Isso nos ajudará a identificar e corrigir bugs antes que eles cheguem ao ambiente de produção.
+
+ - Otimizado a estrutura do Relatório Box Plot do Controller e do Model.
+ - Otimizado a estrutura do Relatório Valor Médio do Controller e do Model.
+ - Otimizado a estrutura do Relatório de Valor Médio SQL.
+
+
+#### Testes de Unidade:
+Para garantir a qualidade do código, estaremos escrevendo e executando Testes de Unidade. Isso nos ajudará a identificar e corrigir bugs antes que eles cheguem ao ambiente de produção.
+
+- Construído Testes de Unidade para as funcionalidades da camada de serviço:
   
+  - Csv Resolve
+  - Leitor de CSV Service
+  - Estação Service
+  - Cidade Service
+  - Situação Service
+  - Suspeito Service
+  - Valor Médio Service
+  - Box Plot Service
+  - Variável Climática Service
+
+  ![Testes Jacoco 1](./imagens/09%20-%20Testes/Jacoco%201.jpg)
+
+  ![Testes Jacoco 2](./imagens/09%20-%20Testes/Jacoco%202.jpg)
+
+#### Manual de Usuário:
+Visando garantir a melhor utilização do Zeus pelo usuário, construimos um manual de instruções, com um direcionamento claro e objetivo com os detalhes de cada funcionalidade.
+
+ - [Manual Zeus](./manual%20Zeus/manual%20Zeus.md)
+
+#### Ajuste na exibição dos dados do Relatório de Situação.
+Alterado exibição da data e hora da coleta de cada dado. Agora, o pesquisador encontra a data e hora da coleta do registro descansando o mouse em cima do dado.
+
+![Relatório Situção](./imagens/03%20-%20Relatorio%20Situação/01%20Relatorio%20Situação.png)
+
+#### Exportação de CSV para Relatório de Situação e Relatório de Valor Médio.
+Criado a possibilidade de exportação de arquivo CSV com os dados do Relatório de Situação e Relatório de Valor Médio.
+
+- Exportando Relatório de Situação:
+
+![Reltório Situação CSV](./imagens/03%20-%20Relatorio%20Situação/03%20Relatorio%20Situação.png)
+
+- Exportando Relatório de Valor Médio:
+
+![Relatório Valor Médio CSV](./imagens/04%20-%20Relatorio%20Valor%20Medio/06%20Relatorio%20Valor%20Medio.png)
+
+
+

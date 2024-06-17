@@ -32,4 +32,15 @@ public class RegistroSituacao {
     private LocalDate dataChuva;
     private LocalTime horaChuva;
     private String chuva;
+
+
+    public void filtraRegistro(){
+
+        if (this.getTemperaturaMedia() == null) this.setTemperaturaMedia("--");
+        if (this.getUmidadeMedia() == null) this.setUmidadeMedia("--");
+        if (this.getVelVento() == null) this.setVelVento("--");
+        if (this.getDirVento() == null) this.setDirVento("--");
+        if (this.getChuva() == null) this.setChuva("--");
+    
+    }
 }
