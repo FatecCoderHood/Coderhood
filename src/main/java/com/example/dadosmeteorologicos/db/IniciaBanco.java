@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import lombok.Data;
 
-
-
+@Data
 public class IniciaBanco {
 
     private String nomeDB = "apifatec";
@@ -55,10 +55,10 @@ public class IniciaBanco {
                 criarTabelaCidade();
                 criarTabelaEstacao();
                 conn.close();
-            } 
+            }
         }catch(SQLException e){
             System.err.format("iniciarBanco SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
-        }    
+        }
     }
 
     public void criarDataBase() throws SQLException{

@@ -1,4 +1,4 @@
-# Documentação do Produto
+# Documentação Zeus
 
 ## Backlog do Produto
 - [Sprint 1:](#sprint-1)
@@ -60,14 +60,18 @@ Como meteorologista, eu quero inserir um CSV e adicionar os dados coletados de u
 **Interface do usuário:**
 
 **Tela inicial:**
+- Clicar no botão para selecionar o arquivo CSV.
 
 ![Tela Inicial](imagens/image.png)
 
 **Arquivo selecionado com sucesso:**
+- Serão exibidos: o nome da cidade, a estação processada, quantos registros foram feitos, e se existem registros suspeitos.
 
 ![Arquivo Selecionado](imagens/image-1.png)
 
-**Após selecionar para salvar na base de dados:**
+**Após arquivo selecionado, clique em salvar para que o arquivo seja adicionado à base de dados:**
+
+- Será exibido um alerta de confirmação com as informações do registro.
 
 ![Salvar na Base de Dados](imagens/image-2.png)
 
@@ -178,11 +182,9 @@ Como pesquisador, eu quero gerenciar estações, podendo assim escalar e manejar
 
 **Interface do usuário:**
 
- ![estacao-1](imagens/image-9.png)
+ ![estacao-1](imagens/image-10.png)
 
- ![estacao-2](imagens/image-10.png)
-
-![estaco-3](imagens/image-11.png)
+ ![estacao-2](imagens/image-9.png)
 
 ##
 
